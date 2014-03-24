@@ -1,0 +1,366 @@
+1 1 Styczeñ Mas³awa Mas³awy Mieczys³awa Mieczys³awy Mieszka Odyseusza Ziemowita      
+2 2 Styczeñ Bazylego Makarego Narcyzy Abla Grzegorza Izydora Ody Odila Odylii Strze¿ys³awa     
+3 3 Styczeñ Arlety Arletty Danuty Dany Daniela Genowefy Gerwazego Lucjana Piotra Wawrzyñca W³oœcis³awa Zdzis³awa     
+4 4 Styczeñ Angeliki Anieli Benity Dobromierza Dobromira El¿biety Eugeniusza Grzegorza Roberta Tytusa       
+5 5 Styczeñ Diany Edwarda Emiliana Hanny Izydora Rogera Symeona Szymona Telesfora W³astybora W³oœcibora ¯akliny     
+6 6 Styczeñ Andrzeja Baltazara Bolomira Kacpra Melchiora    
+7 7 Styczeñ Chocis³awa Izydora Juliana Lucjana £ucjana Rajmunda Seweryna Seweryny Œwiatos³awa Walentego Walentyny Wilmy     
+8 8 Styczeñ Ariny Arleny Artura Erharda Mœcis³awa Rajmunda Seweryna Seweryny Teofila   
+9 9 Styczeñ Adriana Alicji Antoniego Borzymiarza Juliana Marcelego Marceliny Marcjanny Teresy Witalisa W³adymira      
+10 10 Styczeñ Ady Agi Danuty Dobros³awa Dobros³awy Gabrieli Grzegorza Jana Nikanora Paw³a Wilhelma    
+11 11 Styczeñ Aleksandra Feliksa Hilarego Honoraty Krzesimierza Krzesimira Krzesis³awa Marty Matyldy Ofelii Teodozjusza Teozjusza      
+12 12 Styczeñ Antoniego Arkadiusza Benedykta Bernarda Czes³awa Czeslawy Ernestyny Grety Gotfryda Melanii Remigiusza Tacjanny Tatiany Weroniki        
+13 13 Styczeñ Bogomira Bogumi³a Bogumi³y Bogus³awy Gotfrydy Leoncjusza Lwa Melanii Niki Remigiusza Weroniki    
+14 14 Styczeñ Feliksa Hilarego Makarego Makryny Marcyny Maryny Niny Odona Radogosta Rados³awa Rados³awy Ruthy      
+15 15 Styczeñ Aleksandra Arnolda D¹brówki Domas³awa Domas³awy Dory Gabriela Idalii Ity Izydora Makarego Paw³a       
+16 16 Styczeñ Beaty Bernarda Honorata Honoraty Marcelego Marceli Waldemara Walerii Waleriusza W³odzimierza
+17 17 Styczeñ Antoniego Antoniny Henryka Henryki Honoraty Jana Juliana Koœcis³awa Marceliny Mariana Roœcis³awa W³odzimierza     
+18 18 Styczeñ Beatrycze Beatryczy Bogumi³a Eleny Jarope³ka Krystyny Leonilla Liberty Libertyny Ma³gorzaty Piotra      
+19 19 Styczeñ Antoniego Andrzeja Erwina Erwiny Gildy Henrietty Henryka Hilarego Mariusza Marty Ratymira Sary    
+20 20 Styczeñ Dobiegniewa Dobrogniewa Fabiana Fabioli Ludmi³a Ludmi³y Mi³y Saby Sebastiana  
+21 21 Styczeñ Agnieszki Agusta Epifaniego Inezy Jaros³awa Jaros³awy Juliana Karola Ludwika Marceli Nory        
+22 22 Styczeñ Anastazego Anastazji Dobromys³a Dominika Dominiki Doriana Gaudencjusza Mateusza Niki Wiktora Wiktorii Wincentego Witys³awa  
+23 23 Styczeñ Fernandy Ildefonsa Jana Klemensa Marii Mariki Rajmunda Rajmundy Wrocis³awa Wrocis³awy     
+24 24 Styczeñ Chwaliboga Chwalibora Eryki Felicji Felicjana Feliksa Franciszka Mileny Rafaeli Rafa³a Roberta Tymoteusza S³awy       
+25 25 Styczeñ Dolores Ireny Jany Mi³osza Mi³owita Paw³a Tacjany Tacjanny Tatiany Tiny     
+26 26 Styczeñ Lutos³awa Lutos³awy Normy Pauli Pauliny Polikarpa Przybys³awa Skarbimierza Skarmira Tymoteusza Tytusa Wandy      
+27 27 Styczeñ Angeli Angeliki Anieli Ilony Ingrid Jana Jerzego Przemys³awa Juliana Przybys³awa 
+28 28 Styczeñ Agnieszki Amandy Agustyna Berty Juliana Kariny Karola Lecha Les³awa Leszka Piotra Radomierza Rodomira Tomasza Walentego Walerego Waleriusza     
+29 29 Styczeñ Franciszka Hanny Iny Konstancji Micha³a Salomei Waleriana Walerego Zdzis³awa Zenona    
+30 30 Styczeñ Adeli Dobiegniewa Dobrogniewa Dziadumi³y Gerdy Feliksa Hiacynta Macieja Marcina Martyny Sebastiana Teofila     
+31 31 Styczeñ Cyrusa Jana Joanny Ksawerego Ludwika Ludwiki Luizy Marcelego Marceli Marceliny Piotra Spycigniewa Spytogniewa       
+32 1 Luty Brygidy Dobrochny Dobrogniewa Dobrogniewy Igi Ignacego Marioli Paw³a Seweryna Siemirada ¯egoty     
+33 2 Luty Felicjana Fortunata Fortunaty Jagody Joany Katarzyny Klary Kornela Korneliusza Marii Miroslawa Miros³awy Mi³os³awa Mi³os³awy Oskara   
+34 3 Luty B³a¿eja Hipolita Joanny Oskara Rychezy Ryksy Sobies³awa Stefana Telimeny Uniemys³awa    
+35 4 Luty Andrzeja Danuty Izydy Joanny Józefa Mariusza Teofila Weroniki Witos³awa Witos³awy    
+36 5 Luty Adelajdy Agaty Agi Filipa Gabriela Gabrieli Izydora Justyniana Paw³a Piotra Strzy¿ys³awy Sulis³awy 
+37 6 Luty Amandy Angelego Antoniego Bogdana Bogdany Doroty Kseni Paw³a Romana Tytusa       
+38 7 Luty Antoniego Antoniny Eugenii Julianny Kolety Rajmunda Romualda Ryszarda Ryszardy Sulis³awa Teodora Wilhelma Wilhelminy  
+39 8 Luty Aleksandra Aleksandry Gniewomierza Gniewomira Hieronima Honoraty Irminy Irmy Jana Lucjusza Piotra Sebastiana Sylwii ¯akliny      
+40 9 Luty Apolonii Bernarda Borys³awa Cyryla Donata Eryka Eryki Gorzys³awa Nikifora Rajmunda Sabiny   
+41 10 Luty Agatona Elizy Elwiry Gabriela Gabrieli Jacentego Jacka Scholastyka Scholastyki Œwiêtochny Tomi³y Tomis³awa Tomis³awy      
+42 11 Luty Adolfa Bernadetty Bo¿eny Brygidy Dezyderego Grzegorza Lucjana Lucjusza £azarza Marii Olgierda Œwiêtochny Œwiêtomierza    
+43 12 Luty leksego Benedykta Czeslawa Damiana Eulalii Juliana Ludwika Modesta Nory Normy Radzimierza Radzyny Trzebis³awy       
+44 13 Luty Arlety Benigny Grzegorza Juliana Katarzyny Klemensa Leny Les³awa Lindy Niemira Stefana Toligniewa Walentego Wieñczys³awa 
+45 14 Luty Cyryla Dobies³awa Konrada Krystyny Liliany Lilii Metodego Miry Niemira Niemiry Niny Walentego Witalisa Walentyny Walentego Zenona    
+46 15 Luty Agaty Arnolda Faustyny Georginy Ity Jowity Józefa Klaudiusza Przybrada Saturnina Seweryna Zygfryda      
+47 16 Luty Bernarda Bernardyny Daniela Danuty Juliana Juliany Julianny Seweryna Sylwina Szymona     
+48 17 Luty Aleksego Donata Donaty Gizeli Juliana Julianny £ukasza Sylwii Sylwina Szymona Zbigniewa Zuzanny     
+49 18 Luty Albera Alberty Frydy Konstancji Konstancjusza Krystiana Maksyma Sawy Sylwany Symeona Wiaczes³awa Wielos³awa Wiêces³awa Zuzanny     
+50 19 Luty Arnolda Bettiny Bêdzis³awy Czcis³awa El¿biety Gabriela Gabrieli Henryka Konrada Manfreda Manfesta Mansweta Marcelego Miroslawa Miros³awy Piotra  
+51 20 Luty Anety Ermelindy Eustachego Jana Juliusza Lecha Leona leontyny Ludmi³a Ludmi³y Ludomi³a Ludomira Ostapa Siestrzewita       
+52 21 Luty Bart³omieja Cezarego Eleonory Eugenii Feliksa Fortunata Ireny Kiejstuta Lenki Onos³awy Piotra Roberta Teodora 
+53 22 Luty Arystiana Flory Irydiona Izabeli Ma³gorzaty Marty Nikifora Piotra Wrócis³awa Wrocis³awa    
+54 23 Luty B¹dzimierza Damiana Florentyny Izabeli Marty Piotra Polikarpa Przedzis³awa Romana Romany Romy Seweryna     
+55 24 Luty Boguarda Boguty Bogusza Jaœminy Lucjana £ucji Macieja Marka Modesta Modesty Naty Piotra Sergiusza      
+56 25 Luty Almy Anastazji Bolebora Cezarego Donata Gezy Jaros³awa Macieja Ma³gorzaty S³awoboja Walpurgii Wiktora     
+57 26 Luty Aleksandra Bogumi³a Bogumily Dionizego Dory Eweliny Filipa Lutos³awy Miroslawa Miros³awy Nestora   
+58 27 Luty Albiny Anastazji Gabriela Gabrieli Honoraty Juliana Leonarda Leonarda Liwii Sieros³awa Wiaros³awa Wiktora Wasyla 
+59 28 Luty Antonii Antoniego Chwaliboga Erminy Ludomi³y Ludomira Makarego Prokopa Romana Wiliany     
+60 29 Luty Dobroniego Lutos³awa Romana                         
+61 1 Marzec Albina Albiny Antoniego Antoniny Budzis³awa Feliksa Joanny Józefa Rados³awa Rados³awy Rogera    
+62 2 Marzec Agnieszki Franciszka Halszki Heleny Henryka Karola Krzysztofa Lucji Lucyna Micha³a Paw³a Rados³awa       
+63 3 Marzec Asteriusza Budzis³awa Danieli Fryderyka Hieronima Kingi Kunegundy Lucjola £ucji Maryny Pakos³awa Tycjana     
+64 4 Marzec Adriana Adrianny Arkadiusza Eugeniusza Jagody Kazimierza Lucjana Lucjusza £ucji £ucjusza Wac³awa Wac³awy    
+65 5 Marzec Adory Adriana Adriany Aurory Euzebiusza Ferdynanda Fryderyka Jana Oliwii Pakos³awa Teofila Teofili Wac³awa       
+66 6 Marzec Agnieszki Elwiry Felicyty Jordana Klaudii Klaudiana Klaudiusza Kolety Marcina Marcjana Ró¿y Wiktora Wojs³awa        
+67 7 Marzec Bogowita Felicji Felicyty Gryzeldy Jana Kajetana Nadmierza Pauli Pawla Polikarpa Toma Tomasza      
+68 8 Marzec Beaty Filomeny Jana Jany Mi³ogosta Juliana Mœcis³awa Stefana Wincentego  
+69 9 Marzec Anastazego Apolla Bo¿ys³awa Dominika Elwiry Fransiszka Franciszki Kariny Kararzyny Mœcis³awy Teresy Stigniewa  
+70 10 Marzec Aleksandra Atalii Bernarda Bo¿ys³awa Bo¿ys³awy Cypriana Grzegorza Makarego Marcelego Mo¿es³awa Sofronii Witis³awa Witos³awy  
+71 11 Marzec Benedykta Benedyktyna Dobros³awy Edwina Kandyda Konstantego Konstantyny Ludos³awa Ludos³awy Prokopa Rozyny      
+72 12 Marzec Bernarda Bernadety Blizbora Grzegorza Justyny Józefiny Maksymiliana Swatosza Wasyla Wiki     
+73 13 Marzec Bo¿eny Ernesta Ernestyny Eufrazji Krystyny Marianny Marka Nikifora Patryka Rodryga Trzebis³awa       
+74 14 Marzec Benedykta Bo¿êciechy Dalii Florentyny Jakuba Leona £azarza Matyldy Micha³a Roœcis³awa     
+75 15 Marzec Delfiny Goœcimierza Heloizy Klemensa Krzysztofa Longina Ludwika Ludwiki Lutos³awa Lutos³awy       
+76 16 Marzec Cyriaka Gabrieli Henryka Henryki Herberta Hiacynta Hiacyntii Hilarego Izabeli Juliana Ojcos³awa Oktawii Oktawiana Zbigniewa    
+77 17 Marzec Gertrudy Giny Jana Patryka Patryki Reginy Reny Zbigniewa Zbyszka     
+78 18 Marzec Adeli Anzelma Boguchwa³y Cyryla Edwarda Narcyza Zbys³awy    
+79 19 Marzec Aleksandry Aleksandryny Bogdana Bogdany Bohdany Bohdana Chryzanta Józefa Marka Nicety Sybilii      
+80 20 Marzec Aleksandra Aleksandry Anatola Boguslawa Eufemii Eufenii Eugenii Joachima Kiry Klaudii Maurycego Patrycjusza Sebastiana Teodozji Wincentego    
+81 21 Marzec Angeliki Benedykta Bernadety Eleonory Filemona Filomeny Klemencji Lubomierza Lubomira Lubomiry Ludomira Miko³aja    
+82 22 Marzec Arnolda Bonawenutego Bogumi³a Bogumi³y Bogus³awa Bogus³awy Godzis³awa Jagody Katarzyny Kazimierza Oktawiana Oktawiusza Paw³a Wszemira  
+83 23 Marzec Feliksa Konrada Oktawii oktawiana Oty Pelagii Pelagiusza Tyberiusza Wiktoriana Zbys³awa Zbys³awy     
+84 24 Marzec Dzierzys³awy Gabora Gabriela Gabrieli Katarzyny Lutomira Lutomiry Marka Sewera Seweryny Szymona Teodora    
+85 25 Marzec Bolka Cezariusza Cezarego Cezaryny Dyzmy Ireneusza £ucji Marii Marioli Wawrzyñca Wieñczys³awa     
+86 26 Marzec Dory Emanuela Emanueli Kasjana Larysy Ma³gorzaty Manueli Olgi Œwiêtoboja Teodora Tworzymierza Tymoteusza Wieñczys³awa    
+87 27 Marzec Benedykta Ditty Ernesta Humberta Jana Lidii Ligii Marka Peregryny Ruperta       
+88 28 Marzec Aleksandra Anieli Antoniego Antoniny Bohdana Gustawa Jana Joanny Kastora Krzesis³awa Sonii Sykstusa        
+89 29 Marzec Amalii Bertolda Cyryla Czcirada Eystachego Helmuta Kwiryna Marka Ostapa Wiktora Wiktoryna Wiktoryny Zenobii Zenona      
+90 30 Marzec Amelii Anieli Czêstobora Dobromira Dobromiry Emelii Jana Kwiryna Kwiryny Leonarda    
+91 31 Marzec Balbiny Beniamina Dobromierza Dobromira Ernesty Gwidona Kamila Kamilli Kornelii    
+92 1 Kwiecieñ Chryzanty Gra¿yny Haralda Hugona Katarzyny Teodora Wenecjusza Zbigniewa Zygmunta ¯ermeny     
+93 2 Kwiecieñ Arona Eryka Eryki Franciszka Malwiny Marii Teodozji Urbana W³adys³awa   
+94 3 Kwiecieñ Antoniego Benigny Cieszygora Iny Ireny Jakuba Pankracego Renaty Reny Ryszarda Sykstusa W³adys³awa     
+95 4 Kwiecieñ Antoniego Antoniny Benadykta Izydora Izydory Kwiatos³awy Mno¿ys³awa Wac³awa Wac³awy     
+96 5 Kwiecieñ Alojzego Bo¿ywoja Fereniusza Ireny Juliana Kleofasa Kleofasta Tristana Wincentego Wincenty   
+97 6 Kwiecieñ Ady Adama Celectyna Celestyny Celii Ireneusza Izoldy Kornelii Marcelina Marcina Micha³a Sykstusa Œwiêtobora Wilhelma Wita Wity  
+98 7 Kwiecieñ Donata Donaty Grzegorza Hermana Herminy Jana Mariki Przec³awa Przepys³awa Rufina Ró¿y Saturnina      
+99 8 Kwiecieñ Amadeusza Cezarego Cezaryny Dionizego Gawry³a Emmy Januarego Juliana Juliany Julii Marcelego Rados³awa Siecies³awy Waltera      
+100 9 Kwiecieñ Dobros³awa Dobros³awy Dymitra Hugona Mai Marcelego Marceliny Marcina Marii Wadima      
+101 10 Kwiecieñ Antoniego Aploniusza Borysa Borys³awa Borys³awy Daniela Ferencjusza Godzis³awa Henryka Makarego Ma³gorzaty Maruszki Micha³a Michaliny     
+102 11 Kwiecieñ Bart³omieja Filipa Filipiny Gemmy Izoldy Jaromierza Jaromira Leona Leontyny Marka Stanis³awa       
+103 12 Kwiecieñ Damiana Iwana Janosika Juliana Juliusza Konstantyna Lubos³awa Lubos³awy Saby Wiktora Wiktoryny Zenona Zenony  
+104 13 Kwiecieñ Artemona hermenegildy Idy Justyna Justyny Ma³gorzaty Marcina Przemys³awa Przemys³awy 
+105 14 Kwiecieñ Bereniki Bernadetty Bernarda Bernardy Bernardyny Hermana Julianny Justyna Justyny Maksyma Marii Marty Martyny Miœlimira Tyberiusza Walerego Waleriana   
+106 15 Kwiecieñ Adolfiny Anastazego Anastazji Bazylego Cezarego Ludwiny Olimpii Odetty Tytusa Wac³awa Wac³awy Wszegniewa    
+107 16 Kwiecieñ benedykta Bernarda Bernadety Biruty Cecyla Cecyliana Erwina Julii Ksenii Lamberta Nosis³awa Urbana     
+108 17 Kwiecieñ Anicety Eliasza Iny Klary Krosis³awa Patrycego Radociecha Roberta Rudolfa Rudolfiny Stafana   
+109 18 Kwiecieñ Alicji Apolonii Apoloniusza Bogumi³a Bogumi³y Bogus³awa Bogus³awy Flawiusza Goœcis³awa Klarysy Poli   
+110 19 Kwiecieñ Ady Adolfa Adolfy Alfa Cieszyrada JerzegoKnrada Leona Leonii Leontyny Pafnucego Tymona Tytusa W³odzimierza     
+111 20 Kwiecieñ Agnieszki Amalii Bereniki Blanki Czecha Czes³awa Nawoja Lecha Szymona Teodora     
+112 21 Kwiecieñ Anzelma Bartosza Drogomi³y Drogomira Feliksa Jaros³awa Konrada Konrady Selmy       
+113 22 Kwiecieñ Eugenii Heliodora Kaji Kajusa Leona Leonii £ukasza Nastazji Teodora Strze¿ymierza Strze¿ymira    
+114 23 Kwiecieñ Adalberta Albrechta Belli Emanueli Fortunaty Geralda Gerarda Heleny Ilony Jerzego Wojciecha   
+115 24 Kwiecieñ Aleksandra Aleksego Bony Deotyny Egberta Feliksa Fidelisa Grzegorza Horacego Horacji Jerzego Walerii      
+116 25 Kwiecieñ Estery Jaros³awa Kaliksta Marka S³awy Szczepana Wasyla Wiki        
+117 26 Kwiecieñ Aureliusza Klaudii Klaudiusza Marcelina Marceliny Marii Marzeny Ryszarda    
+118 27 Kwiecieñ Anastazego Andrei Andrzeja Felicji Martyny Sergiusza Teodora Teofila Teofili Zyty        
+119 28 Kwiecieñ Bogdana Bogny Bogus³awa Ludomi³y Ludwika Ludy Marii Marka Paw³a Walerii Witalisa Zywis³awa   
+120 29 Kwiecieñ Angeliny Augustyna Bogus³awa Chwalis³awa Hugona Katarzyny Margarity Piotra Rity Roberta Roberty Sewera      
+121 30 Kwiecieñ Balbiny Balladyny Bart³omieja Chwalis³awa Chwalis³awy Donata Filomeny Igora Jakuba Katarzyny Lilii Mariana Marianny Marii Piusa Tamary      
+122 1 Maj Anieli Filipa Filippy Fredy Jakuba Jaremiasza Jeremiego Józefa Lubomira Lubomierza Ramony Romana       
+123 2 Maj Anatola Anastazego Celestyny Elizy Eugeniusza Irminy Longina Longiny Toli Wytymira Zygmunta    
+124 3 Maj Aleksandry Aniki Antoniny Broniwoji Jarope³ka Marii Marioli Niny Swiatoslawa Œwiêtos³awy       
+125 4 Maj Antoniny Floriana Flory Grzegorza Ireny Malwiny Micha³a Moniki Poli Polikarpa Roberta      
+126 5 Maj Hilarego Ireny Irydy Ity Piusa Tamary Teodora Waldemara Wincentego Wincenty Zdzibora  
+127 6 Maj benedykta Beniny Benity Domiceli Dominika Filipa Fredy Goœcis³awa Jana Jakuba Judyty Juranda Ludomi³a Ludomi³y Waldemara Wiktoriana       
+128 7 Maj Augusta Benedykta Diniceli Flawii Floriana Gizeli Gusty Ludomi³a Ludomi³y Ludomira Lubomiry Ró¿y Sawy Wincentego
+129 8 Maj Achacego Benedykta Dezyderii Eryka Eryki Izy ilzy Kornela Kornelii Lizy marka Micha³a Mirona Stanis³awa Wiktora  
+130 9 Maj Beaty Bo¿eny Bo¿ydara Grzegorza Joba Karola Karoliny Katarzyny Marii Miko³aja tekli Urliki        
+131 10 Maj Antoniego Antoniana Antonina Antoniny Cierpimira Cêstomierza Dory Izydora Izydory Jana Symeona Symplicjusza Wiktoryny        
+132 11 Maj Alberta Filipa Franciszka Hortensji Igi Ignacego Ignacji Jakuba Ludomira Lutogniewa Mamerta Miry Mirandy        
+133 12 Maj Domicelli Domicjana Dominika Fanny Imeldy Jana Jazona Joanny Pankracego Wszechmi³a Wszemira  
+134 13 Maj Agnieszki Andrzeja Arona Cichos³awa Ciechos³awa Glorii Magdaleny Piotra Roberta Roberty Rolanda Serwacego ¯anny  
+135 14 Maj Bonifacego Bony Boñczy Dobies³awa Izydy Julity Justyny Macieja Micha³a Wiktora Wiktoriusza      
+136 15 Maj Anastazego Berty Dionizego Izydora Jana Maksyma Nadzieji Ofki Strze¿ys³awa Zofii       
+137 16 Maj Andrzeja Diany Honoraty Jana Jêdrzeja Ma³gorzaty Przemys³awa Przemys³awy Trzebomys³awa Ubalda Szymona Wieñczyslawa  
+138 17 Maj Brunona Brunony Feliksa Miry Paschalisa Slawomira Torpeta Wiktora Weroniki Wery        
+139 18 Maj Aleksandra Aleksandry Ali Alicji Bohdana Edwina Eryka Eryki Feliksa Iriny Jana Myœlibora Nataszy      
+140 19 Maj Augustyna Celestyna Celestyny Emiliany Iny Iwy Iwony Krzesomira Lwa Miko³aja Pêkos³awa Piotra Potencjany Urbana       
+141 20 Maj Aleksandra Anastazego Bazylego Bazylisa Bernarda Bernardy Bernardyna Bronimierza Efrydy Krystyny Sawy Teodora Wiktorii   
+142 21 Maj Donata Donaty Gizeli Jana Konstancji Kryspina Moniki Przec³awa Pudensa Tymoteusza Walentego Wiktora      
+143 22 Maj Emila Heleny Jana Julii Krzesis³awy Rity Roksany Romana Romy Wies³awa Wies³awy       
+144 23 Maj Budziwoja Dezyderego Dezyderiusza Emilii Flory Iwony Juliana Kryspina Leoncjusza Leontyny Micha³a Renaty Wilhelma       
+145 24 Maj Cieszys³awa Cieszys³awy Jana Joanny Marii Mileny Wincentego Zdenka Zuli Zuzanny Estery     
+146 25 Maj Borysa Borys³awa Borys³awy Epifana Grzegorza Imis³awy Leona Magdy Marii-Magdaleny Urbana Wioletty 
+147 26 Maj Bedy Erwina Eweliny Filipa Jana Marianny Paulina Pauliny Paw³a Wiêcemi³a Wilchelma        
+148 27 Maj Armandy Augustyna Jana Janiny Juliana Juliusza Lucjana Ludy Magdaleny Rodowita Rady Rys³awa      
+149 28 Maj Augustyna Augustyny Emilii Feliksa Germana Gusty Ingi Jaromira Jaromiry Wilhelma Wilhelminy Wrócimierza   
+150 29 Maj Aleksandra Benity Boguslawa Bogus³awy Magdaleny Maksyma Maksymiliana Marii Piotra Teodora Teodozji Urszuli    
+151 30 Maj Felicji Felicjana feliksa Ferdynanda Gryzeldy Jana Joany Joanny Marii Sulimierza Sulimira Zyndrama    
+152 31 Maj Anieli Bo¿ys³awy Ernesta Ernesty Ernestyny Feliksa Kamili Ksawery Ksawerego Leona Marietty Marii Petroneli       
+153 1 Czerwiec Gracji Gracjana Hortensji Jakuba Justyny Konrada Konrady Magdaleny Niki Nikodema Œwiêtope³ka     
+154 2 Czerwiec Amina Blandyny Erazma Eugeniusza Jarmi³y Marcelego Marcelina Marii Marianny Marzanny Marzeny Miko³aja Pauliny Piotra Racis³awa Ratys³awa    
+155 3 Czerwiec Aldony Anatola Karola Klotyldy Konstantyna Laurentyny Leszka Macieja Tamary      
+156 4 Czerwiec Aleksandra Christy Dacjana Dacjusza Emmy Franciszka Goœcimi³a Helgi Karola Karpa Kwiryny Kwiryty Ludomira Lutomi³y Lutomira      
+157 5 Czerwiec Bonifacji Bonifacego Dobrociecha Dobromira Juliana Kazimiery Kiry Nikanora Walerii Waltera      
+158 6 Czerwiec Artemiego Artemiusza Cichomira Dominika Beaty Doroty Klaudiusza Laurentego Laury Nikifora Norberta Nory Pauliny Symeona Wiêcerada         
+159 7 Czerwiec Ariadny Ciechomierza delfiny Gustawa Hieronima Jaros³awa Jaros³awy Lukrecji Roberta Roberty Wies³awa Wies³awy    
+160 8 Czerwiec Ady Adeli Celestyny Celii Celiny Maksyma Medarda Medora Sewera Seweryna Wilhelma Wyszes³awa Wyszos³awa     
+161 9 Czerwiec Anny-Marii Felicji Felicjana Pelagii Pelagiusza Ryszarda S³awoja Stanis³awa Tekli    
+162 10 Czerwiec Bogumi³a Bogumi³y Dany Diany Edgara Henryka Maksyma Ma³gorzaty Nikity Onufrego Zachariasza   
+163 11 Czerwiec Adelajdy Anastazji Anastazego Barnaby Barbary Benedykta Daniela Feliksa Flory Radomi³a Rados³awa Ró¿y Teodozji        
+164 12 Czerwiec Alicji Antoniny Bazylego Gwidona Jana Janiny Leona Leonii Niny Onufrego Wyszomira        
+165 13 Czerwiec Antoniego Cichomierza Chytomira Fortunata Gracji Hermana Lucjana £ucji Olgi Olimpii Rolanda Tobiasza     
+166 14 Czerwiec Bazylego Bazylidy Elizy El¿biety Justyna Justyny Lizy Ninogniewa Przemira Rufina Walerego Waleriana      
+167 15 Czerwiec Angeliny Bernarda Jolanty Leny Leona Lotara Modesta Toli Wioli Wita Witolda Witos³awa Witos³awy       
+168 16 Czerwiec Aliny Anety Benona Bertolda Budzimierza Franciszka Julity Justyny Ludgardy ¯ywii ¯ywos³awa      
+169 17 Czerwiec Adolfa Adolfy Aliny Drogomys³a Grzegorza Ignacego Innocentego Irmy Laury Leszka Marcjana Rainera Wolmara     
+170 18 Czerwiec Armanda Amandy Betty D³ugos³awa Efrema El¿biety Gerwazego Marcelego Marka Mariny Pauli       
+171 19 Czerwiec Ba¿ys³awa Bo¿ys³awy Gerwazego Juliana Juliany Julianny Ody Odona Odylli Protazego Romualda Sylwii      
+172 20 Czerwiec Bogdy Bagdana Bogny Bogumi³y Bo¿eny Diny Florentyny Micha³a Rafaela Rafaeli Rafa³a Sylweriusza       
+173 21 Czerwiec Alicji Alojzy Alojzego Ikarusa Marii Marty Rudolfa Rudolfiny Teodora     
+174 22 Czerwiec Agemora Broniwoja Flawiusza Hilarego Innocenty Innocentego Jana Kiry³a Paulina Pauliny Sabiny Saby Tomasza     
+175 23 Czerwiec Agrypiny Albina Albiny Bazylego Józefa Prospera Trudy Wandy Zenobii Zenona      
+176 24 Czerwiec Bart³omieja Bartosza Danuty Emilii Fausta Giny Jana Janiny Janis³awa Mierogniewa Wilhelma      
+177 25 Czerwiec Albrechta Dory Doroty Jana Lucji £ucji Olbrachta Prospera Tolis³awa Wa³stymila Wilhelma Wilhelminy Witolda 
+178 26 Czerwiec Armandy Jana Jeremiego Jeremiasza Miromira Paw³a Pauliny Rozmys³awa Rudolfa Rudolfiny Tulis³awa Wergiliusza    
+179 27 Czerwiec Cypriana Cyryla Emanueli Franciszka Heloizy Marii Magdaleny Maryli Teresy W³adys³awa W³awys³awy W³odzimierza Wodzis³awa  
+180 28 Czerwiec Benigny Boles³awa Florentyny Ireneusza Iry Leona Ligii Marcelego Olgi Paw³a Raisy Zbros³awa        
+181 29 Czerwiec Benedykta Benity Bertranda Franciszka Iwetty Judyty Paw³a Piotra Salomei Wyszomira     
+182 30 Czerwiec Arnolda Arny Cichos³awa Cyryla Emila Emilii Emiliany Ernesta Gertrudy Lucyny Marcjala Rajmunda Tybalda       
+183 1 Lipiec Antoniego Bagus³awa Bogusza Gaw³a Haliny Halszki Juliusza Kaliny Klarysy Mariana Ottona Reginy Teobalda Teodoryka       
+184 2 Lipiec benedykta Jagody Judy Kariny Marii Martyniana Ojcumi³y Ottona Piotra Rodowoja Serafina Serafiny Urbana      
+185 3 Lipiec Alfreda Anatola Emnildy Heliodora Ildy Jacka Kornela Leona Miros³awa Noeli Tomasza  
+186 4 Lipiec Alfreda Aurelii Aureliana Aureliusza El¿biety Inocentego Innocentego Juliana Malwiny Odona Sebastiana Teodora Wielis³awy Zygfryda    
+187 5 Lipiec Antoniego Bart³omieja Cyryla Filomeny Kaliny Kariliany Karoliny Marii Micha³a Przybowoja Szarlotty Wihelma     
+188 6 Lipiec Agrypiny Chociebora Dominika Dominiki Edola Edwarda Gerarda Gotarda Jarope³ka Lucyny £ucji Marii Petry Teresy       
+189 7 Lipiec Adolfiny Antoniego Apoloniusza Cyryla Ernesta Estery Ewalda Kiry £ucjana Metodego Nory Raula Rudolfa Sêdzis³awa     
+190 8 Lipiec Adriana Adrianny Arnolda Chwalimierza Chwalimira Edgara El¿biety Eugeniusza Grzegorza Liliany Prokopa Wirginii     
+191 9 Lipiec Anatolii Blanki Heloizy Hermana Hieronima Ludwiki Lukrecji Miko³aja Palomy Patrycjusza Sylwii Weroniki Zenona   
+192 10 Lipiec Almy Amelii Armelii Budziwoja Dalnila Filipa Libuszy Malwiny Radziwoja Rufiny Samsona Sylwany Sylwina Weroniki Witalisa    
+193 11 Lipiec Benedykta Cypriana Demetriiusza Kaliny Kariny Kiry Olgi Pelagii Pelagiusza Piusa Wyszes³awa         
+194 12 Lipiec Brunona Feliksa Gwalberta Henryka Jana Jony Rudomi³y Tolimierza Tolimira Wasyla Weroniki Wery        
+195 13 Lipiec Anekleta Benedykta Dalidy Dana Daniela Danieli Ernesta Eugeniusza Irwina Jakuba Justyny Lidy Ma³gorzaty Margarety Rodomi³y Sary  
+196 14 Lipiec Bonawentury Damiana Dobrogosta Feliksa Izabeli Kamila Kamili Kamy Kory Marcelego Marceliny Stelli Ulryka   
+197 15 Lipiec Angeliki Baldwiny Brunona Daniela Dawida Ditty Donalda Egona Henryka Igi Lubomys³a W³odzimierza 
+198 16 Lipiec Benedykta Benity Dzier¿ys³awa Eustachego Marii Mariki Mirelli Ruty Stefana Waldemara      
+199 17 Lipiec Aleksego Anety Bogdana Bohdana Dzier¿ykraja Jadwigi Julietty Krnela Kornelii Marcelego Marceliny Marcina Martyny     
+200 18 Lipiec Arnolda Erwina Frydy Kamila Karoliny Roberta Roberty Szymona Unis³awa Wespazjana        
+201 19 Lipiec Alfreda Alfredy Fredy Marcina Normy Nory Rufina Wincentego Wodzis³awa W³odzimierza  
+202 20 Lipiec Czes³awa Czes³awy Eliasza Fryderyka Heronima Heronimy Leona Ma³gorzaty Sewery Seweryna Seweryny    
+203 21 Lipiec Andrzeja benedykta Dalidy Daniela Danieli Diany Eliasza Ody Onufrego Pauliny Praksedy Prokopa Stojs³awa Wawrzyñca Wiktora     
+204 22 Lipiec Albina Boles³awa Boles³awy Laurencjusza Magdaleny Marii Mileny Pankracego Wawrzyñca Wiêcemi³a    
+205 23 Lipiec Apolinarego Bogny Brygidy Grygidy Jana Joanny Ludwika S³awosza S³awy Zdzis³awa ¯aliny S£awosza ¯elis£awy   
+206 24 Lipiec Antoniego Jakobiny Kingi Krystyny Kunegundy Lubomiry Michaliny Olgi Wojciecha   
+207 25 Lipiec Dalibora Jakuba Krzysztofa Micha³a Olimpii S³awosza Œwiêtos³awa Walentego Walentyny Walii    
+208 26 Lipiec Anity Anny Bartolomei Gra¿yny Hannny Joachima Laurentego Miros³awa Miros³awy Rudolfina  
+209 27 Lipiec Alfonsa Aureliego Aureliusza Dionizego Julii Laury Lili Marty Natalii Rudolfa Wszebora     
+210 28 Lipiec Ady Aidy Innocentego Ireny Marceli Samsona Sylwiusza Œwiêcimira Œwiêtomierza Wiktora Wiwianny 
+211 29 Lipiec Antoniego Beatrice Beatrycze Cierpis³awa Cierpis³awy Flory Konstantego Konstantyna Lucylii Marty Olafa Olgi Serafina Urbana       
+212 30 Lipiec Aldony Donata Julii Julity Ludmi³y Maryny Piotra Roœcis³awa Ubys³awa Ursusa Zdobys³awa  
+213 31 Lipiec Alfreda Ernesty Ernestyny Heleny Igi Ignacego Leona Ludomira Ludomiry Mi³obrata Romana      
+214 1 Sierpieñ Alfonsa Bronis³awa Jaroslawa Justyna Justyny Nadii Nadzieji Piotra Ralis³awa Wery      
+215 2 Sierpieñ Alfonsa Borzys³awa Borzys³awy Dulcynei Euzebiusza Gustawa Kariny Marii Stefana Œwiatos³awa      
+216 3 Sierpieñ Augusta Augustyna Augustyny Kamelii Krzywos¹da Les³awa Letos³awa Lidii Niki Nikodema Stefana Szczepana       
+217 4 Sierpieñ Alfreda Alfredy Dominika Dominiki Franciszka Franciszki Jana Marii Ostromi³y Ostromira Prokopa Protazego   
+218 5 Sierpieñ Eligiusza Emila Karola Karoliny Kary Marii Normy Oswalda Stanis³awa Stanis³awy Wirginiusza         
+219 6 Sierpieñ Agapita Berty Dominika Jakuba Oktawii S³awy Stefana Sykstusa Wincentego Wincenty   
+220 7 Sierpieñ Albera Albery Dobiemierza Donaty Doris Doroty Kajetana Klaudii Konrada Olecha Olechny Sukstusa 
+221 8 Sierpieñ Carmen Cypriana Cyriaka Dominika Doroty Emiliana Izy Niezamys³a Olecha Olechy Rajmunda Seweryna Seweryny Sylwiusza    
+222 9 Sierpieñ Ireny Jana Juliana Klary Klarysy Mi³orada Niezamyœla Rolanda Romana Romualda Rozyny      
+223 10 Sierpieñ Amadei Asterii Bianki Bogdana Bogny Bohdana Borysa Filomeny Laurencjusza Laury Wawrzyñca Wierzchos³awa    
+224 11 Sierpieñ Aleksandra Bernarda Diany Diomedy Filomeny Gilberta Klary Ligii Luizy W³odzimierza W³odziwoja Zuli Zuzanny     
+225 12 Sierpieñ Androniki Anicety Badzis³awa Cecylii Euzebiusza Hilarii Hilarego Innocentego Juliana Klary Lecha Leszka Piotra Tyberiusza      
+226 13 Sierpieñ Diany Elwiry Gertrudy Heleny Hipolita Jana Kasjana Kasjusza Ma³gorzaty Radomi³a Rados³awa Sewery Seweryna Wojbora   
+227 14 Sierpieñ Alfreda Anastazji Aty Dobrowoja Euzebiusza Kaliksta Machabeusza Maksymiliana Salomei Selmy Sylwii      
+228 15 Sierpieñ Bilihildy Daniela Eulalii Marii Napoleona Stefana Stali Stelli Tarzycjusza Trzebierza Trzebimira        
+229 16 Sierpieñ Alfonsa Ambro¿ego Domarada Domarady Eleonory Eleuterego Joachima Normy Nory Rocha Stefana Tytusa      
+230 17 Sierpieñ Anastazji Anastazego Anity Elizy jacka Joanny Juliana Julianny Mirona Zawiszy ¯anny      
+231 18 Sierpieñ Agapita Agapity Arletty Bogus³awa Boles³awa Bronis³awa Bronis³awy Bronisza Heleny Ilony Iwony Klary Laury Tworzys³awa       
+232 19 Sierpieñ Boles³awa Emilii Jana Juliana Juliusza Konstancji Ludwika Ludwiki Rac³awy  
+233 20 Sierpieñ Bernarda Bernardy Jana Sabiny Saby Samuela Samueli Sobies³awa Stefana     
+234 21 Sierpieñ Daniela Danieli Emiliana Fidelisa Filipa Filipiny Franciszka Franciszki Jana Joanny Kazimiery Piusa Ruty        
+235 22 Sierpieñ Cezarego Fabrycego Grzymis³awy Hipolita Marii Mariusza Rudomi³a Tymoteusza Zygfryda Zygfrydy     
+236 23 Sierpieñ Apolinarego Cichomira Filipa Mi³y Poli Ró¿y Sulirada waleriana Walerii Wiktora        
+237 24 Sierpieñ Bart³omieja Bartosza Christy Cieszymierza Donata Jerzego Joanny Maliny Malwiny Michaliny      
+238 25 Sierpieñ Belli Gregorego Grzegorza Izabeli Lucyli Lucylii Ludwika Ludwiki Luizy Micha³a Namys³awa Patrycji Socies³awa Zbigniewa       
+239 26 Sierpieñ Adriana Adrianny Ireneusza Konstantego Maksyma Marii sandry Teresy Wiktora W³astymira Zefiryna Zefiryny       
+240 27 Sierpieñ Cezarego Dominika Gos³awy Józefa Kalasantego Ma³gorzaty Moniki Oty Przedzis³awa Rufusa Teodora       
+241 28 Sierpieñ Adeliny Aleksandra Aleksego Augustyna Erazma Freda Fredy Gusty Patrycji Sobies³awa Stronis³awa Wyszomira  
+242 29 Sierpieñ Beaty Flory Jana Janusza Jeremiego Racibora Sabiny Saby Witalisa      
+243 30 Sierpieñ Benona Czêstowoja Feliksa Jowity Ma³gorzaty Michaliny Micha³a Mirona Rebeki Ró¿y Szczêsnego   
+244 31 Sierpieñ Bohdana Cyrusa Izabeli Marka Paulina Pauliny Rajmunda Raminy Ramony Romualda Romy Œwiêtos³awa    
+245 1 Wrzesieñ Any Augusta Beatrycze Belindy Bronis³awa Bronis³awy Bronisza Dzier¿ys³awa Idziego Reny    
+246 2 Wrzesieñ Axela Bohdana Bohdany Dionizego Elizy Izy jana Juliana Salomona Seweryna Stefana Tobiasza     
+247 3 Wrzesieñ Bartosza Doroty Erazma Eufemii Grzegorza Izabeli Joachima Liliany Szymona Sylwiny Zenona     
+248 4 Wrzesieñ Bart³omieja Dalii Idy Laurencjusza Lili Liliany Lindy Przemys³awa Rocha Rozalii Ró¿y        
+249 5 Wrzesieñ Adeli Delii Doroty Heraklesa Justyna Justyny Stanis³awa Teodora Wawrzyñca Wiktora   
+250 6 Wrzesieñ Albina Beaty Bertranda Betiny Eugeniusza Lindy Micha³a Petroniusza Rozalindy Saturnina Zachariasza        
+251 7 Wrzesieñ Domas³awa Domas³awy Marka Malanii Melchiora Meli Rafa³a Reginy reny Ryszarda  
+252 8 Wrzesieñ Adriana Adrianny Czcibora Klementyny Marii Nestora Rados³awa Rados³awy Serafina Teofila      
+253 9 Wrzesieñ Aldony Augusty Augustyny Dionizego Jacka Jakuba Ozariny Piotra Sergiusza Œcibora    
+254 10 Wrzesieñ Aldony Daniela Eligii Eligiusza Irmy Julii £ucji £ukasza Miko³aja Mœcibora Pulcherii      
+255 11 Wrzesieñ Dagny Feliksa Helgi Hiacynta Jacka Jana Justyny Piotra Prota Teodory      
+256 12 Wrzesieñ Amadeusza Bratumi³y Cyrusa Gwidona Gwidy Marii Piotra Radzimira Sylwina Sylwiny     
+257 13 Wrzesieñ Apolinarego Aurelii Aureliusza Eugenii Eulalii Eulelii Filipa Jana Lubomira Lubomiry Lubora Materny Szeligi   
+258 14 Wrzesieñ Alberta Bernarda Cypriana Mony Radoslawy Ramony Roksany Romana Szymona Wiktora      
+259 15 Wrzesieñ Albina Albiny Budzigniewa Dolores Lolity Katarzyny Marii Nikodem Rolanda Teofila      
+260 16 Wrzesieñ Cypriana Edyty Eufemii Eugenii Franciszka Jagienki Kamila Kamilii Kamy Kornela Korneliusza Wiktora 
+261 17 Wrzesieñ Ariadny Dezyderiusza Franciszka Hildegardy Justyny Lamberty Narcyza Roberta Wiery     
+262 18 Wrzesieñ Ariadny Ariana Ariany Bogowity Ireny Irmy Irminy Józefa Macieja Stanis³awa Stefana Stefanii Tytusa  
+263 19 Wrzesieñ Alfonsa Alfonsyny Januarego Konstancji Konstantego Leopolda Leopoldy Sonii Sydonii Teodora     
+264 20 Wrzesieñ Dionizego Dionizy Eustachego Fausty Faustyny Filipa Filipiny Maurycego Ostapa Renaty      
+265 21 Wrzesieñ Aleksandra Bo¿ydary Darii Hipolita Ifigenii Jonasza Mateusza Miry Oty Wawrzyñca   
+266 22 Wrzesieñ Joachima Joachimy Maury Maurycego Maurycji Milany Prosimira Tomasza Tymona     
+267 23 Wrzesieñ Berty Boguchwa³y Bogus³awa Liberta Liny Liwiusza Minodora Minodory Poli Tekli       
+268 24 Wrzesieñ Daniela Dory Gerarda Gerdy Jaromira Marii Maryny Teodora Tomi³a Tomi³y Tomira      
+269 25 Wrzesieñ Aury Aurelii Franciszka Kamila Kleofasa Kleopatry £adys³awa Wladys³awa W³adys³awy    
+270 26 Wrzesieñ Cypriana Damiana Delfiny Euzebiusza Justyny £ucji Zbys³awa        
+271 27 Wrzesieñ Adolfa Adolfiny Amadeusza Armandy Damiana Kosmy Mirabeli Sabiny Wawrzyñca Wincentego  
+272 28 Wrzesieñ Heliodora Klemensa kementyny Libuszy Luby Marka Nikity Salomei Wac³awa Wac³awy Wawrzyñca 
+273 29 Wrzesieñ DadŸboga Franciszka Fulgencji Gabrieli Marceli Marcelego Marceliny Michaliny Micha³a Rafa³a      
+274 30 Wrzesieñ Felicji Geraldy Grzegorza Heronima Hieronima Honoraty Honoriusza Sofiii Sonii Wery Wiktora Zofii         
+275 1 PaŸdziernik Benigny Danuty Heloizy Igora Jana Juliana Klementyny Marka Remigiusza Teresy 
+276 2 PaŸdziernik Dionizego Dionizy Dionizji Haliny Jana Racheli S³awoja S³awomira S³awomiry S³awy Teofila Tomasza Tronima     
+277 3 PaŸdziernik Bogumi³a Bogumi³y Gerarda Gerardy Heliodora Ireny Jana Józefa Józefiny Kandyta Sylwii Teresy       
+278 4 PaŸdziernik Edwina Edwiny Franciszka Konrada Manfreda Marka Rados³awa Ros³awy Rozalii Ró¿y     
+279 5 PaŸdziernik Apolinarego Donaty Flawii Flory Igora Justyna Marcelego Naty Placyda Rajmunda    
+280 6 PaŸdziernik Arnolda Artura Bronislawa Brunona Brunony Emila Emilii Fryderyki Hanny Romana Petry       
+281 7 PaŸdziernik Amelii Justyny Krystyny Marka Marii Mirelli Sergiusza Stefana Tekli Wirginii       
+282 8 PaŸdziernik Artemona Bogdana Brygidy Demetriusza Loreny Ludwika Marcina Pelagii Symeona Taidy Walerii Zenona     
+283 9 PaŸdziernik Anastazji Arnolda Bogdana Dionizego Dobrawy Genowefy Jana Ludwika Sybilli Wincentego     
+284 10 PaŸdziernik Alony Daniela Franciszka Germana Loretty Ludomira Lutomira Mariny Paulina Pauliny Poli Tomila Przemys³awa       
+285 11 PaŸdziernik Albiny Aldony Brunona Dobromi³a Dobromi³y Dobromiry Emila Mariana Meli ¯enajdy Zenoidy      
+286 12 PaŸdziernik Eustachego Grzymis³awa Grzymis³awy Krysty Maksa Maksymiliana Serafiny Witolda Witoldy    
+287 13 PaŸdziernik daniela Edwarda Grrslda Geraldyny Gerarda Miko³aja Reny Rernaty Teofila Wilfryda Ziemis³awa      
+288 14 PaŸdziernik Alana Alany Bernarda Damiana Dominika Dominiki Kaliksta Liwii       
+289 15 PaŸdziernik Aurelii Brunona Goœcis³awa Idalii Jadwigi Jagody Leonarda Teresy Sewera Tekli Zoriana      
+290 16 PaŸdziernik Ambro¿ego Aurelii Florentyny Gaw³a Gerarda Grety Ludmi³y Marty Radzis³awa        
+291 17 PaŸdziernik Andrzeja Antonii Ignacego Lucjana Lucyny Magdaleny Ma³gorzaty Mariana Marity Wiktora      
+292 18 PaŸdziernik Bratumi³a Hanny Juliana Klemencji Klementyny £ukasza Reny Wiktora     
+293 19 PaŸdziernik Alfreda Ferdynandy Frydy Laury Michaliny Micha³a Paw³a Pelagii Piotra Skarbimira Tomy Ziemowita       
+294 20 PaŸdziernik Adeliny Anastazego Edyty Ireny Jana-kantego Kleopatry Witalisa Wojciecha    
+295 21 PaŸdziernik Bertolda Brygidy Celiny Dobromira El¿biety Hilarego Jakuba Janusza Pelagii Urszuli     
+296 22 PaŸdziernik Aleksandra Donata Filipa Halki Halszki Józefiny Kordelii Kordiana Korduli Lody Marka Przybys³awa Przybys³awy Sewera 
+297 23 PaŸdziernik Edwarda Edyty Hiacynta Igi Ignacego Iwety Marceliny Marleny Odylii Seweryna Teodora Teofila   
+298 24 PaŸdziernik Alojzego Antoniego Antoniny Arety Arlety Filipa Hortensji Marcina Marty Rafa³a      
+299 25 PaŸdziernik Blanki Bonifacego Chyzanty Darii Hilarego Ingi Kryspina Maury Maurycego Sambora Wilhelminy      
+300 26 PaŸdziernik Bonawentury Damiana Dymitriusza Ewarysta Ewarysty Lucjana Lucyny Ludmi³y Lutos³awa Lutos³awy £ucji   
+301 27 PaŸdziernik Antonii Florencjusza Ilony Iwony Nestora Sabiny Stoigniewa Wincentego Zoji  
+302 28 PaŸdziernik Alfreda Alfredy Fredy Judy Judyty Noemii Szymona Tadeusza Wszeciecha     
+303 29 PaŸdziernik Dalii Donality Euzebii Felicjana Franciszka Jacka Longina Narcyza Narcyzy Pauli Serafina Teodora Wioletty Zdenka    
+304 30 PaŸdziernik Andrzeja Alfonsa Angela Angeli Doroty Edmunda Klaudiusza Konstancji Marcelego Przemys³awa Zenobii     
+305 31 PaŸdziernik Alfonsa Alfonsyny Antoniny Augusta Augustyny Lucylii £ukasza Narcyza Saturnina Urbana Wolfganga       
+306 1 Listopad Andrzeja Konrada Konradyna Konradyny Seweryna Seweryny Wiktoryny Warcis³awa Warcis³awy  
+307 2 Listopad Ambro¿ego Bogdana Bohdana Bohdany Bo¿ydara Eudoksji Henryka Jerzego Ma³gorzaty Tobiasza Wiktoryny   
+308 3 Listopad Bogumi³a Cezarego Huberta Huberty Marcina Mariusza Mi³y Sylwii Wita      
+309 4 Listopad Albertyny Amaty Emeryka Gerardy Joanny Karola Modesty Mœciwoja Olgierda Witalisa   
+310 5 Listopad Balladyny Bertiny Balandyny El¿biety Erazma Eugeniusza Floriana Modesty S³awomira Zachariasza  
+311 6 Listopad Arletty Feliksa Jacja Krystyny Leny Leonarda Leonardy Trzebowita Ziemowita    
+312 7 Listopad Achillesa Antoniego Antoniny Engelberta Ernesta Florentego Florentyny Floryny Kariny Melchiora Przemi³y Wincentego ¯ytomira   
+313 8 Listopad Dymitra Gotfryda Hadriana Hadrianny Klaudii Klaudiusza Sewera Seweryna Seweryny Wiktora Wiktoriusza Wiktoryny
+314 9 Listopad Anatola Anatolii Bogdana Debory Genowefy Gracji Nestora Oresta Teodora Waltera Ursyna      
+315 10 Listopad Andrzeja Leny Leona Leonory Lubomira Luby Ludmi³y Ludomira Natalii Neli Nelly Nimfy Stefana     
+316 11 Listopad Anastazji Bartlomieja Felicjana Gertrudy Macieja Marcina Miny Trudy      
+317 12 Listopad Benedykta Chrysty Czcibora Emiliany Izaaka Izadiusza Jonasza Konrada Konradyny Krystyny Mateusza Miko³aja Renaty Witolda     
+318 13 Listopad Arkadii Arkadiusza Arkadego Benedykta Krystyna Krystyny Miko³aja Stanis³awa Stanis³awy Walentyna Walentyny  
+319 14 Listopad Agaty El¿biety Emila Judyty Józefa Laury Lewina Rogera Serafina Wawrzyñca W³odzimierza      
+320 15 Listopad Alberta Alidy Amelii Artura Dymitra Gertrudy Idalii Leopolda Marii Roberta Rogera S³awy   
+321 16 Listopad Agnieszki Aureliusza Dionizego Edmunda Gertrudy Leona Leonii Ma³gorzaty Marii Marka       
+322 17 Listopad El¿biety Flory Grzegorza Hugona Napoleona Ottona Salomei Walerego Walerii Zbys³awa    
+323 18 Listopad Agnieszki Anieli Filipiny Klaudyny Odona Romana Romany Stanis³awa Tomasza     
+324 19 Listopad Elzbiety Faustyna Faustyny Felicjana Maksyma Maksymiliana Matyldy Mirogniewa Paw³a Salomei Seweryna Seweryny      
+325 20 Listopad Anastazji Anatola Edmunda Edyty feliksa Jerona Oktawii Oktawiusza Oty Rafa³a Sêdzimira      
+326 21 Listopad Alberta Albertyny Janusza Konrada Marii Oliwiera Reginy Remigiusza Urszuli Wies³awa Wies³awy    
+327 22 Listopad Cecylii Celiny Jonatana Marka Maury Maurycego Stefana Wszemi³y Wszechmi³y Zdobys³awa      
+328 23 Listopad Adeli Coletty Felicyta Felicyty Heraklita Klemensa Orestesa Ornesta    
+329 24 Listopad Aleksandra Emilii Emmy Franciszka Flory Jana Marii Miry Romana      
+330 25 Listopad bettiny El¿biety Erazma Giocondy Joachima Józefata Katarzyny Klemensa Têgomira    
+331 26 Listopad Delfina Delfiny Konrada Konrady Lechos³awa Leona Leonarda Les³awy Sylwestra Sylwestry     
+332 27 Listopad Dominika Franciszka Hildy Jaros³awa Ksenii Maksymiliana Ody Odetty Walerego Walerii Waleriana Wigiliusza
+333 28 Listopad Blanki Grzegorza Jakuba Les³awa Les³awy Natalii Romy Rufusa Stefana Zdzis³awa Zdzis³awy 
+334 29 Listopad Bla¿eja Filomeny Fryderyka Fryderyki Margerity Przemyslawa Przemys³awy Saturnina Saturniny Waltera  
+335 30 Listopad Andrzeja Justyny Konstancji Konstantego Ludos³awa Maury Ondraszka Zbys³awa  
+336 1 Grudzieñ Bianki Blanki Bronislawa Edmunda Edyty Eligiusza Elizy Iwy Mariana Natalii Platona Ryszarda  
+337 2 Grudzieñ Adrii Aurelii Balbiny Balbiany Bibianny Hipolita Ksawerego Paula Pauliny Piotra Sulis³awa    
+338 3 Grudzieñ Franciszka Franciszki Hilarego Kasjana Kasjusza Klaudii Ksawery Ksawerego Lucjusza £ucji      
+339 4 Grudzieñ Balbiny Barbary Berny Bernarda Biernata Bratumi³y Chrystiana Chrystiany Edmunda Hieronima Krystiana Krystyny Piotra  
+340 5 Grudzieñ Anastazego Edyty Geralda Geraldyny Henryka Kryspina Kryspiny Krystyny Norberta Sabiny Saby Wilmy     
+341 6 Grudzieñ Dionizji Dony Emiliana Jaremy Leontyny Miko³aja Zenobii Zenona     
+342 7 Grudzieñ Agatona Agaty Agi Ambro¿ego Dalii Dalili Lilii Marcina Ninomys³awa Polikarpa Sobies³awa Teodora   
+343 8 Grudzieñ Abrahama Boguwoli Delfina Delfiny Elfrydy Klementa Makarego Marii Rozmaryny Œwiatos³awa Œwiatozara Wirginii Wirginiusza Zenona
+344 9 Grudzieñ Anety Cupriana Gracji Gracjana Joachima Leokadii Lody Nataszy Walerii Wies³awa Wies³awy    
+345 10 Grudzieñ Andrzeja Bogdana Bohdana Daniela Danieli Dawida Eulalii Grzegorza Judyty Julii Loretty Marii        
+346 11 Grudzieñ Biny Damazego Daniela Danieli Danuty Sabiny Stefana Waldemara   
+347 12 Grudzieñ Adalii Adelejdy Ady Aleksandra Aleksandy Dagmary Dionizji Joanny Kaliksta Konrada Konstantego Paramona Przebys³awa     
+348 13 Grudzieñ Dalidy Eugeniusza Julii Juliusza Lidy Lucji Lucjana £ucji Otylii Piotra W³odzimierza W³odzis³awa       
+349 14 Grudzieñ Alfreda Arseniusza Dory Flory Izydora Jana Paw³a Spirydona Wenecjusza Zoriki Zoriny      
+350 15 Grudzieñ Celiny Ignacego Ireneusza Karola Krystiany Krystyny Niny Marii Waleriana Wiktora       
+351 16 Grudzieñ Adelajdy Albina Albiny Alicji Aliny Androna Euzebiusza Sebastiana Zdzis³awa Zdzis³awy   
+352 17 Grudzieñ Aleny Floriana Jolanty Leona £azarza £ukasza Macieja Oli Olimpii     
+353 18 Grudzieñ Bogus³awa Daniela Gracjana Gracjany Laryssy Laury Laurencji Wiktora        
+354 19 Grudzieñ Beniamina Darii Dariusza Eleonory Gabriela Gabrieli Grzegorza Tymoteusza Urbana   
+355 20 Grudzieñ Bogumi³y Dominika Dominiki Igi ignacego Ignacji Jowisza Juliana Juliusza Liberata Teofila Zefiryna    
+356 21 Grudzieñ Balbiny Honorata Honoraty Jana Jenny Piotra Seweryna Seweryny Tomasza Tomis³awa    
+357 22 Grudzieñ Balbiny Beaty Bo¿eny Drogomira Flawiana Franciszka Franciszki Gryzeldy Honoraty Judyty Ksawerego Zenona      
+358 23 Grudzieñ Dagoberta Dagny Iwony Jana Ma³gorzaty Miny S³awomira S³awomiry Wiktora Wiktorii     
+359 24 Grudzieñ Adama Adaminy Ewelina Eweliny Ewy Grzegorza Herminii Irminy Noego Zenobiusza      
+360 25 Grudzieñ Anastazji Anety Eugeniusza Eugenii Glorii Grzymis³awa Natana Oliwii Piotra Spirydona Teresy     
+361 26 Grudzieñ Dionizego Kaliksta Szczepana Wróciwoja   
+362 27 Grudzieñ Cezarego Fabii Fabioli Gabrieli Jana Maksyma Radomys³a Teodora Teodory ¯anety      
+363 28 Grudzieñ Antoniego Antonii Antoniusza Cezarego Dobros³awy Dobrowiesta Emmy Gerarda Godzis³awa Teofila Teofili     
+364 29 Grudzieñ Aspazji Dawida Dionizego Dominika Dominiki Gerarda Jonatana Lory Marcina Tadeusza Tomasza Wioli     
+365 30 Grudzieñ Dawida Eugenii Eugeniusza Irminy Irmy Katarzyny Ludomira Marcelego Rainera Sabiny Sewera Seweryna      
+366 31 Grudzieñ Hermesa Katarzyny Kornelii Korneliusza Mariusza Melanii Sebastiana Sylwestra Sylwestryny   
