@@ -1,0 +1,9 @@
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\bin\Debug\DuzeIlosciNaRazMapek.exe.config
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\bin\Debug\DuzeIlosciNaRazMapek.exe
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\bin\Debug\DuzeIlosciNaRazMapek.pdb
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Debug\DuzeIlosciNaRazMapek.csprojResolveAssemblyReference.cache
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Debug\DuzeIlosciNaRazMapek.Form1.resources
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Debug\DuzeIlosciNaRazMapek.Properties.Resources.resources
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Debug\DuzeIlosciNaRazMapek.csproj.GenerateResource.Cache
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Debug\DuzeIlosciNaRazMapek.exe
+c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Debug\DuzeIlosciNaRazMapek.pdb
