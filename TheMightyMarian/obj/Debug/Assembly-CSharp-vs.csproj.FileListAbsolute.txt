@@ -1,0 +1,11 @@
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\obj\Debug\Assembly-CSharp.dll
+C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\obj\Debug\Assembly-CSharp.pdb
