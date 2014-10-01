@@ -1,8 +1,0 @@
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\bin\Release\DuzeIlosciNaRazMapek.exe.config
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\bin\Release\DuzeIlosciNaRazMapek.exe
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\bin\Release\DuzeIlosciNaRazMapek.pdb
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Release\DuzeIlosciNaRazMapek.Form1.resources
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Release\DuzeIlosciNaRazMapek.Properties.Resources.resources
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Release\DuzeIlosciNaRazMapek.csproj.GenerateResource.Cache
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Release\DuzeIlosciNaRazMapek.exe
-c:\users\desdemona\documents\visual studio 2012\Projects\DuzeIlosciNaRazMapek\DuzeIlosciNaRazMapek\obj\Release\DuzeIlosciNaRazMapek.pdb

@@ -12,7 +12,7 @@ namespace DuzeIlosciNaRazMapek
     {
         int N = 450;
         int M = 450;
-        int p = 750; //100% to 1000
+        //int p = 750; //100% to 1000
 
         int[,] map;
         ConsoleColor[] colors = new ConsoleColor[3];
@@ -56,6 +56,7 @@ namespace DuzeIlosciNaRazMapek
                     sw.Stop();
                     pathsTime = sw.Elapsed.TotalMilliseconds;
                     sw.Start();
+
                     joinWithPaths();
                     sw.Stop();
                     pathsTime = sw.Elapsed.TotalMilliseconds - pathsTime;
