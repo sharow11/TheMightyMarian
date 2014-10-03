@@ -19,6 +19,14 @@ public class GameManager : MonoBehaviour
         {
             RestartGame();
         }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            SaveMap();
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadMap();
+        }
     }
 
     private void BeginGame() {
@@ -31,5 +39,14 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         Destroy(mapInstance.gameObject);
         BeginGame();
+    }
+
+    private void SaveMap()
+    { mapInstance.Save(); }
+
+    private void LoadMap()
+    {
+        StopAllCoroutines();
+        StartCoroutine(mapInstance.Load());
     }
 }

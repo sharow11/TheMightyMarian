@@ -9,3 +9,5 @@ C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\Temp\bin\Debug\
 C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
 C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\obj\Debug\Assembly-CSharp.dll
 C:\Users\Tobiasz\Documents\TheMightyMarian\trunk\TheMightyMarian\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Desdemona\Documents\themightymarian_source\themightymarian\TheMightyMarian\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\Desdemona\Documents\themightymarian_source\themightymarian\TheMightyMarian\obj\Debug\Assembly-CSharp.dll

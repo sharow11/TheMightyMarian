@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
+using System;
+
 
 public class Map : MonoBehaviour {
     public int generations;
@@ -12,6 +17,9 @@ public class Map : MonoBehaviour {
     public GrassMapCell grassCellPrefab;
     public VoidMapCell voidCellPrefab;
     public FloorMapCell floorCellPrefab;
+
+
+    string path = "mapsavefile.byte";
 
     //private MapCell[,] map;
     public float generationStepDelay;
@@ -48,17 +56,21 @@ public class Map : MonoBehaviour {
 
         //WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
         //map = new MapCell[sizeX, sizeZ];
+        return DrawMap();
 
+    }
+
+    private IEnumerator DrawMap()
+    {
         for (int x = 0; x < rsizeX; x++)
         {
             for (int z = 0; z < rsizeZ; z++)
             {
                 yield return 0;
-                CreateCell(new IntVector2(x, z), map[x,z]);
+                CreateCell(new IntVector2(x, z), map[x, z]);
             }
         }
     }
-
     private void FillWithVoid()
     {
         for (int i = 0; i < rsizeX; i++)
@@ -78,9 +90,9 @@ public class Map : MonoBehaviour {
         int voids = 0;
         int floors = 0;
 
-        for (int x = 1; x < sizeX; x++)
+        for (int x = 1; x <= sizeX; x++)
         {
-            for (int z = 1; z < sizeZ; z++)
+            for (int z = 1; z <= sizeZ; z++)
             {
                 voids = CntCellNeighbours(x, z);
                 floors = 8 - voids;
@@ -110,7 +122,7 @@ public class Map : MonoBehaviour {
         {
             for (int z = 1; z <= sizeZ; z++)
             {
-                if(Random.Range(0,1000) <= startingGrassPercent*10)
+                if(UnityEngine.Random.Range(0,1000) <= startingGrassPercent*10)
                     map[x, z] = FLOOR;
             }
         }
@@ -167,6 +179,7 @@ public class Map : MonoBehaviour {
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
                 new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, 0f, coordinates.z - sizeZ * 0.5f + 0.5f);
+            Debug.Log("error cell creared, type: " + type);
         }
         //map[coordinates.x, coordinates.z] = newCell;
 
@@ -195,4 +208,54 @@ public class Map : MonoBehaviour {
             n++;
         return n;
     }
+
+    public void Save()
+    {
+        byte[] bytes = new byte[rsizeX * rsizeZ * sizeof(int)];
+        for (int i = 0; i < rsizeX; i++)
+            for (int j = 0; j < rsizeZ; j++)
+                for(int k = 0; k<sizeof(int);k++)
+                    bytes[i * rsizeZ + j+k] = BitConverter.GetBytes(map[i, j])[k];
+        File.WriteAllBytes(path, bytes);
+        Debug.Log("Map saved, checking");
+        MapSavedFine();
+
+    }
+
+    private bool MapSavedFine()
+    {
+        bool fine = true;
+        byte[] bytes = File.ReadAllBytes(path);
+        int myint;
+        for (int i = 0; i < rsizeX; i++)
+        {
+            for (int j = 0; j < rsizeZ; j++)
+            {
+                myint = BitConverter.ToInt32(bytes, i * rsizeZ + j);
+                if (map[i, j] != myint)
+                {
+                    Debug.Log("Excepted: " + map[i, j] + " insted got: " + myint);
+                    fine = false;
+                }
+                else
+                {
+                    Debug.Log("Tile " + map[i, j] + "loaded fine");
+                }
+            }
+        }
+        
+        return fine;
+    }
+    public IEnumerator Load()
+    {
+        //FillWithVoid();
+        byte[] bytes = File.ReadAllBytes(path);
+        for(int i = 0; i < rsizeX; i++)
+            for (int j = 0; j < rsizeZ; j++)
+            {
+                map[i, j] = BitConverter.ToInt32(bytes,i*rsizeZ+j);
+            }
+        Debug.Log("Map loaded");
+        return DrawMap();
+     }
 }
