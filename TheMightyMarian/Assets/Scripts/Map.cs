@@ -26,13 +26,15 @@ public class Map : MonoBehaviour {
 	// Use this for initialization
 
     private int WATER = 1;
-    private int VOID = 0;
+    private int VOID = 666; //0
     private int GRASS = 2;
     //private int WALL = 3;
-    private int FLOOR = 4;
+    private int FLOOR = 781; //4
 
     private int[,] map;
 
+    byte[] saved;
+    byte[] loaded;
 	void Start () {
 	
 	}
@@ -214,10 +216,20 @@ public class Map : MonoBehaviour {
         byte[] bytes = new byte[rsizeX * rsizeZ * sizeof(int)];
         for (int i = 0; i < rsizeX; i++)
             for (int j = 0; j < rsizeZ; j++)
+            {
                 for(int k = 0; k<sizeof(int);k++)
+                {
                     bytes[i * rsizeZ + j+k] = BitConverter.GetBytes(map[i, j])[k];
+                }
+                if(BitConverter.ToInt32(bytes, i*rsizeZ +j) != map[i,j])
+                {
+                    Debug.Log("wrong conversion, got " + BitConverter.ToInt32(bytes, i * rsizeZ + j) + " insted of " + map[i, j]);
+                }
+            }
+
         File.WriteAllBytes(path, bytes);
         Debug.Log("Map saved, checking");
+        saved = bytes;
         MapSavedFine();
 
     }
@@ -226,13 +238,29 @@ public class Map : MonoBehaviour {
     {
         bool fine = true;
         byte[] bytes = File.ReadAllBytes(path);
+        if (bytes.Length != rsizeX * rsizeZ * sizeof(int))
+        { Debug.LogError("WRONG FILE SIZE!!!"); return false; }
+        if (bytes != saved)
+        {
+            Debug.LogError("WRONG WRONG WRONG!!!");
+        }
+        byte[] mybyteint = new byte[sizeof(int)];
         int myint;
         for (int i = 0; i < rsizeX; i++)
         {
             for (int j = 0; j < rsizeZ; j++)
             {
+                for (int k = 0; k < sizeof(int); k++)
+                {
+                    mybyteint[k] = bytes[i * rsizeZ + j + k];
+                }
                 myint = BitConverter.ToInt32(bytes, i * rsizeZ + j);
-                if (map[i, j] != myint)
+                if (BitConverter.ToInt32(mybyteint, 0) != map[i, j])
+                {
+                    Debug.Log("bb Excepted: " + map[i, j] + " insted got: " + myint);
+                    fine = false;
+                }
+                else if (map[i, j] != myint)
                 {
                     Debug.Log("Excepted: " + map[i, j] + " insted got: " + myint);
                     fine = false;
@@ -250,12 +278,20 @@ public class Map : MonoBehaviour {
     {
         //FillWithVoid();
         byte[] bytes = File.ReadAllBytes(path);
-        for(int i = 0; i < rsizeX; i++)
-            for (int j = 0; j < rsizeZ; j++)
-            {
-                map[i, j] = BitConverter.ToInt32(bytes,i*rsizeZ+j);
-            }
-        Debug.Log("Map loaded");
-        return DrawMap();
+        if (bytes.Length != rsizeX * rsizeZ * sizeof(int))
+        {
+            Debug.Log("wrong file size");
+            yield return 0;
+        }
+        else
+        {
+            for (int i = 0; i < rsizeX; i++)
+                for (int j = 0; j < rsizeZ; j++)
+                {
+                    map[i, j] = BitConverter.ToInt32(bytes, i * rsizeZ + j);
+                }
+            Debug.Log("Map loaded");
+            yield return DrawMap();
+        }
      }
 }
