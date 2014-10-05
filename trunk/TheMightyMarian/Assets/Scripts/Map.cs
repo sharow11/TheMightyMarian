@@ -9,7 +9,7 @@ using System;
 
 public class Map : MonoBehaviour {
     public int generations;
-    public int startingGrassPercent;
+    public int startingFloorsPercent;
     public int sizeX, sizeZ;
     private int rsizeX, rsizeZ;
     public MapCell cellPrefab;
@@ -51,9 +51,17 @@ public class Map : MonoBehaviour {
         map = new int[rsizeX, rsizeZ];
         FillWithVoid();
         FillRandomly();
-        for (int i = 0; i < generations; i++)
+        SaveBitmap("images/it0.png");
+        for (int i = 0; i < 4; i++)
         {
-            CelluralStep();
+            CelluralStep1();
+            SaveBitmap("images/it"+i+".png");
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            CelluralStep2();
+            SaveBitmap("images/it" + (i+4) + ".png");
         }
 
         //WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
@@ -84,47 +92,119 @@ public class Map : MonoBehaviour {
         }
     }
 
-    private void CelluralStep()
+    private void CelluralStep2()
     {
-        List<IntVector2> toChange = new List<IntVector2>();
+        //List<IntVector2> toChange = new List<IntVector2>();
+        List<IntVector2> flors = new List<IntVector2>();
+        List<IntVector2> wals = new List<IntVector2>();
         IntVector2 current;
 
-        int voids = 0;
-        int floors = 0;
+        int walls = 0;
+        //int floors = 0;
 
         for (int x = 1; x <= sizeX; x++)
         {
             for (int z = 1; z <= sizeZ; z++)
             {
-                voids = CntCellNeighbours(x, z);
-                floors = 8 - voids;
+                walls = CntCellNeighboursWalls(x, z);
+                //floors = 8 - walls;
                 current.x = x;
                 current.z = z;
 
-                if (map[x, z] == VOID && floors >= 5)
-                    toChange.Add(current);
-                else if (map[x, z] == FLOOR && voids >= 5)
-                    toChange.Add(current);
+                //if (map[x, z] == VOID && floors >= 5)
+                //    toChange.Add(current);
+                //else if (map[x, z] == FLOOR && voids >= 5)
+                //    toChange.Add(current);
+                if (walls >= 5)
+                    wals.Add(current);
+                else
+                    flors.Add(current);
             }
         }
 
-        foreach (IntVector2 c in toChange)
+        //foreach (IntVector2 c in toChange)
+        //{
+        //    if (map[c.x, c.z] == VOID)
+        //        map[c.x, c.z] = FLOOR;
+        //    else
+        //        map[c.x, c.z] = VOID;
+        //}
+        //toChange.Clear();
+        foreach (IntVector2 c in wals)
         {
-            if (map[c.x, c.z] == VOID)
-                map[c.x, c.z] = FLOOR;
-            else
-                map[c.x, c.z] = VOID;
+            map[c.x, c.z] = VOID;
         }
-        toChange.Clear();
+        wals.Clear();
+        foreach (IntVector2 c in flors)
+        {
+            map[c.x, c.z] = FLOOR;
+
+        }
+        flors.Clear();
     }
 
+    private void CelluralStep1()
+    {
+        //List<IntVector2> toChange = new List<IntVector2>();
+        List<IntVector2> flors = new List<IntVector2>();
+        List<IntVector2> wals = new List<IntVector2>();
+        IntVector2 current;
+
+        int walls = 0;
+        int walls2 = 0;
+        //int floors = 0;
+        //int floors2 = 0;
+
+        for (int x = 1; x <= sizeX; x++)
+        {
+            for (int z = 1; z <= sizeZ; z++)
+            {
+                walls = CntCellNeighboursWalls(x, z);
+                walls2 = CntCellNeighboursWalls2(x, z);
+                //floors = 8 - walls;
+                //floors2 = 6 - walls2;
+                current.x = x;
+                current.z = z;
+
+                //if (map[x, z] == VOID && (floors >= 5 || floors2 <= 1))
+                //    toChange.Add(current);
+                //else if (map[x, z] == FLOOR && voids >= 5)
+                //    toChange.Add(current);
+
+                if (walls >= 5 || walls2 <= 2)
+                    wals.Add(current);
+                else
+                    flors.Add(current);
+            }
+        }
+
+        //foreach (IntVector2 c in toChange)
+        //{
+        //    if (map[c.x, c.z] == VOID)
+        //        map[c.x, c.z] = FLOOR;
+        //    else
+        //        map[c.x, c.z] = VOID;
+        //}
+        //toChange.Clear();
+        foreach (IntVector2 c in wals)
+        {
+           map[c.x, c.z] = VOID;
+        }
+        wals.Clear();
+        foreach (IntVector2 c in flors)
+        {
+           map[c.x, c.z] = FLOOR;
+
+        }
+        flors.Clear();
+    }
     private void FillRandomly()
     {
         for (int x = 1; x <= sizeX; x++)
         {
             for (int z = 1; z <= sizeZ; z++)
             {
-                if(UnityEngine.Random.Range(0,1000) <= startingGrassPercent*10)
+                if(UnityEngine.Random.Range(0,101) <= startingFloorsPercent)
                     map[x, z] = FLOOR;
             }
         }
@@ -187,7 +267,7 @@ public class Map : MonoBehaviour {
 
     }
 
-    private int CntCellNeighbours(int x, int z)
+    private int CntCellNeighboursWalls(int x, int z)
     {
 
         int n = 0;
@@ -210,7 +290,98 @@ public class Map : MonoBehaviour {
             n++;
         return n;
     }
+    private int CntCellNeighboursWalls2(int x, int z)
+    {
 
+        int n = 0;
+        if (isFineCoords(x - 2, z - 2))
+        {
+            if (map[x-2, z-2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x - 1, z - 2))
+        {
+            if (map[x - 1, z - 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x, z - 2))
+        {
+            if (map[x, z - 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x + 1, z - 2))
+        {
+            if (map[x + 1, z - 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x + 2, z - 2))
+        {
+            if (map[x + 2, z - 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x + 2, z - 1))
+        {
+            if (map[x + 2, z - 1] == VOID)
+                n++;
+        }
+        if (isFineCoords(x + 2, z))
+        {
+            if (map[x + 2, z] == VOID)
+                n++;
+        }
+        if (isFineCoords(x + 2, z + 1))
+        {
+            if (map[x + 2, z + 1] == VOID)
+                n++;
+        }
+        if (isFineCoords(x + 2, z + 2))
+        {
+            if (map[x + 2, z + 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x + 1, z + 2))
+        {
+            if (map[x + 1, z + 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x, z + 2))
+        {
+            if (map[x, z + 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x - 1, z + 2))
+        {
+            if (map[x - 1, z + 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x - 2, z + 2))
+        {
+            if (map[x - 2, z + 2] == VOID)
+                n++;
+        }
+        if (isFineCoords(x - 2, z + 1))
+        {
+            if (map[x - 2, z + 1] == VOID)
+                n++;
+        }
+        if (isFineCoords(x - 2, z))
+        {
+            if (map[x - 2, z] == VOID)
+                n++;
+        }
+        if (isFineCoords(x - 2, z - 1))
+        {
+            if (map[x - 2, z-1] == VOID)
+                n++;
+        }
+        //if (isFineCoords(x - 2, z - 2))
+        //{
+        //    if (map[x - 2, z] == VOID)
+        //        n++;
+        //}
+
+        return n;
+    }
     public void Save()
     {
         byte[] bytes = new byte[rsizeX * rsizeZ * sizeof(int)];
@@ -294,4 +465,56 @@ public class Map : MonoBehaviour {
             yield return DrawMap();
         }
      }
+
+    private bool isFineCoords(int x, int z)
+    {
+        if (x >= 0 && x <= sizeX+1 && z >= 0 && z <= sizeZ+1)
+        { return true; }
+        return false;
+    }
+
+    public void SaveBitmap(String filename = "kupa.png")
+    {
+        Texture2D obrazek = new Texture2D(rsizeX * 6 + 1, rsizeZ * 6 + 1);
+        for (int i = 0; i < rsizeX * 6 + 1; i++)
+        {
+            for (int j = 0; j < rsizeZ * 6 + 1; j++)
+            {
+                obrazek.SetPixel(i, j, Color.cyan);
+            }
+        }
+        for (int i = 0; i < rsizeX; i++)
+        {
+            for (int j = 0; j < rsizeZ; j++)
+            {
+                Color now;
+                int ileftcorner = i * 6 + 1;
+                int jleftcorner = j * 6 + 1;
+                if (map[i, j] == FLOOR)
+                { now = Color.white; }
+                else
+                { now = Color.black; }
+
+                for (int ii = ileftcorner; ii < ileftcorner + 6; ii++)
+                {
+                    for (int jj = jleftcorner; jj < jleftcorner + 6; jj++)
+                    {
+                        obrazek.SetPixel(ii, jj, now);
+                    }
+                }
+                for (int ii = 0; ii < 6; ii++)
+                {
+                    obrazek.SetPixel(i * 6, j * 6 + ii, Color.gray);
+                    obrazek.SetPixel(i * 6 + ii, j * 6, Color.gray);
+                }
+            }
+        }
+        for (int i = 0; i < rsizeX * 6 + 1; i++)
+        { obrazek.SetPixel(i, rsizeZ * 6, Color.gray); }
+        for (int i = 0; i < rsizeZ * 6 + 1; i++)
+        { obrazek.SetPixel(rsizeX * 6, i, Color.gray); }
+        //obrazek.Save("kupa.bmp");
+        var bytes = obrazek.EncodeToPNG();
+        File.WriteAllBytes(filename, bytes);
+    }
 }
