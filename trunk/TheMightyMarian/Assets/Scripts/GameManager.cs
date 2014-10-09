@@ -31,12 +31,13 @@ public class GameManager : MonoBehaviour
 
     private void BeginGame() {
         mapInstance = Instantiate(mapPrefab) as Map;
-        StartCoroutine(mapInstance.Generate());
+        //StartCoroutine(mapInstance.Generate());
+        mapInstance.Generate();
 	
     }
 
     private void RestartGame() {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         Destroy(mapInstance.gameObject);
         BeginGame();
     }
@@ -46,7 +47,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadMap()
     {
-        StopAllCoroutines();
-        StartCoroutine(mapInstance.Load());
+        //StopAllCoroutines();
+        //StartCoroutine(mapInstance.Load());
+        mapInstance.Load();
     }
 }

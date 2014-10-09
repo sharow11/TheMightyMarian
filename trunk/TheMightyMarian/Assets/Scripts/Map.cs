@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Serialization;
-using System.IO;
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO.Compression;
+//using System.Security.Cryptography;
+ 
 
 
 public class Map : MonoBehaviour {
@@ -17,7 +19,6 @@ public class Map : MonoBehaviour {
     public GrassMapCell grassCellPrefab;
     public VoidMapCell voidCellPrefab;
     public FloorMapCell floorCellPrefab;
-
 
     string path = "mapsavefile.byte";
 
@@ -33,8 +34,8 @@ public class Map : MonoBehaviour {
 
     private int[,] map;
 
-    byte[] saved;
-    byte[] loaded;
+    //byte[] saved;
+    //byte[] loaded;
 	void Start () {
 	
 	}
@@ -44,7 +45,8 @@ public class Map : MonoBehaviour {
 	
 	}
 
-    public IEnumerator Generate()
+    //public IEnumerator Generate()
+    public void Generate()
     {
         rsizeX = sizeX + 2;
         rsizeZ = sizeZ + 2;
@@ -55,32 +57,37 @@ public class Map : MonoBehaviour {
         for (int i = 0; i < 4; i++)
         {
             CelluralStep1();
-            SaveBitmap("images/it"+i+".png");
+            SaveBitmap("images/it"+(i+1)+".png");
         }
 
         for (int i = 0; i < 2; i++)
         {
             CelluralStep2();
-            SaveBitmap("images/it" + (i+4) + ".png");
+            SaveBitmap("images/it" + (i+5) + ".png");
         }
 
         //WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
         //map = new MapCell[sizeX, sizeZ];
-        return DrawMap();
+        DrawMap();
 
     }
 
-    private IEnumerator DrawMap()
+    //private IEnumerator DrawMap()
+    private void DrawMap()
     {
+        DestroyCells();
+        //renderer.enabled = false;
         for (int x = 0; x < rsizeX; x++)
         {
             for (int z = 0; z < rsizeZ; z++)
             {
-                yield return 0;
+                //yield return 0;
                 CreateCell(new IntVector2(x, z), map[x, z]);
             }
         }
+        //renderer.enabled = true;
     }
+
     private void FillWithVoid()
     {
         for (int i = 0; i < rsizeX; i++)
@@ -198,6 +205,7 @@ public class Map : MonoBehaviour {
         }
         flors.Clear();
     }
+
     private void FillRandomly()
     {
         for (int x = 1; x <= sizeX; x++)
@@ -290,121 +298,157 @@ public class Map : MonoBehaviour {
             n++;
         return n;
     }
+
     private int CntCellNeighboursWalls2(int x, int z)
     {
-
         int n = 0;
-        if (isFineCoords(x - 2, z - 2))
+        for (int i = -2; i < 3; i++)
         {
-            if (map[x-2, z-2] == VOID)
-                n++;
+            for (int j = -2; j < 3; j++)
+            {
+                if (i != 0 || j != 0)
+                {
+                    if(isFineCoords(x+i,z+j))
+                    {
+                        if (map[x+i, z+j] == VOID)
+                            n++;
+                    }
+                }
+            }
         }
-        if (isFineCoords(x - 1, z - 2))
-        {
-            if (map[x - 1, z - 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x, z - 2))
-        {
-            if (map[x, z - 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x + 1, z - 2))
-        {
-            if (map[x + 1, z - 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x + 2, z - 2))
-        {
-            if (map[x + 2, z - 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x + 2, z - 1))
-        {
-            if (map[x + 2, z - 1] == VOID)
-                n++;
-        }
-        if (isFineCoords(x + 2, z))
-        {
-            if (map[x + 2, z] == VOID)
-                n++;
-        }
-        if (isFineCoords(x + 2, z + 1))
-        {
-            if (map[x + 2, z + 1] == VOID)
-                n++;
-        }
-        if (isFineCoords(x + 2, z + 2))
-        {
-            if (map[x + 2, z + 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x + 1, z + 2))
-        {
-            if (map[x + 1, z + 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x, z + 2))
-        {
-            if (map[x, z + 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x - 1, z + 2))
-        {
-            if (map[x - 1, z + 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x - 2, z + 2))
-        {
-            if (map[x - 2, z + 2] == VOID)
-                n++;
-        }
-        if (isFineCoords(x - 2, z + 1))
-        {
-            if (map[x - 2, z + 1] == VOID)
-                n++;
-        }
-        if (isFineCoords(x - 2, z))
-        {
-            if (map[x - 2, z] == VOID)
-                n++;
-        }
-        if (isFineCoords(x - 2, z - 1))
-        {
-            if (map[x - 2, z-1] == VOID)
-                n++;
-        }
+        
         //if (isFineCoords(x - 2, z - 2))
+        //{
+        //    if (map[x-2, z-2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x - 1, z - 2))
+        //{
+        //    if (map[x - 1, z - 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x, z - 2))
+        //{
+        //    if (map[x, z - 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x + 1, z - 2))
+        //{
+        //    if (map[x + 1, z - 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x + 2, z - 2))
+        //{
+        //    if (map[x + 2, z - 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x + 2, z - 1))
+        //{
+        //    if (map[x + 2, z - 1] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x + 2, z))
+        //{
+        //    if (map[x + 2, z] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x + 2, z + 1))
+        //{
+        //    if (map[x + 2, z + 1] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x + 2, z + 2))
+        //{
+        //    if (map[x + 2, z + 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x + 1, z + 2))
+        //{
+        //    if (map[x + 1, z + 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x, z + 2))
+        //{
+        //    if (map[x, z + 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x - 1, z + 2))
+        //{
+        //    if (map[x - 1, z + 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x - 2, z + 2))
+        //{
+        //    if (map[x - 2, z + 2] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x - 2, z + 1))
+        //{
+        //    if (map[x - 2, z + 1] == VOID)
+        //        n++;
+        //}
+        //if (isFineCoords(x - 2, z))
         //{
         //    if (map[x - 2, z] == VOID)
         //        n++;
         //}
+        //if (isFineCoords(x - 2, z - 1))
+        //{
+        //    if (map[x - 2, z-1] == VOID)
+        //        n++;
+        //}
+        ////if (isFineCoords(x - 2, z - 2))
+        ////{
+        ////    if (map[x - 2, z] == VOID)
+        ////        n++;
+        ////}
 
         return n;
     }
+
     public void Save()
     {
-        byte[] bytes = new byte[rsizeX * rsizeZ * sizeof(int)];
-        for (int i = 0; i < rsizeX; i++)
-            for (int j = 0; j < rsizeZ; j++)
-            {
-                for(int k = 0; k<sizeof(int);k++)
-                {
-                    bytes[i * rsizeZ + j+k] = BitConverter.GetBytes(map[i, j])[k];
-                }
-                if(BitConverter.ToInt32(bytes, i*rsizeZ +j) != map[i,j])
-                {
-                    Debug.Log("wrong conversion, got " + BitConverter.ToInt32(bytes, i * rsizeZ + j) + " insted of " + map[i, j]);
-                }
-            }
+        //byte[] bytes = new byte[rsizeX * rsizeZ * sizeof(int)];
+        //for (int i = 0; i < rsizeX; i++)
+        //    for (int j = 0; j < rsizeZ; j++)
+        //    {
+        //        for(int k = 0; k<sizeof(int);k++)
+        //        {
+        //            bytes[i * rsizeZ + j+k] = BitConverter.GetBytes(map[i, j])[k];
+        //        }
+        //        if(BitConverter.ToInt32(bytes, i*rsizeZ +j) != map[i,j])
+        //        {
+        //            Debug.Log("wrong conversion, got " + BitConverter.ToInt32(bytes, i * rsizeZ + j) + " insted of " + map[i, j]);
+        //        }
+        //    }
 
-        File.WriteAllBytes(path, bytes);
-        Debug.Log("Map saved, checking");
-        saved = bytes;
-        MapSavedFine();
+        //File.WriteAllBytes(path, bytes);
+        //Debug.Log("Map saved, checking");
+        //saved = bytes;
+        //MapSavedFine();
+        try
+        {
+
+            using (Stream fileStream = File.Open(path, FileMode.Create))
+            {
+                //using (var stream = new GZipStream(fileStream, CompressionMode.Compress))
+                //{
+                //    BinaryFormatter bin = new BinaryFormatter();
+                //    bin.Serialize(stream, map);
+                //}
+                BinaryFormatter bin = new BinaryFormatter();
+                bin.Serialize(fileStream, map);
+
+            }
+        }
+        catch (IOException)
+        {
+            Debug.Log("nie udalo sie");
+        }
 
     }
 
+/*
     private bool MapSavedFine()
     {
         bool fine = true;
@@ -445,26 +489,94 @@ public class Map : MonoBehaviour {
         
         return fine;
     }
-    public IEnumerator Load()
+ */
+
+    public void Load()
     {
+        int[,] loaded;
         //FillWithVoid();
-        byte[] bytes = File.ReadAllBytes(path);
-        if (bytes.Length != rsizeX * rsizeZ * sizeof(int))
+        //byte[] bytes = File.ReadAllBytes(path);
+        //if (bytes.Length != rsizeX * rsizeZ * sizeof(int))
+        //{
+        //    Debug.Log("wrong file size");
+        //    yield return 0;
+        //}
+        //else
+        //{
+        //    for (int i = 0; i < rsizeX; i++)
+        //        for (int j = 0; j < rsizeZ; j++)
+        //        {
+        //            map[i, j] = BitConverter.ToInt32(bytes, i * rsizeZ + j);
+        //        }
+        //    Debug.Log("Map loaded");
+        //    yield return DrawMap();
+        //}
+
+        using (Stream fileStream = File.Open(path, FileMode.Open, FileAccess.Read))
         {
-            Debug.Log("wrong file size");
-            yield return 0;
+
+            //using (var stream = new GZipStream(fileStream, CompressionMode.Decompress))
+            //{
+            //    BinaryFormatter bin = new BinaryFormatter();
+            //    loaded = (int[,])bin.Deserialize(stream);
+            //}
+
+            BinaryFormatter bin = new BinaryFormatter();
+            loaded = (int[,])bin.Deserialize(fileStream);
+
+        }
+
+        if (loaded.Length == map.Length)
+        {
+            map = loaded;
+            DrawMap();
         }
         else
         {
-            for (int i = 0; i < rsizeX; i++)
-                for (int j = 0; j < rsizeZ; j++)
-                {
-                    map[i, j] = BitConverter.ToInt32(bytes, i * rsizeZ + j);
-                }
-            Debug.Log("Map loaded");
-            yield return DrawMap();
+            Debug.Log("wrong size");
+            
         }
+        
+
      }
+
+    public void DestroyCells()
+    {
+        MapCell[] others = FindObjectsOfType(typeof(MapCell)) as MapCell[];
+
+        foreach (MapCell other in others)
+        {
+            Destroy(other.gameObject);
+        }
+
+        GrassMapCell[] othersGrass = FindObjectsOfType(typeof(GrassMapCell)) as GrassMapCell[];
+
+        foreach (GrassMapCell other in othersGrass)
+        {
+            Destroy(other.gameObject);
+        }
+
+        VoidMapCell[] othersVoid = FindObjectsOfType(typeof(VoidMapCell)) as VoidMapCell[];
+
+        foreach (VoidMapCell other in othersVoid)
+        {
+            Destroy(other.gameObject);
+        }
+
+        FloorMapCell[] othersFloor = FindObjectsOfType(typeof(FloorMapCell)) as FloorMapCell[];
+
+        foreach (FloorMapCell other in othersFloor)
+        {
+            Destroy(other.gameObject);
+        }
+
+        WaterMapCell[] othersWater = FindObjectsOfType(typeof(WaterMapCell)) as WaterMapCell[];
+
+        foreach (WaterMapCell other in othersWater)
+        {
+            Destroy(other.gameObject);
+        }
+    }
 
     private bool isFineCoords(int x, int z)
     {
