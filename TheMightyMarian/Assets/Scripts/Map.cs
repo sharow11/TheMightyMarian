@@ -12,8 +12,8 @@ using System.IO.Compression;
 public class Map : MonoBehaviour {
     public int generations;
     public int startingFloorsPercent;
-    public int sizeX, sizeZ;
-    private int rsizeX, rsizeZ;
+    public int sizeX, sizeY;
+    private int rsizeX, rsizeY;
     public MapCell cellPrefab;
     public WaterMapCell waterCellPrefab;
     public GrassMapCell grassCellPrefab;
@@ -49,8 +49,8 @@ public class Map : MonoBehaviour {
     public void Generate()
     {
         rsizeX = sizeX + 2;
-        rsizeZ = sizeZ + 2;
-        map = new int[rsizeX, rsizeZ];
+        rsizeY = sizeY + 2;
+        map = new int[rsizeX, rsizeY];
         FillWithVoid();
         FillRandomly();
         SaveBitmap("images/it0.png");
@@ -79,10 +79,10 @@ public class Map : MonoBehaviour {
         //renderer.enabled = false;
         for (int x = 0; x < rsizeX; x++)
         {
-            for (int z = 0; z < rsizeZ; z++)
+            for (int y = 0; y < rsizeY; y++)
             {
                 //yield return 0;
-                CreateCell(new IntVector2(x, z), map[x, z]);
+                CreateCell(new IntVector2(x, y), map[x, y]);
             }
         }
         //renderer.enabled = true;
@@ -92,7 +92,7 @@ public class Map : MonoBehaviour {
     {
         for (int i = 0; i < rsizeX; i++)
         {
-            for (int j = 0; j < rsizeZ; j++)
+            for (int j = 0; j < rsizeY; j++)
             {
                 map[i, j] = VOID;
             }
@@ -111,16 +111,16 @@ public class Map : MonoBehaviour {
 
         for (int x = 1; x <= sizeX; x++)
         {
-            for (int z = 1; z <= sizeZ; z++)
+            for (int y = 1; y <= sizeY; y++)
             {
-                walls = CntCellNeighboursWalls(x, z);
+                walls = CntCellNeighboursWalls(x, y);
                 //floors = 8 - walls;
                 current.x = x;
-                current.z = z;
+                current.y = y;
 
-                //if (map[x, z] == VOID && floors >= 5)
+                //if (map[x, y] == VOID && floors >= 5)
                 //    toChange.Add(current);
-                //else if (map[x, z] == FLOOR && voids >= 5)
+                //else if (map[x, y] == FLOOR && voids >= 5)
                 //    toChange.Add(current);
                 if (walls >= 5)
                     wals.Add(current);
@@ -131,20 +131,20 @@ public class Map : MonoBehaviour {
 
         //foreach (IntVector2 c in toChange)
         //{
-        //    if (map[c.x, c.z] == VOID)
-        //        map[c.x, c.z] = FLOOR;
+        //    if (map[c.x, c.y] == VOID)
+        //        map[c.x, c.y] = FLOOR;
         //    else
-        //        map[c.x, c.z] = VOID;
+        //        map[c.x, c.y] = VOID;
         //}
         //toChange.Clear();
         foreach (IntVector2 c in wals)
         {
-            map[c.x, c.z] = VOID;
+            map[c.x, c.y] = VOID;
         }
         wals.Clear();
         foreach (IntVector2 c in flors)
         {
-            map[c.x, c.z] = FLOOR;
+            map[c.x, c.y] = FLOOR;
 
         }
         flors.Clear();
@@ -164,14 +164,14 @@ public class Map : MonoBehaviour {
 
         for (int x = 1; x <= sizeX; x++)
         {
-            for (int z = 1; z <= sizeZ; z++)
+            for (int y = 1; y <= sizeY; y++)
             {
-                walls = CntCellNeighboursWalls(x, z);
-                walls2 = CntCellNeighboursWalls2(x, z);
+                walls = CntCellNeighboursWalls(x, y);
+                walls2 = CntCellNeighboursWalls2(x, y);
                 //floors = 8 - walls;
                 //floors2 = 6 - walls2;
                 current.x = x;
-                current.z = z;
+                current.y = y;
 
                 //if (map[x, z] == VOID && (floors >= 5 || floors2 <= 1))
                 //    toChange.Add(current);
@@ -187,20 +187,20 @@ public class Map : MonoBehaviour {
 
         //foreach (IntVector2 c in toChange)
         //{
-        //    if (map[c.x, c.z] == VOID)
-        //        map[c.x, c.z] = FLOOR;
+        //    if (map[c.x, c.y] == VOID)
+        //        map[c.x, c.y] = FLOOR;
         //    else
-        //        map[c.x, c.z] = VOID;
+        //        map[c.x, c.y] = VOID;
         //}
         //toChange.Clear();
         foreach (IntVector2 c in wals)
         {
-           map[c.x, c.z] = VOID;
+           map[c.x, c.y] = VOID;
         }
         wals.Clear();
         foreach (IntVector2 c in flors)
         {
-           map[c.x, c.z] = FLOOR;
+           map[c.x, c.y] = FLOOR;
 
         }
         flors.Clear();
@@ -210,10 +210,10 @@ public class Map : MonoBehaviour {
     {
         for (int x = 1; x <= sizeX; x++)
         {
-            for (int z = 1; z <= sizeZ; z++)
+            for (int y = 1; y <= sizeY; y++)
             {
                 if(UnityEngine.Random.Range(0,101) <= startingFloorsPercent)
-                    map[x, z] = FLOOR;
+                    map[x, y] = FLOOR;
             }
         }
     }
@@ -225,81 +225,81 @@ public class Map : MonoBehaviour {
             WaterMapCell newCell = Instantiate(waterCellPrefab) as WaterMapCell;
             newCell.coordinates = coordinates;
             newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.z + " type water";
+            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type water";
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, 0f, coordinates.z - sizeZ * 0.5f + 0.5f);
+                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
         else if (type == GRASS)
         {
             GrassMapCell newCell = Instantiate(grassCellPrefab) as GrassMapCell;
             newCell.coordinates = coordinates;
             newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.z + " type grass";
+            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type grass";
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, 0f, coordinates.z - sizeZ * 0.5f + 0.5f);
+                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
         else if (type == FLOOR)
         {
             FloorMapCell newCell = Instantiate(floorCellPrefab) as FloorMapCell;
             newCell.coordinates = coordinates;
             newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.z + " type floor";
+            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type floor";
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, 0f, coordinates.z - sizeZ * 0.5f + 0.5f);
+                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
         else if (type == VOID)
         {
             VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
             newCell.coordinates = coordinates;
             newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.z + " type void";
+            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, 0f, coordinates.z - sizeZ * 0.5f + 0.5f);
+                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
         else
         {
             MapCell newCell = Instantiate(cellPrefab) as MapCell;
             newCell.coordinates = coordinates;
             newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.z + " type error";
+            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type error";
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, 0f, coordinates.z - sizeZ * 0.5f + 0.5f);
+                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
             Debug.Log("error cell creared, type: " + type);
         }
         //map[coordinates.x, coordinates.z] = newCell;
 
     }
 
-    private int CntCellNeighboursWalls(int x, int z)
+    private int CntCellNeighboursWalls(int x, int y)
     {
 
         int n = 0;
 
-        if (map[x + 1,z] == VOID)
+        if (map[x + 1,y] == VOID)
             n++;
-        if (map[x - 1,z] == VOID)
+        if (map[x - 1,y] == VOID)
             n++;
-        if (map[x,z + 1] == VOID)
+        if (map[x,y + 1] == VOID)
             n++;
-        if (map[x,z - 1] == VOID)
+        if (map[x,y - 1] == VOID)
             n++;
-        if (map[x + 1,z + 1] == VOID)
+        if (map[x + 1,y + 1] == VOID)
             n++;
-        if (map[x - 1,z - 1] == VOID)
+        if (map[x - 1,y - 1] == VOID)
             n++;
-        if (map[x + 1,z - 1] == VOID)
+        if (map[x + 1,y - 1] == VOID)
             n++;
-        if (map[x - 1,z + 1] == VOID)
+        if (map[x - 1,y + 1] == VOID)
             n++;
         return n;
     }
 
-    private int CntCellNeighboursWalls2(int x, int z)
+    private int CntCellNeighboursWalls2(int x, int y)
     {
         int n = 0;
         for (int i = -2; i < 3; i++)
@@ -308,9 +308,9 @@ public class Map : MonoBehaviour {
             {
                 if (i != 0 || j != 0)
                 {
-                    if(isFineCoords(x+i,z+j))
+                    if(isFineCoords(x+i,y+j))
                     {
-                        if (map[x+i, z+j] == VOID)
+                        if (map[x+i, y+j] == VOID)
                             n++;
                     }
                 }
@@ -578,26 +578,26 @@ public class Map : MonoBehaviour {
         }
     }
 
-    private bool isFineCoords(int x, int z)
+    private bool isFineCoords(int x, int y)
     {
-        if (x >= 0 && x <= sizeX+1 && z >= 0 && z <= sizeZ+1)
+        if (x >= 0 && x <= sizeX+1 && y >= 0 && y <= sizeY+1)
         { return true; }
         return false;
     }
 
     public void SaveBitmap(String filename = "kupa.png")
     {
-        Texture2D obrazek = new Texture2D(rsizeX * 6 + 1, rsizeZ * 6 + 1);
+        Texture2D obrazek = new Texture2D(rsizeX * 6 + 1, rsizeY * 6 + 1);
         for (int i = 0; i < rsizeX * 6 + 1; i++)
         {
-            for (int j = 0; j < rsizeZ * 6 + 1; j++)
+            for (int j = 0; j < rsizeY * 6 + 1; j++)
             {
                 obrazek.SetPixel(i, j, Color.cyan);
             }
         }
         for (int i = 0; i < rsizeX; i++)
         {
-            for (int j = 0; j < rsizeZ; j++)
+            for (int j = 0; j < rsizeY; j++)
             {
                 Color now;
                 int ileftcorner = i * 6 + 1;
@@ -622,8 +622,8 @@ public class Map : MonoBehaviour {
             }
         }
         for (int i = 0; i < rsizeX * 6 + 1; i++)
-        { obrazek.SetPixel(i, rsizeZ * 6, Color.gray); }
-        for (int i = 0; i < rsizeZ * 6 + 1; i++)
+        { obrazek.SetPixel(i, rsizeY * 6, Color.gray); }
+        for (int i = 0; i < rsizeY * 6 + 1; i++)
         { obrazek.SetPixel(rsizeX * 6, i, Color.gray); }
         //obrazek.Save("kupa.bmp");
         var bytes = obrazek.EncodeToPNG();
