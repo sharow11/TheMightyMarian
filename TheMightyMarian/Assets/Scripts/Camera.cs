@@ -10,6 +10,6 @@ public class Camera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(marian.transform.position.x, marian.transform.position.y + 10, marian.transform.position.z - 10);
+        transform.position = new Vector3(marian.transform.position.x, marian.transform.position.y - 10, marian.transform.position.z - 10);
 	}
 }

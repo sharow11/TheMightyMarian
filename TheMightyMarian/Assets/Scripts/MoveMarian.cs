@@ -16,7 +16,7 @@ public class MoveMarian : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized * speed;
+        rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized * speed;
         positions.Add(transform.position);
         times.Add(Time.time);
         while (times.Count > 0 && Time.time - times[0] > 0.5f)
