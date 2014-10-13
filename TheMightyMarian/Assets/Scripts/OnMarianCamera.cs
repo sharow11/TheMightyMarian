@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Camera : MonoBehaviour {
+public class OnMarianCamera : MonoBehaviour {
     GameObject marian;
 	// Use this for initialization
 	void Start () {
