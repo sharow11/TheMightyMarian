@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Camera.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\FloorMapCell.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
@@ -54,6 +55,10 @@
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\MapCell.cs" />
      <Compile Include="Assets\Scripts\MoveMarian.cs" />
+     <Compile Include="Assets\Scripts\PathFinding\Node.cs" />
+     <Compile Include="Assets\Scripts\PathFinding\NodeSearch.cs" />
+     <Compile Include="Assets\Scripts\PathFinding\Pathfinder2D.cs" />
+     <Compile Include="Assets\Scripts\PathFinding\QueuePath.cs" />
      <Compile Include="Assets\Scripts\VoidMapCell.cs" />
      <Compile Include="Assets\Scripts\WaterMapCell.cs" />
   </ItemGroup>
