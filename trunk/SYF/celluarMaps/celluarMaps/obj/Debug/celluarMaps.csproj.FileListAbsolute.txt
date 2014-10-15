@@ -1,9 +1,0 @@
-c:\users\desdemona\documents\visual studio 2012\Projects\celluarMaps\celluarMaps\bin\Debug\celluarMaps.exe.config
-C:\Users\Desdemona\documents\visual studio 2012\Projects\celluarMaps\celluarMaps\obj\Debug\celluarMaps.csprojResolveAssemblyReference.cache
-C:\Users\Desdemona\documents\visual studio 2012\Projects\celluarMaps\celluarMaps\bin\Debug\celluarMaps.exe
-C:\Users\Desdemona\documents\visual studio 2012\Projects\celluarMaps\celluarMaps\bin\Debug\celluarMaps.pdb
-C:\Users\Desdemona\documents\visual studio 2012\Projects\celluarMaps\celluarMaps\obj\Debug\celluarMaps.exe
-C:\Users\Desdemona\documents\visual studio 2012\Projects\celluarMaps\celluarMaps\obj\Debug\celluarMaps.pdb
-C:\Users\Desdemona\Documents\themightymarian_source\celluarMaps\celluarMaps\bin\Debug\celluarMaps.exe.config
-C:\Users\Desdemona\Documents\themightymarian_source\celluarMaps\celluarMaps\obj\Debug\celluarMaps.exe
-C:\Users\Desdemona\Documents\themightymarian_source\celluarMaps\celluarMaps\obj\Debug\celluarMaps.pdb

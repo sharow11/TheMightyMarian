@@ -13,6 +13,7 @@ public class Map : MonoBehaviour {
     public int generations;
     public int startingFloorsPercent;
     public int sizeX, sizeY;
+    public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     public MapCell cellPrefab;
     public WaterMapCell waterCellPrefab;
@@ -23,36 +24,164 @@ public class Map : MonoBehaviour {
     string path = "mapsavefile.byte";
 
     //private MapCell[,] map;
-    public float generationStepDelay;
-	// Use this for initialization
-
-    private int WATER = 1;
-    private int VOID = 666; //0
-    private int GRASS = 2;
-    //private int WALL = 3;
-    private int FLOOR = 781; //4
-
     private int[,] map;
 
-    //byte[] saved;
-    //byte[] loaded;
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private int[,] maze;
+    private int[,] mazeComplete;
 
-    //public IEnumerator Generate()
+
+	void Start () {}
+	void Update () {}
+
     public void Generate()
     {
         rsizeX = sizeX + 2;
         rsizeY = sizeY + 2;
         map = new int[rsizeX, rsizeY];
-        FillWithVoid();
-        FillRandomly();
+        maze = new int[roomsX*roomsY, roomsX*roomsY];
+        mazeComplete = new int[roomsX * roomsY, roomsX * roomsY];
+        MazeCompleteClear();
+        MazeGenerate();
+    }
+
+    private void MazeGenerate()
+    {
+        //MazeClear();
+        //MazeCompleteClear();
+
+        for(int i=0; i<roomsX; i++)
+            for (int j = 0; j < roomsY; j++)
+            {
+				/*
+                if (i != 0)
+                { 
+                    int daleko = UnityEngine.Random.Range(3,666);
+                    maze[MazeVertexNum(i, j),MazeVertexNum(i - 1, j)] = daleko;
+                    maze[MazeVertexNum(i-1, j), MazeVertexNum(i, j)] = daleko;
+                }*/
+                if (i != roomsX - 1)
+                {
+                    int daleko = UnityEngine.Random.Range(3, 666);
+                    maze[MazeVertexNum(i, j), MazeVertexNum(i + 1, j)] = daleko;
+                    maze[MazeVertexNum(i + 1, j), MazeVertexNum(i, j)] = daleko;
+                }
+				/*
+                if (j != 0)
+                {
+                    int daleko = UnityEngine.Random.Range(3, 666);
+                    maze[MazeVertexNum(i, j), MazeVertexNum(i, j-1)] = daleko;
+                    maze[MazeVertexNum(i, j-1), MazeVertexNum(i, j)] = daleko;
+                }*/
+                if (j != roomsY - 1)
+                {
+                    int daleko = UnityEngine.Random.Range(3, 666);
+                    maze[MazeVertexNum(i, j), MazeVertexNum(i, j+1)] = daleko;
+                    maze[MazeVertexNum(i, j+1), MazeVertexNum(i, j)] = daleko;
+                }
+            }
+
+        PrimsMagic();
+		SaveMazeToImage("images/mazes/"+DateTime.Now.ToString("yyyyMMddHHmmssffff")+".png");
+    }
+
+    private void PrimsMagic()
+    {
+        int startVertexX = UnityEngine.Random.Range(0, roomsX);
+        int startVertexY = UnityEngine.Random.Range(0, roomsY);
+        int startVertex = MazeVertexNum(startVertexX, startVertexY);
+
+        int[] distances = new int[roomsX*roomsY];
+        int[] daddy = new int[roomsX * roomsY];
+        List<int> queue = new List<int>();
+        for (int i = 0; i < roomsY * roomsX; i++)
+        {
+            distances[i] = Int32.MaxValue;
+            daddy[i] = -666;
+            queue.Add(i);
+        }
+        distances[startVertex] = 0;
+
+
+        //visited.Add(startVertex);
+        //queue.Sort((v1, v2) => MazeHowFar(startVertex, v1).CompareTo(MazeHowFar(startVertex, v2)));
+        queue.Sort((v1, v2) => distances[v1].CompareTo(distances[v2]));
+
+        int currentvertex = startVertex;
+        while (queue.Count > 0)
+        {
+            currentvertex = queue[0];
+            queue.RemoveAt(0);
+
+            foreach (int neib in MazeGetNeibours(currentvertex))
+            { 
+                if(queue.Contains(neib))
+                {
+                    if (MazeHowFar(currentvertex, neib) < distances[neib])
+                    {
+                        distances[neib] = MazeHowFar(currentvertex, neib);
+                        daddy[neib] = currentvertex;
+                    }
+                }
+            }
+            queue.Sort((v1, v2) => distances[v1].CompareTo(distances[v2]));
+
+        }
+        for (int i = 0; i < daddy.Length; i++)
+        {
+            int passageType = UnityEngine.Random.Range(1,5);
+            if (daddy[i] >= 0 && daddy[i] < daddy.Length)
+            {
+                mazeComplete[i, daddy[i]] = passageType;
+                mazeComplete[daddy[i], i] = passageType;
+            }
+        }
+    }
+
+    private int MazeVertexNum(int x, int y)
+    { return x + roomsX * y; }
+
+    private IntVector2 MazeVertexCoords(int num)
+    { 
+        int y = num/roomsX;
+        int x = num - y;
+        return new IntVector2(x, y);
+    }
+
+    private List<int> MazeGetNeibours(int v)
+    {
+        List<int> sasiedzi = new List<int>();
+        for (int i = 0; i < roomsX * roomsY; i++)
+            if (maze[v, i] > 0 && i != v)
+                sasiedzi.Add(i);
+        return sasiedzi;
+    }
+
+    private int MazeHowFar(int v1, int v2)
+    {
+        if(maze[v1,v2] == 0 || maze[v2,v1] == 0)
+            return Int32.MaxValue;
+        return (maze[v1, v2] + maze[v2, v1]) / 2;
+    }
+
+    private void MazeCompleteClear()
+    {
+        for (int i = 0; i < roomsX * roomsY; i++)
+            for (int j = 0; j < roomsY * roomsX; j++)
+            {
+                maze[i, j] = 0;
+                mazeComplete[i, j] = 0;
+            }
+
+    }
+
+    //public IEnumerator Generate()
+    public void GenerateOld()
+    {
+        rsizeX = sizeX + 2;
+        rsizeY = sizeY + 2;
+        map = new int[rsizeX, rsizeY];
+
+
         SaveBitmap("images/it0.png");
         for (int i = 0; i < 4; i++)
         {
@@ -66,26 +195,20 @@ public class Map : MonoBehaviour {
             SaveBitmap("images/it" + (i+5) + ".png");
         }
 
-        //WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
-        //map = new MapCell[sizeX, sizeZ];
         DrawMap();
 
     }
 
-    //private IEnumerator DrawMap()
-    private void DrawMap()
+    public void DrawMap()
     {
         DestroyCells();
-        //renderer.enabled = false;
         for (int x = 0; x < rsizeX; x++)
         {
             for (int y = 0; y < rsizeY; y++)
             {
-                //yield return 0;
                 CreateCell(new IntVector2(x, y), map[x, y]);
             }
         }
-        //renderer.enabled = true;
     }
 
     private void FillWithVoid()
@@ -94,34 +217,28 @@ public class Map : MonoBehaviour {
         {
             for (int j = 0; j < rsizeY; j++)
             {
-                map[i, j] = VOID;
+                map[i, j] = TileTypes.VOID;
             }
         }
     }
 
     private void CelluralStep2()
     {
-        //List<IntVector2> toChange = new List<IntVector2>();
         List<IntVector2> flors = new List<IntVector2>();
         List<IntVector2> wals = new List<IntVector2>();
         IntVector2 current;
 
         int walls = 0;
-        //int floors = 0;
+
 
         for (int x = 1; x <= sizeX; x++)
         {
             for (int y = 1; y <= sizeY; y++)
             {
                 walls = CntCellNeighboursWalls(x, y);
-                //floors = 8 - walls;
                 current.x = x;
                 current.y = y;
 
-                //if (map[x, y] == VOID && floors >= 5)
-                //    toChange.Add(current);
-                //else if (map[x, y] == FLOOR && voids >= 5)
-                //    toChange.Add(current);
                 if (walls >= 5)
                     wals.Add(current);
                 else
@@ -129,22 +246,14 @@ public class Map : MonoBehaviour {
             }
         }
 
-        //foreach (IntVector2 c in toChange)
-        //{
-        //    if (map[c.x, c.y] == VOID)
-        //        map[c.x, c.y] = FLOOR;
-        //    else
-        //        map[c.x, c.y] = VOID;
-        //}
-        //toChange.Clear();
         foreach (IntVector2 c in wals)
         {
-            map[c.x, c.y] = VOID;
+            map[c.x, c.y] = TileTypes.VOID;
         }
         wals.Clear();
         foreach (IntVector2 c in flors)
         {
-            map[c.x, c.y] = FLOOR;
+            map[c.x, c.y] = TileTypes.FLOOR;
 
         }
         flors.Clear();
@@ -152,15 +261,12 @@ public class Map : MonoBehaviour {
 
     private void CelluralStep1()
     {
-        //List<IntVector2> toChange = new List<IntVector2>();
         List<IntVector2> flors = new List<IntVector2>();
         List<IntVector2> wals = new List<IntVector2>();
         IntVector2 current;
 
         int walls = 0;
         int walls2 = 0;
-        //int floors = 0;
-        //int floors2 = 0;
 
         for (int x = 1; x <= sizeX; x++)
         {
@@ -168,15 +274,9 @@ public class Map : MonoBehaviour {
             {
                 walls = CntCellNeighboursWalls(x, y);
                 walls2 = CntCellNeighboursWalls2(x, y);
-                //floors = 8 - walls;
-                //floors2 = 6 - walls2;
+
                 current.x = x;
                 current.y = y;
-
-                //if (map[x, z] == VOID && (floors >= 5 || floors2 <= 1))
-                //    toChange.Add(current);
-                //else if (map[x, z] == FLOOR && voids >= 5)
-                //    toChange.Add(current);
 
                 if (walls >= 5 || walls2 <= 2)
                     wals.Add(current);
@@ -185,42 +285,22 @@ public class Map : MonoBehaviour {
             }
         }
 
-        //foreach (IntVector2 c in toChange)
-        //{
-        //    if (map[c.x, c.y] == VOID)
-        //        map[c.x, c.y] = FLOOR;
-        //    else
-        //        map[c.x, c.y] = VOID;
-        //}
-        //toChange.Clear();
         foreach (IntVector2 c in wals)
         {
-           map[c.x, c.y] = VOID;
+           map[c.x, c.y] = TileTypes.VOID;
         }
         wals.Clear();
         foreach (IntVector2 c in flors)
         {
-           map[c.x, c.y] = FLOOR;
+           map[c.x, c.y] = TileTypes.FLOOR;
 
         }
         flors.Clear();
     }
 
-    private void FillRandomly()
-    {
-        for (int x = 1; x <= sizeX; x++)
-        {
-            for (int y = 1; y <= sizeY; y++)
-            {
-                if(UnityEngine.Random.Range(0,101) <= startingFloorsPercent)
-                    map[x, y] = FLOOR;
-            }
-        }
-    }
-
     private void CreateCell(IntVector2 coordinates, int type)
     {
-        if (type == WATER)
+        if (type == TileTypes.WATER)
         {
             WaterMapCell newCell = Instantiate(waterCellPrefab) as WaterMapCell;
             newCell.coordinates = coordinates;
@@ -230,7 +310,7 @@ public class Map : MonoBehaviour {
             newCell.transform.localPosition =
                 new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
-        else if (type == GRASS)
+        else if (type == TileTypes.GRASS)
         {
             GrassMapCell newCell = Instantiate(grassCellPrefab) as GrassMapCell;
             newCell.coordinates = coordinates;
@@ -240,7 +320,7 @@ public class Map : MonoBehaviour {
             newCell.transform.localPosition =
                 new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
-        else if (type == FLOOR)
+        else if (type == TileTypes.FLOOR)
         {
             FloorMapCell newCell = Instantiate(floorCellPrefab) as FloorMapCell;
             newCell.coordinates = coordinates;
@@ -250,7 +330,7 @@ public class Map : MonoBehaviour {
             newCell.transform.localPosition =
                 new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
-        else if (type == VOID)
+        else if (type == TileTypes.VOID)
         {
             VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
             newCell.coordinates = coordinates;
@@ -280,21 +360,21 @@ public class Map : MonoBehaviour {
 
         int n = 0;
 
-        if (map[x + 1,y] == VOID)
+        if (map[x + 1, y] == TileTypes.VOID)
             n++;
-        if (map[x - 1,y] == VOID)
+        if (map[x - 1, y] == TileTypes.VOID)
             n++;
-        if (map[x,y + 1] == VOID)
+        if (map[x, y + 1] == TileTypes.VOID)
             n++;
-        if (map[x,y - 1] == VOID)
+        if (map[x, y - 1] == TileTypes.VOID)
             n++;
-        if (map[x + 1,y + 1] == VOID)
+        if (map[x + 1, y + 1] == TileTypes.VOID)
             n++;
-        if (map[x - 1,y - 1] == VOID)
+        if (map[x - 1, y - 1] == TileTypes.VOID)
             n++;
-        if (map[x + 1,y - 1] == VOID)
+        if (map[x + 1, y - 1] == TileTypes.VOID)
             n++;
-        if (map[x - 1,y + 1] == VOID)
+        if (map[x - 1, y + 1] == TileTypes.VOID)
             n++;
         return n;
     }
@@ -310,99 +390,13 @@ public class Map : MonoBehaviour {
                 {
                     if(isFineCoords(x+i,y+j))
                     {
-                        if (map[x+i, y+j] == VOID)
+                        if (map[x + i, y + j] == TileTypes.VOID)
                             n++;
                     }
                 }
             }
         }
         
-        //if (isFineCoords(x - 2, z - 2))
-        //{
-        //    if (map[x-2, z-2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x - 1, z - 2))
-        //{
-        //    if (map[x - 1, z - 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x, z - 2))
-        //{
-        //    if (map[x, z - 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x + 1, z - 2))
-        //{
-        //    if (map[x + 1, z - 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x + 2, z - 2))
-        //{
-        //    if (map[x + 2, z - 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x + 2, z - 1))
-        //{
-        //    if (map[x + 2, z - 1] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x + 2, z))
-        //{
-        //    if (map[x + 2, z] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x + 2, z + 1))
-        //{
-        //    if (map[x + 2, z + 1] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x + 2, z + 2))
-        //{
-        //    if (map[x + 2, z + 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x + 1, z + 2))
-        //{
-        //    if (map[x + 1, z + 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x, z + 2))
-        //{
-        //    if (map[x, z + 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x - 1, z + 2))
-        //{
-        //    if (map[x - 1, z + 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x - 2, z + 2))
-        //{
-        //    if (map[x - 2, z + 2] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x - 2, z + 1))
-        //{
-        //    if (map[x - 2, z + 1] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x - 2, z))
-        //{
-        //    if (map[x - 2, z] == VOID)
-        //        n++;
-        //}
-        //if (isFineCoords(x - 2, z - 1))
-        //{
-        //    if (map[x - 2, z-1] == VOID)
-        //        n++;
-        //}
-        ////if (isFineCoords(x - 2, z - 2))
-        ////{
-        ////    if (map[x - 2, z] == VOID)
-        ////        n++;
-        ////}
-
         return n;
     }
 
@@ -447,49 +441,6 @@ public class Map : MonoBehaviour {
         }
 
     }
-
-/*
-    private bool MapSavedFine()
-    {
-        bool fine = true;
-        byte[] bytes = File.ReadAllBytes(path);
-        if (bytes.Length != rsizeX * rsizeZ * sizeof(int))
-        { Debug.LogError("WRONG FILE SIZE!!!"); return false; }
-        if (bytes != saved)
-        {
-            Debug.LogError("WRONG WRONG WRONG!!!");
-        }
-        byte[] mybyteint = new byte[sizeof(int)];
-        int myint;
-        for (int i = 0; i < rsizeX; i++)
-        {
-            for (int j = 0; j < rsizeZ; j++)
-            {
-                for (int k = 0; k < sizeof(int); k++)
-                {
-                    mybyteint[k] = bytes[i * rsizeZ + j + k];
-                }
-                myint = BitConverter.ToInt32(bytes, i * rsizeZ + j);
-                if (BitConverter.ToInt32(mybyteint, 0) != map[i, j])
-                {
-                    Debug.Log("bb Excepted: " + map[i, j] + " insted got: " + myint);
-                    fine = false;
-                }
-                else if (map[i, j] != myint)
-                {
-                    Debug.Log("Excepted: " + map[i, j] + " insted got: " + myint);
-                    fine = false;
-                }
-                else
-                {
-                    Debug.Log("Tile " + map[i, j] + "loaded fine");
-                }
-            }
-        }
-        
-        return fine;
-    }
- */
 
     public void Load()
     {
@@ -592,7 +543,7 @@ public class Map : MonoBehaviour {
         {
             for (int j = 0; j < rsizeY * 6 + 1; j++)
             {
-                obrazek.SetPixel(i, j, Color.cyan);
+                obrazek.SetPixel(i, j, DawnBringer16.Blue);
             }
         }
         for (int i = 0; i < rsizeX; i++)
@@ -602,10 +553,10 @@ public class Map : MonoBehaviour {
                 Color now;
                 int ileftcorner = i * 6 + 1;
                 int jleftcorner = j * 6 + 1;
-                if (map[i, j] == FLOOR)
-                { now = Color.white; }
+                if (map[i, j] == TileTypes.FLOOR)
+                { now = DawnBringer16.White; }
                 else
-                { now = Color.black; }
+                { now = DawnBringer16.Black; }
 
                 for (int ii = ileftcorner; ii < ileftcorner + 6; ii++)
                 {
@@ -616,17 +567,92 @@ public class Map : MonoBehaviour {
                 }
                 for (int ii = 0; ii < 6; ii++)
                 {
-                    obrazek.SetPixel(i * 6, j * 6 + ii, Color.gray);
-                    obrazek.SetPixel(i * 6 + ii, j * 6, Color.gray);
+                    obrazek.SetPixel(i * 6, j * 6 + ii, DawnBringer16.DarkGrey);
+                    obrazek.SetPixel(i * 6 + ii, j * 6, DawnBringer16.DarkGrey);
                 }
             }
         }
         for (int i = 0; i < rsizeX * 6 + 1; i++)
-        { obrazek.SetPixel(i, rsizeY * 6, Color.gray); }
+        { obrazek.SetPixel(i, rsizeY * 6, DawnBringer16.DarkGrey); }
         for (int i = 0; i < rsizeY * 6 + 1; i++)
-        { obrazek.SetPixel(rsizeX * 6, i, Color.gray); }
+        { obrazek.SetPixel(rsizeX * 6, i, DawnBringer16.DarkGrey); }
         //obrazek.Save("kupa.bmp");
+		obrazek.SetPixel (0, 0, Color.red);
         var bytes = obrazek.EncodeToPNG();
         File.WriteAllBytes(filename, bytes);
+    }
+
+    private void SaveMazeToImage(String filename = "maze.png")
+    {
+        int XX = roomsX * 4 + (roomsX-1)*4 + 2;
+        int YY = roomsY * 4 + (roomsY-1)*4 + 2;
+        Texture2D obrazek = new Texture2D(XX,YY);
+        
+        for (int i = 0; i < XX; i++)
+        {
+            for (int j = 0; j < YY; j++)
+            {
+                obrazek.SetPixel(i, j, DawnBringer16.Blue);
+            }
+        }
+        for (int i = 0; i < roomsX; i++)
+        {
+            for (int j = 0; j < roomsY; j++)
+            {
+                for(int k=4*i;k<4*i+2;k++)
+                    for(int l=4*j;l<4*j+2;l++)
+                        obrazek.SetPixel(k, l, DawnBringer16.White);
+
+                //obrazek.SetPixel(4 * i + 1, 4 * j, DawnBringer16.White);
+                //obrazek.SetPixel(4 * i, 4*j+1, DawnBringer16.White);
+                //obrazek.SetPixel(4 * i + 1, 4 * j + 1, DawnBringer16.White);
+
+                Color current;
+                if (i + 1 < roomsX)
+                    current = MazeColorForPassage(mazeComplete[MazeVertexNum(i, j), MazeVertexNum(i + 1, j)]);
+                else
+                    current = DawnBringer16.Black;
+
+                for (int k = 4 * i+2; k < 4 * i + 4; k++)
+                    for (int l = 4 * j; l < 4 * j + 2; l++)
+                        obrazek.SetPixel(k, l, current);
+
+                if(j+1 < roomsY)
+                    current = MazeColorForPassage(mazeComplete[MazeVertexNum(i, j), MazeVertexNum(i, j + 1)]);
+                else
+                    current = DawnBringer16.Black;
+                for (int k = 4 * i; k < 4 * i + 2; k++)
+                    for (int l = 4 * j+2; l < 4 * j + 4; l++)
+                        obrazek.SetPixel(k, l, current);
+                current = DawnBringer16.Black;
+                for (int k = 4 * i+2; k < 4 * i + 4; k++)
+                    for (int l = 4 * j + 2; l < 4 * j + 4; l++)
+                        obrazek.SetPixel(k, l, current);
+            }
+        }
+        var bytes = obrazek.EncodeToPNG();
+
+        File.WriteAllBytes(filename, bytes);
+
+    }
+
+    private Color MazeColorForPassage(int p)
+    {
+
+        Color now;
+        if (p == 0)
+        { now = DawnBringer16.Black; }
+        else if (p == 1)
+        { now = DawnBringer16.Orange; }
+        else if (p == 2)
+        { now = DawnBringer16.Yellow; }
+        else if (p == 3)
+        { now = DawnBringer16.Red; }
+        else if (p == 4)
+        { now = DawnBringer16.PinkBeige; }
+        else
+        { now = DawnBringer16.Green; }
+
+        return now;
     }
 }
