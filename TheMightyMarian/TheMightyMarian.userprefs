@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Map.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Map.cs" Line="633" Column="1" />
+      <File FileName="Assets\Scripts\Room.cs" Line="89" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Desdemona\Documents\themightymarian_source\themightymarian\TheMightyMarian\Assets\Scripts\Map.cs" line="587" />
+      <Breakpoint file="C:\Users\Desdemona\Documents\themightymarian_source\themightymarian\TheMightyMarian\Assets\Scripts\Map.cs" line="598" />
+      <Breakpoint file="C:\Users\Desdemona\Documents\themightymarian_source\themightymarian\TheMightyMarian\Assets\Scripts\Map.cs" line="633" />
+      <Breakpoint file="C:\Users\Desdemona\Documents\themightymarian_source\themightymarian\TheMightyMarian\Assets\Scripts\Map.cs" line="635" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
