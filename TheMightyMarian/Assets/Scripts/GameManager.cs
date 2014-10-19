@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     private Map mapInstance;
     public Pathfinder2D path;
 
-
     private void Start()
     {
         BeginGame();
@@ -43,7 +42,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void SaveMap()
-    { mapInstance.Save(); }
+    { 
+        mapInstance.Save();
+    }
 
     private void LoadMap()
     {

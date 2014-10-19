@@ -49,10 +49,11 @@ public class Map : MonoBehaviour {
         //MazeClear();
         //MazeCompleteClear();
 
-        for(int i=0; i<roomsX; i++)
+        for (int i = 0; i < roomsX; i++)
+        {
             for (int j = 0; j < roomsY; j++)
             {
-				/*
+                /*
                 if (i != 0)
                 { 
                     int daleko = UnityEngine.Random.Range(3,666);
@@ -65,7 +66,7 @@ public class Map : MonoBehaviour {
                     maze[MazeVertexNum(i, j), MazeVertexNum(i + 1, j)] = daleko;
                     maze[MazeVertexNum(i + 1, j), MazeVertexNum(i, j)] = daleko;
                 }
-				/*
+                /*
                 if (j != 0)
                 {
                     int daleko = UnityEngine.Random.Range(3, 666);
@@ -75,13 +76,14 @@ public class Map : MonoBehaviour {
                 if (j != roomsY - 1)
                 {
                     int daleko = UnityEngine.Random.Range(3, 666);
-                    maze[MazeVertexNum(i, j), MazeVertexNum(i, j+1)] = daleko;
-                    maze[MazeVertexNum(i, j+1), MazeVertexNum(i, j)] = daleko;
+                    maze[MazeVertexNum(i, j), MazeVertexNum(i, j + 1)] = daleko;
+                    maze[MazeVertexNum(i, j + 1), MazeVertexNum(i, j)] = daleko;
                 }
             }
 
-        PrimsMagic();
-		SaveMazeToImage("images/mazes/"+DateTime.Now.ToString("yyyyMMddHHmmssffff")+".png");
+            PrimsMagic();
+            SaveMazeToImage("images/mazes/" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        }
     }
 
     private void PrimsMagic()
@@ -152,7 +154,9 @@ public class Map : MonoBehaviour {
         List<int> sasiedzi = new List<int>();
         for (int i = 0; i < roomsX * roomsY; i++)
             if (maze[v, i] > 0 && i != v)
+            {
                 sasiedzi.Add(i);
+            }
         return sasiedzi;
     }
 
