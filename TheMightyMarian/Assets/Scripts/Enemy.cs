@@ -6,7 +6,9 @@ public class Enemy : MonoBehaviour
 {
     public enum State : byte { idle, alert, searching, chasing, attacking };
     public State state;
+    public bool canFollowSteps;
     GameObject Marian;
+    MoveMarian moveMarian;
     public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
     //float targetTime;
     public int speed = 5;
@@ -17,7 +19,7 @@ public class Enemy : MonoBehaviour
     public List<Vector3> positions;
     List<float> times;
     bool gotPatrolTarget = false;
-
+    bool lostTrack = false;
     int nr = 0;
     // Use this for initialization
     void Start()
@@ -26,6 +28,8 @@ public class Enemy : MonoBehaviour
         times = new List<float>();
         state = 0;
         Marian = GameObject.Find("Marian");
+        moveMarian = (MoveMarian)Marian.GetComponent("MoveMarian");
+        Debug.Log(moveMarian);
         prevStep = transform.position;
         prevPrevStep = new Vector3(prevStep.x + 0.01f, prevStep.y, prevStep.z);
     }
@@ -64,7 +68,7 @@ public class Enemy : MonoBehaviour
                 lastSeen.z = transform.position.z;
             }
         }
-        switch (state)
+        switch (state) //TODO: odpychanie się jednych od drugich, informowanie gdzie jest Marian.
         {
             case State.idle:
                 color = Color.white;
@@ -73,17 +77,21 @@ public class Enemy : MonoBehaviour
                 color = Color.black;
                 if (gotPatrolTarget)
                 {
-                    if (Vector3.Distance(transform.position, patrolTarget) < 0.2f || Time.time - patrolTargetAssignTime > 6) // (timeout/unstuck)
+                    if (Vector3.Distance(transform.position, patrolTarget) < 0.2f || (!canFollowSteps && Time.time - patrolTargetAssignTime > 6)) // (timeout/unstuck)
                         gotPatrolTarget = false;
                     else
                         move(patrolTarget);
+                    if (Time.time - patrolTargetAssignTime > 15)
+                    {
+                        lostTrack = true;
+                    }
                 }
-                else
+                else if (!canFollowSteps || lostTrack)
                 {
                     patrolTarget = new Vector3(transform.position.x + Random.value * 15 - 7.5f, transform.position.y + Random.value * 15 - 7.5f, transform.position.z);
                     gotPatrolTarget = true;
                     int i = 0;
-                    while (Physics.Raycast(transform.position, patrolTarget))
+                    while (Physics.Raycast(transform.position, patrolTarget - transform.position, Vector3.Distance(transform.position, patrolTarget)))
                     {
                         if (i > 20)
                         {
@@ -99,14 +107,43 @@ public class Enemy : MonoBehaviour
                         patrolTargetAssignTime = Time.time;
                     }
                 }
+                else
+                {
+                    gotPatrolTarget = false;
+                    int lastSeenPosIndex = moveMarian.GetIndex(seenLastTime);
+                    Debug.Log(lastSeenPosIndex);
+                    int posIndex;
+                    for (int i = 2; i <= 64; i*=2)
+                    {
+                        posIndex = ((moveMarian.positions.Count - 1) - lastSeenPosIndex) / i + lastSeenPosIndex;
+                        Debug.Log(posIndex);
+                        Debug.DrawLine(transform.position, moveMarian.positions[posIndex], Color.green);
+                        if (!Physics.Raycast(transform.position, moveMarian.positions[posIndex] - transform.position, Vector3.Distance(transform.position, moveMarian.positions[posIndex])))
+                        {
+                            patrolTarget = moveMarian.positions[posIndex];
+							patrolTargetAssignTime = Time.time;
+							patrolTarget.z = transform.position.z;
+                            gotPatrolTarget = true;
+                            break;
+                        }
+                    }
+                    //Debug.Log(gotPatrolTarget);
+                    if (!gotPatrolTarget)
+                        lostTrack = true;
+                }
                 Debug.DrawLine(transform.position, patrolTarget, Color.cyan);
                 break;
             case State.searching:
                 color = Color.yellow;
                 if (Time.time - seenLastTime > 6 || Vector3.Distance(transform.position, lastSeen) < 0.2f)
+                {
+                    lostTrack = false;
                     state = State.alert;
+                }
                 else
+                {
                     move(lastSeen);
+                }
                 Debug.DrawLine(transform.position, lastSeen, color);
                 //Debug.Log(Time.time - seenLastTime + " dist: " + Vector3.Distance(transform.position, lastSeen));
                 break;
