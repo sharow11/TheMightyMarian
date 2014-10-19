@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour
     public enum State : byte { idle, alert, searching, chasing, attacking };
     public State state;
     GameObject Marian;
-    public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget;
+    public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
     //float targetTime;
     public int speed = 5;
-    float seenLastTime = 0;
+    float seenLastTime = 0, patrolTargetAssignTime;
     Ray ray;
     RaycastHit hit;
     Color color;
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         nr = 0;
-        while (times.Count > 0 && Time.time - times[0] > 0.5f)
+        while (times.Count > 0 && Time.time - times[0] > 0.2f)
         {
             times.RemoveAt(0);
             positions.RemoveAt(0);
@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
                 state = State.attacking;
             else
                 state = State.chasing;
+            gotPatrolTarget = false;
             //print("Widać Mariana!" + Vector3.Distance(Marian.transform.position, transform.position));
             //Debug.Log(hit.collider.name + ", " + hit.collider.tag);
         }
@@ -58,7 +59,9 @@ public class Enemy : MonoBehaviour
             if (state == State.attacking || state == State.chasing)
             {
                 state = State.searching;
+                //lastSeen = Marian.transform.position;
                 lastSeen = positions[0];
+                lastSeen.z = transform.position.z;
             }
         }
         switch (state)
@@ -70,14 +73,14 @@ public class Enemy : MonoBehaviour
                 color = Color.black;
                 if (gotPatrolTarget)
                 {
-                    if (Vector3.Distance(transform.position, patrolTarget) < 0.2f) // or some time has passed (timeout/unstuck)
+                    if (Vector3.Distance(transform.position, patrolTarget) < 0.2f || Time.time - patrolTargetAssignTime > 6) // (timeout/unstuck)
                         gotPatrolTarget = false;
                     else
                         move(patrolTarget);
                 }
                 else
                 {
-                    patrolTarget = new Vector3(transform.position.x + Random.value * 15 - 7.5f, Marian.transform.position.y, transform.position.z + Random.value * 15 - 7.5f);
+                    patrolTarget = new Vector3(transform.position.x + Random.value * 15 - 7.5f, transform.position.y + Random.value * 15 - 7.5f, transform.position.z);
                     gotPatrolTarget = true;
                     int i = 0;
                     while (Physics.Raycast(transform.position, patrolTarget))
@@ -87,14 +90,16 @@ public class Enemy : MonoBehaviour
                             gotPatrolTarget = false;
                             break;
                         }
-                        patrolTarget = new Vector3(transform.position.x + Random.value * 15 - 7.5f, Marian.transform.position.y, transform.position.z + Random.value * 15 - 7.5f);
+                        patrolTarget = new Vector3(transform.position.x + Random.value * 15 - 7.5f, transform.position.z + Random.value * 15 - 7.5f, transform.position.z);
                         i++;
                     }
                     if (gotPatrolTarget)
                     {
                         move(patrolTarget);
+                        patrolTargetAssignTime = Time.time;
                     }
                 }
+                Debug.DrawLine(transform.position, patrolTarget, Color.cyan);
                 break;
             case State.searching:
                 color = Color.yellow;
@@ -102,21 +107,24 @@ public class Enemy : MonoBehaviour
                     state = State.alert;
                 else
                     move(lastSeen);
+                Debug.DrawLine(transform.position, lastSeen, color);
+                //Debug.Log(Time.time - seenLastTime + " dist: " + Vector3.Distance(transform.position, lastSeen));
                 break;
             case State.chasing:
                 color = new Color(1, 0.5f, 0);
                 move(lastSeen);
+                Debug.DrawLine(transform.position, Marian.transform.position, color);
                 break;
             case State.attacking:
                 color = Color.red;
+                Debug.DrawLine(transform.position, Marian.transform.position, color);
                 break;
             default:
                 color = Color.white;
                 break;
         }
-        Debug.DrawLine(transform.position, Marian.transform.position, color);
-        Debug.DrawLine(transform.position, lastSeen, Color.blue);
-        Debug.Log(nr + "!!!" + transform.position.ToString("F5") + " " + prevStep.ToString("F5") + " " + prevPrevStep.ToString("F5"));
+        //Debug.DrawLine(transform.position, lastSeen, Color.blue);
+        //Debug.Log(nr + "!!!" + transform.position.ToString("F5") + " " + prevStep.ToString("F5") + " " + prevPrevStep.ToString("F5"));
     }
 
     void move(Vector3 dest)
@@ -127,7 +135,8 @@ public class Enemy : MonoBehaviour
             float multiplayer = speed;
             if (state == State.alert)
                 multiplayer /= 2;
-            rigidbody.velocity = (dest - transform.position).normalized * multiplayer;
+            rigidbody.velocity = (dest - transform.position).normalized * multiplayer + pushAwayFromWalls;
+            pushAwayFromWalls = new Vector3();
             if (prevStep == transform.position && prevStep == prevPrevStep) //object didn't move, try moving to right
             {
                 Vector3 temp = new Vector3(rigidbody.velocity.z, rigidbody.velocity.y, -rigidbody.velocity.x).normalized;
