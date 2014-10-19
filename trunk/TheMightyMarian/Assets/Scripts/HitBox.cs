@@ -31,7 +31,7 @@ public class HitBox : MonoBehaviour
             Vector3 push = enemy.pushAwayFromWalls;
             //if(transform.position.x - other.transform.position.x
             //jeśli w lewo to w lewo itd, normalize n shit
-            enemy.pushAwayFromWalls = new Vector3(enemy.pushAwayFromWalls.x + transform.position.x - other.transform.position.x, enemy.pushAwayFromWalls.y + transform.position.y - other.transform.position.y, 0).normalized * 5;
+            enemy.pushAwayFromWalls = new Vector3(enemy.pushAwayFromWalls.x + transform.position.x - other.transform.position.x, enemy.pushAwayFromWalls.y + transform.position.y - other.transform.position.y, 0).normalized * 2;
         }
     }
 }
