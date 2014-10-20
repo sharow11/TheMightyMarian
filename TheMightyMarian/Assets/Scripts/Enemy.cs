@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public bool canFollowSteps;
     GameObject Marian;
     MoveMarian moveMarian;
+    Enemies enemies;
     public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
     //float targetTime;
     public int speed = 5;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         times = new List<float>();
         state = 0;
         Marian = GameObject.Find("Marian");
+        enemies = (Enemies)(GameObject.Find("General").GetComponent("Enemies"));
         moveMarian = (MoveMarian)Marian.GetComponent("MoveMarian");
         Debug.Log(moveMarian);
         prevStep = transform.position;
@@ -55,6 +57,18 @@ public class Enemy : MonoBehaviour
             else
                 state = State.chasing;
             gotPatrolTarget = false;
+
+            foreach (Enemy enemy in enemies.enemies)
+            {
+                if (Vector3.Distance(transform.position, enemy.transform.position) < 20 && canSeeFoe(enemy.transform.position, 20) && (enemy.state == State.idle || enemy.state == State.alert))
+                {
+                    enemy.gotPatrolTarget = true;
+                    enemy.patrolTarget = transform.position;
+                    enemy.patrolTargetAssignTime = Time.time;
+                    enemy.lostTrack = false;
+                    enemy.state = State.alert;
+                }
+            }
             //print("Widać Mariana!" + Vector3.Distance(Marian.transform.position, transform.position));
             //Debug.Log(hit.collider.name + ", " + hit.collider.tag);
         }
@@ -68,7 +82,7 @@ public class Enemy : MonoBehaviour
                 lastSeen.z = transform.position.z;
             }
         }
-        switch (state) //TODO: odpychanie się jednych od drugich, informowanie gdzie jest Marian.
+        switch (state) //TODO: odpychanie się jednych od drugich, nie spowalnianie goniac kolege.
         {
             case State.idle:
                 color = Color.white;
@@ -200,6 +214,11 @@ public class Enemy : MonoBehaviour
     {
         ray = new Ray(pos, Marian.transform.position - pos);
         return (Physics.Raycast(ray, out hit, dist) && hit.collider.name == "Marian");
+    }
+    bool canSeeFoe(Vector3 FoePos, int dist)
+    {
+        ray = new Ray(transform.position, FoePos - transform.position);
+        return (Physics.Raycast(ray, out hit, dist) && hit.collider.name == "wruk");
     }
     bool clearWay(Vector3 pos, Vector3 dest, float dist)
     {
