@@ -60,10 +60,10 @@ public class Enemy : MonoBehaviour
 
             foreach (Enemy enemy in enemies.enemies)
             {
-                if (Vector3.Distance(transform.position, enemy.transform.position) < 20 && canSeeFoe(enemy.transform.position, 20) && (enemy.state == State.idle || enemy.state == State.alert))
+                if (Vector3.Distance(transform.position, enemy.transform.position) < 20 && canSeeFoe(enemy.transform.position, 20, enemy) && (enemy.state == State.idle || enemy.state == State.alert))
                 {
                     enemy.gotPatrolTarget = true;
-                    enemy.patrolTarget = transform.position;
+                    enemy.patrolTarget = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                     enemy.patrolTargetAssignTime = Time.time;
                     enemy.lostTrack = false;
                     enemy.state = State.alert;
@@ -176,6 +176,13 @@ public class Enemy : MonoBehaviour
         }
         //Debug.DrawLine(transform.position, lastSeen, Color.blue);
         //Debug.Log(nr + "!!!" + transform.position.ToString("F5") + " " + prevStep.ToString("F5") + " " + prevPrevStep.ToString("F5"));
+        foreach (Enemy enemy in enemies.enemies)
+        {
+            if (Vector3.Distance(transform.position, enemy.transform.position) < 1)
+            {
+                rigidbody.velocity = rigidbody.velocity + (transform.position - enemy.transform.position).normalized * 2;
+            }
+        }
     }
 
     void move(Vector3 dest)
@@ -212,13 +219,14 @@ public class Enemy : MonoBehaviour
 
     bool canSeeMarian(Vector3 pos, int dist)
     {
+        LayerMask mask = ~LayerMask.GetMask("Enemy");
         ray = new Ray(pos, Marian.transform.position - pos);
-        return (Physics.Raycast(ray, out hit, dist) && hit.collider.name == "Marian");
+        return (Physics.Raycast(ray, out hit, dist, mask.value) && hit.collider.name == "Marian");
     }
-    bool canSeeFoe(Vector3 FoePos, int dist)
+    bool canSeeFoe(Vector3 FoePos, int dist, Enemy foe)
     {
         ray = new Ray(transform.position, FoePos - transform.position);
-        return (Physics.Raycast(ray, out hit, dist) && hit.collider.name == "wruk");
+        return (Physics.Raycast(ray, out hit, dist) && hit.collider.gameObject == foe.transform.gameObject);
     }
     bool clearWay(Vector3 pos, Vector3 dest, float dist)
     {
