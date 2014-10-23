@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-    public enum State : byte { idle, alert, searching, chasing, attacking };
+    public enum State : byte { idle, alert, follow, searching, chasing, attacking };
     public State state;
     public bool canFollowSteps;
     GameObject Marian;
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
                     enemy.patrolTarget = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                     enemy.patrolTargetAssignTime = Time.time;
                     enemy.lostTrack = false;
-                    enemy.state = State.alert;
+                    enemy.state = State.follow;
                 }
             }
             //print("Widać Mariana!" + Vector3.Distance(Marian.transform.position, transform.position));
@@ -88,16 +88,23 @@ public class Enemy : MonoBehaviour
                 color = Color.white;
                 break;
             case State.alert:
+            case State.follow:
                 color = Color.black;
                 if (gotPatrolTarget)
                 {
-                    if (Vector3.Distance(transform.position, patrolTarget) < 0.2f || (!canFollowSteps && Time.time - patrolTargetAssignTime > 6)) // (timeout/unstuck)
+                    if (Vector3.Distance(transform.position, patrolTarget) < 0.2f || (!canFollowSteps && Time.time - patrolTargetAssignTime > 6))
+                    {
                         gotPatrolTarget = false;
+                        state = State.alert;
+                    }
                     else
+                    {
                         move(patrolTarget);
+                    }
                     if (Time.time - patrolTargetAssignTime > 15)
                     {
                         lostTrack = true;
+                        state = State.alert;
                     }
                 }
                 else if (!canFollowSteps || lostTrack)
