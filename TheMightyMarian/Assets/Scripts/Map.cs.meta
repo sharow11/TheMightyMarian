@@ -6,8 +6,6 @@ MonoImporter:
   - cellPrefab: {fileID: 11400000, guid: 227a6fcad567c5d45b5faf534dcfe6b6, type: 2}
   - waterCellPrefab: {fileID: 11400000, guid: 429bee1dfa221a2438fac4333d1362b0, type: 2}
   - grassCellPrefab: {fileID: 11400000, guid: 43c4c0f59ba9202429f2f34722f9fe9f, type: 2}
-  - voidCellPrefab: {fileID: 11400000, guid: 6746809baf2b0ac4c9998ea9f98d80f2, type: 2}
-  - floorCellPrefab: {fileID: 11400000, guid: 03ab6e39edab5144a88941711f3af8f4, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
