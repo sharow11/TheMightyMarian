@@ -5,14 +5,21 @@ using System;
 using System.IO;
 
 public class Room {
-    int[,] room;
+    private int[,] room;
     int n, s, w, e;
 
     int sizeX, sizeY;
     private int generations = 6;
     private int sfp;
-
-
+    public int this[int x,int y]
+    {
+        get
+        {
+            if (x >= 0 && y >= 0 && x < sizeX && y < sizeY)
+            { return room[x, y]; }
+            return -1;
+        }
+    }
     //   n
     //w     e
     //   s
@@ -36,7 +43,7 @@ public class Room {
 
         sfp = startingFloorsPrc;
 
-        Prepare();
+        //Prepare();
     }
 
     public void Prepare()
@@ -99,7 +106,8 @@ public class Room {
                 temp.Add(new IntVector2(1, i * passageSizeX + j));
             }
             nFreeTiles.Add(temp);
-            temp.Clear();
+            //temp.Clear();
+            temp = new List<IntVector2>();
         }
         for (int i = 0; i < 4; i++)
         {
@@ -109,7 +117,8 @@ public class Room {
                 temp.Add(new IntVector2(sizeY - 2, i * passageSizeX + j));
             }
             sFreeTiles.Add(temp);
-            temp.Clear();
+            //temp.Clear();
+            temp = new List<IntVector2>();
         }
         for (int i = 0; i < 4; i++)
         {
@@ -119,7 +128,8 @@ public class Room {
                 temp.Add(new IntVector2(i * passageSizeY + j, 1));
             }
             wFreeTiles.Add(temp);
-            temp.Clear();
+            //temp.Clear();
+            temp = new List<IntVector2>();
         }
         for (int i = 0; i < 4; i++)
         {
@@ -129,7 +139,8 @@ public class Room {
                 temp.Add(new IntVector2(i * passageSizeY + j, sizeX - 2));
             }
             eFreeTiles.Add(temp);
-            temp.Clear();
+            //temp.Clear();
+            temp = new List<IntVector2>();
         }
 
     }
@@ -159,6 +170,10 @@ public class Room {
         }
         if (e != 0)
         {
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    room[eFreeTiles[e - 1][i].x, eFreeTiles[e - 1][i].y] = TileTypes.FLOOR;
+            //}
             foreach (IntVector2 iv in eFreeTiles[e - 1])
             {
                 room[iv.x, iv.y] = TileTypes.FLOOR;
@@ -166,7 +181,7 @@ public class Room {
         }
     }
 
-    private void Generate()
+    public void Generate()
     {
         for (int i = 0; i < generations; i++)
         {
