@@ -16,7 +16,7 @@ public class MoveMarian : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized * speed;
         positions.Add(transform.position);
         times.Add(Time.time);
@@ -31,7 +31,7 @@ public class MoveMarian : MonoBehaviour {
         int begin = 0;
         int end = times.Count;
         int timeout = 0;
-        Debug.Log("end =" + end);
+        //Debug.Log("end =" + end);
         while (begin != end && timeout < 10)
         {
             timeout++;
