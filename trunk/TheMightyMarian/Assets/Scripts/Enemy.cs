@@ -5,14 +5,17 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     public enum State : byte { idle, alert, follow, searching, chasing, attacking };
-    public State state;
+    public enum Step : byte { downRight, upRight, downLeft, upLeft };
+    public State state = State.idle;
+    Step step = Step.downRight;
+    float stepTime = 0;
     public bool canFollowSteps;
     GameObject Marian;
     MoveMarian moveMarian;
     Enemies enemies;
     public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
     //float targetTime;
-    public int speed = 5;
+    public float speed = 5;
     float seenLastTime = 0, patrolTargetAssignTime;
     Ray ray;
     RaycastHit hit;
@@ -27,11 +30,10 @@ public class Enemy : MonoBehaviour
     {
         positions = new List<Vector3>();
         times = new List<float>();
-        state = 0;
         Marian = GameObject.Find("Marian");
         enemies = (Enemies)(GameObject.Find("General").GetComponent("Enemies"));
         moveMarian = (MoveMarian)Marian.GetComponent("MoveMarian");
-        Debug.Log(moveMarian);
+        //Debug.Log(moveMarian);
         prevStep = transform.position;
         prevPrevStep = new Vector3(prevStep.x + 0.01f, prevStep.y, prevStep.z);
     }
@@ -89,6 +91,7 @@ public class Enemy : MonoBehaviour
                 break;
             case State.alert:
             case State.follow:
+                animateMovement();
                 color = Color.black;
                 if (gotPatrolTarget)
                 {
@@ -132,12 +135,12 @@ public class Enemy : MonoBehaviour
                 {
                     gotPatrolTarget = false;
                     int lastSeenPosIndex = moveMarian.GetIndex(seenLastTime);
-                    Debug.Log(lastSeenPosIndex);
+                    //Debug.Log(lastSeenPosIndex);
                     int posIndex;
                     for (int i = 2; i <= 64; i*=2)
                     {
                         posIndex = ((moveMarian.positions.Count - 1) - lastSeenPosIndex) / i + lastSeenPosIndex;
-                        Debug.Log(posIndex);
+                        //Debug.Log(posIndex);
                         Debug.DrawLine(transform.position, moveMarian.positions[posIndex], Color.green);
                         if (!Physics.Raycast(transform.position, moveMarian.positions[posIndex] - transform.position, Vector3.Distance(transform.position, moveMarian.positions[posIndex])))
                         {
@@ -155,6 +158,7 @@ public class Enemy : MonoBehaviour
                 Debug.DrawLine(transform.position, patrolTarget, Color.cyan);
                 break;
             case State.searching:
+                animateMovement();
                 color = Color.yellow;
                 if (Time.time - seenLastTime > 6 || Vector3.Distance(transform.position, lastSeen) < 0.2f)
                 {
@@ -169,6 +173,7 @@ public class Enemy : MonoBehaviour
                 //Debug.Log(Time.time - seenLastTime + " dist: " + Vector3.Distance(transform.position, lastSeen));
                 break;
             case State.chasing:
+                animateMovement();
                 color = new Color(1, 0.5f, 0);
                 move(lastSeen);
                 Debug.DrawLine(transform.position, Marian.transform.position, color);
@@ -238,5 +243,36 @@ public class Enemy : MonoBehaviour
     bool clearWay(Vector3 pos, Vector3 dest, float dist)
     {
         return !Physics.Raycast(pos, dest - pos, dist);
+    }
+    void animateMovement()
+    {
+        if (Time.time - stepTime > 1 / (speed * 2))
+        {
+            var sprite = this.transform.Find("Sprite");
+            switch (step)
+            {
+                case Step.downRight:
+                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, -6, sprite.transform.eulerAngles.z);
+                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, -0.2f);
+                    step = Step.upRight;
+                    break;
+                case Step.upRight:
+                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, 0, sprite.transform.eulerAngles.z);
+                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, 0f);
+                    step = Step.downLeft;
+                    break;
+                case Step.downLeft:
+                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, 6, sprite.transform.eulerAngles.z);
+                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, -0.2f);
+                    step = Step.upLeft;
+                    break;
+                case Step.upLeft:
+                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, 0, sprite.transform.eulerAngles.z);
+                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, 0f);
+                    step = Step.downRight;
+                    break;
+            }
+            stepTime = Time.time;
+        }
     }
 }
