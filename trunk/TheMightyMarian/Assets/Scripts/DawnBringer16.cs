@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public static class DawnBringer16
 {
     public static Color Black
@@ -68,3 +69,6 @@ public static class DawnBringer16
         get { return new Color(222, 238, 214); }
     }
 }
+
+
+
