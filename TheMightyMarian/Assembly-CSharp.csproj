@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\IntroCameraMove.cs" />
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\MapCell.cs" />
+     <Compile Include="Assets\Scripts\Maze.cs" />
      <Compile Include="Assets\Scripts\MoveMarian.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\OnMarianCamera.cs" />
