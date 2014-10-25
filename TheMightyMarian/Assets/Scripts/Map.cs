@@ -67,7 +67,7 @@ public class Map : MonoBehaviour {
                 {
                     for (int y = 0; y < rsY; y++)
                     {
-                        map[x+offsetX,y+offsetY] = myRooms[ i + roomsX * j][x,y];
+                        map[x+offsetX+1,y+offsetY+1] = myRooms[ i + roomsX * j][x,y];
                     }
                 }
             }
