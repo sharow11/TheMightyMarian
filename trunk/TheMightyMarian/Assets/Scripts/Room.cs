@@ -200,6 +200,7 @@ public class Room {
             _Generate();
         }
         Debug.Log(name + " generated. sfp:" + sfp.ToString() +" %:"+cntPrc().ToString());
+        SaveBitmap("images/rooms/room_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
     }
 
     private void _Generate()
