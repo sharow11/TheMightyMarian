@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
 {
     public Map mapPrefab;
     private Map mapInstance;
-    public Pathfinder2D path;
 
     private void Start()
     {
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
         mapInstance = Instantiate(mapPrefab) as Map;
         //StartCoroutine(mapInstance.Generate());
         mapInstance.Generate();
-        path.manualStart();
     }
 
     private void RestartGame() {
