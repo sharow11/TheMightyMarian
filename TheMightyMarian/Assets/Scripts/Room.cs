@@ -11,6 +11,7 @@ public class Room {
     int sizeX, sizeY;
     private int generations = 6;
     private int sfp;
+    private string name;
     public int this[int x,int y]
     {
         get
@@ -30,7 +31,9 @@ public class Room {
     List<List<IntVector2>> wFreeTiles = new List<List<IntVector2>>();
     List<List<IntVector2>> eFreeTiles = new List<List<IntVector2>>();
 
-    public Room(int sizeX, int sizeY, int north, int south, int east, int west, int startingFloorsPrc)
+    private int[,] colorfullRoom;
+
+    public Room(int sizeX, int sizeY, int north, int south, int east, int west, int startingFloorsPrc,string roomName)
     {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
@@ -42,7 +45,8 @@ public class Room {
         e = east;
 
         sfp = startingFloorsPrc;
-
+        colorfullRoom = new int[sizeX,sizeY];
+        name = roomName;
         //Prepare();
     }
 
@@ -183,9 +187,26 @@ public class Room {
 
     public void Generate()
     {
+        _Generate();
+        //if(CheckIfAllPassagesExists())
+        //{ Debug.Log("passable"); }
+        //else
+        //{ Debug.Log("not passable"); }
+        while (!CheckIfAllPassagesExists() || (cntPrc() < 0.2f))
+        {
+            Debug.Log(name + " not passable sfp:"+sfp.ToString());
+            sfp++;
+            Prepare();
+            _Generate();
+        }
+        Debug.Log(name + " generated. sfp:" + sfp.ToString() +" %:"+cntPrc().ToString());
+    }
+
+    private void _Generate()
+    {
         for (int i = 0; i < generations; i++)
         {
-            if (i < 3)
+            if (i < 4)
             { CelluralStep1(); }
             else
             { CelluralStep2(); }
@@ -195,22 +216,68 @@ public class Room {
 
     private bool CheckIfAllPassagesExists()
     {
-        bool passable = true;
-        if (n != 0 && s != 0)
-        { }
-        if (n != 0 && w != 0)
-        { }
-        if (n != 0 && e != 0)
-        { }
-        if (s != 0 && w != 0)
-        { }
-        if (s != 0 && e != 0)
-        { }
-        if (w != 0 && e != 0)
-        { }
+        int start_color = UnityEngine.Random.Range(66, 666);
+        int color = start_color;
+        for (int i = 0; i < sizeX; i++)
+            for (int j = 0; j < sizeY; j++)
+                if (room[i, j] == TileTypes.FLOOR) colorfullRoom[i, j] = 1;
+                else colorfullRoom[i, j] = 0;
 
+        for (int i = 0; i < sizeX; i++)
+        {
+            for (int j = 0; j < sizeY; j++)
+            {
+                if (colorfullRoom[i, j] == 1)
+                {
+                    floodFill(i, j, color);
+                    color++;
+                }
+            }
+        }
+        return (start_color - color == -1);
+    }
 
-        return passable;
+    private float cntPrc()
+    {
+        float result = 0.0f;
+        for (int i = 0; i < sizeX; i++)
+        {
+            for (int j = 0; j < sizeY; j++)
+            {
+                if (room[i, j] == TileTypes.FLOOR)
+                { 
+                    result += 1.0f;
+                }
+            }
+        }
+        result = result / (float)(sizeX * sizeY);
+
+        return result;
+    }
+
+    void floodFill(int x, int y, int color)
+    {
+        colorfullRoom[x, y] = color;
+        if (isFineCoords(x + 1, y))
+        {
+            if (colorfullRoom[x + 1, y] == 1)
+            { floodFill(x + 1, y, color); }
+        }
+        if (isFineCoords(x - 1, y))
+        {
+            if (colorfullRoom[x - 1, y] == 1)
+            { floodFill(x - 1, y, color); }
+        }
+        if (isFineCoords(x, y + 1))
+        {
+            if (colorfullRoom[x, y + 1] == 1)
+            { floodFill(x, y + 1, color); }
+        }
+        if (isFineCoords(x, y - 1))
+        {
+            if (colorfullRoom[x, y - 1] == 1)
+            { floodFill(x, y - 1, color); }
+        }
     }
 
     private void CelluralStep2()

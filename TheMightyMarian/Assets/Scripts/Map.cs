@@ -51,6 +51,7 @@ public class Map : MonoBehaviour {
         initializeRooms();
         translateRoomsToMap();
         DrawMap();
+        SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
     }
 
     public void translateRoomsToMap()

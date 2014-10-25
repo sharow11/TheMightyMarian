@@ -264,7 +264,8 @@ public class Maze {
             else
                 e = mazeComplete[i, VertexNum(coords.x, coords.y+1)];
 
-            pokoje.Add(new Room(roomSizeX,roomSizeY,n,s,e,w,sfp));
+            string newRoomName = "Room no. " + VertexNum(coords.x, coords.y).ToString() + " x:" + coords.x.ToString() + " y:" + coords.y.ToString();
+            pokoje.Add(new Room(roomSizeX,roomSizeY,n,s,e,w,sfp,newRoomName));
         }
 
         return pokoje;
