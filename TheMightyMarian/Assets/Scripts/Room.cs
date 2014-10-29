@@ -38,7 +38,7 @@ public class Room {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
 
-        room = new int[sizeX, sizeY];
+        room = new int[sizeX*2, sizeY*2];
         n = north;
         s = south;
         w = west;
@@ -200,11 +200,12 @@ public class Room {
             _Generate();
         }
         Debug.Log(name + " generated. sfp:" + sfp.ToString() +" %:"+cntPrc().ToString());
-        SaveBitmap("images/rooms/room_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        //SaveBitmap("images/rooms/room_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
     }
 
-    private void _Generate()
+    private bool _Generate()
     {
+        int[,] smallRoom = new int[sizeX, sizeY];
         for (int i = 0; i < generations; i++)
         {
             if (i < 4)
@@ -213,10 +214,12 @@ public class Room {
             { CelluralStep2(); }
             PlaceDoors();
         }
+        return true;
     }
 
     private bool CheckIfAllPassagesExists()
     {
+
         int start_color = UnityEngine.Random.Range(66, 666);
         int color = start_color;
         for (int i = 0; i < sizeX; i++)

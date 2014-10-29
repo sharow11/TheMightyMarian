@@ -13,6 +13,7 @@ public class Map : MonoBehaviour {
     public int generations;
     public int startingFloorsPercent;
     public int sizeX, sizeY;
+    
     public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;
@@ -20,17 +21,20 @@ public class Map : MonoBehaviour {
     public WaterMapCell waterCellPrefab;
     public GrassMapCell grassCellPrefab;
     public VoidMapCell voidCellPrefab;
+    public VoidMapCellCollide voidCellPrefabCollide;
     public FloorMapCell floorCellPrefab;
 
     string path = "mapsavefile.byte";
 
     //private MapCell[,] map;
+    private int[,] smallMap;
     private int[,] map;
 
     Maze maze;
     List<Room> myRooms;
 
-
+    private int size2X, size2Y;
+    private int rsize2X, rsize2Y;
 
 	void Start () {}
 	void Update () {}
@@ -41,7 +45,12 @@ public class Map : MonoBehaviour {
         rsY = sizeY / roomsY;
         rsizeX = sizeX + 2;
         rsizeY = sizeY + 2;
-        map = new int[rsizeX, rsizeY];
+        size2X = sizeX * 2;
+        size2Y = sizeY * 2;
+        rsize2X = size2X + 2;
+        rsize2Y = size2Y + 2;
+        smallMap = new int[rsizeX, rsizeY];
+        map = new int[rsize2X, rsize2Y];
         FillWithVoid();
 
         maze = new Maze(roomsY, roomsX, sizeX, sizeY, rsX, rsY, startingFloorsPercent);
@@ -50,6 +59,8 @@ public class Map : MonoBehaviour {
         myRooms = maze.GetRooms();
         initializeRooms();
         translateRoomsToMap();
+        ScaleUPx2();
+        CelluralSmooth();
         DrawMap();
         SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
     }
@@ -67,7 +78,7 @@ public class Map : MonoBehaviour {
                 {
                     for (int y = 0; y < rsY; y++)
                     {
-                        map[x+offsetX+1,y+offsetY+1] = myRooms[ i + roomsX * j][x,y];
+                        smallMap[x+offsetX+1,y+offsetY+1] = myRooms[ i + roomsX * j][x,y];
                     }
                 }
             }
@@ -78,7 +89,7 @@ public class Map : MonoBehaviour {
     {
         rsizeX = sizeX + 2;
         rsizeY = sizeY + 2;
-        map = new int[rsizeX, rsizeY];
+        smallMap = new int[rsizeX, rsizeY];
 
 
         SaveBitmap("images/it0.png");
@@ -101,9 +112,9 @@ public class Map : MonoBehaviour {
     public void DrawMap()
     {
         DestroyCells();
-        for (int x = 0; x < rsizeX; x++)
+        for (int x = 0; x < rsize2X; x++)
         {
-            for (int y = 0; y < rsizeY; y++)
+            for (int y = 0; y < rsize2Y; y++)
             {
                 CreateCell(new IntVector2(x, y), map[x, y]);
             }
@@ -115,6 +126,13 @@ public class Map : MonoBehaviour {
         for (int i = 0; i < rsizeX; i++)
         {
             for (int j = 0; j < rsizeY; j++)
+            {
+                smallMap[i, j] = TileTypes.VOID;
+            }
+        }
+        for (int i = 0; i < rsize2X; i++)
+        {
+            for (int j = 0; j < rsize2Y; j++)
             {
                 map[i, j] = TileTypes.VOID;
             }
@@ -128,7 +146,6 @@ public class Map : MonoBehaviour {
         IntVector2 current;
 
         int walls = 0;
-
 
         for (int x = 1; x <= sizeX; x++)
         {
@@ -146,15 +163,10 @@ public class Map : MonoBehaviour {
         }
 
         foreach (IntVector2 c in wals)
-        {
-            map[c.x, c.y] = TileTypes.VOID;
-        }
+        { map[c.x, c.y] = TileTypes.VOID; }
         wals.Clear();
         foreach (IntVector2 c in flors)
-        {
-            map[c.x, c.y] = TileTypes.FLOOR;
-
-        }
+        { map[c.x, c.y] = TileTypes.FLOOR; }
         flors.Clear();
     }
 
@@ -197,6 +209,34 @@ public class Map : MonoBehaviour {
         flors.Clear();
     }
 
+    private void CelluralSmooth()
+    {
+        List<IntVector2> flors = new List<IntVector2>();
+        List<IntVector2> wals = new List<IntVector2>();
+        IntVector2 current;
+        int walls = 0;
+        for (int x = 1; x < size2X + 1; x++)
+        {
+            for (int y = 1; y < size2Y + 1; y++)
+            {
+                walls = CntCellNeighboursWalls(x, y);
+                current.x = x;
+                current.y = y;
+
+                if (walls >= 5)
+                    wals.Add(current);
+                else
+                    flors.Add(current);
+            }
+        }
+        foreach (IntVector2 c in wals)
+        { map[c.x, c.y] = TileTypes.VOID; }
+        wals.Clear();
+        foreach (IntVector2 c in flors)
+        { map[c.x, c.y] = TileTypes.FLOOR; }
+        flors.Clear();
+    }
+
     private void CreateCell(IntVector2 coordinates, int type)
     {
         if (type == TileTypes.WATER)
@@ -231,13 +271,27 @@ public class Map : MonoBehaviour {
         }
         else if (type == TileTypes.VOID)
         {
-            VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
-            newCell.coordinates = coordinates;
-            newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
+            if (CntCellNeighboursWalls(coordinates.x, coordinates.y) < 8)
+            {
+                VoidMapCellCollide newCell = Instantiate(voidCellPrefabCollide) as VoidMapCellCollide;
+                newCell.coordinates = coordinates;
+                newCell.type = type;
+                newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void collider";
+                newCell.transform.parent = transform;
+                newCell.transform.localPosition =
+                    new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
+            }
+            else
+            {
+                VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
+                newCell.coordinates = coordinates;
+                newCell.type = type;
+                newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
+                newCell.transform.parent = transform;
+                newCell.transform.localPosition =
+                    new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
+            }
+
         }
         else
         {
@@ -256,27 +310,21 @@ public class Map : MonoBehaviour {
 
     private int CntCellNeighboursWalls(int x, int y)
     {
-
         int n = 0;
-
-        if (map[x + 1, y] == TileTypes.VOID)
-            n++;
-        if (map[x - 1, y] == TileTypes.VOID)
-            n++;
-        if (map[x, y + 1] == TileTypes.VOID)
-            n++;
-        if (map[x, y - 1] == TileTypes.VOID)
-            n++;
-        if (map[x + 1, y + 1] == TileTypes.VOID)
-            n++;
-        if (map[x - 1, y - 1] == TileTypes.VOID)
-            n++;
-        if (map[x + 1, y - 1] == TileTypes.VOID)
-            n++;
-        if (map[x - 1, y + 1] == TileTypes.VOID)
-            n++;
+        for (int i = x - 1; i < x + 2; i++)
+        {
+            for (int j = y - 1; j < y + 2; j++)
+            {
+                if (isFineCoords(i, j))
+                {
+                    if (!(j == y && i == x) && map[i, j] == TileTypes.VOID)
+                    { n++; }
+                }
+            }
+        }
         return n;
     }
+
 
     private int CntCellNeighboursWalls2(int x, int y)
     {
@@ -294,8 +342,7 @@ public class Map : MonoBehaviour {
                     }
                 }
             }
-        }
-        
+        } 
         return n;
     }
 
@@ -375,7 +422,7 @@ public class Map : MonoBehaviour {
 
     private bool isFineCoords(int x, int y)
     {
-        if (x >= 0 && x <= sizeX+1 && y >= 0 && y <= sizeY+1)
+        if (x >= 0 && x <= size2X+1 && y >= 0 && y <= size2Y+1)
         { return true; }
         return false;
     }
@@ -397,7 +444,7 @@ public class Map : MonoBehaviour {
                 Color now;
                 int ileftcorner = i * 6 + 1;
                 int jleftcorner = j * 6 + 1;
-                if (map[i, j] == TileTypes.FLOOR)
+                if (smallMap[i, j] == TileTypes.FLOOR)
                 { now = DawnBringer16.White; }
                 else
                 { now = DawnBringer16.Black; }
@@ -432,6 +479,24 @@ public class Map : MonoBehaviour {
         {
             room.Prepare();
             room.Generate();
+        }
+    }
+
+    //private void fill
+    private void ScaleUPx2()
+    {
+        for (int i = 0; i < sizeX; i++)
+        {
+            for (int j = 0; j < sizeY; j++)
+            {
+                int t = smallMap[i + 1, j + 1];
+                int x = 1 + i*2;
+                int y = 1 + j*2;
+                map[x, y] = t;
+                map[x + 1, y] = t;
+                map[x, y + 1] = t;
+                map[x + 1, y + 1] = t;
+            }
         }
     }
 }

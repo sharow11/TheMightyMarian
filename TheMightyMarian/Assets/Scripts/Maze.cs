@@ -69,7 +69,7 @@ public class Maze {
             }
 
         PrimsMagic();
-        ToImage("images/mazes/" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        //ToImage("images/mazes/" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
     }
 
     private void PrimsMagic()
@@ -221,7 +221,6 @@ public class Maze {
 
     private Color ColorForPassage(int p)
     {
-
         Color now;
         if (p == 0)
         { now = DawnBringer16.Black; }
