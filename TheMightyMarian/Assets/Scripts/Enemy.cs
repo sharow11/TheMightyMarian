@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
     //float targetTime;
     public float speed = 5;
+    public float health = 100;
     float seenLastTime = 0, patrolTargetAssignTime;
     Ray ray;
     RaycastHit hit;
@@ -249,31 +250,40 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time - stepTime > 1 / (speed * 2))
         {
-            var sprite = this.transform.Find("Sprite");
+            var quad = this.transform.Find("Quad");
             switch (step)
             {
                 case Step.downRight:
-                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, -6, sprite.transform.eulerAngles.z);
-                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, -0.2f);
+                    quad.transform.eulerAngles = new Vector3(quad.transform.eulerAngles.x, -6, quad.transform.eulerAngles.z);
+                    quad.transform.localPosition = new Vector3(quad.transform.localPosition.x, quad.transform.localPosition.y, -0.2f);
                     step = Step.upRight;
                     break;
                 case Step.upRight:
-                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, 0, sprite.transform.eulerAngles.z);
-                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, 0f);
+                    quad.transform.eulerAngles = new Vector3(quad.transform.eulerAngles.x, 0, quad.transform.eulerAngles.z);
+                    quad.transform.localPosition = new Vector3(quad.transform.localPosition.x, quad.transform.localPosition.y, 0f);
                     step = Step.downLeft;
                     break;
                 case Step.downLeft:
-                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, 6, sprite.transform.eulerAngles.z);
-                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, -0.2f);
+                    quad.transform.eulerAngles = new Vector3(quad.transform.eulerAngles.x, 6, quad.transform.eulerAngles.z);
+                    quad.transform.localPosition = new Vector3(quad.transform.localPosition.x, quad.transform.localPosition.y, -0.2f);
                     step = Step.upLeft;
                     break;
                 case Step.upLeft:
-                    sprite.transform.eulerAngles = new Vector3(sprite.transform.eulerAngles.x, 0, sprite.transform.eulerAngles.z);
-                    sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, sprite.transform.localPosition.y, 0f);
+                    quad.transform.eulerAngles = new Vector3(quad.transform.eulerAngles.x, 0, quad.transform.eulerAngles.z);
+                    quad.transform.localPosition = new Vector3(quad.transform.localPosition.x, quad.transform.localPosition.y, 0f);
                     step = Step.downRight;
                     break;
             }
             stepTime = Time.time;
+        }
+    }
+    public void takeDmg(float dmg)
+    {
+        health -= dmg;
+        if (health < 0)
+        {
+            enemies.enemies.Remove(this);
+            Destroy(gameObject);
         }
     }
 }

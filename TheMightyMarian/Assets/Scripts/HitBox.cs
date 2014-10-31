@@ -3,11 +3,11 @@ using System.Collections;
 
 public class HitBox : MonoBehaviour 
 {
-
+    Enemy enemy;
 	// Use this for initialization
 	void Start () 
     {
-	
+        enemy = (Enemy)this.GetComponent("Enemy");
 	}
 	
 	// Update is called once per frame
@@ -21,13 +21,19 @@ public class HitBox : MonoBehaviour
         {
             Debug.Log("wall");
         }
+        if (other.CompareTag("MarianProjectile"))
+        {
+            Debug.Log("Marian proj");
+            enemy.takeDmg(((Projectile)other.gameObject.GetComponent("Projectile")).dmg);
+            ((Projectile)other.gameObject.GetComponent("Projectile")).Blast();
+            Destroy(other.gameObject, 0);
+        }
     }
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("block"))
         {
             //Debug.Log("wall");
-            Enemy enemy = (Enemy)this.GetComponent("Enemy");
             Vector3 push = enemy.pushAwayFromWalls;
             //if(transform.position.x - other.transform.position.x
             //jeśli w lewo to w lewo itd, normalize n shit
