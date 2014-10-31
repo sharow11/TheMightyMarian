@@ -231,9 +231,10 @@ public class Enemy : MonoBehaviour
 
     bool canSeeMarian(Vector3 pos, int dist)
     {
-        LayerMask mask = ~LayerMask.GetMask("Enemy");
-        ray = new Ray(pos, Marian.transform.position - pos);
-        return (Physics.Raycast(ray, out hit, dist, mask.value) && hit.collider.name == "Marian");
+        //LayerMask mask = ~LayerMask.GetMask("Enemy");
+        //ray = new Ray(pos, Marian.transform.position - pos);
+        //return (Physics.Raycast(ray, out hit, dist, mask.value) && hit.collider.name == "Marian");
+        return true;
     }
     bool canSeeFoe(Vector3 FoePos, int dist, Enemy foe)
     {
