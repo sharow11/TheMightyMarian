@@ -6,11 +6,11 @@ public class OnMarianCamera : MonoBehaviour {
     public float camSpeed = 3;
     public float camYoffsetMultiplayer = 1.2f;
     public float camCurrPosImportanceMult = 5;
+    public RaycastHit hit;
     GameObject marian;
     Texture2D cursorTexture;
 	CursorMode cursorMode = CursorMode.Auto;
     Vector2 hotSpot = Vector2.zero;
-    RaycastHit hit;
     Ray ray;
 	void OnMouseEnter () {
 		Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -27,7 +27,7 @@ public class OnMarianCamera : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         ray = transform.camera.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit);
+        Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.NameToLayer("Terrain"));
         Debug.DrawLine(marian.transform.position, hit.point, Color.magenta);
         float centerX = marian.transform.position.x + (hit.point.x - marian.transform.position.x) / camCurrPosImportanceMult;
         float centerY = marian.transform.position.y + (hit.point.y - marian.transform.position.y) / camCurrPosImportanceMult;

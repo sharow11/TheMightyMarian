@@ -13,6 +13,7 @@ public class MoveMarian : MonoBehaviour {
     {
         positions = new List<Vector3>();
         times = new List<float>();
+        Physics.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("MarianProjectile"), true);
 	}
 	
 	// Update is called once per frame
@@ -53,4 +54,12 @@ public class MoveMarian : MonoBehaviour {
         }
         return 0;
     }
+    /*void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag != "Grass")
+        if (collision.gameObject.tag == "MarianProjectile")
+        {
+            Physics.IgnoreCollision(collision.collider, collider);
+        }
+    }*/
 }
