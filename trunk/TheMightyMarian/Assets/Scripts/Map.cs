@@ -23,12 +23,14 @@ public class Map : MonoBehaviour {
     public VoidMapCell voidCellPrefab;
     public VoidMapCellCollide voidCellPrefabCollide;
     public FloorMapCell floorCellPrefab;
+    public Wall wallPrefab;
 
     string path = "mapsavefile.byte";
 
     //private MapCell[,] map;
     private int[,] smallMap;
     private int[,] map;
+
 
     Maze maze;
     List<Room> myRooms;
@@ -63,8 +65,16 @@ public class Map : MonoBehaviour {
         CelluralSmooth();
         DrawMap();
         SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        cleanVariables();
     }
 
+    private void cleanVariables()
+    {
+        smallMap = null;
+        myRooms.Clear();
+        maze = null;
+    }
+    
     public void translateRoomsToMap()
     {
         int offsetX, offsetY;
@@ -84,30 +94,6 @@ public class Map : MonoBehaviour {
             }
         }
     }
-    //public IEnumerator Generate()
-    public void GenerateOld()
-    {
-        rsizeX = sizeX + 2;
-        rsizeY = sizeY + 2;
-        smallMap = new int[rsizeX, rsizeY];
-
-
-        SaveBitmap("images/it0.png");
-        for (int i = 0; i < 4; i++)
-        {
-            CelluralStep1();
-            SaveBitmap("images/it"+(i+1)+".png");
-        }
-
-        for (int i = 0; i < 2; i++)
-        {
-            CelluralStep2();
-            SaveBitmap("images/it" + (i+5) + ".png");
-        }
-
-        DrawMap();
-
-    }
 
     public void DrawMap()
     {
@@ -117,6 +103,18 @@ public class Map : MonoBehaviour {
             for (int y = 0; y < rsize2Y; y++)
             {
                 CreateCell(new IntVector2(x, y), map[x, y]);
+                if (map[x, y] == TileTypes.FLOOR)
+                {
+                    if (isFineCoords(x, y - 1) && map[x,y-1] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 0); } //a
+                    if (isFineCoords(x, y + 1) && map[x,y+1] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 2); } //c
+                    if (isFineCoords(x + 1, y) && map[x+1,y] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 3); } //d
+                    if (isFineCoords(x - 1, y) && map[x-1,y] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 1); } //b
+                    
+                }
             }
         }
     }
@@ -271,6 +269,7 @@ public class Map : MonoBehaviour {
         }
         else if (type == TileTypes.VOID)
         {
+            /*
             if (CntCellNeighboursWalls(coordinates.x, coordinates.y) < 8)
             {
                 VoidMapCellCollide newCell = Instantiate(voidCellPrefabCollide) as VoidMapCellCollide;
@@ -290,8 +289,14 @@ public class Map : MonoBehaviour {
                 newCell.transform.parent = transform;
                 newCell.transform.localPosition =
                     new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-            }
-
+            }*/
+            VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
+            newCell.coordinates = coordinates;
+            newCell.type = type;
+            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
+            newCell.transform.parent = transform;
+            newCell.transform.localPosition =
+                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
         else
         {
@@ -302,10 +307,22 @@ public class Map : MonoBehaviour {
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
                 new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-            Debug.Log("error cell creared, type: " + type);
+            Debug.Log("error cell created, type: " + type);
         }
         //map[coordinates.x, coordinates.z] = newCell;
 
+    }
+
+    private void CreateWall(IntVector2 coordinates, int rotation)
+    {
+        Wall newWall = Instantiate(wallPrefab) as Wall;
+        newWall.Coordinates = coordinates;
+        newWall.name = "Wall " + coordinates.x + ", " + coordinates.y;
+        newWall.transform.parent = transform;
+        newWall.transform.localPosition =
+            new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
+        newWall.setRotation(rotation);
+        newWall.adjustPosition(rotation);
     }
 
     private int CntCellNeighboursWalls(int x, int y)
@@ -324,7 +341,6 @@ public class Map : MonoBehaviour {
         }
         return n;
     }
-
 
     private int CntCellNeighboursWalls2(int x, int y)
     {
@@ -385,39 +401,28 @@ public class Map : MonoBehaviour {
     public void DestroyCells()
     {
         MapCell[] others = FindObjectsOfType(typeof(MapCell)) as MapCell[];
-
         foreach (MapCell other in others)
-        {
-            Destroy(other.gameObject);
-        }
+        { Destroy(other.gameObject);}
 
         GrassMapCell[] othersGrass = FindObjectsOfType(typeof(GrassMapCell)) as GrassMapCell[];
-
         foreach (GrassMapCell other in othersGrass)
-        {
-            Destroy(other.gameObject);
-        }
+        { Destroy(other.gameObject); }
 
         VoidMapCell[] othersVoid = FindObjectsOfType(typeof(VoidMapCell)) as VoidMapCell[];
-
         foreach (VoidMapCell other in othersVoid)
-        {
-            Destroy(other.gameObject);
-        }
+        { Destroy(other.gameObject);}
 
         FloorMapCell[] othersFloor = FindObjectsOfType(typeof(FloorMapCell)) as FloorMapCell[];
-
         foreach (FloorMapCell other in othersFloor)
-        {
-            Destroy(other.gameObject);
-        }
+        { Destroy(other.gameObject);}
 
         WaterMapCell[] othersWater = FindObjectsOfType(typeof(WaterMapCell)) as WaterMapCell[];
-
         foreach (WaterMapCell other in othersWater)
-        {
-            Destroy(other.gameObject);
-        }
+        { Destroy(other.gameObject);}
+
+        Wall[] walls = FindObjectsOfType(typeof(Wall)) as Wall[];
+        foreach (Wall other in walls)
+        { Destroy(other.gameObject);}
     }
 
     private bool isFineCoords(int x, int y)
@@ -429,22 +434,22 @@ public class Map : MonoBehaviour {
 
     public void SaveBitmap(String filename = "kupa.png")
     {
-        Texture2D obrazek = new Texture2D(rsizeX * 6 + 1, rsizeY * 6 + 1);
-        for (int i = 0; i < rsizeX * 6 + 1; i++)
+        Texture2D obrazek = new Texture2D(rsize2X * 6 + 1, rsize2Y * 6 + 1);
+        for (int i = 0; i < rsize2X * 6 + 1; i++)
         {
-            for (int j = 0; j < rsizeY * 6 + 1; j++)
+            for (int j = 0; j < rsize2Y * 6 + 1; j++)
             {
                 obrazek.SetPixel(i, j, DawnBringer16.Blue);
             }
         }
-        for (int i = 0; i < rsizeX; i++)
+        for (int i = 0; i < rsize2X; i++)
         {
-            for (int j = 0; j < rsizeY; j++)
+            for (int j = 0; j < rsize2Y; j++)
             {
                 Color now;
                 int ileftcorner = i * 6 + 1;
                 int jleftcorner = j * 6 + 1;
-                if (smallMap[i, j] == TileTypes.FLOOR)
+                if (map[i, j] == TileTypes.FLOOR)
                 { now = DawnBringer16.White; }
                 else
                 { now = DawnBringer16.Black; }
@@ -463,10 +468,10 @@ public class Map : MonoBehaviour {
                 }
             }
         }
-        for (int i = 0; i < rsizeX * 6 + 1; i++)
-        { obrazek.SetPixel(i, rsizeY * 6, DawnBringer16.DarkGrey); }
-        for (int i = 0; i < rsizeY * 6 + 1; i++)
-        { obrazek.SetPixel(rsizeX * 6, i, DawnBringer16.DarkGrey); }
+        for (int i = 0; i < rsize2X * 6 + 1; i++)
+        { obrazek.SetPixel(i, rsize2Y * 6, DawnBringer16.DarkGrey); }
+        for (int i = 0; i < rsize2Y * 6 + 1; i++)
+        { obrazek.SetPixel(rsize2X * 6, i, DawnBringer16.DarkGrey); }
         //obrazek.Save("kupa.bmp");
 		obrazek.SetPixel (0, 0, Color.red);
         var bytes = obrazek.EncodeToPNG();
@@ -482,7 +487,6 @@ public class Map : MonoBehaviour {
         }
     }
 
-    //private void fill
     private void ScaleUPx2()
     {
         for (int i = 0; i < sizeX; i++)
@@ -499,4 +503,44 @@ public class Map : MonoBehaviour {
             }
         }
     }
+
+    private int readTileFromRoom(int room, int x, int y)
+    {
+        if (room >= roomsX * roomsY || x >= rsX*2 || y >= rsY+2)
+        {
+            return TileTypes.ERROR;
+        }
+        
+        int roomPosY = room / roomsX;
+        int roomPosX = room - (roomPosY*roomsX);
+        if (isFineCoords(x + roomPosX + 1, y + roomPosY + 1))
+        {
+            return map[x + roomPosX + 1, y + roomPosY + 1];
+        }
+        return TileTypes.ERROR;
+    }
+
+    private IntVector2 RandomTileFromRoom(int room, int tileType)
+    {
+        int x = UnityEngine.Random.Range(0, rsX * 2);
+        int y = UnityEngine.Random.Range(0, rsY * 2);
+        while (readTileFromRoom(room, x, y) != tileType)
+        {
+            x = UnityEngine.Random.Range(0, rsX * 2);
+            y = UnityEngine.Random.Range(0, rsY * 2);
+        }
+        return new IntVector2(x, y);
+
+    }
+
+    public IntVector2 GetStartPosForPlayer()
+    {
+        int startRoom = 0;
+        return RandomTileFromRoom(startRoom, TileTypes.FLOOR);
+    }
+
+    public IntVector2 PlaceEnemyInRoom(int room)
+    { return RandomTileFromRoom(room, TileTypes.FLOOR); }
+
+
 }

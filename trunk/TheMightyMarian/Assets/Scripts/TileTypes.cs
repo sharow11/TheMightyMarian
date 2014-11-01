@@ -29,4 +29,6 @@ static public class TileTypes {
     {
         get { return ffloor; }
     }
+    public static int ERROR
+    { get { return 666; } }
 }
