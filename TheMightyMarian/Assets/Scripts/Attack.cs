@@ -40,8 +40,9 @@ public class Attack : MonoBehaviour {
                 case Spell.LightningBolt:
                     if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, 50))
                     {
-                        lightningBolt.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 2;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, hitInfo.point, new Quaternion());
+                        GameObject lb = lightningBolt;
+                        lb.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 1;
+                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, marian.transform.position + (hitInfo.point - marian.transform.position) * 0.95f, new Quaternion());
                         Destroy(blastObj, 0.2f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
@@ -53,7 +54,7 @@ public class Attack : MonoBehaviour {
                     {
                         lightningBolt.particleSystem.startSpeed = 20;
                     }
-                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion());
+                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
                 case Spell.Rail:
@@ -70,7 +71,7 @@ public class Attack : MonoBehaviour {
                     {
                         rail.particleSystem.startSpeed = 50;
                     }
-                    shot = (GameObject)Instantiate(rail, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion());
+                    shot = (GameObject)Instantiate(rail, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     Destroy(shot, 0.15f);
                     break;
@@ -97,8 +98,10 @@ public class Attack : MonoBehaviour {
                     Destroy(shot);
                     if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, 20))
                     {
-                        lightningBolt.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 2;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, hitInfo.point, new Quaternion());
+                        GameObject lb = lightningBolt;
+                        lb.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 1;
+                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, hitInfo.point - (hitInfo.point - marian.transform.position).normalized / 2, new Quaternion());
+                        //LIGHT i GFX osobno!
                         Destroy(blastObj, 0.2f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
@@ -110,7 +113,7 @@ public class Attack : MonoBehaviour {
                     {
                         lightningBolt.particleSystem.startSpeed = 20;
                     }
-                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion());
+                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
             }
