@@ -57,16 +57,21 @@ public class Attack : MonoBehaviour {
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
                 case Spell.Rail:
-                    shot = (GameObject)Instantiate(rail, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion());
-                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
-                    if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, 20))
+                    if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, 50))
                     {
+                        rail.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 0.5f;
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
                         {
                             enemy.takeDmg(60);
                         }
                     }
+                    else
+                    {
+                        rail.particleSystem.startSpeed = 50;
+                    }
+                    shot = (GameObject)Instantiate(rail, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Quaternion());
+                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     Destroy(shot, 0.15f);
                     break;
                 case Spell.FireBolt:
