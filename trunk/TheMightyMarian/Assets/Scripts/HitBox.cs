@@ -8,6 +8,7 @@ public class HitBox : MonoBehaviour
 	void Start () 
     {
         enemy = (Enemy)this.GetComponent("Enemy");
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("Enemy"));
 	}
 	
 	// Update is called once per frame
@@ -26,6 +27,7 @@ public class HitBox : MonoBehaviour
             Debug.Log("Marian proj");
             enemy.takeDmg(((Projectile)other.gameObject.GetComponent("Projectile")).dmg);
             ((Projectile)other.gameObject.GetComponent("Projectile")).Blast();
+            enemy.alertEnemy(((Projectile)other.gameObject.GetComponent("Projectile")).origin);
             Destroy(other.gameObject, 0);
         }
     }
