@@ -4,14 +4,6 @@ using System.Collections;
 public class Wall : MonoBehaviour {
 
     private IntVector2 coordinates;
-    //public int r;
-
-    private Quaternion[] oldrotations = {
-		Quaternion.identity,
-		Quaternion.Euler(0f, 90f, 0f),
-		Quaternion.Euler(0f, 180f, 0f),
-		Quaternion.Euler(0f, 270f, 0f)
-	};
 
     private Quaternion[] rotations = {
 		Quaternion.Euler(90f,180f,0f), //a ok
@@ -57,7 +49,6 @@ public class Wall : MonoBehaviour {
         }
         this.transform.localPosition += adjust;
     }
-
 
     // Use this for initialization
     void Start()

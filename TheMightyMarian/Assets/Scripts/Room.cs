@@ -12,6 +12,7 @@ public class Room {
     private int generations = 6;
     private int sfp;
     private string name;
+    private bool logging;
     public int this[int x,int y]
     {
         get
@@ -33,7 +34,7 @@ public class Room {
 
     private int[,] colorfullRoom;
 
-    public Room(int sizeX, int sizeY, int north, int south, int east, int west, int startingFloorsPrc,string roomName)
+    public Room(int sizeX, int sizeY, int north, int south, int east, int west, int startingFloorsPrc,string roomName,bool log)
     {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
@@ -47,6 +48,7 @@ public class Room {
         sfp = startingFloorsPrc;
         colorfullRoom = new int[sizeX,sizeY];
         name = roomName;
+        logging = log;
         //Prepare();
     }
 
@@ -194,12 +196,18 @@ public class Room {
         //{ Debug.Log("not passable"); }
         while (!CheckIfAllPassagesExists() || (cntPrc() < 0.2f))
         {
-            Debug.Log(name + " not passable sfp:"+sfp.ToString());
+            if (logging)
+            {
+                Debug.Log(name + " not passable sfp:" + sfp.ToString());
+            }
             sfp++;
             Prepare();
             _Generate();
         }
-        Debug.Log(name + " generated. sfp:" + sfp.ToString() +" %:"+cntPrc().ToString());
+        if (logging)
+        {
+            Debug.Log(name + " generated. sfp:" + sfp.ToString() + " %:" + cntPrc().ToString());
+        }
         //SaveBitmap("images/rooms/room_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
     }
 
@@ -219,13 +227,17 @@ public class Room {
 
     private bool CheckIfAllPassagesExists()
     {
-
+        //bool alreadyFlooded = false;
         int start_color = UnityEngine.Random.Range(66, 666);
         int color = start_color;
         for (int i = 0; i < sizeX; i++)
             for (int j = 0; j < sizeY; j++)
-                if (room[i, j] == TileTypes.FLOOR) colorfullRoom[i, j] = 1;
-                else colorfullRoom[i, j] = 0;
+            {
+                if (room[i, j] == TileTypes.FLOOR)
+                { colorfullRoom[i, j] = 1; }
+                else
+                { colorfullRoom[i, j] = 0; }
+            }
 
         for (int i = 0; i < sizeX; i++)
         {
