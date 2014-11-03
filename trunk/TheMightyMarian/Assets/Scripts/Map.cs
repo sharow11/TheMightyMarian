@@ -25,6 +25,13 @@ public class Map : MonoBehaviour {
     public FloorMapCell floorCellPrefab;
     public Wall wallPrefab;
 
+    private bool logging;
+
+    public bool Logging
+    {
+        get { return logging; }
+        set { logging = value; }
+    }
     string path = "mapsavefile.byte";
 
     //private MapCell[,] map;
@@ -37,6 +44,20 @@ public class Map : MonoBehaviour {
 
     private int size2X, size2Y;
     private int rsize2X, rsize2Y;
+
+    private int startRoomNo;
+    public int StartRoomNo
+    {
+        get { return startRoomNo; }
+        set { startRoomNo = value; }
+    }
+    private int endRoomNo;
+
+    public int EndRoomNo
+    {
+        get { return endRoomNo; }
+        set { endRoomNo = value; }
+    }
 
 	void Start () {}
 	void Update () {}
@@ -56,6 +77,7 @@ public class Map : MonoBehaviour {
         FillWithVoid();
 
         maze = new Maze(roomsY, roomsX, sizeX, sizeY, rsX, rsY, startingFloorsPercent);
+        maze.Logging = logging;
         maze.Generate();
 
         myRooms = maze.GetRooms();
@@ -64,7 +86,10 @@ public class Map : MonoBehaviour {
         ScaleUPx2();
         CelluralSmooth();
         DrawMap();
-        SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        if (logging)
+        {
+            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        }
         cleanVariables();
     }
 
@@ -506,7 +531,7 @@ public class Map : MonoBehaviour {
 
     private int readTileFromRoom(int room, int x, int y)
     {
-        if (room >= roomsX * roomsY || x >= rsX*2 || y >= rsY+2)
+        if (room >= roomsX * roomsY || x >= rsX*2 || y >= rsY*2)
         {
             return TileTypes.ERROR;
         }
@@ -535,8 +560,7 @@ public class Map : MonoBehaviour {
 
     public IntVector2 GetStartPosForPlayer()
     {
-        int startRoom = 0;
-        return RandomTileFromRoom(startRoom, TileTypes.FLOOR);
+        return RandomTileFromRoom(startRoomNo, TileTypes.FLOOR);
     }
 
     public IntVector2 PlaceEnemyInRoom(int room)
