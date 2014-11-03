@@ -12,6 +12,16 @@ public class Maze {
     private int sizeX, sizeY;
     private int roomSizeX, roomSizeY;
     private int sfp;
+    private bool logging;
+
+    public int StartRoomNo = 0;
+    public int EndRoomNo = 0;
+
+    public bool Logging
+    {
+        get { return logging; }
+        set { logging = value; }
+    }
 
     //   n
     //w     e
@@ -69,7 +79,10 @@ public class Maze {
             }
 
         PrimsMagic();
-        //ToImage("images/mazes/" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        if (logging)
+        { ToImage("images/mazes/" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png"); }
+        placeStartEnd();
+
     }
 
     private void PrimsMagic()
@@ -159,7 +172,6 @@ public class Maze {
                 maze[i, j] = 0;
                 mazeComplete[i, j] = 0;
             }
-
     }
 
     private void ToImage(String filename = "maze.png")
@@ -264,10 +276,91 @@ public class Maze {
                 e = mazeComplete[i, VertexNum(coords.x, coords.y+1)];
 
             string newRoomName = "Room no. " + VertexNum(coords.x, coords.y).ToString() + " x:" + coords.x.ToString() + " y:" + coords.y.ToString();
-            pokoje.Add(new Room(roomSizeX,roomSizeY,n,s,e,w,sfp,newRoomName));
+            pokoje.Add(new Room(roomSizeX,roomSizeY,n,s,e,w,sfp,newRoomName,logging));
         }
 
         return pokoje;
+    }
+
+    private void placeStartEnd()
+    {
+        //Floyd-Warshall algorithm
+        int daleko = UnityEngine.Random.Range(1024, 2048) + roomsX*roomsY;
+        int[,] d = new int[roomsX*roomsY,roomsX*roomsY];
+        int[,] poprzednik = new int[roomsX * roomsY, roomsX * roomsY];
+        for (int i = 0; i < roomsX * roomsY; i++)
+        {
+            for (int j = 0; j < roomsX * roomsY; j++)
+            {
+                if (i == j)
+                { 
+                    d[i, j] = 0;
+                    poprzednik[i, j] = -999;
+                }
+                else if (mazeComplete[i, j] > 0)
+                { 
+                    d[i, j] = 1;
+                    poprzednik[i, j] = i;
+                }
+                else
+                { 
+                    d[i, j] = daleko;
+                    poprzednik[i, j] = -999;
+                }
+            }
+        }
+
+        for (int k = 0; k < roomsX * roomsY; k++)
+        {
+            for (int i = 0; i < roomsX * roomsY; i++)
+            {
+                for (int j = 0; j < roomsX * roomsY; j++)
+                {
+                    if (d[i, j] > d[i, k] + d[k, j])
+                    {
+                        d[i, j] = d[i, k] + d[k, j];
+                        poprzednik[i, j] = k;
+                    }
+                }
+            }
+        }
+
+        int maxDistance = -999;
+        int r1=-1;
+        int r2=-1;
+        for (int i = 0; i < roomsX * roomsY; i++)
+        {
+            for (int j = 0; j < roomsX * roomsY; j++)
+            {
+                if (logging && i !=j)
+                {
+                    Debug.Log("room " + i + " to " + j + " distance=" + d[i, j]);
+                }
+                if (d[i, j] > maxDistance && d[i,j] != 0)
+                {
+                    r1 = i;
+                    r2 = j;
+                    maxDistance = d[i, j];
+                }
+            }
+        }
+
+        if(UnityEngine.Random.Range(0f,1.0f) < 0.5f)
+        {
+            StartRoomNo = r2;
+            EndRoomNo = r1;
+        }
+        else
+        {
+            StartRoomNo = r1;
+            EndRoomNo = r2;
+        }
+        if (logging)
+        {
+            Debug.Log("start room=" + StartRoomNo);
+            Debug.Log("end room=" + EndRoomNo);
+            
+        }
     }
 
 
