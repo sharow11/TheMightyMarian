@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     public bool canFollowSteps;
     GameObject Marian;
     MoveMarian moveMarian;
-    Enemies enemies;
+    //Enemies enemies;
     public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
     //float targetTime;
     float seenLastTime = 0;
@@ -37,13 +37,16 @@ public class Enemy : MonoBehaviour
     bool lostTrack = false;
     int nr = 0;
     // Use this for initialization
+
+    List<Enemy> enemies;
     void Start()
     {
         attackFreq = 0.5f;
         positions = new List<Vector3>();
         times = new List<float>();
         Marian = GameObject.Find("Marian");
-        enemies = (Enemies)(GameObject.Find("General").GetComponent("Enemies"));
+        //enemies = (Enemies)(GameObject.Find("General").GetComponent("Enemies"));
+        enemies = ((GameManager)(GameObject.Find("General").GetComponent("GameManager"))).enemies;
         moveMarian = (MoveMarian)Marian.GetComponent("MoveMarian");
         //Debug.Log(moveMarian);
         prevStep = transform.position;
@@ -72,7 +75,8 @@ public class Enemy : MonoBehaviour
                 state = State.chasing;
             gotPatrolTarget = false;
 
-            foreach (Enemy enemy in enemies.enemies)
+            //foreach (Enemy enemy in enemies.enemies)
+            foreach (Enemy enemy in enemies)
             {
                 if (Vector3.Distance(transform.position, enemy.transform.position) < viewDistance && canSeeFoe(enemy.transform.position, viewDistance, enemy) && (enemy.state == State.idle || enemy.state == State.alert))
                 {
@@ -210,7 +214,8 @@ public class Enemy : MonoBehaviour
         }
         //Debug.DrawLine(transform.position, lastSeen, Color.blue);
         //Debug.Log(nr + "!!!" + transform.position.ToString("F5") + " " + prevStep.ToString("F5") + " " + prevPrevStep.ToString("F5"));
-        foreach (Enemy enemy in enemies.enemies)
+        //foreach (Enemy enemy in enemies.enemies)
+        foreach (Enemy enemy in enemies)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) < 1)
             {
@@ -305,7 +310,8 @@ public class Enemy : MonoBehaviour
         health -= dmg;
         if (health < 0)
         {
-            enemies.enemies.Remove(this);
+            //enemies.enemies.Remove(this);
+            enemies.Remove(this);
             Destroy(gameObject);
         }
     }
@@ -330,4 +336,10 @@ public class Enemy : MonoBehaviour
             state = Enemy.State.alert;
         }
     }
+
+    public void updateMyList(List<Enemy> newlist)
+    {
+        enemies = newlist;
+    }
+
 }
