@@ -5,7 +5,7 @@ public class Attack : MonoBehaviour {
     public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light };
     public GameObject blueBolt, lightningBolt, rail, fireBolt, light;
     public GameObject blueBlast, fireBlast, lightningBoltBlast;
-    public Spell currSpell = Spell.BlueBolt;
+    public static Spell currSpell = Spell.BlueBolt;
     LayerMask mask;
     public float lightningBoltRange = 20;
     public float railRange = 50;
