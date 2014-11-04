@@ -21,7 +21,7 @@ public class Map : MonoBehaviour {
     public WaterMapCell waterCellPrefab;
     public GrassMapCell grassCellPrefab;
     public VoidMapCell voidCellPrefab;
-    public VoidMapCellCollide voidCellPrefabCollide;
+    //public VoidMapCellCollide voidCellPrefabCollide;
     public FloorMapCell floorCellPrefab;
     public Wall wallPrefab;
 
