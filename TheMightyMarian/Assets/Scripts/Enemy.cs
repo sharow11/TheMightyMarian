@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
 
     List<Enemy> enemies;
+
     void Start()
     {
         attackFreq = 0.5f;
@@ -46,7 +47,8 @@ public class Enemy : MonoBehaviour
         times = new List<float>();
         Marian = GameObject.Find("Marian");
         //enemies = (Enemies)(GameObject.Find("General").GetComponent("Enemies"));
-        enemies = ((GameManager)(GameObject.Find("General").GetComponent("GameManager"))).enemies;
+        //enemies = ((GameManager)(GameObject.Find("General").GetComponent("GameManager"))).enemies;
+        //enemies = ((GameManager)(GameObject.Find("GameManager"))).enemies;
         moveMarian = (MoveMarian)Marian.GetComponent("MoveMarian");
         //Debug.Log(moveMarian);
         prevStep = transform.position;
@@ -56,6 +58,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (enemies == null)
+            return;
+
         nr = 0;
         while (times.Count > 0 && Time.time - times[0] > 0.2f)
         {
@@ -264,16 +269,19 @@ public class Enemy : MonoBehaviour
         ray = new Ray(pos, Marian.transform.position - pos);
         return (Physics.Raycast(ray, out hit, dist, mask.value) && hit.collider.name == "Marian");
     }
+
     bool canSeeFoe(Vector3 FoePos, float dist, Enemy foe)
     {
         LayerMask mask = ~LayerMask.GetMask("MarianProjectile");
         ray = new Ray(transform.position, FoePos - transform.position);
         return (Physics.Raycast(ray, out hit, dist, mask.value) && hit.collider.gameObject == foe.transform.gameObject);
     }
+
     bool clearWay(Vector3 pos, Vector3 dest, float dist)
     {
         return !Physics.Raycast(pos, dest - pos, dist);
     }
+
     void animateMovement()
     {
         if (Time.time - stepTime > 1 / (speed * 2))
@@ -305,6 +313,7 @@ public class Enemy : MonoBehaviour
             stepTime = Time.time;
         }
     }
+
     public void takeDmg(float dmg)
     {
         health -= dmg;
@@ -315,6 +324,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void alertEnemy(Vector3 origin)
     {
         LayerMask mask = LayerMask.GetMask("Enemy");
