@@ -535,26 +535,34 @@ public class Map : MonoBehaviour {
         {
             return TileTypes.ERROR;
         }
-        
-        int roomPosY = room / roomsX;
-        int roomPosX = room - (roomPosY*roomsX);
-        if (isFineCoords(x + roomPosX + 1, y + roomPosY + 1))
+        IntVector2 coords = convertRoomCordsToMap(room, x, y);
+        if (isFineCoords(coords.x,coords.y) && CntCellNeighboursWalls2(coords.x, coords.y) == 0)
         {
-            return map[x + roomPosX + 1, y + roomPosY + 1];
+            return map[coords.x, coords.y];
         }
         return TileTypes.ERROR;
+    }
+
+    private IntVector2 convertRoomCordsToMap(int room, int x, int y)
+    {
+        int roomPosY = room / roomsX;
+        int roomPosX = room - (roomPosY * roomsX);
+        return new IntVector2(x + roomPosX*rsX*2 + 1, y + roomPosY*rsY*2 + 1);
     }
 
     private IntVector2 RandomTileFromRoom(int room, int tileType)
     {
         int x = UnityEngine.Random.Range(0, rsX * 2);
         int y = UnityEngine.Random.Range(0, rsY * 2);
+        int roomPosY = room / roomsX;
+        int roomPosX = room - (roomPosY * roomsX);
         while (readTileFromRoom(room, x, y) != tileType)
         {
             x = UnityEngine.Random.Range(0, rsX * 2);
             y = UnityEngine.Random.Range(0, rsY * 2);
         }
-        return new IntVector2(x, y);
+        return convertRoomCordsToMap(room, x, y);
+        
 
     }
 

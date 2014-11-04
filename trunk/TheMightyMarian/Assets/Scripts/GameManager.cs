@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        this.name = "GameManager";
         BeginGame();
     }
 
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
     private void PlaceEnemies()
     {
         int roomsCnt = mapInstance.roomsX * mapInstance.roomsY;
-        for (int room = 0; room < 2; room++)
+        for (int room = 5; room < roomsCnt; room++)
         {
             for (int j = 0; j < EnemiesPerRoom; j++)
             {
