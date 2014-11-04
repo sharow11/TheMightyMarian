@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\IntroCameraMove.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\ItemGenerator.cs" />
+     <Compile Include="Assets\Scripts\Ladder.cs" />
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\MapCell.cs" />
      <Compile Include="Assets\Scripts\Maze.cs" />
