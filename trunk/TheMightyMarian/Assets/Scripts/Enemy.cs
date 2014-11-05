@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
     public enum State : byte { idle, alert, follow, searching, chasing, attacking };
     public enum Step : byte { downRight, upRight, downLeft, upLeft };
     public GameObject greenBolt;
-    public GameObject greenBlast;
+    public GameObject greenBlast; 
+    public GameObject blood;
     public float projectileSpeed = 15;
     public float attackFreq = 0.5f;
     public float speed = 5;
@@ -316,6 +317,9 @@ public class Enemy : MonoBehaviour
 
     public void takeDmg(float dmg)
     {
+        GameObject bloodObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), new Quaternion());
+        bloodObj.transform.LookAt(new Vector3(0, 0, -9999));
+        Destroy(bloodObj, 1);
         health -= dmg;
         if (health < 0)
         {
