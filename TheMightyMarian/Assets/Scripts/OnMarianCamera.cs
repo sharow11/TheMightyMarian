@@ -8,6 +8,7 @@ public class OnMarianCamera : MonoBehaviour {
     public float camCurrPosImportanceMult = 5;
     public RaycastHit hit;
     GameObject marian;
+
     Texture2D cursorTexture;
 	CursorMode cursorMode = CursorMode.Auto;
     Vector2 hotSpot = Vector2.zero;
@@ -36,4 +37,5 @@ public class OnMarianCamera : MonoBehaviour {
         transform.position = new Vector3(cameraX, cameraY - camDistance * camYoffsetMultiplayer, marian.transform.position.z - camDistance);
         //transform.position = new Vector3(marian.transform.position.x, marian.transform.position.y - 10, marian.transform.position.z - 10);
 	}
+
 }

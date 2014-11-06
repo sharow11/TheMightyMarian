@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            RestartGame();
+            //RestartGame();
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.L))
         {
-            LoadMap();
+            //LoadMap();
         }
     }
 
@@ -97,4 +97,5 @@ public class GameManager : MonoBehaviour
         marian.name = "Marian";
         marian.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1f);
     }
+
 }
