@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
      <Compile Include="Assets\Scripts\FloorMapCell.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameManagerForDebug.cs" />
      <Compile Include="Assets\Scripts\GrassMapCell.cs" />
      <Compile Include="Assets\Scripts\Gui.cs" />
      <Compile Include="Assets\Scripts\HitBox.cs" />
