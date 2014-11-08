@@ -285,7 +285,7 @@ public class Maze {
     private void placeStartEnd()
     {
         //Floyd-Warshall algorithm
-        int daleko = UnityEngine.Random.Range(1024, 2048) + roomsX*roomsY;
+        int daleko = UnityEngine.Random.Range(roomsX * roomsY+1024, Int32.MaxValue/2-1024);
         int[,] d = new int[roomsX*roomsY,roomsX*roomsY];
         int[,] poprzednik = new int[roomsX * roomsY, roomsX * roomsY];
         for (int i = 0; i < roomsX * roomsY; i++)
@@ -325,7 +325,7 @@ public class Maze {
             }
         }
 
-        int maxDistance = -999;
+        int maxDistance = -daleko;
         int r1=-1;
         int r2=-1;
         for (int i = 0; i < roomsX * roomsY; i++)
