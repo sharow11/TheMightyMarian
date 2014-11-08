@@ -25,7 +25,7 @@ public class HitBox : MonoBehaviour
         if (other.CompareTag("MarianProjectile"))
         {
             Debug.Log("Marian proj");
-            enemy.takeDmg(((Projectile)other.gameObject.GetComponent("Projectile")).dmg);
+            enemy.takeDmg(((Projectile)other.gameObject.GetComponent("Projectile")).dmg, Vector3.forward);
             ((Projectile)other.gameObject.GetComponent("Projectile")).Blast();
             enemy.alertEnemy(((Projectile)other.gameObject.GetComponent("Projectile")).origin);
             Destroy(other.gameObject, 0);
@@ -39,7 +39,7 @@ public class HitBox : MonoBehaviour
             Vector3 push = enemy.pushAwayFromWalls;
             //if(transform.position.x - other.transform.position.x
             //jeśli w lewo to w lewo itd, normalize n shit
-            enemy.pushAwayFromWalls = new Vector3(enemy.pushAwayFromWalls.x + transform.position.x - other.transform.position.x, enemy.pushAwayFromWalls.y + transform.position.y - other.transform.position.y, 0).normalized * 2;
+            enemy.pushAwayFromWalls = new Vector3(enemy.pushAwayFromWalls.x + transform.position.x - other.transform.position.x, enemy.pushAwayFromWalls.y + transform.position.y - other.transform.position.y, 0).normalized * 3;
         }
     }
 }

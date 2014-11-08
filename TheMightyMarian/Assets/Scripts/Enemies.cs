@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class Enemies : MonoBehaviour {
 
-    public List<Enemy> enemies = new List<Enemy>();
-	// Use this for initialization
 	void Start () {
+        if (Enemy.enemies == null)
+        {
+            Enemy.enemies = new List<Enemy>();
+        }
         object[] enemiesArray = FindObjectsOfTypeAll(typeof(Enemy));
         foreach (object thisEnemy in enemiesArray)
-            enemies.Add((Enemy)thisEnemy);
+            Enemy.enemies.Add((Enemy)thisEnemy);
 	}
 	
 	// Update is called once per frame

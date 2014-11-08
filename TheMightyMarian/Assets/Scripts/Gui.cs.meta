@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: 80f30a3aaf2c8fe4293418d5b81d2530
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Spell1: {fileID: 2800000, guid: cd2193dfff83c3d40adaafc11e467c55, type: 3}
+  - Spell2: {fileID: 2800000, guid: 3f41647851bb3de428b84079cf9f608c, type: 3}
+  - Spell3: {fileID: 2800000, guid: 58daa3b694b2d574599232aa8578fb9f, type: 3}
+  - Spell4: {fileID: 2800000, guid: 0ed34ec925fe57c45828b275771a5ade, type: 3}
+  - Spell5: {fileID: 2800000, guid: 655148ceb2d67994fa72c4145b01181e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

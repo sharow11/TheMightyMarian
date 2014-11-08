@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public bool logging = true;
 
     int startRoomNo, endRoomNo;
-    public List<Enemy> enemies = new List<Enemy>();
 
     public int EnemiesPerRoom = 3;
 
@@ -83,12 +82,13 @@ public class GameManager : MonoBehaviour
                 newEnemy.name = "Zbigniew";
                 newEnemy.transform.parent = transform;
                 newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1.5f);
-                enemies.Add(newEnemy);
+                if (Enemy.enemies == null)
+                {
+                    Enemy.enemies = new List<Enemy>();
+                }
+                Enemy.enemies.Add(newEnemy);
             }
         }
-
-        foreach (Enemy en in enemies)
-        { en.updateMyList(enemies); }
     }
 
     private void PlaceMarian()

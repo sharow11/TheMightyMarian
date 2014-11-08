@@ -22,9 +22,8 @@ public class Enemy : MonoBehaviour
     public bool canFollowSteps;
     GameObject Marian;
     MoveMarian moveMarian;
-    //Enemies enemies;
+    public static List<Enemy> enemies;
     public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
-    //float targetTime;
     float seenLastTime = 0;
     public float patrolTargetAssignTime;
     Ray ray;
@@ -32,24 +31,16 @@ public class Enemy : MonoBehaviour
     Color color;
     GameObject shot;
     EnemyProjectile shotProj;
-    public List<Vector3> positions;
-    List<float> times;
     public bool gotPatrolTarget = false;
     bool lostTrack = false;
     int nr = 0;
     // Use this for initialization
 
-    List<Enemy> enemies;
 
     void Start()
     {
         attackFreq = 0.5f;
-        positions = new List<Vector3>();
-        times = new List<float>();
         Marian = GameObject.Find("Marian");
-        //enemies = (Enemies)(GameObject.Find("General").GetComponent("Enemies"));
-        //enemies = ((GameManager)(GameObject.Find("General").GetComponent("GameManager"))).enemies;
-        //enemies = ((GameManager)(GameObject.Find("GameManager"))).enemies;
         moveMarian = (MoveMarian)Marian.GetComponent("MoveMarian");
         //Debug.Log(moveMarian);
         prevStep = transform.position;
@@ -59,22 +50,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (enemies == null)
+        if (Enemy.enemies == null)
             return;
 
         nr = 0;
-        while (times.Count > 0 && Time.time - times[0] > 0.2f)
-        {
-            times.RemoveAt(0);
-            positions.RemoveAt(0);
-        }
         if (canSeeMarian(transform.position, viewDistance))
         {
             seenLastTime = Time.time;
-            positions.Add(Marian.transform.position);
-            times.Add(Time.time);
             lastSeen = Marian.transform.position;
-            //lastSeen = moveMarian.positions[0];
             if (Vector3.Distance(Marian.transform.position, transform.position) < atkRange)
                 state = State.attacking;
             else
@@ -82,15 +65,16 @@ public class Enemy : MonoBehaviour
             gotPatrolTarget = false;
 
             //foreach (Enemy enemy in enemies.enemies)
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in Enemy.enemies)
             {
-                if (Vector3.Distance(transform.position, enemy.transform.position) < viewDistance && canSeeFoe(enemy.transform.position, viewDistance, enemy) && (enemy.state == State.idle || enemy.state == State.alert))
+                if ((enemy.state == State.idle || enemy.state == State.alert) && Vector3.Distance(transform.position, enemy.transform.position) < viewDistance && canSeeFoe(enemy.transform.position, viewDistance, enemy))
                 {
                     enemy.gotPatrolTarget = true;
                     enemy.patrolTarget = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                     enemy.patrolTargetAssignTime = Time.time;
                     enemy.lostTrack = false;
                     enemy.state = State.follow;
+                    Debug.Log(hit.collider.name + " poinformowany");
                 }
             }
             //print("Widać Mariana!" + Vector3.Distance(Marian.transform.position, transform.position));
@@ -101,12 +85,11 @@ public class Enemy : MonoBehaviour
             if (state == State.attacking || state == State.chasing)
             {
                 state = State.searching;
-                //lastSeen = Marian.transform.position;
-                lastSeen = positions[0];
+                lastSeen = Marian.transform.position;
                 lastSeen.z = transform.position.z;
             }
         }
-        switch (state) //TODO: odpychanie się jednych od drugich, nie spowalnianie goniac kolege.
+        switch (state)
         {
             case State.idle:
                 color = Color.white;
@@ -117,7 +100,7 @@ public class Enemy : MonoBehaviour
                 color = Color.black;
                 if (gotPatrolTarget)
                 {
-                    if (Vector3.Distance(transform.position, patrolTarget) < 0.2f || (!canFollowSteps && Time.time - patrolTargetAssignTime > 6))
+                    if (Vector3.Distance(transform.position, patrolTarget) < 1.5f || (!canFollowSteps && Time.time - patrolTargetAssignTime > 6))
                     {
                         gotPatrolTarget = false;
                         state = State.alert;
@@ -126,34 +109,41 @@ public class Enemy : MonoBehaviour
                     {
                         move(patrolTarget);
                     }
-                    if (Time.time - patrolTargetAssignTime > 15)
+                    if (Time.time - patrolTargetAssignTime > 9)
                     {
                         lostTrack = true;
                         gotPatrolTarget = false;
                         state = State.alert;
                         Debug.Log("Lost track due to timeout");
                     }
+                    Debug.DrawLine(transform.position, patrolTarget, Color.cyan);
                 }
                 else if (!canFollowSteps || lostTrack)
                 {
-                    patrolTarget = new Vector3(transform.position.x + Random.value * 15 - 7.5f, transform.position.y + Random.value * 15 - 7.5f, transform.position.z);
+                    LayerMask mask = LayerMask.GetMask("Enemy");
+                    mask += LayerMask.GetMask("MarianProjectile");
+                    mask = ~mask;
+                    patrolTarget = new Vector3(transform.position.x + Random.value * 25 - 12.5f, transform.position.y + Random.value * 25 - 12.5f, transform.position.z);
                     gotPatrolTarget = true;
                     int i = 0;
-                    while (Physics.Raycast(transform.position, patrolTarget - transform.position, Vector3.Distance(transform.position, patrolTarget)))
+                    while (Physics.Raycast(transform.position, patrolTarget - transform.position, Vector3.Distance(transform.position, patrolTarget), mask))
                     {
-                        if (i > 20)
+                        if (i > 10)
                         {
                             gotPatrolTarget = false;
                             break;
                         }
-                        patrolTarget = new Vector3(transform.position.x + Random.value * 15 - 7.5f, transform.position.z + Random.value * 15 - 7.5f, transform.position.z);
+                        patrolTarget = new Vector3(transform.position.x + Random.value * 25 - 12.5f, transform.position.y + Random.value * 25 - 12.5f, transform.position.z);
                         i++;
                     }
                     if (gotPatrolTarget)
                     {
                         move(patrolTarget);
                         patrolTargetAssignTime = Time.time;
+                        Debug.DrawLine(transform.position, patrolTarget, Color.white);
                     }
+                    else
+                        Debug.DrawLine(transform.position, patrolTarget, Color.blue);
                 }
                 else
                 {
@@ -172,19 +162,20 @@ public class Enemy : MonoBehaviour
 							patrolTargetAssignTime = Time.time;
 							patrolTarget.z = transform.position.z;
                             gotPatrolTarget = true;
+                            lostTrack = false;
                             break;
                         }
                     }
                     //Debug.Log(gotPatrolTarget);
                     if (!gotPatrolTarget)
                         lostTrack = true;
+                    Debug.DrawLine(transform.position, patrolTarget, Color.green);
                 }
-                Debug.DrawLine(transform.position, patrolTarget, Color.cyan);
                 break;
             case State.searching:
                 animateMovement();
                 color = Color.yellow;
-                if (Time.time - seenLastTime > 6 || Vector3.Distance(transform.position, lastSeen) < 0.2f)
+                if (Time.time - seenLastTime > 6 || Vector3.Distance(transform.position, lastSeen) < 1.5f)
                 {
                     lostTrack = false;
                     state = State.alert;
@@ -221,7 +212,7 @@ public class Enemy : MonoBehaviour
         //Debug.DrawLine(transform.position, lastSeen, Color.blue);
         //Debug.Log(nr + "!!!" + transform.position.ToString("F5") + " " + prevStep.ToString("F5") + " " + prevPrevStep.ToString("F5"));
         //foreach (Enemy enemy in enemies.enemies)
-        foreach (Enemy enemy in enemies)
+        foreach (Enemy enemy in Enemy.enemies)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) < 1)
             {
@@ -240,7 +231,7 @@ public class Enemy : MonoBehaviour
                 multiplayer /= 2;
             rigidbody.velocity = (dest - transform.position).normalized * multiplayer + pushAwayFromWalls;
             pushAwayFromWalls = new Vector3();
-            if (prevStep == transform.position && prevStep == prevPrevStep) //object didn't move, try moving to right
+            /*if (prevStep == transform.position && prevStep == prevPrevStep) //object didn't move, try moving to right
             {
                 Vector3 temp = new Vector3(rigidbody.velocity.z, rigidbody.velocity.y, -rigidbody.velocity.x).normalized;
                 temp = new Vector3(temp.x, Marian.transform.position.y, temp.z);
@@ -257,7 +248,7 @@ public class Enemy : MonoBehaviour
                 }
             }
             prevPrevStep = prevStep;
-            prevStep = transform.position;
+            prevStep = transform.position;*/
         }
         //Debug.Log(Time.time);
     }
@@ -315,16 +306,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void takeDmg(float dmg)
+    public void takeDmg(float dmg, Vector3 dir)
     {
-        GameObject bloodObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), new Quaternion());
+        GameObject bloodObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y - 0.5f, -1), new Quaternion());
         bloodObj.transform.LookAt(new Vector3(0, 0, -9999));
+        bloodObj.particleSystem.startSize = dmg / 20 + 0.8f;
+        bloodObj.particleSystem.startSpeed = dmg / 3 + 10;
+        bloodObj.particleSystem.startLifetime = dmg / 50 + 0.2f;
         Destroy(bloodObj, 1);
         health -= dmg;
         if (health < 0)
         {
-            //enemies.enemies.Remove(this);
-            enemies.Remove(this);
+            Enemy.enemies.Remove(this);
             Destroy(gameObject);
         }
     }
@@ -350,10 +343,4 @@ public class Enemy : MonoBehaviour
             state = Enemy.State.alert;
         }
     }
-
-    public void updateMyList(List<Enemy> newlist)
-    {
-        enemies = newlist;
-    }
-
 }

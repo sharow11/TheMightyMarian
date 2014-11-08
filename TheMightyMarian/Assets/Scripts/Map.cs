@@ -285,13 +285,13 @@ public class Map : MonoBehaviour {
         }
         else if (type == TileTypes.FLOOR)
         {
-            FloorMapCell newCell = Instantiate(floorCellPrefab) as FloorMapCell;
+            /*FloorMapCell newCell = Instantiate(floorCellPrefab) as FloorMapCell;
             newCell.coordinates = coordinates;
             newCell.type = type;
             newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type floor";
             newCell.transform.parent = transform;
             newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
+                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);*/
         }
         else if (type == TileTypes.VOID)
         {
