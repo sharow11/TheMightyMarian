@@ -79,7 +79,8 @@ public class Map : MonoBehaviour {
         maze = new Maze(roomsY, roomsX, sizeX, sizeY, rsX, rsY, startingFloorsPercent);
         maze.Logging = logging;
         maze.Generate();
-
+        startRoomNo = maze.StartRoomNo;
+        endRoomNo = maze.EndRoomNo;
         myRooms = maze.GetRooms();
         initializeRooms();
         translateRoomsToMap();
