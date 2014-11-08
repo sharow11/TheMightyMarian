@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         BeginGame();
     }
 
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
         {
             //LoadMap();
         }
-    }
+    }*/
 
     private void BeginGame() {
         mapInstance = Instantiate(mapPrefab) as Map;
