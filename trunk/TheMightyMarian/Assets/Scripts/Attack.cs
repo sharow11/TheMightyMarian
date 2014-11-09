@@ -49,16 +49,19 @@ public class Attack : MonoBehaviour {
                 case Spell.LightningBolt:
                     if (shot != null && shot.name == "LightningBolt(Clone)")
                         Destroy(shot);
-                    if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, lightningBoltRange, mask))
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
+                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
                     {
                         GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 1;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, marian.transform.position + (hitInfo.point - marian.transform.position) * 0.95f, new Quaternion());
-                        Destroy(blastObj, 0.2f);
+                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
+                        Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
+                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
+                        //ToDo: LIGHT i GFX osobno!
+                        Destroy(blastObj, 0.05f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
                         {
-                            enemy.takeDmg(100 * Time.deltaTime);
+                            enemy.takeDmg(200 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
                             enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
                         }
                     }
@@ -83,17 +86,19 @@ public class Attack : MonoBehaviour {
             {
                 case Spell.LightningBolt:
                     Destroy(shot);
-                    if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, lightningBoltRange, mask))
+                   if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), 
+                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
                     {
                         GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 1;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, hitInfo.point - (hitInfo.point - marian.transform.position).normalized / 2, new Quaternion());
+                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
+                        Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
+                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
                         //ToDo: LIGHT i GFX osobno!
-                        Destroy(blastObj, 0.2f);
+                        Destroy(blastObj, 0.05f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
                         {
-                            enemy.takeDmg(100 * Time.deltaTime);
+                            enemy.takeDmg(100 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
                             enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
                         }
                     }
@@ -101,7 +106,7 @@ public class Attack : MonoBehaviour {
                     {
                         lightningBolt.particleSystem.startSpeed = lightningBoltRange;
                     }
-                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
             }
@@ -117,15 +122,16 @@ public class Attack : MonoBehaviour {
             }
         }
         ///NEW SPELLS///
-        else if (fireRail == true)
+        if (fireRail == true)
         {
-            if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, railRange, mask))
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
+                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, railRange, mask))
             {
-                rail.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 0.5f;
+                rail.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 0.5f;
                 Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                 if (enemy != null)
                 {
-                    enemy.takeDmg(60);
+                    enemy.takeDmg(60, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
                     enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
                 }
             }
