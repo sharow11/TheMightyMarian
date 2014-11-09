@@ -7,8 +7,12 @@ public class Enemy : MonoBehaviour
     public enum State : byte { idle, alert, follow, searching, chasing, attacking };
     public enum Step : byte { downRight, upRight, downLeft, upLeft };
     public GameObject greenBolt;
-    public GameObject greenBlast; 
+    public GameObject greenBlast;
     public GameObject blood;
+    public GameObject meat1;
+    public GameObject meat2;
+    public GameObject meat3;
+    public GameObject wtf;
     public float projectileSpeed = 15;
     public float attackFreq = 0.5f;
     public float speed = 5;
@@ -325,6 +329,29 @@ public class Enemy : MonoBehaviour
         health -= dmg;
         if (health < 0)
         {
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject meat = new GameObject();
+                if (Random.value < 0.33333f || true)
+                {
+                    meat = (GameObject)Instantiate(meat1, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+                    meat.transform.localScale = new Vector3(Random.value / 25 + 0.02f, Random.value / 25 + 0.02f, Random.value / 25 + 0.02f);
+                }
+                else if (Random.value < 0.66666f)
+                {
+                    meat = (GameObject)Instantiate(meat2, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+                    meat.transform.localScale = new Vector3(Random.value / 25 + 0.02f, Random.value / 25 + 0.02f, Random.value / 25 + 0.02f);
+                }
+                else
+                {
+                    meat = (GameObject)Instantiate(meat3, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+                    meat.transform.localScale = new Vector3(Random.value / 100 + 0.005f, Random.value / 100 + 0.005f, Random.value / 100 + 0.005f);
+                }
+                meat.transform.rotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
+                meat.rigidbody.velocity = new Vector3(Random.value, Random.value, Random.value) * 10 + dir * 20;
+                meat.rigidbody.inertiaTensorRotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
+                Destroy(meat, 2.0f + Random.value * 2);
+            }
             Enemy.enemies.Remove(this);
             Destroy(gameObject);
         }
