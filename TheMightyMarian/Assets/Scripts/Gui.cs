@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Gui : MonoBehaviour 
 {
@@ -33,27 +34,29 @@ public class Gui : MonoBehaviour
         WindowRect = GUI.Window(0, WindowRect, WindowFunction, "Skills");
         if (Input.GetKeyDown("1") && !cd1Start)
         {
-            Attack.currSpell = Attack.Spell.FireBolt;
+            Attack.fireFireBolt = true;
             cd1Start = true;
         }
         if (Input.GetKeyDown("2") && !cd2Start)
         {
-            Attack.currSpell = Attack.Spell.Rail;
+            Attack.fireRail = true;
             cd2Start = true;
         }
         if (Input.GetKeyDown("3") && !cd3Start)
         {
             Attack.currSpell = Attack.Spell.LightningBolt;
+            Attack.fireLightningBolt = true;
             cd3Start = true;
         }
         if (Input.GetKeyDown("4") && !cd4Start)
         {
-            Attack.currSpell = Attack.Spell.Light;
+            Attack.fireLight = true;
             cd4Start = true;
         }
         if (Input.GetKeyDown("5") && !cd5Start)
         {
             Attack.currSpell = Attack.Spell.BlueBolt;
+            Attack.fireBlueBolt = true;
             cd5Start = true;
         }
     }
@@ -119,6 +122,8 @@ public class Gui : MonoBehaviour
         {
             GUI.color = cdColor;
             GUI.DrawTexture(new Rect(10, 10, 60, 100), Spell1, ScaleMode.ScaleToFit, true);
+            GUI.color = Color.red;
+            GUI.Label(new Rect(40, 30, 60, 100), Convert.ToInt32(cd1).ToString());
             GUI.color = color;
         }
         if (!cd2Start)
@@ -129,6 +134,8 @@ public class Gui : MonoBehaviour
         {
             GUI.color = cdColor;
             GUI.DrawTexture(new Rect(80, 10, 60, 100), Spell2, ScaleMode.ScaleToFit, true);
+            GUI.color = Color.red;
+            GUI.Label(new Rect(110, 30, 60, 100), Convert.ToInt32(cd2).ToString());
             GUI.color = color;
         }
         if (!cd3Start)
@@ -140,6 +147,8 @@ public class Gui : MonoBehaviour
         {
             GUI.color = cdColor;
             GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell3, ScaleMode.ScaleToFit, true);
+            GUI.color = Color.red;
+            GUI.Label(new Rect(180, 30, 60, 100), Convert.ToInt32(cd3).ToString());
             GUI.color = color;
         }
         if (!cd4Start)
@@ -150,6 +159,8 @@ public class Gui : MonoBehaviour
         {
             GUI.color = cdColor;
             GUI.DrawTexture(new Rect(220, 10, 60, 100), Spell4, ScaleMode.ScaleToFit, true);
+            GUI.color = Color.red;
+            GUI.Label(new Rect(250, 30, 60, 100), Convert.ToInt32(cd4).ToString());
             GUI.color = color;
         }
         if (!cd5Start)
@@ -160,6 +171,8 @@ public class Gui : MonoBehaviour
         {
             GUI.color = cdColor;
             GUI.DrawTexture(new Rect(300, 10, 60, 100), Spell5, ScaleMode.ScaleToFit, true);
+            GUI.color = Color.red;
+            GUI.Label(new Rect(330, 30, 60, 100), Convert.ToInt32(cd5).ToString());
             GUI.color = color;
         }
     }

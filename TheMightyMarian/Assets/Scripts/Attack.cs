@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour {
     public GameObject blueBolt, lightningBolt, rail, fireBolt, light;
     public GameObject blueBlast, fireBlast, lightningBoltBlast;
     public static Spell currSpell = Spell.BlueBolt;
+    public static bool fireBlueBolt = false, fireLightningBolt = false, fireRail = false, fireFireBolt = false, fireLight = false;
     LayerMask mask;
     public float lightningBoltRange = 20;
     public float railRange = 50;
@@ -48,19 +49,16 @@ public class Attack : MonoBehaviour {
                 case Spell.LightningBolt:
                     if (shot != null && shot.name == "LightningBolt(Clone)")
                         Destroy(shot);
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
-                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
+                    if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, lightningBoltRange, mask))
                     {
                         GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
-                        Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
-                        //ToDo: LIGHT i GFX osobno!
-                        Destroy(blastObj, 0.05f);
+                        lb.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 1;
+                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, marian.transform.position + (hitInfo.point - marian.transform.position) * 0.95f, new Quaternion());
+                        Destroy(blastObj, 0.2f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
                         {
-                            enemy.takeDmg(200 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
+                            enemy.takeDmg(100 * Time.deltaTime);
                             enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
                         }
                     }
@@ -72,38 +70,10 @@ public class Attack : MonoBehaviour {
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
                 case Spell.Rail:
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
-                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, railRange, mask))
-                    {
-                        rail.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 0.5f;
-                        Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
-                        if (enemy != null)
-                        {
-                            enemy.takeDmg(60, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
-                            enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
-                        }
-                    }
-                    else
-                    {
-                        rail.particleSystem.startSpeed = railRange;
-                    }
-                    shot = (GameObject)Instantiate(rail, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
-                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
-                    Destroy(shot, 0.15f);
                     break;
                 case Spell.FireBolt:
-                    shot = (GameObject)Instantiate(fireBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, - 2), new Quaternion());
-                    Destroy(shot, 3);
-                    shotProj = (Projectile)shot.GetComponent("Projectile");
-                    shotProj.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, - 2);
-                    shotProj.blast = fireBlast;
-                    shotProj.type = Spell.FireBolt;
-                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
-                    shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - shot.transform.position).normalized * projectileSpeed;
                     break;
                 case Spell.Light:
-                    shot = (GameObject)Instantiate(light, new Vector3(camera.hit.point.x, camera.hit.point.y, -3), new Quaternion());
-                    Destroy(shot, 10.6f);
                     break;
             }
         }
@@ -113,19 +83,17 @@ public class Attack : MonoBehaviour {
             {
                 case Spell.LightningBolt:
                     Destroy(shot);
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), 
-                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
+                    if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, lightningBoltRange, mask))
                     {
                         GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
-                        Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
+                        lb.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 1;
+                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, hitInfo.point - (hitInfo.point - marian.transform.position).normalized / 2, new Quaternion());
                         //ToDo: LIGHT i GFX osobno!
-                        Destroy(blastObj, 0.05f);
+                        Destroy(blastObj, 0.2f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
                         {
-                            enemy.takeDmg(100 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
+                            enemy.takeDmg(100 * Time.deltaTime);
                             enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
                         }
                     }
@@ -133,7 +101,7 @@ public class Attack : MonoBehaviour {
                     {
                         lightningBolt.particleSystem.startSpeed = lightningBoltRange;
                     }
-                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
+                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
             }
@@ -147,6 +115,46 @@ public class Attack : MonoBehaviour {
                         Destroy(shot);
                     break;
             }
+        }
+        ///NEW SPELLS///
+        else if (fireRail == true)
+        {
+            if (Physics.Raycast(transform.position, new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - transform.position, out hitInfo, railRange, mask))
+            {
+                rail.particleSystem.startSpeed = Vector3.Distance(transform.position, hitInfo.point) + 0.5f;
+                Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
+                if (enemy != null)
+                {
+                    enemy.takeDmg(60);
+                    enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
+                }
+            }
+            else
+            {
+                rail.particleSystem.startSpeed = railRange;
+            }
+            shot = (GameObject)Instantiate(rail, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+            shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
+            Destroy(shot, 0.15f);
+            fireRail = false;
+        }
+        else if (fireFireBolt == true)
+        {
+            shot = (GameObject)Instantiate(fireBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
+            Destroy(shot, 3);
+            shotProj = (Projectile)shot.GetComponent("Projectile");
+            shotProj.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, -2);
+            shotProj.blast = fireBlast;
+            shotProj.type = Spell.FireBolt;
+            shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
+            shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - shot.transform.position).normalized * projectileSpeed;
+            fireFireBolt = false;
+        }
+        else if (fireLight == true)
+        {
+            shot = (GameObject)Instantiate(light, new Vector3(camera.hit.point.x, camera.hit.point.y, -3), new Quaternion());
+            Destroy(shot, 10.6f);
+            fireLight = false;
         }
 	}
 }
