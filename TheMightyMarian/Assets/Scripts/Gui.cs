@@ -32,6 +32,10 @@ public class Gui : MonoBehaviour
     void OnGUI()
     {
         WindowRect = GUI.Window(0, WindowRect, WindowFunction, "Skills");
+        var color = GUI.color;
+        GUI.color = Color.red;
+        GUI.Label(new Rect(110, 30, 60, 100), Marian.HP.ToString());
+        GUI.color = color;
         if (Input.GetKeyDown("1") && !cd1Start)
         {
             Attack.fireFireBolt = true;
