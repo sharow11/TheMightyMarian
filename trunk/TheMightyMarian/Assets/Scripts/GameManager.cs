@@ -9,11 +9,15 @@ public class GameManager : MonoBehaviour
     public MoveMarian marianPrefab;
     private MoveMarian marian;
     private Map mapInstance;
+    public Ladder ladderPrefab;
+    private Ladder ladder;
     public bool logging = true;
 
     int startRoomNo, endRoomNo;
 
     public int EnemiesPerRoom = 3;
+
+    int currLevel = 0;
 
     private void Start()
     {
@@ -41,13 +45,16 @@ public class GameManager : MonoBehaviour
     private void BeginGame() {
         mapInstance = Instantiate(mapPrefab) as Map;
         mapInstance.Logging = logging;
+        mapInstance.LvlNo = currLevel;
         //StartCoroutine(mapInstance.Generate());
         mapInstance.Generate();
         startRoomNo = mapInstance.StartRoomNo;
         endRoomNo = mapInstance.EndRoomNo;
         
         PlaceMarian();
+        PlaceEndLadder();
         PlaceEnemies();
+       
     }
 
     private void RestartGame() {
@@ -97,6 +104,21 @@ public class GameManager : MonoBehaviour
         marian = Instantiate(marianPrefab) as MoveMarian;
         marian.name = "Marian";
         marian.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1f);
+    }
+
+    private void PlaceEndLadder()
+    {
+        IntVector2 coordinates = mapInstance.GetEndLadderPos();
+        ladder = Instantiate(ladderPrefab) as Ladder;
+        ladder.name = "Ladder to "+(currLevel+1);
+        ladder.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1f);
+    }
+
+    public void levelUp()
+    {
+        Debug.Log("Got the message");
+        currLevel++;
+        Application.LoadLevel(1);
     }
 
 }
