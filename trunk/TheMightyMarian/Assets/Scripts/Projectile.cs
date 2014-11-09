@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Projectile : MonoBehaviour
 {
@@ -39,6 +40,21 @@ public class Projectile : MonoBehaviour
     public void Blast()
     {
         GameObject blastObj = (GameObject)Instantiate(blast, transform.position, new Quaternion());
+        List<Enemy> dmgRecipients = new List<Enemy>();
+        if (type == Attack.Spell.FireBolt)
+        {
+            foreach (Enemy enemy in Enemy.enemies)
+            {
+                if (Vector3.Distance(enemy.transform.position, transform.position) < 10 && !Physics.Raycast(new Ray(transform.position, origin - transform.position), 10, LayerMask.GetMask("Wall")))
+                {
+                    dmgRecipients.Add(enemy);
+                }
+            }
+        }
+        foreach (Enemy enemy in dmgRecipients) //Enemy.enemies zmienia się podczas umierania wrogów, dlatego nie można połączyć tych 2 foreachów.
+        {
+            enemy.takeDmg(dmg * 1.3f / (Vector3.Distance(enemy.transform.position, transform.position) / 10 + 1) - dmg / 2, enemy.transform.position - transform.position);
+        }
         Destroy(blastObj, 1);
     }
 }

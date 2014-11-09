@@ -25,7 +25,7 @@ public class HitBox : MonoBehaviour
         if (other.CompareTag("MarianProjectile"))
         {
             Debug.Log("Marian proj");
-            enemy.takeDmg(((Projectile)other.gameObject.GetComponent("Projectile")).dmg, Vector3.forward);
+            enemy.takeDmg(((Projectile)other.gameObject.GetComponent("Projectile")).dmg, (transform.position - ((Projectile)other.gameObject.GetComponent("Projectile")).origin).normalized);
             ((Projectile)other.gameObject.GetComponent("Projectile")).Blast();
             enemy.alertEnemy(((Projectile)other.gameObject.GetComponent("Projectile")).origin);
             Destroy(other.gameObject, 0);
