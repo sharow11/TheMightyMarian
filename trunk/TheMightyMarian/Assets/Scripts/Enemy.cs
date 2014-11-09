@@ -47,6 +47,11 @@ public class Enemy : MonoBehaviour
         prevPrevStep = new Vector3(prevStep.x + 0.01f, prevStep.y, prevStep.z);
     }
 
+    void Awake()
+    {
+        enemies = null;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
