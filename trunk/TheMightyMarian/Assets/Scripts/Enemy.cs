@@ -314,7 +314,24 @@ public class Enemy : MonoBehaviour
         bloodObj.particleSystem.startSize = dmg / 70 + 0.8f;
         bloodObj.particleSystem.startSpeed = dmg / 2 + 10;
         bloodObj.particleSystem.startLifetime = dmg / 200 + 0.15f;
-        bloodObj.particleSystem.Emit((int)dmg * 3);
+        bloodObj.particleSystem.Emit((int)dmg * 3 + 1);
+        Destroy(bloodObj, 1);
+        health -= dmg;
+        if (health < 0)
+        {
+            Enemy.enemies.Remove(this);
+            Destroy(gameObject);
+        }
+    }
+
+    public void takeDmg(float dmg)
+    {
+        GameObject bloodObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y - 0.5f, -2), new Quaternion());
+        bloodObj.transform.LookAt(new Vector3(0, 0, -9999.9f));
+        bloodObj.particleSystem.startSize = dmg / 70 + 0.8f;
+        bloodObj.particleSystem.startSpeed = dmg / 2 + 10;
+        bloodObj.particleSystem.startLifetime = dmg / 200 + 0.15f;
+        bloodObj.particleSystem.Emit((int)dmg * 3 + 1);
         Destroy(bloodObj, 1);
         health -= dmg;
         if (health < 0)
