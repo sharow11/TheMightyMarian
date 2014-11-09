@@ -11,11 +11,11 @@ public class Gui : MonoBehaviour
     public Texture Spell4;
     public Texture Spell5;
 
-    private static readonly float spellCd1 = 10.0f;
-    private static readonly float spellCd2 = 5.0f;
-    private static readonly float spellCd3 = 20.0f;
-    private static readonly float spellCd4 = 12.0f;
-    private static readonly float spellCd5 = 2.0f;
+    private static readonly float spellCd1 = 0.0f;
+    private static readonly float spellCd2 = 0.0f;
+    private static readonly float spellCd3 = 0.0f;
+    private static readonly float spellCd4 = 0.0f;
+    private static readonly float spellCd5 = 0.0f;
 
     private bool cd1Start = false;
     private bool cd2Start = false;
