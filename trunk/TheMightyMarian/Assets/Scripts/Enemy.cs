@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     public GameObject meat1;
     public GameObject meat2;
     public GameObject meat3;
-    public GameObject wtf;
     public float projectileSpeed = 15;
     public float attackFreq = 0.5f;
     public float speed = 5;
