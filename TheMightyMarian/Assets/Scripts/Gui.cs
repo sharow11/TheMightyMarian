@@ -23,11 +23,11 @@ public class Gui : MonoBehaviour
     private bool cd4Start = false;
     private bool cd5Start = false;
 
-    private static float cd1 = 10.0f;
-    private static float cd2 = 5.0f;
-    private static float cd3 = 20.0f;
-    private static float cd4 = 12.0f;
-    private static float cd5 = 2.0f;
+    private static float cd1 = spellCd1;
+    private static float cd2 = spellCd2;
+    private static float cd3 = spellCd3;
+    private static float cd4 = spellCd4;
+    private static float cd5 = spellCd5;
 
     void OnGUI()
     {
