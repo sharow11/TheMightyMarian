@@ -24,7 +24,13 @@ public class Map : MonoBehaviour {
     //public VoidMapCellCollide voidCellPrefabCollide;
     public FloorMapCell floorCellPrefab;
     public Wall wallPrefab;
-
+    private int lvlNo = 0;
+    bool bossLvl = false;
+    public int LvlNo
+    {
+        get { return lvlNo; }
+        set { lvlNo = value; }
+    }
     private bool logging;
 
     public bool Logging
@@ -38,6 +44,15 @@ public class Map : MonoBehaviour {
     private int[,] smallMap;
     private int[,] map;
 
+    public int this[int x, int y]
+    {
+        get
+        {
+            if (x >= 0 && y >= 0 && x < rsize2X && y < rsize2Y)
+            { return map[x, y]; }
+            return -1;
+        }
+    }
 
     Maze maze;
     List<Room> myRooms;
@@ -64,6 +79,8 @@ public class Map : MonoBehaviour {
 
     public void Generate()
     {
+        if (lvlNo != 0 && lvlNo % 5 == 0)
+        { bossLvl = true; }
         rsX = sizeX / roomsX;
         rsY = sizeY / roomsY;
         rsizeX = sizeX + 2;
@@ -86,12 +103,145 @@ public class Map : MonoBehaviour {
         translateRoomsToMap();
         ScaleUPx2();
         CelluralSmooth();
+        if (logging)
+        {
+            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        }
+        lastTouch();
+        //eliminate1NarrowPassages();
         DrawMap();
         if (logging)
         {
             SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
         }
         cleanVariables();
+    }
+
+    private void lastTouch()
+    {
+        List<IntVector2> flors = new List<IntVector2>();
+        for (int i = 1; i <= size2X; i++)
+        {
+            for (int j = 1; j <= size2Y; j++)
+            {
+                if (map[i, j] == TileTypes.FLOOR && CntCellNeighboursWalls(i,j) > 0)
+                {
+                    //horizontal
+                    if (map[i + 1, j] == TileTypes.FLOOR && map[i - 1, j] == TileTypes.FLOOR)
+                    {
+                        for (int x = i - 1; x < i + 2; x++)
+                            for (int y = j - 1; y < j + 2; y++)
+                                flors.Add(new IntVector2(x, y));
+                    }
+
+                    //vertical
+                    if (map[i, j+1] == TileTypes.FLOOR && map[i, j+1] == TileTypes.FLOOR)
+                    {
+                        for (int x = i - 1; x < i + 2; x++)
+                            for (int y = j - 1; y < j + 2; y++)
+                                flors.Add(new IntVector2(x, y));
+                    }
+                }
+            }
+        }
+        foreach (IntVector2 iv in flors)
+        {
+            if (iv.x > 0 && iv.x < rsize2X - 1 && iv.y > 0 && iv.y < rsize2Y - 1)
+            { map[iv.x, iv.y] = TileTypes.FLOOR; }
+        }
+    }
+
+    private void eliminate1NarrowPassages()
+    {
+        List<IntVector2> flors = new List<IntVector2>();
+        for (int i = 1; i <= size2X; i++)
+        {
+            for (int j = 1; j <= size2Y; j++)
+            {
+                if (map[i, j] == TileTypes.FLOOR && CntCellNeighboursWalls(i, j) > 1)
+                {
+                    //horizontal
+                    if (map[i + 1, j] == TileTypes.FLOOR && map[i - 1, j] == TileTypes.FLOOR)
+                    {
+                        int leftNeib = 0;
+                        int rightNeib = 0;
+
+                        for (int m = j - 1; m < j + 2; m++)
+                        {
+                            if (map[i - 1, m] != TileTypes.FLOOR)
+                            { leftNeib++; }
+                            if (map[i + 1, m] != TileTypes.FLOOR)
+                            { rightNeib++; }
+                        }
+
+                        if (leftNeib == 0 || rightNeib == 0)
+                            continue;
+
+                        bool left = false;
+                        if (leftNeib > rightNeib)
+                        { left = true; }
+                        else if (leftNeib == rightNeib)
+                        { left = (i < rsize2X / 2) ? true : false; }
+                        else
+                        { left = false; }
+
+                        if (left)
+                        {
+                            for (int y = j - 1; y < j + 2; y++)
+                                flors.Add(new IntVector2(i - 1, y));
+                        }
+                        else
+                        {
+                            for (int y = j - 1; y < j + 2; y++)
+                                flors.Add(new IntVector2(i + 1, y));
+                        }
+                    }
+
+                    //vertical
+                    if (map[i, j + 1] == TileTypes.FLOOR && map[i, j + 1] == TileTypes.FLOOR)
+                    {
+                        int leftNeib = 0;
+                        int rightNeib = 0;
+
+                        for (int m = i - 1; m < i + 2; m++)
+                        {
+                            if (map[m, j-1] != TileTypes.FLOOR)
+                            { leftNeib++; }
+                            if (map[m, j+1] != TileTypes.FLOOR)
+                            { rightNeib++; }
+                        }
+
+                        if (leftNeib == 0 || rightNeib == 0)
+                            continue;                        
+
+                        bool left = false;
+                        if (leftNeib > rightNeib)
+                        { left = true; }
+                        else if (leftNeib == rightNeib)
+                        { left = (j < rsize2Y / 2) ? true : false; }
+                        else
+                        { left = false; }
+
+                        if (left)
+                        {
+                            for (int x = i - 1; x < i + 2; x++)
+                                flors.Add(new IntVector2(x, j-1));
+                        }
+                        else
+                        {
+                            for (int x = i - 1; x < i + 2; x++)
+                                flors.Add(new IntVector2(x, j + 1));
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (IntVector2 iv in flors)
+        {
+            if (iv.x > 0 && iv.x < rsize2X - 1 && iv.y > 0 && iv.y < rsize2Y - 1)
+            { map[iv.x, iv.y] = TileTypes.FLOOR; }
+        }
     }
 
     private void cleanVariables()
@@ -575,5 +725,7 @@ public class Map : MonoBehaviour {
     public IntVector2 PlaceEnemyInRoom(int room)
     { return RandomTileFromRoom(room, TileTypes.FLOOR); }
 
+    public IntVector2 GetEndLadderPos()
+    { return RandomTileFromRoom(startRoomNo, TileTypes.FLOOR); }
 
 }
