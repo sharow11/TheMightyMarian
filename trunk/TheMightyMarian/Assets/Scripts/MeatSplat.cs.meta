@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: f32c2d38d3d79c24bbc6b7b2df8e9c7c
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - meatSplash: {fileID: 100000, guid: 8a0a2e7907113c24d9c0aed064556cfe, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
