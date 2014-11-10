@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Map mapPrefab;
     public Enemy enemyPrefab;
     public MoveMarian marianPrefab;
+    public Enemy blueGhostPrefab;
     private MoveMarian marian;
     private Map mapInstance;
     public Ladder ladderPrefab;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     }*/
 
     private void BeginGame() {
+
         mapInstance = Instantiate(mapPrefab) as Map;
         mapInstance.Logging = logging;
         mapInstance.LvlNo = currLevel;
@@ -89,7 +91,8 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < EnemiesPerRoom; j++)
             {
                 IntVector2 coordinates = mapInstance.PlaceEnemyInRoom(room);
-                Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
+                //Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
+                Enemy newEnemy = Instantiate(blueGhostPrefab) as Enemy;
                 //newEnemy.transform.localPosition
                 newEnemy.name = "Zbigniew";
                 newEnemy.transform.parent = transform;
@@ -118,7 +121,6 @@ public class GameManager : MonoBehaviour
 
     public void levelUp()
     {
-        Debug.Log("Got the message");
         currLevel++;
         Application.LoadLevel(1);
     }
