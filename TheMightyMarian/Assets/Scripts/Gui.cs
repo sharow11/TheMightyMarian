@@ -17,11 +17,11 @@ public class Gui : MonoBehaviour
     private static readonly float spellCd4 = 0.0f;
     private static readonly float spellCd5 = 0.0f;
 
-    public bool cd1Start = false;
-    public bool cd2Start = false;
-    public bool cd3Start = false;
-    public bool cd4Start = false;
-    public bool cd5Start = false;
+    public static bool cd1Start = false;
+    public static bool cd2Start = false;
+    public static bool cd3Start = false;
+    public static bool cd4Start = false;
+    public static bool cd5Start = false;
 
     private static float cd1 = spellCd1;
     private static float cd2 = spellCd2;
