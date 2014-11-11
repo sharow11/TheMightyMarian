@@ -15,7 +15,7 @@ public class SpritesAnimator : MonoBehaviour
     //Maybe this should be a private var
     private Vector2 offset;
     //Update
-    void Update() { SetSpriteAnimation(colCount, rowCount, rowNumber, colNumber, totalCells, fps); }
+    void FixedUpdate() { SetSpriteAnimation(colCount, rowCount, rowNumber, colNumber, totalCells, fps); }
 
     //SetSpriteAnimation
     void SetSpriteAnimation(int colCount, int rowCount, int rowNumber, int colNumber, int totalCells, int fps)

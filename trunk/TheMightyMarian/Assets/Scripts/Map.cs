@@ -74,9 +74,6 @@ public class Map : MonoBehaviour {
         set { endRoomNo = value; }
     }
 
-	void Start () {}
-	void Update () {}
-
     public void Generate()
     {
         if (lvlNo != 0 && lvlNo % 5 == 0)
@@ -114,6 +111,49 @@ public class Map : MonoBehaviour {
         {
             SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
         }
+        cleanVariables();
+    }
+
+    public IEnumerator GenerateCoroutine()
+    {
+        if (lvlNo != 0 && lvlNo % 5 == 0)
+        { bossLvl = true; }
+        rsX = sizeX / roomsX;
+        rsY = sizeY / roomsY;
+        rsizeX = sizeX + 2;
+        rsizeY = sizeY + 2;
+        size2X = sizeX * 2;
+        size2Y = sizeY * 2;
+        rsize2X = size2X + 2;
+        rsize2Y = size2Y + 2;
+        smallMap = new int[rsizeX, rsizeY];
+        map = new int[rsize2X, rsize2Y];
+        FillWithVoid();
+
+        maze = new Maze(roomsY, roomsX, sizeX, sizeY, rsX, rsY, startingFloorsPercent);
+        maze.Logging = logging;
+        maze.Generate();
+        yield return null;
+        startRoomNo = maze.StartRoomNo;
+        endRoomNo = maze.EndRoomNo;
+        myRooms = maze.GetRooms();
+        initializeRooms();
+        translateRoomsToMap();
+        ScaleUPx2();
+        CelluralSmooth();
+        if (logging)
+        {
+            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        }
+        lastTouch();
+        //eliminate1NarrowPassages();
+        //yield return DrawMapCoroutine();
+        StartCoroutine(DrawMapCoroutine());
+        if (logging)
+        {
+            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        }
+        yield return null;
         cleanVariables();
     }
 
@@ -288,11 +328,39 @@ public class Map : MonoBehaviour {
                     if (isFineCoords(x + 1, y) && map[x+1,y] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 3); } //d
                     if (isFineCoords(x - 1, y) && map[x-1,y] == TileTypes.VOID)
-                    { CreateWall(new IntVector2(x, y), 1); } //b
-                    
+                    { CreateWall(new IntVector2(x, y), 1); } //b  
                 }
             }
         }
+    }
+
+    private IEnumerator DrawMapCoroutine()
+    {
+        DestroyCells();
+        for (int x = 0; x < rsize2X; x++)
+        {
+            for (int y = 0; y < rsize2Y; y++)
+            {
+                CreateCell(new IntVector2(x, y), map[x, y]);
+                if (map[x, y] == TileTypes.FLOOR)
+                {
+                    if (isFineCoords(x, y - 1) && map[x, y - 1] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 0); } //a
+                    if (isFineCoords(x, y + 1) && map[x, y + 1] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 2); } //c
+                    if (isFineCoords(x + 1, y) && map[x + 1, y] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 3); } //d
+                    if (isFineCoords(x - 1, y) && map[x - 1, y] == TileTypes.VOID)
+                    { CreateWall(new IntVector2(x, y), 1); } //b
+
+                }
+                yield return null;
+            }
+        }
+        GameManager gm = FindObjectOfType(typeof(GameManager)) as GameManager;
+        gm.PlaceMarian();
+        gm.PlaceEnemies();
+        gm.isLoading = false;
     }
 
     private void FillWithVoid()

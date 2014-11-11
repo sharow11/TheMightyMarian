@@ -13,22 +13,27 @@ public class GameManager : MonoBehaviour
     public Ladder ladderPrefab;
     private Ladder ladder;
     public bool logging = true;
-
+    public Texture2D czarnosc;
     int startRoomNo, endRoomNo;
 
     public int EnemiesPerRoom = 3;
 
-    int currLevel = 0;
-
+    public static int currLevel = 0;
+    public bool isLoading = true;
+    //private bool generateCalled = false;
+    private int state = 0;
     private void Start()
     {
+        isLoading = true;
         this.name = "GameManager";
-        BeginGame();
+        state = 0;
+        //BeginGame();
     }
 
-    /*
-    private void Update()
+    
+    private void OnGUI()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //RestartGame();
@@ -40,11 +45,58 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.L))
         {
             //LoadMap();
+        }*/
+        if (state == 0)
+        {
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), czarnosc);
+            GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
+            state++;
+            //show loading screen
         }
-    }*/
+        else if (state == 1)
+        {
+            //generate friz
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), czarnosc);
+            GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level " + currLevel);
+            BeginGame();
+            
+            state++;
+        }
+        else if (state == 2)
+        {
+            //hide loading
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), czarnosc);
+            GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level " + currLevel);
+            isLoading = false;
+            state++;
 
-    private void BeginGame() {
+        }
+        else
+        { return; }
+        
+    }
 
+    public IEnumerator BeginGameCoroutine() {
+
+        mapInstance = Instantiate(mapPrefab) as Map;
+        mapInstance.Logging = logging;
+        mapInstance.LvlNo = currLevel;
+        //StartCoroutine(mapInstance.Generate());
+        //yield return mapInstance.GenerateCoroutine();
+        StartCoroutine(mapInstance.GenerateCoroutine());
+        startRoomNo = mapInstance.StartRoomNo;
+        endRoomNo = mapInstance.EndRoomNo;
+        yield return null;
+        //PlaceMarian();
+        PlaceEndLadder();
+        //PlaceEnemies();
+        //isLoading = false;
+        Debug.Log("welcome to level " + currLevel);
+        
+    }
+
+    public void BeginGame()
+    {
         mapInstance = Instantiate(mapPrefab) as Map;
         mapInstance.Logging = logging;
         mapInstance.LvlNo = currLevel;
@@ -52,11 +104,11 @@ public class GameManager : MonoBehaviour
         mapInstance.Generate();
         startRoomNo = mapInstance.StartRoomNo;
         endRoomNo = mapInstance.EndRoomNo;
-        
         PlaceMarian();
         PlaceEndLadder();
         PlaceEnemies();
-       
+        //isLoading = false;
+        Debug.Log("welcome to level " + currLevel);
     }
 
     private void RestartGame() {
@@ -77,8 +129,7 @@ public class GameManager : MonoBehaviour
         mapInstance.Load();
     }
 
-
-    private void PlaceEnemies()
+    public void PlaceEnemies()
     {
         int roomsCnt = mapInstance.roomsX * mapInstance.roomsY;
         if (Enemy.enemies == null)
@@ -103,7 +154,7 @@ public class GameManager : MonoBehaviour
         Enemy.enemies = temp;
     }
 
-    private void PlaceMarian()
+    public void PlaceMarian()
     {
         IntVector2 coordinates = mapInstance.GetStartPosForPlayer();
         marian = Instantiate(marianPrefab) as MoveMarian;
