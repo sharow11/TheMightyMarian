@@ -16,6 +16,15 @@ public class Marian : MonoBehaviour {
 
     public static Attack.Spell currSpell = Attack.Spell.BlueBolt;
 
+    public enum AttackType
+    {
+        Melee,
+        Ranged,
+        Spell
+    }
+
+    public static AttackType currAttackType = AttackType.Melee;
+
 	// Use this for initialization
 	void Start () {
         if (IsMarianDead)
