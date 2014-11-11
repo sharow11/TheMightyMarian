@@ -26,6 +26,7 @@ public class Map : MonoBehaviour {
     public Wall wallPrefab;
     private int lvlNo = 0;
     bool bossLvl = false;
+    int wallsPlaced = 0;
     public int LvlNo
     {
         get { return lvlNo; }
@@ -559,6 +560,7 @@ public class Map : MonoBehaviour {
 
     private void CreateWall(IntVector2 coordinates, int rotation)
     {
+        
         Wall newWall = Instantiate(wallPrefab) as Wall;
         newWall.Coordinates = coordinates;
         newWall.name = "Wall " + coordinates.x + ", " + coordinates.y;
@@ -567,6 +569,9 @@ public class Map : MonoBehaviour {
             new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         newWall.setRotation(rotation);
         newWall.adjustPosition(rotation);
+
+        newWall.setRightMaterial(wallsPlaced % 6);
+        wallsPlaced++;
     }
 
     private int CntCellNeighboursWalls(int x, int y)

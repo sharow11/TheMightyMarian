@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Wall : MonoBehaviour {
 
     private IntVector2 coordinates;
+    public List<Material> MaterialsList;
+
 
     private Quaternion[] rotations = {
 		Quaternion.Euler(90f,180f,0f), //a ok
@@ -61,4 +64,27 @@ public class Wall : MonoBehaviour {
     {
 
     }
+
+    public void setRightMaterial(int x)
+    {
+        if (x < MaterialsList.Count)
+        {
+            //Renderer[] ChildrenRenderer = this.GetComponentsInChildren(typeof(Renderer)) as Renderer[];
+            //foreach (var r in ChildrenRenderer)
+            //{
+            //    // do whatever you want with child transform object here
+            //    r.material = MaterialsList[x];
+            //}
+
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "block")
+                {
+                    child.renderer.material = MaterialsList[x];
+                }
+            }
+        }
+            
+    }
+
 }
