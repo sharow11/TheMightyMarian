@@ -320,7 +320,7 @@ public class Enemy : MonoBehaviour
         GameObject bloodObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y - 0.5f, -2), new Quaternion());
         bloodObj.transform.LookAt(transform.position + dir);
         bloodObj.particleSystem.startSize = dmg / 50 + 1.8f;
-        bloodObj.particleSystem.startSpeed = dmg / 2 + 10;
+        bloodObj.particleSystem.startSpeed = dmg / 3 + 5;
         bloodObj.particleSystem.startLifetime = dmg / 200 + 0.15f;
         //bloodObj.particleSystem.Emit((int)dmg * 3 + 1);
         bloodObj.particleSystem.emissionRate = dmg * 20;

@@ -42,14 +42,18 @@ public class Projectile : MonoBehaviour
         GameObject blastObj = (GameObject)Instantiate(blast, transform.position, new Quaternion());
         if (type == Attack.Spell.FireBolt)
         {
+            LayerMask mask = LayerMask.GetMask("Wall");
             List<Enemy> dmgRecipients = new List<Enemy>();
             foreach (Enemy enemy in Enemy.enemies)
             {
-                if (Vector3.Distance(enemy.transform.position, transform.position) < 10 && !Physics.Raycast(new Ray(transform.position,
-                    origin - new Vector3(transform.position.x, transform.position.y, -1)), 10, LayerMask.GetMask("Wall")))
-                {
-                    dmgRecipients.Add(enemy);
-                }
+                Vector3 org = new Vector3(transform.position.x, transform.position.y, -2);
+                Vector3 dir = new Vector3(enemy.transform.position.x - transform.position.x, enemy.transform.position.y - transform.position.y, 0);
+                Ray ray = new Ray(org, dir);
+                if (Vector3.Distance(enemy.transform.position, transform.position) < 100)
+                    if (!Physics.Raycast(ray, Vector3.Distance(enemy.transform.position, transform.position), mask.value))
+                    {
+                        dmgRecipients.Add(enemy);
+                    }
             }
             foreach (Enemy enemy in dmgRecipients) //Enemy.enemies zmienia się podczas umierania wrogów, dlatego nie można połączyć tych 2 foreachów.
             {
