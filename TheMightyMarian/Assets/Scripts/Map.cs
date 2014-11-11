@@ -568,9 +568,8 @@ public class Map : MonoBehaviour {
         newWall.transform.localPosition =
             new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         newWall.setRotation(rotation);
-        newWall.adjustPosition(rotation);
-
-        newWall.setRightMaterial(wallsPlaced % 6);
+        newWall.adjustPosition();
+        newWall.setRightMaterial();
         wallsPlaced++;
     }
 

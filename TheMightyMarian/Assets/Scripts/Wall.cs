@@ -6,7 +6,7 @@ public class Wall : MonoBehaviour {
 
     private IntVector2 coordinates;
     public List<Material> MaterialsList;
-
+    private int MyRotation;
 
     private Quaternion[] rotations = {
 		Quaternion.Euler(90f,180f,0f), //a ok
@@ -25,14 +25,16 @@ public class Wall : MonoBehaviour {
     {
         if (r < 4)
         {
+            MyRotation = r;
             this.transform.localRotation = rotations[r];
         }
     }
 
-    public void adjustPosition(int r)
+    public void adjustPosition()
     {
+        //MyRotation = r;
         Vector3 adjust;
-        switch (r)
+        switch (MyRotation)
         {
             case 0: //a
                 adjust = new Vector3(0f, -0.5f, 0f);
@@ -65,25 +67,35 @@ public class Wall : MonoBehaviour {
 
     }
 
-    public void setRightMaterial(int x)
+    public void setRightMaterial()
     {
-        if (x < MaterialsList.Count)
+        int materialNo = 0;
+        switch (MyRotation)
         {
-            //Renderer[] ChildrenRenderer = this.GetComponentsInChildren(typeof(Renderer)) as Renderer[];
-            //foreach (var r in ChildrenRenderer)
-            //{
-            //    // do whatever you want with child transform object here
-            //    r.material = MaterialsList[x];
-            //}
-
-            foreach (Transform child in transform)
+            case 0: //a
+                materialNo = coordinates.x % 6;
+                break;
+            case 1: //b
+                materialNo = coordinates.y % 6;
+                break;
+            case 2: //c
+                materialNo = coordinates.x % 6;
+                break;
+            case 3: //d
+                materialNo = coordinates.y % 6;
+                break;
+            default:
+                materialNo = 0;
+                break; 
+        }
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "block")
             {
-                if (child.tag == "block")
-                {
-                    child.renderer.material = MaterialsList[x];
-                }
+                child.renderer.material = MaterialsList[materialNo];
             }
         }
+        
             
     }
 
