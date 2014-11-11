@@ -17,11 +17,11 @@ public class Gui : MonoBehaviour
     private static readonly float spellCd4 = 0.0f;
     private static readonly float spellCd5 = 0.0f;
 
-    private bool cd1Start = false;
-    private bool cd2Start = false;
-    private bool cd3Start = false;
-    private bool cd4Start = false;
-    private bool cd5Start = false;
+    public bool cd1Start = false;
+    public bool cd2Start = false;
+    public bool cd3Start = false;
+    public bool cd4Start = false;
+    public bool cd5Start = false;
 
     private static float cd1 = spellCd1;
     private static float cd2 = spellCd2;
@@ -34,33 +34,33 @@ public class Gui : MonoBehaviour
         WindowRect = GUI.Window(0, WindowRect, WindowFunction, "Skills");
         var color = GUI.color;
         GUI.color = Color.red;
-        GUI.Label(new Rect(110, 30, 60, 100), Marian.HP.ToString());
+        GUI.Label(new Rect(110, 30, 60, 100), Marian.currHp.ToString());
+        GUI.color = Color.blue;
+        GUI.Label(new Rect(110, 60, 60, 100), Marian.currMana.ToString());
+        GUI.Label(new Rect(140, 60, 60, 100), Marian.Mana.ToString());
+        GUI.color = Color.cyan;
+        GUI.Label(new Rect(110, 90, 60, 100), "EXP: " + Marian.Exp.ToString());
         GUI.color = color;
         if (Input.GetKeyDown("1") && !cd1Start)
         {
-            Attack.fireFireBolt = true;
             cd1Start = true;
         }
         if (Input.GetKeyDown("2") && !cd2Start)
         {
-            Attack.fireRail = true;
             cd2Start = true;
         }
         if (Input.GetKeyDown("3") && !cd3Start)
         {
-            Attack.currSpell = Attack.Spell.LightningBolt;
-            Attack.fireLightningBolt = true;
+            Marian.currSpell = Attack.Spell.LightningBolt;
             cd3Start = true;
         }
         if (Input.GetKeyDown("4") && !cd4Start)
         {
-            Attack.fireLight = true;
             cd4Start = true;
         }
         if (Input.GetKeyDown("5") && !cd5Start)
         {
-            Attack.currSpell = Attack.Spell.BlueBolt;
-            Attack.fireBlueBolt = true;
+            Marian.currSpell = Attack.Spell.BlueBolt;
             cd5Start = true;
         }
     }

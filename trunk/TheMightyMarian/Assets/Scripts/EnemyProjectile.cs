@@ -26,7 +26,7 @@ public class EnemyProjectile : MonoBehaviour {
         GameObject marian = GameObject.Find("Marian");
         if (Vector3.Distance(marian.transform.position, transform.position) < 10)
         {
-            Marian.HP -= 5;
+            Marian.currHp -= 5;
             GameObject blastObj = (GameObject)Instantiate(blast, transform.position, new Quaternion());
             Destroy(blastObj, 1);
         }

@@ -5,7 +5,6 @@ public class Attack : MonoBehaviour {
     public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light };
     public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light;
     public GameObject blueBlast, fireBlast, lightningBoltBlast;
-    public static Spell currSpell = Spell.BlueBolt;
     public static bool fireBlueBolt = false, fireLightningBolt = false, fireRail = false, fireFireBolt = false, fireLight = false;
     LayerMask mask;
     public float lightningBoltRange = 20;
@@ -31,46 +30,54 @@ public class Attack : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Fire1"))
         {
-            switch (currSpell)
+            switch (Marian.currSpell)
             {
                 case Spell.BlueBolt:
-                    shot = (GameObject)Instantiate(blueBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, - 2), new Quaternion());
-                    Destroy(shot, 3);
-                    shotProj = (Projectile)shot.GetComponent("Projectile");
-                    shotProj.blast = blueBlast;
-                    shotProj.type = Spell.BlueBolt;
-                    shotProj.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, - 2);
-                    /*float angle = Vector3.Angle(new Vector3(camera.hit.point.x, camera.hit.point.y, -1) - marian.transform.position, Vector3.up);
-                    shot.transform.Rotate(Vector3.forward, angle, Space.World);*/
-                    //shot.transform.rotation = Quaternion.LookRotation(new Vector3(camera.hit.point.x, camera.hit.point.y, -1) - transform.position, -Vector3.forward);
-                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
-                    shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - shot.transform.position).normalized * projectileSpeed;
+                    if (Marian.currMana > 5)
+                    {
+                        shot = (GameObject)Instantiate(blueBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
+                        Destroy(shot, 3);
+                        shotProj = (Projectile)shot.GetComponent("Projectile");
+                        shotProj.blast = blueBlast;
+                        shotProj.type = Spell.BlueBolt;
+                        shotProj.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, -2);
+                        /*float angle = Vector3.Angle(new Vector3(camera.hit.point.x, camera.hit.point.y, -1) - marian.transform.position, Vector3.up);
+                        shot.transform.Rotate(Vector3.forward, angle, Space.World);*/
+                        //shot.transform.rotation = Quaternion.LookRotation(new Vector3(camera.hit.point.x, camera.hit.point.y, -1) - transform.position, -Vector3.forward);
+                        shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
+                        shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - shot.transform.position).normalized * projectileSpeed;
+                        Marian.currMana -= 5;
+                    }
                     break;
                 case Spell.LightningBolt:
-                    if (shot != null && shot.name == "LightningBolt(Clone)")
-                        Destroy(shot);
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
-                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
+                    if (Marian.currMana > 2)
                     {
-                        GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
-                        Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
-                        //ToDo: LIGHT i GFX osobno!
-                        Destroy(blastObj, 0.05f);
-                        Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
-                        if (enemy != null)
+                        Marian.currMana -= 2;
+                        if (shot != null && shot.name == "LightningBolt(Clone)")
+                            Destroy(shot);
+                        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
+                            new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
                         {
-                            enemy.takeDmg(200 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
-                            enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
+                            GameObject lb = lightningBolt;
+                            lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
+                            Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
+                            GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
+                            //ToDo: LIGHT i GFX osobno!
+                            Destroy(blastObj, 0.05f);
+                            Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
+                            if (enemy != null)
+                            {
+                                enemy.takeDmg(200 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
+                                enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
+                            }
                         }
+                        else
+                        {
+                            lightningBolt.particleSystem.startSpeed = lightningBoltRange;
+                        }
+                        shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
+                        shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     }
-                    else
-                    {
-                        lightningBolt.particleSystem.startSpeed = lightningBoltRange;
-                    }
-                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
-                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
                 case Spell.Rail:
                     break;
@@ -84,31 +91,35 @@ public class Attack : MonoBehaviour {
         {
             if (shot != null && shot.name == "LightningBolt(Clone)")
                 Destroy(shot);
-            switch (currSpell)
+            switch (Marian.currSpell)
             {
                 case Spell.LightningBolt:
-                   if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), 
-                        new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
+                    if (Marian.currMana > 2)
                     {
-                        GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
-                        Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
-                        GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
-                        //ToDo: LIGHT i GFX osobno!
-                        Destroy(blastObj, 0.05f);
-                        Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
-                        if (enemy != null)
+                        Marian.currMana -= 2;
+                        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
+                             new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
                         {
-                            enemy.takeDmg(100 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
-                            enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
+                            GameObject lb = lightningBolt;
+                            lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
+                            Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
+                            GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
+                            //ToDo: LIGHT i GFX osobno!
+                            Destroy(blastObj, 0.05f);
+                            Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
+                            if (enemy != null)
+                            {
+                                enemy.takeDmg(100 * Time.deltaTime, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
+                                enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
+                            }
                         }
+                        else
+                        {
+                            lightningBolt.particleSystem.startSpeed = lightningBoltRange;
+                        }
+                        shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
+                        shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     }
-                    else
-                    {
-                        lightningBolt.particleSystem.startSpeed = lightningBoltRange;
-                    }
-                    shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
-                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
                     break;
             }
         }
@@ -120,6 +131,7 @@ public class Attack : MonoBehaviour {
         ///NEW SPELLS///
         if (fireRail == true)
         {
+            fireRail = false;
             if (shot != null && shot.name == "LightningBolt(Clone)")
                 Destroy(shot);
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
@@ -147,10 +159,10 @@ public class Attack : MonoBehaviour {
             shot = (GameObject)Instantiate(rail_around, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
             shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
             Destroy(shot, 0.4f);
-            fireRail = false;
         }
         else if (fireFireBolt == true)
         {
+            fireFireBolt = false;
             if (shot != null && shot.name == "LightningBolt(Clone)")
                 Destroy(shot);
             shot = (GameObject)Instantiate(fireBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
@@ -161,15 +173,14 @@ public class Attack : MonoBehaviour {
             shotProj.type = Spell.FireBolt;
             shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -0.75f));
             shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -0.75f) - shot.transform.position).normalized * projectileSpeed;
-            fireFireBolt = false;
         }
         else if (fireLight == true)
         {
+            fireLight = false;
             if (shot != null && shot.name == "LightningBolt(Clone)")
                 Destroy(shot);
             shot = (GameObject)Instantiate(light, new Vector3(camera.hit.point.x, camera.hit.point.y, -3), new Quaternion());
             Destroy(shot, 10.6f);
-            fireLight = false;
         }
 	}
 }
