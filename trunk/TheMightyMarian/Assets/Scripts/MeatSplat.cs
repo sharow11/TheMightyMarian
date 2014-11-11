@@ -9,13 +9,13 @@ public class MeatSplat : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         time = Time.time;
-        collider.enabled = false;
+        //collider.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Time.time - time > 0.2f)
-            collider.enabled = true;
+	    /*if(Time.time - time > 0.2f)
+            collider.enabled = true;*/
 	}
 
     void OnCollisionEnter(Collision collision)
