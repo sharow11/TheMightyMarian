@@ -29,7 +29,7 @@ public class OnMarianCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (!gm.isLoading)
+        if (true || !gm.isLoading)
         {
             if (marian == null)
             { 

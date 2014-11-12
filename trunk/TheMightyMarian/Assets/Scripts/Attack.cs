@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Attack : MonoBehaviour {
     public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light };
-    public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light;
+    public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light, AOE;
     public GameObject blueBlast, fireBlast, lightningBoltBlast;
     public GameObject sword;
     LayerMask mask;
@@ -154,24 +154,33 @@ public class Attack : MonoBehaviour {
                 Marian.currMana -= 20;
                 if (shot != null && shot.name == "LightningBolt(Clone)")
                     Destroy(shot);
+                LayerMask wallMask = LayerMask.GetMask("Wall");
+                float range = railRange;
                 if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
-                            new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, railRange, mask))
+                    new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, wallMask))
                 {
-                    rail.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 0.5f;
-                    rail_around.particleSystem.startLifetime = (Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 0.5f) * 3 / 50;
-                    rail_around.transform.Find("Rail_around2").particleSystem.startLifetime = (Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 0.5f) * 3 / 50;
-                    Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
-                    if (enemy != null)
-                    {
-                        enemy.takeDmg(60, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
-                        enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
-                    }
+                    range = Vector3.Distance(hitInfo.point, new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
+                    rail.particleSystem.startSpeed = range;
+                    rail_around.particleSystem.startLifetime = range * 3 / 50;
+                    rail_around.transform.Find("Rail_around2").particleSystem.startLifetime = range * 3 / 50;
                 }
                 else
                 {
                     rail.particleSystem.startSpeed = railRange;
                     rail_around.particleSystem.startLifetime = railRange * 3 / 50;
                     rail_around.transform.Find("Rail_around2").particleSystem.startLifetime = railRange * 3 / 50;
+                }
+                RaycastHit[] raycastHits = Physics.RaycastAll(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
+                            new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), range, mask);
+                foreach (RaycastHit hit in raycastHits)
+                {
+                    Enemy enemy = (Enemy)hit.collider.GetComponent("Enemy");
+                    if (enemy != null && !enemy.gotRaild)
+                    {
+                        enemy.takeDmg(60, new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized);
+                        enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
+                        enemy.gotRaild = true;
+                    }
                 }
                 shot = (GameObject)Instantiate(rail, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
                 shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
@@ -207,6 +216,17 @@ public class Attack : MonoBehaviour {
                     Destroy(shot);
                 shot = (GameObject)Instantiate(light, new Vector3(camera.hit.point.x, camera.hit.point.y, -3), new Quaternion());
                 Destroy(shot, 10.6f);
+            }
+        }
+        if (Input.GetKeyDown("6") && !Gui.cd4Start)
+        {
+            if (Marian.currMana > 100)
+            {
+                Marian.currMana -= 100;
+                if (shot != null && shot.name == "LightningBolt(Clone)")
+                    Destroy(shot);
+                shot = (GameObject)Instantiate(AOE, new Vector3(camera.hit.point.x, camera.hit.point.y, -0.1f), new Quaternion());
+                Destroy(shot, 13.5f);
             }
         }
         if (Input.GetKeyDown("q"))

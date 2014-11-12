@@ -12,12 +12,14 @@ public class Enemy : MonoBehaviour
     public GameObject meat1;
     public GameObject meat2;
     public GameObject meat3;
+    public GameObject death;
     public float projectileSpeed = 15;
     public float attackFreq = 0.5f;
     public float speed = 5;
     public float health = 100;
     public float viewDistance = 25;
     public float atkRange = 15;
+    public bool gotRaild = false; // to jest potrzebne po to, aby nie dostać 2 razy jednym railem.
     float lastAtkTime = 0;
     public State state = State.idle;
     Step step = Step.downRight;
@@ -58,6 +60,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        gotRaild = false;
         if (Enemy.enemies == null)
             return;
 
@@ -328,6 +331,7 @@ public class Enemy : MonoBehaviour
         health -= dmg;
         if (health < 0)
         {
+            Destroy((GameObject)Instantiate(death, new Vector3(transform.position.x, transform.position.y, -1), new Quaternion()), 0.9f); // Tworzę obiekt do usunięcia :)
             for (int i = 0; i < 10; i++)
             {
                 GameObject meat = new GameObject();
