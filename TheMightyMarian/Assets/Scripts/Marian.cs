@@ -5,7 +5,7 @@ public class Marian : MonoBehaviour {
 
     public static int HP = 1000;
     public static bool IsMarianDead = false;
-    public static int Mana = 100;
+    public static int Mana = 1000000;
     public static int Exp = 0;
     public static int Level = 1;
 
@@ -32,7 +32,7 @@ public class Marian : MonoBehaviour {
             HP = 1000;
             currHp = HP;
             IsMarianDead = false;
-            Mana = 100;
+            Mana = 100000;
             Exp = 0;
             Level = 1;
             currMana = Mana;
