@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Wall : MonoBehaviour {
 
     private IntVector2 coordinates;
-    public List<Material> MaterialsList;
+    //public List<Material> MaterialsList;
     private int MyRotation;
 
     private Quaternion[] rotations = {
@@ -67,6 +67,7 @@ public class Wall : MonoBehaviour {
 
     }
 
+    /*
     public void setRightMaterial()
     {
         int materialNo = 0;
@@ -88,6 +89,7 @@ public class Wall : MonoBehaviour {
                 materialNo = 0;
                 break; 
         }
+        /*
         foreach (Transform child in transform)
         {
             if (child.tag == "block")
@@ -97,6 +99,6 @@ public class Wall : MonoBehaviour {
         }
         
             
-    }
+    }*/
 
 }

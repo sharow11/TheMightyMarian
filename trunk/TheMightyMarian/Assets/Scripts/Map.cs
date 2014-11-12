@@ -569,7 +569,7 @@ public class Map : MonoBehaviour {
             new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         newWall.setRotation(rotation);
         newWall.adjustPosition();
-        newWall.setRightMaterial();
+        //newWall.setRightMaterial();
         wallsPlaced++;
     }
 
@@ -798,6 +798,6 @@ public class Map : MonoBehaviour {
     { return RandomTileFromRoom(room, TileTypes.FLOOR); }
 
     public IntVector2 GetEndLadderPos()
-    { return RandomTileFromRoom(startRoomNo, TileTypes.FLOOR); }
+    { return RandomTileFromRoom(endRoomNo, TileTypes.FLOOR); }
 
 }
