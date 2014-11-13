@@ -5,11 +5,16 @@ using System;
 public class Gui : MonoBehaviour 
 {
     private Rect WindowRect = new Rect(Screen.width / 2 - 185, Screen.height - 120, 370, 110);
+
+    private Rect SkillWindowRect = new Rect(Screen.width / 2, Screen.height / 2, 400, 400);
+
     public Texture Spell1;
     public Texture Spell2;
     public Texture Spell3;
     public Texture Spell4;
     public Texture Spell5;
+
+    public bool showSkills = false;
 
     private static readonly float spellCd1 = 0.0f;
     private static readonly float spellCd2 = 0.0f;
@@ -62,6 +67,14 @@ public class Gui : MonoBehaviour
         {
             Marian.currSpell = Attack.Spell.BlueBolt;
             cd5Start = true;
+        }
+        if (Input.GetKeyDown("k"))
+        {
+            showSkills = true;
+        }
+        if (showSkills)
+        {
+            SkillWindowRect = GUI.Window(1, SkillWindowRect, SkillWindowFunction, "Abilities");
         }
     }
 
@@ -178,6 +191,14 @@ public class Gui : MonoBehaviour
             GUI.color = Color.red;
             GUI.Label(new Rect(330, 30, 60, 100), Convert.ToInt32(cd5).ToString());
             GUI.color = color;
+        }
+    }
+    void SkillWindowFunction(int windowID)
+    {
+        GUI.Label(new Rect(0, 0, 60, 100), "Skills");
+        if (GUI.Button(new Rect(30, 30, 60, 45), "X"))
+        {
+            showSkills = false;
         }
     }
 }
