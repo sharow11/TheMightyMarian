@@ -5,6 +5,7 @@ public class Attack : MonoBehaviour {
     public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light };
     public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light, AOE;
     public GameObject blueBlast, fireBlast, lightningBoltBlast;
+    public GameObject arrow;
     public GameObject sword;
     LayerMask mask;
     public float lightningBoltRange = 20;
@@ -98,10 +99,16 @@ public class Attack : MonoBehaviour {
                     shot = (GameObject)Instantiate(sword, new Vector3(transform.position.x + v.x * 2, transform.position.y + v.y * 2, -2), Quaternion.identity);
                     shot.transform.LookAt(to, -Vector3.forward);
                     shot.transform.RotateAround(transform.position, new Vector3(Vector3.back.x + 0.1f, Vector3.back.y + 0.2f, Vector3.back.z + 0.1f), -45);
-                        Destroy(shot, 0.2f);
-                        //shot.transform.Rotate();
+                    Destroy(shot, 0.2f);
+                    //shot.transform.Rotate();
                     break;
                 case Marian.AttackType.Ranged:
+                    shot = (GameObject)Instantiate(arrow, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), Quaternion.identity);
+                    Destroy(shot, 3);
+                    shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2),  -Vector3.forward);
+                    shot.transform.Rotate(Vector3.back, 90);
+                    shot.transform.Rotate(Vector3.up, 90);
+                    shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - shot.transform.position).normalized * projectileSpeed;
                     break;
             }
         }
