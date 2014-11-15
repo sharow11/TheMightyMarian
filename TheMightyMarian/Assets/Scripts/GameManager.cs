@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//public enum EnemyState : byte { idle, alert, follow, searching, chasing, attacking };
+//public enum EnemyStep : byte { downRight, upRight, downLeft, upLeft };
+
 public class GameManager : MonoBehaviour
 {
     public Map mapPrefab;
@@ -13,6 +16,8 @@ public class GameManager : MonoBehaviour
     public int greenGhostRarity;
     public Enemy redGhostPrefab;
     public int redGhostRarity;
+    public Enemy spiderPrefab;
+    public int spiderRarity;
     private MoveMarian marian;
     private Map mapInstance;
     public Ladder ladderPrefab;
@@ -136,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     public void PlaceEnemies()
     {
-        int totalRarity = blueGhostRarity + greenGhostRarity + redGhostRarity;
+        int totalRarity = blueGhostRarity + greenGhostRarity + redGhostRarity + spiderRarity;
 
         int roomsCnt = mapInstance.roomsX * mapInstance.roomsY;
         if (Enemy.enemies == null)
@@ -157,8 +162,10 @@ public class GameManager : MonoBehaviour
                 { newEnemy = Instantiate(blueGhostPrefab) as Enemy; }
                 else if (srand < blueGhostRarity + redGhostRarity)
                 { newEnemy = Instantiate(redGhostPrefab) as Enemy; }
-                else
+                else if (srand < blueGhostRarity + redGhostRarity + greenGhostRarity)
                 { newEnemy = Instantiate(greenGhostPrefab) as Enemy; }
+                else
+                { newEnemy = Instantiate(spiderPrefab) as Enemy; }
 
                 //newEnemy.transform.localPosition
                 newEnemy.name = "Zbigniew";
