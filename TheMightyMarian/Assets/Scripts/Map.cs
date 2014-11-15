@@ -105,8 +105,9 @@ public class Map : MonoBehaviour {
         {
             SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
         }
-        lastTouch();
+        //lastTouch();
         //eliminate1NarrowPassages();
+        eliminateNarrowPassages();
         DrawMap();
         if (logging)
         {
@@ -161,6 +162,7 @@ public class Map : MonoBehaviour {
     private void lastTouch()
     {
         List<IntVector2> flors = new List<IntVector2>();
+        map = new int[rsize2X, rsize2Y];
         for (int i = 1; i <= size2X; i++)
         {
             for (int j = 1; j <= size2Y; j++)
@@ -189,6 +191,44 @@ public class Map : MonoBehaviour {
         {
             if (iv.x > 0 && iv.x < rsize2X - 1 && iv.y > 0 && iv.y < rsize2Y - 1)
             { map[iv.x, iv.y] = TileTypes.FLOOR; }
+        }
+    }
+
+    private void eliminateNarrowPassages()
+    {
+        int[,] oldMap = new int[rsize2X, rsize2Y];
+        int[] box =  {0, 1, 0, 1, 2, 1, 0, 1, 0};
+        for(int i=0; i<rsize2X; i++)
+            for (int j = 0; j < rsize2Y; j++)
+            {
+                oldMap[i, j] = map[i, j];
+                map[i, j] = TileTypes.FLOOR;
+                if (i == 0 || j == 0 || i == rsize2X - 1 || j == rsize2Y - 1)
+                    map[i, j] = TileTypes.VOID;
+            }
+
+        for (int i = 1; i < rsize2X-1; i++)
+        {
+            for (int j = 1; j < rsize2Y-1; j++)
+            {
+                if (oldMap[i, j] == TileTypes.VOID)
+                {
+                    bool ok = true;
+                    for (int ty = 0; ty < 3; ty++)
+                    {
+                        for (int tx = 0; tx < 3; tx++)
+                        {
+                            if (box[3 * ty + tx] > 0)
+                            {
+                                if(isFineCoords(i + tx - 1, j + ty - 1) && oldMap[i + tx - 1, j + ty - 1] == TileTypes.FLOOR)
+                                { ok = false; }
+                            }
+                        }
+                    }
+                    if (ok)
+                    { map[i, j] = TileTypes.VOID; }
+                }
+            }
         }
     }
 
