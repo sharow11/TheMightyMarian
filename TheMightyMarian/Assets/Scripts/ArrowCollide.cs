@@ -16,6 +16,6 @@ public class ArrowCollide : MonoBehaviour {
     {
         var enemy = collision.gameObject.GetComponent<Enemy>();
         enemy.takeDmg(20, enemy.transform.position - transform.position);
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }
