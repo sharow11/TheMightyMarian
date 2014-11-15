@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generations: 7
-  startingFloorsPercent: 45
+  startingFloorsPercent: 40
   sizeX: 64
   sizeY: 64
   roomsX: 4
