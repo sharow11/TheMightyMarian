@@ -13,12 +13,21 @@ public class Enemy : MonoBehaviour
     public GameObject meat2;
     public GameObject meat3;
     public GameObject death;
-    public float projectileSpeed = 15;
-    public float attackFreq = 0.5f;
+
+    /************** PARAMETRY **************/
     public float speed = 5;
     public float health = 100;
     public float viewDistance = 25;
+
+    /************** ATAKI **************/
+    public float spread = 10; //kąt w stopniach okręślający ile maksymalnie od celu mogą pudłować strzały.
+    public float predictionProbability = 0.75f; //Prawdopodobieństwo na to że przeciwnik wystrzelić pocisk w miejsce, w którym przewidywalnie znajdzie się Marian, gdy pocisk tam doleci.
+    public float predictionImportanceMin = 0.5f; //minimalna waga obliczonej pozycji w stosunku do aktualnej
+    public float predictionImportanceMax = 1; //maksymalna waga obliczonej pozycji w stosunku do aktualnej (używany jest random z <min, max>)
     public float atkRange = 15;
+    public float projectileSpeed = 15;
+    public float attackFreq = 0.5f;
+
     public bool gotRaild = false; // to jest potrzebne po to, aby nie dostać 2 razy jednym railem.
     float lastAtkTime = 0;
     public State state = State.idle;
@@ -210,8 +219,19 @@ public class Enemy : MonoBehaviour
                     lastAtkTime = Time.time;
                     shot = (GameObject)Instantiate(greenBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                     Destroy(shot, 3);
-                    shot.transform.LookAt(new Vector3(Marian.transform.position.x, Marian.transform.position.y, -2));
-                    shot.rigidbody.velocity = (new Vector3(Marian.transform.position.x, Marian.transform.position.y, -2) - shot.transform.position).normalized * projectileSpeed;
+                    Vector3 direction = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(Marian.transform.position.x, Marian.transform.position.y, -2) - shot.transform.position).normalized;;
+                    Vector3 predictedDirection;
+                    if (Random.value < predictionProbability)
+                    {
+                        float distance = Vector3.Distance(Marian.transform.position, transform.position);
+                        float flyTime = distance / projectileSpeed;
+                        Vector3 marianPosAfter = Marian.transform.position + Marian.rigidbody.velocity * flyTime;
+                        predictedDirection = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(marianPosAfter.x, marianPosAfter.y, -2) - shot.transform.position).normalized;
+                        float predictionImportance = predictionImportanceMin + Random.value * (predictionImportanceMax - predictionImportanceMin);
+                        direction = direction * (1 - predictionImportance) + predictionImportance * predictedDirection;
+                    }
+                    shot.transform.LookAt(new Vector3(transform.position.x + direction.x * 64, transform.position.y + direction.y * 64, -2));
+                    shot.rigidbody.velocity = direction * projectileSpeed;
                 }
                 color = Color.red;
                 Debug.DrawLine(transform.position, Marian.transform.position, color);

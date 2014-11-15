@@ -136,12 +136,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -269,12 +273,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -389,12 +397,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -509,12 +521,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -685,12 +701,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -887,12 +907,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -1140,12 +1164,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -1792,12 +1820,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -1925,12 +1957,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -2032,12 +2068,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -2360,12 +2400,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -2480,12 +2524,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -3076,12 +3124,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -3900,12 +3952,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -4068,12 +4124,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -4454,7 +4514,7 @@ Transform:
   - {fileID: 788680679}
   - {fileID: 1262829902}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!114 &1405989881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4521,7 +4581,7 @@ MonoBehaviour:
   blueBlast: {fileID: 100002, guid: 3a1a7ec5e565d8e4985b5aa1b7da38e3, type: 2}
   fireBlast: {fileID: 100002, guid: bf30f070882af0f4082633aa2919c022, type: 2}
   lightningBoltBlast: {fileID: 100002, guid: f56267fb38a652c4289e900eb40cdf91, type: 2}
-  arrow: {fileID: 0}
+  arrow: {fileID: 100000, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 2}
   sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
   lightningBoltRange: 20
   railRange: 50
@@ -5000,12 +5060,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -5120,12 +5184,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -5317,7 +5385,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &1704871561
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,12 +5518,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -5570,12 +5642,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -5703,12 +5779,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -5963,12 +6043,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -6296,12 +6380,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
@@ -6412,12 +6500,16 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  projectileSpeed: 15
-  attackFreq: .200000003
   speed: 5
   health: 100
   viewDistance: 20
+  spread: 10
+  predictionProbability: 1
+  predictionImportanceMin: .5
+  predictionImportanceMax: 1
   atkRange: 15
+  projectileSpeed: 15
+  attackFreq: .200000003
   gotRaild: 0
   state: 0
   canFollowSteps: 1
