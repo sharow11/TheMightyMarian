@@ -174,17 +174,29 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb3a8a2fb84e56449496f1905123919, type: 3}
+  m_Script: {fileID: 11500000, guid: 157ffb94f6d46a641af1a0dd392eb8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colCount: 6
-  rowCount: 1
+  idleColCount: 0
+  idleRowCount: 0
+  idleMaterial: {fileID: 0}
+  idleTotalCells: 0
+  idleFps: 0
+  attackColCount: 0
+  attackRowCount: 0
+  attackMaterial: {fileID: 0}
+  attackTotalCells: 0
+  attackFps: 0
+  walkColCount: 0
+  walkRowCount: 0
+  walkMaterial: {fileID: 2100000, guid: dc87f3cc16910df41b451bc3803ffa7e, type: 2}
+  walkTotalCells: 0
+  walkFps: 0
   rowNumber: 0
   colNumber: 0
-  totalCells: 6
-  fps: 10
+  fps: 2
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
