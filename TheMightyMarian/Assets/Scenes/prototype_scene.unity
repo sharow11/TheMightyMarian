@@ -113,7 +113,7 @@ MonoBehaviour:
   redGhostPrefab: {fileID: 11400002, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
   redGhostRarity: 20
   spiderPrefab: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
-  spiderRarity: 40
+  spiderRarity: 0
   ladderPrefab: {fileID: 11400000, guid: 305596845cfd7c748bc55365c66a5fb3, type: 2}
   logging: 1
   czarnosc: {fileID: 2800000, guid: 48772ae84178f1c44a003fc6d84d112d, type: 3}
