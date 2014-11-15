@@ -20,3 +20,4 @@ TheMightyMarian/images/
 *.unityproj
 *.booproj
 *.csproj
+*UnityVS*
