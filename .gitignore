@@ -1,14 +1,15 @@
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Library/
+TheMightyMarian/Temp/
+TheMightyMarian/Library/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-ExportedObj/
-obj/
+TheMightyMarian/ExportedObj/
+TheMightyMarian/obj/
+TheMightyMarian/images/
 *.svd
 *.userprefs
 /*.csproj
