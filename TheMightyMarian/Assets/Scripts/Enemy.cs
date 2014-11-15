@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     Step step = Step.downRight;
     float stepTime = 0;
     public bool canFollowSteps;
-    GameObject Marian;
+    GameObject MarianObject;
     MoveMarian moveMarian;
     public static List<Enemy> enemies;
     public Vector3 lastSeen, prevStep, prevPrevStep, target, patrolTarget, pushAwayFromWalls;
@@ -54,8 +54,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         attackFreq = 0.5f;
-        Marian = GameObject.Find("Marian");
-        moveMarian = (MoveMarian)Marian.GetComponent("MoveMarian");
+        MarianObject = GameObject.Find("Marian");
+        moveMarian = (MoveMarian)MarianObject.GetComponent("MoveMarian");
         //Debug.Log(moveMarian);
         prevStep = transform.position;
         prevPrevStep = new Vector3(prevStep.x + 0.01f, prevStep.y, prevStep.z);
@@ -77,8 +77,8 @@ public class Enemy : MonoBehaviour
         if (canSeeMarian(transform.position, viewDistance))
         {
             seenLastTime = Time.time;
-            lastSeen = Marian.transform.position;
-            if (Vector3.Distance(Marian.transform.position, transform.position) < atkRange)
+            lastSeen = MarianObject.transform.position;
+            if (Vector3.Distance(MarianObject.transform.position, transform.position) < atkRange)
                 state = State.attacking;
             else
                 state = State.chasing;
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
             if (state == State.attacking || state == State.chasing)
             {
                 state = State.searching;
-                lastSeen = Marian.transform.position;
+                lastSeen = MarianObject.transform.position;
                 lastSeen.z = transform.position.z;
             }
         }
@@ -211,7 +211,7 @@ public class Enemy : MonoBehaviour
                 animateMovement();
                 color = new Color(1, 0.5f, 0);
                 move(lastSeen);
-                Debug.DrawLine(transform.position, Marian.transform.position, color);
+                Debug.DrawLine(transform.position, MarianObject.transform.position, color);
                 break;
             case State.attacking:
                 if (Time.time - lastAtkTime >= attackFreq)
@@ -219,13 +219,13 @@ public class Enemy : MonoBehaviour
                     lastAtkTime = Time.time;
                     shot = (GameObject)Instantiate(greenBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                     Destroy(shot, 3);
-                    Vector3 direction = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(Marian.transform.position.x, Marian.transform.position.y, -2) - shot.transform.position).normalized;;
+                    Vector3 direction = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(MarianObject.transform.position.x, MarianObject.transform.position.y, -2) - shot.transform.position).normalized;;
                     Vector3 predictedDirection;
                     if (Random.value < predictionProbability)
                     {
-                        float distance = Vector3.Distance(Marian.transform.position, transform.position);
+                        float distance = Vector3.Distance(MarianObject.transform.position, transform.position);
                         float flyTime = distance / projectileSpeed;
-                        Vector3 marianPosAfter = Marian.transform.position + Marian.rigidbody.velocity * flyTime;
+                        Vector3 marianPosAfter = MarianObject.transform.position + MarianObject.rigidbody.velocity * flyTime;
                         predictedDirection = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(marianPosAfter.x, marianPosAfter.y, -2) - shot.transform.position).normalized;
                         float predictionImportance = predictionImportanceMin + Random.value * (predictionImportanceMax - predictionImportanceMin);
                         direction = direction * (1 - predictionImportance) + predictionImportance * predictedDirection;
@@ -234,7 +234,7 @@ public class Enemy : MonoBehaviour
                     shot.rigidbody.velocity = direction * projectileSpeed;
                 }
                 color = Color.red;
-                Debug.DrawLine(transform.position, Marian.transform.position, color);
+                Debug.DrawLine(transform.position, MarianObject.transform.position, color);
                 break;
             default:
                 color = Color.white;
@@ -289,7 +289,7 @@ public class Enemy : MonoBehaviour
         LayerMask mask = LayerMask.GetMask("Enemy");
         mask += LayerMask.GetMask("MarianProjectile");
         mask = ~mask;
-        ray = new Ray(pos, Marian.transform.position - pos);
+        ray = new Ray(pos, MarianObject.transform.position - pos);
         return (Physics.Raycast(ray, out hit, dist, mask.value) && hit.collider.name == "Marian");
     }
 
@@ -375,6 +375,7 @@ public class Enemy : MonoBehaviour
                 meat.rigidbody.inertiaTensorRotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
                 Destroy(meat, 2.0f + Random.value * 2);
             }
+            Marian.Exp += 10;
             Enemy.enemies.Remove(this);
             Destroy(gameObject);
         }

@@ -195,10 +195,34 @@ public class Gui : MonoBehaviour
     }
     void SkillWindowFunction(int windowID)
     {
-        GUI.Label(new Rect(0, 0, 60, 100), "Skills");
-        if (GUI.Button(new Rect(30, 30, 60, 45), "X"))
+        GUI.Label(new Rect(30, 50, 100, 100), "Strenght");
+        GUI.Label(new Rect(140, 50, 100, 100), "Dexterity ");
+        GUI.Label(new Rect(250, 50, 100, 100), "Inteligence");
+        GUI.Label(new Rect(30, 80, 100, 100), Marian.Strenght.ToString());
+        GUI.Label(new Rect(140, 80, 100, 100), Marian.Dexterity.ToString());
+        GUI.Label(new Rect(250, 80, 100, 100), Marian.Inteligence.ToString());
+
+        if(Marian.SkillPoints > 0)
+        {
+            if (GUI.Button(new Rect(30, 100, 20, 20), "+"))
+            {
+                Marian.AddSkillPoints("str");
+            }
+            if (GUI.Button(new Rect(140, 100, 20, 20), "+"))
+            {
+                Marian.AddSkillPoints("dex");
+            }
+            if (GUI.Button(new Rect(250, 100, 20, 20), "+"))
+            {
+                Marian.AddSkillPoints("int");
+            }
+        }
+
+
+        if (GUI.Button(new Rect(355, 10, 20, 20), "X"))
         {
             showSkills = false;
         }
+
     }
 }
