@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     public Enemy enemyPrefab;
     public MoveMarian marianPrefab;
     public Enemy blueGhostPrefab;
+    public int blueGhostRarity;
+    public Enemy greenGhostPrefab;
+    public int greenGhostRarity;
+    public Enemy redGhostPrefab;
+    public int redGhostRarity;
     private MoveMarian marian;
     private Map mapInstance;
     public Ladder ladderPrefab;
@@ -131,6 +136,8 @@ public class GameManager : MonoBehaviour
 
     public void PlaceEnemies()
     {
+        int totalRarity = blueGhostRarity + greenGhostRarity + redGhostRarity;
+
         int roomsCnt = mapInstance.roomsX * mapInstance.roomsY;
         if (Enemy.enemies == null)
         {
@@ -141,9 +148,18 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < EnemiesPerRoom; j++)
             {
+                
                 IntVector2 coordinates = mapInstance.PlaceEnemyInRoom(room);
                 //Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
-                Enemy newEnemy = Instantiate(blueGhostPrefab) as Enemy;
+                Enemy newEnemy;
+                int srand = UnityEngine.Random.Range(0,totalRarity+1);
+                if (srand < blueGhostRarity)
+                { newEnemy = Instantiate(blueGhostPrefab) as Enemy; }
+                else if (srand < blueGhostRarity + redGhostRarity)
+                { newEnemy = Instantiate(redGhostPrefab) as Enemy; }
+                else
+                { newEnemy = Instantiate(greenGhostPrefab) as Enemy; }
+
                 //newEnemy.transform.localPosition
                 newEnemy.name = "Zbigniew";
                 newEnemy.transform.parent = transform;
