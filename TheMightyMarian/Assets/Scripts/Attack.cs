@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Attack : MonoBehaviour {
     public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light };
-    public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light, AOE;
+    public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light, AOE, heal;
     public GameObject blueBlast, fireBlast, lightningBoltBlast;
     public GameObject arrow;
     public GameObject sword;
@@ -164,7 +164,7 @@ public class Attack : MonoBehaviour {
                 LayerMask wallMask = LayerMask.GetMask("Wall");
                 float range = railRange;
                 if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
-                    new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, wallMask))
+                    new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, railRange, wallMask))
                 {
                     range = Vector3.Distance(hitInfo.point, new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
                     rail.particleSystem.startSpeed = range;
@@ -225,7 +225,7 @@ public class Attack : MonoBehaviour {
                 Destroy(shot, 10.6f);
             }
         }
-        if (Input.GetKeyDown("6") && !Gui.cd4Start)
+        if (Input.GetKeyDown("6") && !Gui.cd4Start)//Gui.cd6Start
         {
             if (Marian.currMana > 100)
             {
@@ -233,7 +233,21 @@ public class Attack : MonoBehaviour {
                 if (shot != null && shot.name == "LightningBolt(Clone)")
                     Destroy(shot);
                 shot = (GameObject)Instantiate(AOE, new Vector3(camera.hit.point.x, camera.hit.point.y, -0.1f), new Quaternion());
+                shot.GetComponent<AoEDmg>().origin = marian.transform.position;
                 Destroy(shot, 13.5f);
+            }
+        }
+        if (Input.GetKeyDown("7") && !Gui.cd4Start)//Gui.cd7Start
+        {
+            if (Marian.currMana > 100)
+            {
+                Marian.currMana -= 100;
+                if (shot != null && shot.name == "LightningBolt(Clone)")
+                    Destroy(shot);
+                shot = (GameObject)Instantiate(heal, new Vector3(marian.transform.position.x, marian.transform.position.y, -2f), new Quaternion());
+                shot.transform.LookAt(new Vector3(marian.transform.position.x, marian.transform.position.y, -99999f));
+                Marian.currHp += 100;
+                Destroy(shot, 10f);
             }
         }
         if (Input.GetKeyDown("q"))

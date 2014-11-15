@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class AoEDmg : MonoBehaviour {
 
+    public Vector3 origin;
 	// Use this for initialization
 	void Start () {
 	
@@ -20,6 +21,7 @@ public class AoEDmg : MonoBehaviour {
         foreach (Enemy enemy in dmgRecipients)
         {
             enemy.takeDmg(50 * Time.deltaTime);
+            enemy.alertEnemy(origin);
         }
 	}
 }

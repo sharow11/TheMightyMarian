@@ -198,6 +198,7 @@ MonoBehaviour:
   fireBolt: {fileID: 100002, guid: 043dac525e7876245958391d6e0ea54c, type: 2}
   light: {fileID: 100006, guid: 1c950c474e0324f40ab40f1489e48c1f, type: 2}
   AOE: {fileID: 100012, guid: 56c46a16d9e2d494b81ae12edb258a96, type: 2}
+  heal: {fileID: 100002, guid: d175fdee8c5d4ba46bde32cd322c4f9c, type: 2}
   blueBlast: {fileID: 100002, guid: 3a1a7ec5e565d8e4985b5aa1b7da38e3, type: 2}
   fireBlast: {fileID: 100002, guid: bf30f070882af0f4082633aa2919c022, type: 2}
   lightningBoltBlast: {fileID: 100002, guid: f56267fb38a652c4289e900eb40cdf91, type: 2}
