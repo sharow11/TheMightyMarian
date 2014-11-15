@@ -9,10 +9,16 @@ public class Marian : MonoBehaviour {
     public static int Exp = 0;
     public static int Level = 1;
 
+    public static int Strenght = 0;
+    public static int Dexterity = 0;
+    public static int Inteligence = 0;
+    public static int SkillPoints = 0;
+
     public static int currHp = HP;
     public static int currMana = Mana;
 
     private static float manaRegen = 1.0f;
+    private static float maxManaRegen = 1.0f;
 
     public static Attack.Spell currSpell = Attack.Spell.BlueBolt;
 
@@ -35,6 +41,7 @@ public class Marian : MonoBehaviour {
             Mana = 100000;
             Exp = 0;
             Level = 1;
+            GameManager.currLevel = 1;
             currMana = Mana;
         }
 	}
@@ -54,6 +61,7 @@ public class Marian : MonoBehaviour {
             currHp += 20;
             Mana += 20;
             currMana += 20;
+            SkillPoints += 5;
         }
         if(currMana < Mana)
         {
@@ -61,8 +69,30 @@ public class Marian : MonoBehaviour {
             if(manaRegen < 0)
             {
                 currMana++;
-                manaRegen = 1.0f;
+                manaRegen = maxManaRegen;
             }
         }
 	}
+
+    public static void AddSkillPoints(string type)
+    {
+        if(type == "str")
+        {
+            Strenght++;
+            HP += 5;
+            currHp += 5;
+        }
+        else if(type == "dex")
+        {
+            Dexterity++;
+        }
+        else
+        {
+            Inteligence++;
+            Mana += 5;
+            currMana += 5;
+            maxManaRegen -= 0.01f;
+        }
+        SkillPoints--;
+    }
 }
