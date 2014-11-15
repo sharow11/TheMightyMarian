@@ -183,7 +183,7 @@ MonoBehaviour:
   idleRowCount: 1
   idleMaterial: {fileID: 2100000, guid: d3dd210f33db1ba45bf8682eb65cdb40, type: 2}
   idleTotalCells: 6
-  idleFps: 5
+  idleFps: 2
   attackColCount: 6
   attackRowCount: 1
   attackMaterial: {fileID: 2100000, guid: d3dd210f33db1ba45bf8682eb65cdb40, type: 2}
