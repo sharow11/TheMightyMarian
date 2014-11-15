@@ -13,6 +13,7 @@ public class Gui : MonoBehaviour
     public Texture Spell3;
     public Texture Spell4;
     public Texture Spell5;
+    public Texture Spell6;
 
     public bool showSkills = false;
 
@@ -56,8 +57,16 @@ public class Gui : MonoBehaviour
         }
         if (Input.GetKeyDown("3") && !cd3Start)
         {
-            Marian.currSpell = Attack.Spell.LightningBolt;
-            cd3Start = true;
+            if (Marian.currSpell == Attack.Spell.BlueBolt)
+            {
+                Marian.currSpell = Attack.Spell.LightningBolt;
+                cd3Start = true;
+            }
+            else
+            {
+                Marian.currSpell = Attack.Spell.BlueBolt;
+                cd3Start = true;
+            }
         }
         if (Input.GetKeyDown("4") && !cd4Start)
         {
@@ -65,7 +74,6 @@ public class Gui : MonoBehaviour
         }
         if (Input.GetKeyDown("5") && !cd5Start)
         {
-            Marian.currSpell = Attack.Spell.BlueBolt;
             cd5Start = true;
         }
         if (Input.GetKeyDown("k"))
@@ -157,16 +165,33 @@ public class Gui : MonoBehaviour
         }
         if (!cd3Start)
         {
-
-            GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell3, ScaleMode.ScaleToFit, true);
+            if (Marian.currSpell == Attack.Spell.BlueBolt)
+            {
+                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell3, ScaleMode.ScaleToFit, true);
+            }
+            else
+            {
+                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell5, ScaleMode.ScaleToFit, true);
+            }
         }
         else
         {
-            GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell3, ScaleMode.ScaleToFit, true);
-            GUI.color = Color.red;
-            GUI.Label(new Rect(180, 30, 60, 100), Convert.ToInt32(cd3).ToString());
-            GUI.color = color;
+            if (Marian.currSpell == Attack.Spell.BlueBolt)
+            {
+                GUI.color = cdColor;
+                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell3, ScaleMode.ScaleToFit, true);
+                GUI.color = Color.red;
+                GUI.Label(new Rect(180, 30, 60, 100), Convert.ToInt32(cd3).ToString());
+                GUI.color = color;
+            }
+            else
+            {
+                GUI.color = cdColor;
+                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell5, ScaleMode.ScaleToFit, true);
+                GUI.color = Color.red;
+                GUI.Label(new Rect(180, 30, 60, 100), Convert.ToInt32(cd3).ToString());
+                GUI.color = color;
+            }
         }
         if (!cd4Start)
         {
@@ -182,12 +207,12 @@ public class Gui : MonoBehaviour
         }
         if (!cd5Start)
         {
-            GUI.DrawTexture(new Rect(300, 10, 60, 100), Spell5, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(300, 10, 60, 100), Spell6, ScaleMode.ScaleToFit, true);
         }
         else
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(300, 10, 60, 100), Spell5, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(300, 10, 60, 100), Spell6, ScaleMode.ScaleToFit, true);
             GUI.color = Color.red;
             GUI.Label(new Rect(330, 30, 60, 100), Convert.ToInt32(cd5).ToString());
             GUI.color = color;
