@@ -153,7 +153,9 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < EnemiesPerRoom; j++)
             {
-                
+                if (room == mapInstance.StartRoomNo)
+                    continue;
+
                 IntVector2 coordinates = mapInstance.PlaceEnemyInRoom(room);
                 //Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
                 Enemy newEnemy;

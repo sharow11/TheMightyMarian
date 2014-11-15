@@ -174,29 +174,28 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 157ffb94f6d46a641af1a0dd392eb8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleColCount: 0
-  idleRowCount: 0
-  idleMaterial: {fileID: 0}
-  idleTotalCells: 0
-  idleFps: 0
-  attackColCount: 0
-  attackRowCount: 0
-  attackMaterial: {fileID: 0}
-  attackTotalCells: 0
-  attackFps: 0
-  walkColCount: 0
-  walkRowCount: 0
-  walkMaterial: {fileID: 2100000, guid: dc87f3cc16910df41b451bc3803ffa7e, type: 2}
-  walkTotalCells: 0
-  walkFps: 0
+  idleColCount: 6
+  idleRowCount: 1
+  idleMaterial: {fileID: 2100000, guid: d3dd210f33db1ba45bf8682eb65cdb40, type: 2}
+  idleTotalCells: 6
+  idleFps: 5
+  attackColCount: 6
+  attackRowCount: 1
+  attackMaterial: {fileID: 2100000, guid: d3dd210f33db1ba45bf8682eb65cdb40, type: 2}
+  attackTotalCells: 6
+  attackFps: 12
+  walkColCount: 4
+  walkRowCount: 1
+  walkMaterial: {fileID: 2100000, guid: fc7b8db86e47f534cb079a5306331846, type: 2}
+  walkTotalCells: 4
+  walkFps: 10
   rowNumber: 0
   colNumber: 0
-  fps: 2
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

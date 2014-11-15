@@ -29,7 +29,7 @@ public class ComplicatedSpritesAnimator : MonoBehaviour {
     public int rowNumber = 0; //Zero Indexed
     public int colNumber = 0; //Zero Indexed
 
-    public int fps = 2;
+    //public int fps = 2;
     //Maybe this should be a private var
     private Vector2 offset;
     //Update
@@ -54,6 +54,7 @@ public class ComplicatedSpritesAnimator : MonoBehaviour {
     }
 
     //SetSpriteAnimation
+    /*
     void SetSpriteAnimation(int colCount, int rowCount, int rowNumber, int colNumber, int totalCells, int fps)
     {
 
@@ -80,6 +81,7 @@ public class ComplicatedSpritesAnimator : MonoBehaviour {
         renderer.material.SetTextureOffset("_MainTex", offset);
         renderer.material.SetTextureScale("_MainTex", size);
     }
+    */
 
     void IdleSpriteAnimation()
     {
