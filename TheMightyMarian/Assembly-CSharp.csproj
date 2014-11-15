@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\AoEDmg.cs" />
      <Compile Include="Assets\Scripts\ArrowCollide.cs" />
      <Compile Include="Assets\Scripts\Attack.cs" />
+     <Compile Include="Assets\Scripts\ComplicatedSpritesAnimator.cs" />
      <Compile Include="Assets\Scripts\DawnBringer16.cs" />
      <Compile Include="Assets\Scripts\Enemies.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />

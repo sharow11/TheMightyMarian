@@ -354,7 +354,7 @@ public class Enemy : MonoBehaviour
             Destroy((GameObject)Instantiate(death, new Vector3(transform.position.x, transform.position.y, -1), new Quaternion()), 0.9f); // Tworzę obiekt do usunięcia :)
             for (int i = 0; i < 10; i++)
             {
-                GameObject meat = new GameObject();
+                GameObject meat;
                 if (Random.value < 0.33333f)
                 {
                     meat = (GameObject)Instantiate(meat1, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
