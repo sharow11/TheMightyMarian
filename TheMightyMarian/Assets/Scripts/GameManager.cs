@@ -161,16 +161,28 @@ public class GameManager : MonoBehaviour
                 Enemy newEnemy;
                 int srand = UnityEngine.Random.Range(0,totalRarity+1);
                 if (srand < blueGhostRarity)
-                { newEnemy = Instantiate(blueGhostPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(blueGhostPrefab) as Enemy;
+                    newEnemy.name = "Zbigniew";
+                }
                 else if (srand < blueGhostRarity + redGhostRarity)
-                { newEnemy = Instantiate(redGhostPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(redGhostPrefab) as Enemy;
+                    newEnemy.name = "Bogdan";
+                }
                 else if (srand < blueGhostRarity + redGhostRarity + greenGhostRarity)
-                { newEnemy = Instantiate(greenGhostPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(greenGhostPrefab) as Enemy;
+                    newEnemy.name = "Apoloniusz";
+                }
                 else
-                { newEnemy = Instantiate(spiderPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(spiderPrefab) as Enemy;
+                    newEnemy.name = "JanMaria";
+                }
 
                 //newEnemy.transform.localPosition
-                newEnemy.name = "Zbigniew";
+                
                 newEnemy.transform.parent = transform;
                 newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1.5f);
                 temp.Add(newEnemy);
