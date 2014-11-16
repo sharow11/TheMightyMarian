@@ -107,11 +107,12 @@ public class Attack : MonoBehaviour {
                     break;
                 case Marian.AttackType.Ranged:
                     shot = (GameObject)Instantiate(arrow, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), Quaternion.identity);
-                    Destroy(shot, 3);
+                    Destroy(shot, 5);
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2),  -Vector3.forward);
                     shot.transform.Rotate(Vector3.back, 90);
                     shot.transform.Rotate(Vector3.up, 90);
-                    shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - shot.transform.position).normalized * projectileSpeed;
+                    shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -2) - shot.transform.position).normalized * projectileSpeed * 2;
+                    shot.GetComponent<ArrowCollide>().origin = marian.transform.position;
                     break;
             }
         }
