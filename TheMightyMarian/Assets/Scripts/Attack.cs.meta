@@ -2,7 +2,22 @@ fileFormatVersion: 2
 guid: 1587bee6a79c1dc46b04c13e79601fcf
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blueBolt: {instanceID: 0}
+  - lightningBolt: {instanceID: 0}
+  - rail: {instanceID: 0}
+  - rail_around: {instanceID: 0}
+  - fireBolt: {instanceID: 0}
+  - light: {instanceID: 0}
+  - AOE: {instanceID: 0}
+  - heal: {instanceID: 0}
+  - blueBlast: {instanceID: 0}
+  - fireBlast: {instanceID: 0}
+  - lightningBoltBlast: {instanceID: 0}
+  - arrow: {instanceID: 0}
+  - sword: {instanceID: 0}
+  - s_lightning: {fileID: 8300000, guid: d26d85daf3f4bc947af44570324a0bd0, type: 3}
+  - s_hurt: {fileID: 8300000, guid: 9d3d96cd3310c9a4a84edd4148a2e024, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

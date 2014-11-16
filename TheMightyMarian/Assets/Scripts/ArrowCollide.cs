@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class ArrowCollide : MonoBehaviour {
     public Vector3 origin;
     Vector3 offset;
@@ -10,6 +11,7 @@ public class ArrowCollide : MonoBehaviour {
     float magnitude = 5f;
     Vector3 initVel;
     Enemy enemyToStick;
+    public AudioClip s_arrow;
 	// Use this for initialization
 	void Start () {
 	}
@@ -53,6 +55,7 @@ public class ArrowCollide : MonoBehaviour {
             enemyToStick = enemy;
             offset = transform.position - enemy.transform.position;
             gotEnemyToStick = true;
+            audio.PlayOneShot(s_arrow);
         }
         //Destroy(this.gameObject);
     }
@@ -64,5 +67,6 @@ public class ArrowCollide : MonoBehaviour {
         transform.rigidbody.velocity = new Vector3();
         ((Collider)this.GetComponentInChildren<Collider>()).enabled = false;
         vibrate = true;
+        audio.PlayOneShot(s_arrow);
     }
 }

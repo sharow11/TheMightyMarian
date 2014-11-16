@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Attack : MonoBehaviour {
     public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light };
     public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light, AOE, heal;
@@ -17,6 +18,11 @@ public class Attack : MonoBehaviour {
     public float projectileSpeed = 10;
     GameObject shot;
     Projectile shotProj;
+    float lastLightningSoundTime = 0;
+    float bloodyScreenAlpha = 0f;
+    GUITexture bloodyScreen;
+    public AudioClip s_lightning, s_hurt;
+
 	// Use this for initialization
 	void Start () {
         camera = (OnMarianCamera)GameObject.Find("MainCamera").GetComponent("OnMarianCamera");
@@ -25,10 +31,19 @@ public class Attack : MonoBehaviour {
         mask += LayerMask.GetMask("MarianProjectile");
         mask += LayerMask.GetMask("EnemyProjectile");
         mask = ~mask;
+        bloodyScreen = (GUITexture)GameObject.Find("BloodyScreen").GetComponent<GUITexture>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //audio.PlayOneShot(s_lightning);
+        bloodyScreen.color = new Color(bloodyScreen.color.r, bloodyScreen.color.g, bloodyScreen.color.b, bloodyScreenAlpha);
+        bloodyScreenAlpha -= Time.deltaTime / 5;
+        if (bloodyScreenAlpha < 0)
+            bloodyScreenAlpha = 0;
+        else if (bloodyScreenAlpha > 1)
+            bloodyScreenAlpha = 1;
+
         if (Input.GetButtonDown("Fire1"))
         {
             switch (Marian.currAttackType)
@@ -58,6 +73,7 @@ public class Attack : MonoBehaviour {
                             {
                                 if (Marian.currMana > 2)
                                 {
+                                    //audio.Play();
                                     Marian.currMana -= 2;
                                     if (shot != null && shot.name == "LightningBolt(Clone)")
                                         Destroy(shot);
@@ -127,6 +143,13 @@ public class Attack : MonoBehaviour {
                     {
                         if (Marian.currMana > 2)
                         {
+                            if (Time.time - lastLightningSoundTime > 0.02f)
+                            //if (!audio.isPlaying)
+                            {
+                                lastLightningSoundTime = Time.time;
+                                //audio.Play();
+                                audio.PlayOneShot(s_lightning, 0.2f);
+                            }
                             Marian.currMana -= 2;
                             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
                                  new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
@@ -201,7 +224,7 @@ public class Attack : MonoBehaviour {
                 Destroy(shot, 0.15f);
                 shot = (GameObject)Instantiate(rail_around, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
                 shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2));
-                Destroy(shot, 0.4f);
+                Destroy(shot, 0.8f);
             }
         }
         if (Input.GetKeyDown("1") && !Gui.cd1Start)
@@ -273,4 +296,10 @@ public class Attack : MonoBehaviour {
             }
         }
 	}
+    public void takeDmg(int dmg)
+    {
+        bloodyScreenAlpha += (float)dmg / 100;
+        Marian.currHp -= dmg;
+        audio.PlayOneShot(s_hurt, 0.5f);
+    }
 }

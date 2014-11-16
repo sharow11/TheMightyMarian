@@ -18,17 +18,16 @@ public class EnemyProjectile : MonoBehaviour {
     }
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.gameObject.name == "Marian")
+        {
+            collision.collider.gameObject.GetComponent<Attack>().takeDmg(5);
+        }
         Blast();
         Destroy(this.gameObject);
     }
     public void Blast()
     {
-        GameObject marian = GameObject.Find("Marian");
-        if (Vector3.Distance(marian.transform.position, transform.position) < 10)
-        {
-            Marian.currHp -= 5;
-            GameObject blastObj = (GameObject)Instantiate(blast, transform.position, new Quaternion());
-            Destroy(blastObj, 1);
-        }
+        GameObject blastObj = (GameObject)Instantiate(blast, transform.position, new Quaternion());
+        Destroy(blastObj, 1);
     }
 }

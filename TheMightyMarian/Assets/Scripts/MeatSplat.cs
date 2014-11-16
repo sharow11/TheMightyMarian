@@ -3,7 +3,6 @@ using System.Collections;
 using System;
 
 public class MeatSplat : MonoBehaviour {
-
     public GameObject meatSplash;
     float time;
 	// Use this for initialization
