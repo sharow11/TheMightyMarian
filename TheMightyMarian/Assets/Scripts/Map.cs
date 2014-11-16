@@ -44,6 +44,7 @@ public class Map : MonoBehaviour {
     //private MapCell[,] map;
     private int[,] smallMap;
     private int[,] map;
+    private int[,] crapMap;
 
     public int this[int x, int y]
     {
@@ -89,6 +90,7 @@ public class Map : MonoBehaviour {
         rsize2Y = size2Y + 2;
         smallMap = new int[rsizeX, rsizeY];
         map = new int[rsize2X, rsize2Y];
+        crapMap = new int[rsize2X, rsize2Y];
         FillWithVoid();
 
         maze = new Maze(roomsY, roomsX, sizeX, sizeY, rsX, rsY, startingFloorsPercent);
@@ -107,7 +109,9 @@ public class Map : MonoBehaviour {
         }
         //lastTouch();
         //eliminate1NarrowPassages();
-        eliminateNarrowPassages();
+        //fillAndCry();
+        erosion();
+        //emptyBossRoom();
         DrawMap();
         if (logging)
         {
@@ -194,14 +198,13 @@ public class Map : MonoBehaviour {
         }
     }
 
-    private void eliminateNarrowPassages()
+    private void erosion()
     {
-        int[,] oldMap = new int[rsize2X, rsize2Y];
         int[] box =  {0, 1, 0, 1, 2, 1, 0, 1, 0};
         for(int i=0; i<rsize2X; i++)
             for (int j = 0; j < rsize2Y; j++)
             {
-                oldMap[i, j] = map[i, j];
+                crapMap[i, j] = map[i, j];
                 map[i, j] = TileTypes.FLOOR;
                 if (i == 0 || j == 0 || i == rsize2X - 1 || j == rsize2Y - 1)
                     map[i, j] = TileTypes.VOID;
@@ -211,7 +214,7 @@ public class Map : MonoBehaviour {
         {
             for (int j = 1; j < rsize2Y-1; j++)
             {
-                if (oldMap[i, j] == TileTypes.VOID)
+                if (crapMap[i, j] == TileTypes.VOID)
                 {
                     bool ok = true;
                     for (int ty = 0; ty < 3; ty++)
@@ -220,7 +223,7 @@ public class Map : MonoBehaviour {
                         {
                             if (box[3 * ty + tx] > 0)
                             {
-                                if(isFineCoords(i + tx - 1, j + ty - 1) && oldMap[i + tx - 1, j + ty - 1] == TileTypes.FLOOR)
+                                if(isFineCoords(i + tx - 1, j + ty - 1) && crapMap[i + tx - 1, j + ty - 1] == TileTypes.FLOOR)
                                 { ok = false; }
                             }
                         }
@@ -230,6 +233,41 @@ public class Map : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void fillAndCry()
+    {
+        int[,] oldMap = new int[rsize2X, rsize2Y];
+        for (int i = 0; i < rsize2X; i++)
+            for (int j = 0; j < rsize2Y; j++)
+            { oldMap[i, j] = map[i, j]; }
+
+        for (int i = 1; i < rsize2X - 1; i++)
+        {
+            for (int j = 1; j < rsize2Y - 1; j++)
+            {
+                if (map[i, j] == TileTypes.FLOOR && CntCellNeighboursWalls(i, j) > 0)
+                {
+                    //horizontal
+                    if (map[i + 1, j] == TileTypes.FLOOR && map[i - 1, j] == TileTypes.FLOOR)
+                    {
+                        for (int x = i - 1; x < i + 2; x++)
+                            for (int y = j - 1; y < j + 2; y++)
+                                crapMap[x, y] = TileTypes.VOID;
+                    }
+
+                    //vertical
+                    if (map[i, j + 1] == TileTypes.FLOOR && map[i, j + 1] == TileTypes.FLOOR)
+                    {
+                        for (int x = i - 1; x < i + 2; x++)
+                            for (int y = j - 1; y < j + 2; y++)
+                                crapMap[x, y] = TileTypes.VOID;
+                    }
+                }
+            }
+        }
+
+
     }
 
     private void eliminate1NarrowPassages()

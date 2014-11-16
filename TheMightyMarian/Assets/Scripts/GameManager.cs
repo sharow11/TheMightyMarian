@@ -8,6 +8,8 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public Map mapPrefab;
+    public BossMap bossMapPrefab;
+
     public Enemy enemyPrefab;
     public MoveMarian marianPrefab;
     public Enemy blueGhostPrefab;
@@ -18,8 +20,10 @@ public class GameManager : MonoBehaviour
     public int redGhostRarity;
     public Enemy spiderPrefab;
     public int spiderRarity;
+    public Enemy billPrefab;
     private MoveMarian marian;
     private Map mapInstance;
+    private BossMap bossMapInstance;
     public Ladder ladderPrefab;
     private Ladder ladder;
     public bool logging = true;
@@ -30,8 +34,10 @@ public class GameManager : MonoBehaviour
 
     public static int currLevel = 0;
     public bool isLoading = true;
+    private int mapSizeX, mapSizeY;
     //private bool generateCalled = false;
     private int state = 0;
+    public bool bossLvl;
     private void Start()
     {
         isLoading = true;
@@ -68,9 +74,10 @@ public class GameManager : MonoBehaviour
             //generate friz
             GUI.Box(new Rect(0, 0, Screen.width, Screen.height), czarnosc);
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level " + currLevel);
+            state++;
             BeginGame();
             
-            state++;
+            //state++;
         }
         else if (state == 2)
         {
@@ -107,9 +114,29 @@ public class GameManager : MonoBehaviour
 
     public void BeginGame()
     {
+        if (currLevel % 5 == 0)
+        { bossLvl = true; }
+        else
+        { bossLvl = false; }
+
+        if (bossLvl)
+        {
+            BossBeginGame();
+        }
+        else
+        { 
+            NormalBeginGame();
+        }
+
+    }
+
+    private void NormalBeginGame()
+    {
         mapInstance = Instantiate(mapPrefab) as Map;
         mapInstance.Logging = logging;
         mapInstance.LvlNo = currLevel;
+        mapSizeX = mapInstance.sizeX;
+        mapSizeY = mapInstance.sizeY;
         //StartCoroutine(mapInstance.Generate());
         mapInstance.Generate();
         startRoomNo = mapInstance.StartRoomNo;
@@ -121,14 +148,37 @@ public class GameManager : MonoBehaviour
         Debug.Log("welcome to level " + currLevel);
     }
 
+    private void BossBeginGame()
+    {
+        bossMapInstance = Instantiate(bossMapPrefab) as BossMap;
+        bossMapInstance.Logging = logging;
+        bossMapInstance.LvlNo = currLevel;
+        mapSizeX = bossMapInstance.sizeX;
+        mapSizeY = bossMapInstance.sizeY;
+        //StartCoroutine(mapInstance.Generate());
+        bossMapInstance.Generate();
+        startRoomNo = 0;
+        endRoomNo = 0;
+        PlaceMarian();
+        PlaceEndLadder();
+        PlaceBoss();
+        //isLoading = false;
+        Debug.Log("welcome to level " + currLevel);
+    }
     private void RestartGame() {
         //StopAllCoroutines();
-        Destroy(mapInstance.gameObject);
+        if (bossLvl)
+        { Destroy(bossMapInstance.gameObject); }
+        else
+        { Destroy(mapInstance.gameObject); }
+        
         BeginGame();
     }
 
     private void SaveMap()
-    { 
+    {
+        if (bossLvl)
+            return;
         mapInstance.Save();
     }
 
@@ -136,11 +186,15 @@ public class GameManager : MonoBehaviour
     {
         //StopAllCoroutines();
         //StartCoroutine(mapInstance.Load());
+        if (bossLvl)
+            return;
         mapInstance.Load();
     }
 
     public void PlaceEnemies()
     {
+        if (bossLvl)
+            return;
         int totalRarity = blueGhostRarity + greenGhostRarity + redGhostRarity + spiderRarity;
 
         int roomsCnt = mapInstance.roomsX * mapInstance.roomsY;
@@ -161,16 +215,28 @@ public class GameManager : MonoBehaviour
                 Enemy newEnemy;
                 int srand = UnityEngine.Random.Range(0,totalRarity+1);
                 if (srand < blueGhostRarity)
-                { newEnemy = Instantiate(blueGhostPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(blueGhostPrefab) as Enemy;
+                    newEnemy.name = "Zbigniew";
+                }
                 else if (srand < blueGhostRarity + redGhostRarity)
-                { newEnemy = Instantiate(redGhostPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(redGhostPrefab) as Enemy;
+                    newEnemy.name = "Bogdan";
+                }
                 else if (srand < blueGhostRarity + redGhostRarity + greenGhostRarity)
-                { newEnemy = Instantiate(greenGhostPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(greenGhostPrefab) as Enemy;
+                    newEnemy.name = "Apoloniusz";
+                }
                 else
-                { newEnemy = Instantiate(spiderPrefab) as Enemy; }
+                { 
+                    newEnemy = Instantiate(spiderPrefab) as Enemy;
+                    newEnemy.name = "JanMaria";
+                }
 
                 //newEnemy.transform.localPosition
-                newEnemy.name = "Zbigniew";
+                
                 newEnemy.transform.parent = transform;
                 newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1.5f);
                 temp.Add(newEnemy);
@@ -179,20 +245,65 @@ public class GameManager : MonoBehaviour
         Enemy.enemies = temp;
     }
 
+    private void PlaceBoss()
+    {
+        if (Enemy.enemies == null)
+        {
+            Enemy.enemies = new List<Enemy>();
+        }
+        List<Enemy> temp = new List<Enemy>();
+
+
+        IntVector2 coordinates = bossMapInstance.PlaceEnemyInRoom(0);
+        //Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
+        Enemy newEnemy;
+
+        newEnemy = Instantiate(billPrefab) as Enemy;
+        newEnemy.name = "BillCipher";
+                
+
+        //newEnemy.transform.localPosition
+
+        newEnemy.transform.parent = transform;
+        newEnemy.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1.5f);
+        temp.Add(newEnemy);
+            
+        
+        Enemy.enemies = temp;
+    }
     public void PlaceMarian()
     {
-        IntVector2 coordinates = mapInstance.GetStartPosForPlayer();
-        marian = Instantiate(marianPrefab) as MoveMarian;
-        marian.name = "Marian";
-        marian.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1f);
+        IntVector2 coordinates;
+        if (bossLvl)
+        { 
+            coordinates = bossMapInstance.GetStartPosForPlayer();
+            marian = Instantiate(marianPrefab) as MoveMarian;
+            marian.name = "Marian";
+            marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
+        }
+        else
+        { 
+            coordinates = mapInstance.GetStartPosForPlayer();
+            marian = Instantiate(marianPrefab) as MoveMarian;
+            marian.name = "Marian";
+            marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
+        }
+
+
     }
 
     private void PlaceEndLadder()
     {
-        IntVector2 coordinates = mapInstance.GetEndLadderPos();
+        IntVector2 coordinates;
+        if (bossLvl)
+        {  coordinates = bossMapInstance.GetEndLadderPos(); }
+        else
+        { coordinates = mapInstance.GetEndLadderPos(); }
         ladder = Instantiate(ladderPrefab) as Ladder;
         ladder.name = "Ladder to "+(currLevel+1);
-        ladder.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1f);
+        ladder.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
+        //if (bossLvl)
+        //   ladder.disabled = true;
     }
 
     public void levelUp()

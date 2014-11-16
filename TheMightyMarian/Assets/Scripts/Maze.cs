@@ -23,12 +23,15 @@ public class Maze {
         set { logging = value; }
     }
 
+    public List<int> bossRooms;
+
     //   n
     //w     e
     //   s
 
 	public Maze(int rX, int rY, int sX, int sY, int roomSX, int roomSY, int startingFloorsPrc)
 	{
+        bossRooms = new List<int>();
 		roomsX = rX;
 		roomsY = rY;
         sizeX = sX;
@@ -82,7 +85,7 @@ public class Maze {
         if (logging)
         { ToImage("images/mazes/" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png"); }
         placeStartEnd();
-
+        //selectBossRooms();
     }
 
     private void PrimsMagic()
@@ -359,8 +362,50 @@ public class Maze {
         {
             Debug.Log("start room=" + StartRoomNo);
             Debug.Log("end room=" + EndRoomNo);
-            
         }
+    }
+
+    private void selectBossRooms()
+    {
+        IntVector2 endCords = VertexCoords(EndRoomNo);
+
+        if (endCords.x == roomsX - 1 && endCords.y == roomsY - 1)
+        {
+            bossRooms.Add(EndRoomNo);
+            bossRooms.Add(VertexNum(endCords.x - 1, endCords.y));
+            bossRooms.Add(VertexNum(endCords.x - 1, endCords.y - 1));
+            bossRooms.Add(VertexNum(endCords.x, endCords.y - 1));
+        }
+        else if (endCords.x == roomsX - 1)
+        {
+            bossRooms.Add(EndRoomNo);
+            bossRooms.Add(VertexNum(endCords.x - 1, endCords.y));
+            bossRooms.Add(VertexNum(endCords.x - 1, endCords.y + 1));
+            bossRooms.Add(VertexNum(endCords.x, endCords.y + 1));
+        }
+        else if (endCords.y == roomsY - 1)
+        {
+            bossRooms.Add(EndRoomNo);
+            bossRooms.Add(VertexNum(endCords.x + 1, endCords.y));
+            bossRooms.Add(VertexNum(endCords.x + 1, endCords.y - 1));
+            bossRooms.Add(VertexNum(endCords.x, endCords.y - 1));
+        }
+        else
+        {
+            bossRooms.Add(EndRoomNo);
+            bossRooms.Add(VertexNum(endCords.x + 1, endCords.y));
+            bossRooms.Add(VertexNum(endCords.x + 1, endCords.y + 1));
+            bossRooms.Add(VertexNum(endCords.x, endCords.y + 1));
+        }
+        bossRooms.Sort();
+        if (logging)
+        {
+            String b = "boss rooms:";
+            foreach (int r in bossRooms)
+                b += " " + r;
+            Debug.Log(b);
+        }
+
     }
 
 

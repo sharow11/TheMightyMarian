@@ -194,7 +194,7 @@ public class Room {
         //{ Debug.Log("passable"); }
         //else
         //{ Debug.Log("not passable"); }
-        while (!CheckIfAllPassagesExists() || (cntPrc() < 0.2f))
+        while (!CheckIfAllPassagesExists() || (cntPrc() < 0.3f))
         {
             if (logging)
             {
