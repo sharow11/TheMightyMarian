@@ -6,10 +6,12 @@ public class ArrowCollide : MonoBehaviour {
     Vector3 offset;
     bool gotEnemyToStick = false;
     bool isDropping = false;
+    bool vibrate = false;
+    float magnitude = 5f;
+    Vector3 initVel;
     Enemy enemyToStick;
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -32,6 +34,14 @@ public class ArrowCollide : MonoBehaviour {
                 transform.rigidbody.position = enemyToStick.transform.position + offset;
             }
         }
+        if (vibrate && magnitude > 0)
+        {
+            if(initVel.y*initVel.y < initVel.x*initVel.x)
+                transform.localRotation = Quaternion.Euler(Mathf.Sin(Time.time * 100) * magnitude, 0, 0) * transform.localRotation;
+            else
+                transform.localRotation = Quaternion.Euler(0, Mathf.Sin(Time.time * 100) * magnitude, 0) * transform.localRotation;
+            magnitude -= Time.deltaTime * 2;
+        }
 	}
     void OnTriggerEnter(Collider collision)
     {
@@ -48,7 +58,11 @@ public class ArrowCollide : MonoBehaviour {
     }
     void OnCollisionEnter(Collision collision)
     {
-        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        initVel = rigidbody.velocity;
+        rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+        rigidbody.angularVelocity = new Vector3();
         transform.rigidbody.velocity = new Vector3();
+        ((Collider)this.GetComponentInChildren<Collider>()).enabled = false;
+        vibrate = true;
     }
 }
