@@ -8,6 +8,8 @@ public class Gui : MonoBehaviour
 
     private Rect SkillWindowRect = new Rect(Screen.width / 2, Screen.height / 2, 400, 400);
 
+    private Rect HelpWindowRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 300, 300);
+
     public Texture Spell1;
     public Texture Spell2;
     public Texture Spell3;
@@ -16,6 +18,7 @@ public class Gui : MonoBehaviour
     public Texture Spell6;
 
     public bool showSkills = false;
+    private bool showHelp = false;
 
     private static readonly float spellCd1 = 0.0f;
     private static readonly float spellCd2 = 0.0f;
@@ -38,6 +41,7 @@ public class Gui : MonoBehaviour
     void OnGUI()
     {
         WindowRect = GUI.Window(0, WindowRect, WindowFunction, "Skills");
+        GUI.Label(new Rect(30, 30, 60, 100), "Press H for controls");
         var color = GUI.color;
         GUI.color = Color.red;
         GUI.Label(new Rect(110, 30, 60, 100), Marian.currHp.ToString());
@@ -83,6 +87,14 @@ public class Gui : MonoBehaviour
         if (showSkills)
         {
             SkillWindowRect = GUI.Window(1, SkillWindowRect, SkillWindowFunction, "Abilities");
+        }
+        if (Input.GetKeyDown("h"))
+        {
+            showHelp = true;
+        }
+        if(showHelp)
+        {
+            HelpWindowRect = GUI.Window(2, HelpWindowRect, HelpWindowFunction, "Help");
         }
     }
 
@@ -244,10 +256,21 @@ public class Gui : MonoBehaviour
         }
 
 
-        if (GUI.Button(new Rect(355, 10, 20, 20), "X"))
+        if (GUI.Button(new Rect(355, 30, 20, 20), "X"))
         {
             showSkills = false;
         }
 
+    }
+    void HelpWindowFunction(int windowID)
+    {
+        GUI.Label(new Rect(30, 50, 220, 50), "To attack press LPM");
+        GUI.Label(new Rect(30, 100, 220, 50), "To fire spells press 1-5");
+        GUI.Label(new Rect(30, 150, 220, 50), "To set skills press K");
+        GUI.Label(new Rect(30, 200, 220, 50), "To change weapon press q");
+        if (GUI.Button(new Rect(255, 30, 20, 20), "X"))
+        {
+            showHelp = false;
+        }
     }
 }
