@@ -79,7 +79,7 @@ Renderer:
   - {fileID: 2100000, guid: e37e3b41ef7c0d64fb40cc472f3c70ca, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
+  m_UseLightProbes: 1
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
