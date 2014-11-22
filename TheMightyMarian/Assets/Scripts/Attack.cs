@@ -122,7 +122,8 @@ public class Attack : MonoBehaviour {
                     //shot.transform.Rotate();
                     break;
                 case Marian.AttackType.Ranged:
-                    shot = (GameObject)Instantiate(arrow, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), Quaternion.identity);
+                    Vector3 offset = (camera.hit.point - new Vector3(transform.position.x, transform.position.y, hitInfo.point.z)).normalized;
+                    shot = (GameObject)Instantiate(arrow, new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, -2), Quaternion.identity);
                     Destroy(shot, 5);
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -2),  -Vector3.forward);
                     shot.transform.Rotate(Vector3.back, 90);

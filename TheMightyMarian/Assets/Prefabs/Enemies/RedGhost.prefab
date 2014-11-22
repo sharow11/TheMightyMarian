@@ -217,16 +217,16 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 0, y: 0, z: 0}
+  patrolTarget: {x: 1.48726654, y: 5.3819375, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 0
-  gotPatrolTarget: 0
+  patrolTargetAssignTime: 45.3999977
+  gotPatrolTarget: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
