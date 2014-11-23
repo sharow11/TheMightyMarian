@@ -62,7 +62,7 @@ function Awake()
 function UpdateInventoryList()
 {
 	UpdatedList = associatedInventory.Contents;
-	//Debug.Log("Inventory Updated");
+	Debug.Log("Inventory Updated");
 }
 
 function Update()
@@ -124,7 +124,7 @@ function OnGUI()
 	//If the inventory is opened up we create the Inventory window:
 	if(displayInventory)
 	{
-		windowRect = GUI.Window (0, windowRect, DisplayInventoryWindow, "Inventory");
+		windowRect = GUI.Window (6, windowRect, DisplayInventoryWindow, "Inventory");
 	}
 }
 
@@ -137,6 +137,7 @@ function DisplayInventoryWindow(windowID:int)
 		GUI.DragWindow (Rect (0,0, 10000, 30));  //the window to be able to be dragged
 	}
 	
+
 	var currentX = 0 + Offset.x; //Where to put the first items.
 	var currentY = 18 + Offset.y; //Im setting the start y position to 18 to give room for the title bar on the window.
 	
@@ -144,7 +145,7 @@ function DisplayInventoryWindow(windowID:int)
 	{
 		var item=i.GetComponent(Item);
 		if (cSheetFound) //CSheet was found (recommended)
-		{
+		{        
 			if(GUI.Button(Rect(currentX,currentY,itemIconSize.x,itemIconSize.y),item.itemIcon))
 			{
 				var dragitem=true; //Incase we stop dragging an item we dont want to redrag a new one.

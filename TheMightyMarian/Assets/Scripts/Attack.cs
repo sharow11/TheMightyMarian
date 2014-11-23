@@ -114,8 +114,8 @@ public class Attack : MonoBehaviour {
                     Vector3 v = new Vector3(camera.hit.point.x - transform.position.x, camera.hit.point.y - transform.position.y - 0.5f, 0).normalized;
                     Vector3 from = new Vector3(transform.position.x, transform.position.y, -2);
                     Vector3 to = new Vector3(camera.hit.point.x, camera.hit.point.y, -2);
-
                     shot = (GameObject)Instantiate(sword, new Vector3(transform.position.x + v.x * 2, transform.position.y + v.y * 2, -2), Quaternion.identity);
+                    shot.GetComponentInChildren<SwordRotate>().IsAttack = true;
                     shot.transform.LookAt(to, -Vector3.forward);
                     shot.transform.RotateAround(transform.position, new Vector3(Vector3.back.x + 0.1f, Vector3.back.y + 0.2f, Vector3.back.z + 0.1f), -45);
                     Destroy(shot, 0.2f);

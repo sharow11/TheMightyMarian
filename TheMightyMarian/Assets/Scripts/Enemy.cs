@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     public enum State : byte { idle, alert, follow, searching, chasing, attacking };
+
+    public GameObject sword;
     public enum Step : byte { downRight, upRight, downLeft, upLeft };
     public GameObject greenBolt;
     public GameObject greenBlast;
@@ -376,6 +378,7 @@ public class Enemy : MonoBehaviour
                 Destroy(meat, 2.0f + Random.value * 2);
             }
             Marian.Exp += 10;
+            shot = (GameObject)Instantiate(sword, new Vector3(transform.position.x, transform.position.y -2), Quaternion.identity);
             Enemy.enemies.Remove(this);
             Destroy(gameObject);
         }
