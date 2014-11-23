@@ -299,6 +299,7 @@ public class Attack : MonoBehaviour {
 	}
     public void takeDmg(int dmg)
     {
+        Music.hype += (float)dmg / 10;
         bloodyScreenAlpha += (float)dmg / 100;
         Marian.currHp -= dmg;
         audio.PlayOneShot(s_hurt, 0.5f);
