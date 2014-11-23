@@ -118,6 +118,7 @@ public class Enemy : MonoBehaviour
                 break;
             case State.alert:
             case State.follow:
+                Music.hype += Time.deltaTime;
                 animateMovement();
                 color = Color.black;
                 if (gotPatrolTarget)
@@ -195,6 +196,7 @@ public class Enemy : MonoBehaviour
                 }
                 break;
             case State.searching:
+                Music.hype += Time.deltaTime * 2;
                 animateMovement();
                 color = Color.yellow;
                 if (Time.time - seenLastTime > 6 || Vector3.Distance(transform.position, lastSeen) < 1.5f)
@@ -210,14 +212,17 @@ public class Enemy : MonoBehaviour
                 //Debug.Log(Time.time - seenLastTime + " dist: " + Vector3.Distance(transform.position, lastSeen));
                 break;
             case State.chasing:
+                Music.hype += Time.deltaTime * 5;
                 animateMovement();
                 color = new Color(1, 0.5f, 0);
                 move(lastSeen);
                 Debug.DrawLine(transform.position, MarianObject.transform.position, color);
                 break;
             case State.attacking:
+                Music.hype += Time.deltaTime * 5;
                 if (Time.time - lastAtkTime >= attackFreq)
                 {
+                    Music.hype += 1f;
                     lastAtkTime = Time.time;
                     shot = (GameObject)Instantiate(greenBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                     Destroy(shot, 3);
@@ -341,6 +346,7 @@ public class Enemy : MonoBehaviour
 
     public void takeDmg(float dmg, Vector3 dir)
     {
+        Music.hype += (float)dmg / 2;
         dir = new Vector3(dir.x, dir.y, -0.1f);
         GameObject bloodObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y - 0.5f, -2), new Quaternion());
         bloodObj.transform.LookAt(transform.position + dir);

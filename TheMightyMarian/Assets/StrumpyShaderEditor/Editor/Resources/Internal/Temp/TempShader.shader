@@ -2,9 +2,7 @@ Shader "ShaderEditor/EditorShaderCache"
 {
 	Properties 
 	{
-_Tex1("_Tex1", Cube) = "black" {}
-_Tex2("_Tex2", Cube) = "white" {}
-_LerpValue("_LerpValue", Range(0,1) ) = 0.6165803
+_color("_color", Color) = (0.216783,0,1,1)
 
 	}
 	
@@ -32,9 +30,7 @@ Fog{
 #pragma target 2.0
 
 
-samplerCUBE _Tex1;
-samplerCUBE _Tex2;
-float _LerpValue;
+float4 _color;
 
 			struct EditorSurfaceOutput {
 				half3 Albedo;
@@ -48,11 +44,17 @@ float _LerpValue;
 			
 			inline half4 LightingBlinnPhongEditor_PrePass (EditorSurfaceOutput s, half4 light)
 			{
-half3 spec = light.a * s.Gloss;
-half4 c;
-c.rgb = (s.Albedo * light.rgb + light.rgb * spec);
-c.a = s.Alpha;
-return c;
+float4 Multiply1=float4( s.Albedo.x, s.Albedo.y, s.Albedo.z, 1.0 ) * light;
+float4 Splat0=light.w;
+float4 Multiply0=float4( s.Gloss.x, s.Gloss.y, s.Gloss.z, 1.0 ) * Splat0;
+float4 Multiply2=light * Multiply0;
+float4 Add2=Multiply1 + Multiply2;
+float4 Mask1=float4(Add2.x,Add2.y,Add2.z,0.0);
+float4 Luminance1= Luminance( Multiply0.xyz ).xxxx;
+float4 Add0=Luminance1 + float4( s.Albedo.x, s.Albedo.y, s.Albedo.z, 1.0 );
+float4 Mask0=float4(0.0,0.0,0.0,Add0.w);
+float4 Add1=Mask1 + Mask0;
+return Add1;
 
 			}
 
@@ -74,7 +76,7 @@ return c;
 			}
 			
 			struct Input {
-				float3 sWorldNormal;
+				float4 color : COLOR;
 
 			};
 
@@ -84,7 +86,6 @@ float4 VertexOutputMaster0_1_NoInput = float4(0,0,0,0);
 float4 VertexOutputMaster0_2_NoInput = float4(0,0,0,0);
 float4 VertexOutputMaster0_3_NoInput = float4(0,0,0,0);
 
-o.sWorldNormal = mul((float3x3)_Object2World, SCALED_NORMAL);
 
 			}
 			
@@ -98,17 +99,14 @@ o.sWorldNormal = mul((float3x3)_Object2World, SCALED_NORMAL);
 				o.Specular = 0.0;
 				o.Custom = 0.0;
 				
-float4 TexCUBE0=texCUBE(_Tex1,float4( IN.sWorldNormal.x, IN.sWorldNormal.y,IN.sWorldNormal.z,1.0 ));
-float4 TexCUBE1=texCUBE(_Tex2,float4( IN.sWorldNormal.x, IN.sWorldNormal.y,IN.sWorldNormal.z,1.0 ));
-float4 Lerp0=lerp(TexCUBE0,TexCUBE1,_LerpValue.xxxx);
-float4 Master0_0_NoInput = float4(0,0,0,0);
 float4 Master0_1_NoInput = float4(0,0,1,1);
+float4 Master0_2_NoInput = float4(0,0,0,0);
 float4 Master0_3_NoInput = float4(0,0,0,0);
 float4 Master0_4_NoInput = float4(0,0,0,0);
 float4 Master0_5_NoInput = float4(1,1,1,1);
 float4 Master0_7_NoInput = float4(0,0,0,0);
 float4 Master0_6_NoInput = float4(1,1,1,1);
-o.Emission = Lerp0;
+o.Albedo = _color;
 
 				o.Normal = normalize(o.Normal);
 			}

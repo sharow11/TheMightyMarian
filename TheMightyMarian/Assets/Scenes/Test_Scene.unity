@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -314,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -373,8 +375,8 @@ CapsuleCollider:
 --- !u!1 &49878064
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100000, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 49878065}
@@ -389,8 +391,8 @@ GameObject:
 --- !u!4 &49878065
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400000, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 49878064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
@@ -401,14 +403,15 @@ Transform:
 --- !u!82 &49878066
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200000, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 49878064}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 176a59cd753dd514eab3984f3dda82ed, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -524,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -648,6 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -828,6 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1126,6 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1208,7 +1215,7 @@ Light:
   serializedVersion: 3
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .0500000007
+  m_Intensity: .100000001
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1383,6 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1637,6 +1645,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 42
+--- !u!1001 &330497591
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5.95122766
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -20.5532036
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.71187067
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_RootMapOrder
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+      propertyPath: m_RootOrder
+      value: 64
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_RootGameObject: {fileID: 898405839}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &357652512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,6 +1826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1788,7 +1845,7 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 2
+  state: 1
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
@@ -2027,6 +2084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -2035,7 +2093,7 @@ MonoBehaviour:
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
   speed: 5
-  health: 100
+  health: 67.9368744
   viewDistance: 25
   spread: 10
   predictionProbability: .75
@@ -2045,7 +2103,7 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 2
+  state: 1
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
@@ -2218,7 +2276,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 0, g: .131034374, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 8
   m_Range: 16.7700005
   m_SpotAngle: 30
@@ -2251,7 +2309,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405874629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.4646645, y: -8.38626957, z: -2.45918751}
+  m_LocalPosition: {x: 24.8864365, y: -5.42105484, z: -7.69860363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2451,6 +2509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -2588,6 +2647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -2699,6 +2759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3031,6 +3092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3155,6 +3217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3367,8 +3430,8 @@ Transform:
 --- !u!1 &749417175
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100002, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 749417177}
@@ -3383,14 +3446,15 @@ GameObject:
 --- !u!82 &749417176
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200002, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 749417175}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: b4e3efce02834ec4681e218cfddc4854, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -3441,8 +3505,8 @@ AudioSource:
 --- !u!4 &749417177
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400002, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 749417175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
@@ -3784,8 +3848,8 @@ Transform:
 --- !u!1 &888887209
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100004, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 888887210}
@@ -3800,8 +3864,8 @@ GameObject:
 --- !u!4 &888887210
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400004, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 888887209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3812,14 +3876,15 @@ Transform:
 --- !u!82 &888887211
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200004, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 888887209}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 77165454bf1c70f47b1d04512cd0b42b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -3870,8 +3935,8 @@ AudioSource:
 --- !u!1 &898405839
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 898405840}
@@ -3886,8 +3951,8 @@ GameObject:
 --- !u!4 &898405840
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 898405839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.95122766, y: -20.5532036, z: -1.71187067}
@@ -3905,14 +3970,16 @@ Transform:
 --- !u!114 &898405841
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400000, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 898405839}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6ed3724c5531974e81465c790c220dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hypometer: 0
 --- !u!1 &907155209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4037,6 +4104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -5005,6 +5073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -5189,6 +5258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -5457,8 +5527,8 @@ MeshFilter:
 --- !u!1 &1332820954
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100008, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1332820955}
@@ -5473,8 +5543,8 @@ GameObject:
 --- !u!4 &1332820955
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400008, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1332820954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -5485,14 +5555,15 @@ Transform:
 --- !u!82 &1332820956
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200006, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1332820954}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 515173fcf658a744f8cbcf9fb118074a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -6240,8 +6311,8 @@ Transform:
 --- !u!1 &1477072118
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100010, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1477072119}
@@ -6256,8 +6327,8 @@ GameObject:
 --- !u!4 &1477072119
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400010, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1477072118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -6268,14 +6339,15 @@ Transform:
 --- !u!82 &1477072120
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200008, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1477072118}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: abefd51289e50a946b37ffc7ffd20d8a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6511,6 +6583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -6635,6 +6708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -7031,8 +7105,8 @@ Transform:
 --- !u!1 &1703449658
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100012, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1703449659}
@@ -7047,8 +7121,8 @@ GameObject:
 --- !u!4 &1703449659
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400012, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1703449658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -7059,14 +7133,15 @@ Transform:
 --- !u!82 &1703449660
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200010, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1703449658}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: eb7da7dfc0740c7409d4afd14c924c28, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -7239,6 +7314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -7411,6 +7487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -7548,6 +7625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -7812,6 +7890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -8149,6 +8228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -8372,6 +8452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -8500,8 +8581,8 @@ Transform:
 --- !u!1 &1954803632
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100014, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1954803635}
@@ -8516,14 +8597,15 @@ GameObject:
 --- !u!82 &1954803634
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 8200012, guid: 8bc050b37a9b27f448fbbfbdadb01e22,
+    type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1954803632}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: b9640b3f21ff08b44b53977713f6f483, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -8574,8 +8656,8 @@ AudioSource:
 --- !u!4 &1954803635
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400014, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
+  m_PrefabInternal: {fileID: 330497591}
   m_GameObject: {fileID: 1954803632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -8716,6 +8798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -8724,7 +8807,7 @@ MonoBehaviour:
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
   speed: 5
-  health: 100
+  health: 67.9368744
   viewDistance: 25
   spread: 10
   predictionProbability: .75
@@ -9392,6 +9475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -9400,7 +9484,7 @@ MonoBehaviour:
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
   speed: 5
-  health: 100
+  health: 67.9368744
   viewDistance: 25
   spread: 10
   predictionProbability: .75
@@ -9410,7 +9494,7 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 2
+  state: 1
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}

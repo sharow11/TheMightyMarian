@@ -4,6 +4,7 @@ using System.Collections;
 public class Music : MonoBehaviour {
     AudioSource calm1, calm2, tense1, tense2, tense3, action1, action2;
     public static float hype = 0;
+    public float hypometer;
 	// Use this for initialization
     void Start()
     {
@@ -26,55 +27,107 @@ public class Music : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        calm2.mute = false;
-        if (hype > 0)
+        hypometer = hype;
+        if (hype > 350)
+            hype = 350;
+        else if (hype > 0)
         {
-            hype -= Time.deltaTime;
+            hype *= (1f - Time.deltaTime / 7);
+            hype -= Time.deltaTime * 10;
         }
         if (hype < 10)
         {
-            muteAll();
-            calm2.mute = false;
+            mute(calm1);
+            turnOn(calm2);
+            mute(tense1);
+            mute(tense2);
+            mute(tense3);
+            mute(action1);
+            mute(action2);
         }
         else if (hype < 50)
         {
-            muteAll();
-            calm1.mute = false;
+            turnOn(calm1);
+            mute(calm2);
+            mute(tense1);
+            mute(tense2);
+            mute(tense3);
+            mute(action1);
+            mute(action2);
         }
         else if (hype < 100)
         {
-            muteAll();
-            tense1.mute = false;
+            mute(calm1);
+            mute(calm2);
+            turnOn(tense1);
+            mute(tense2);
+            mute(tense3);
+            mute(action1);
+            mute(action2);
         }
         else if (hype < 150)
         {
-            muteAll();
-            tense2.mute = false;
+            mute(calm1);
+            mute(calm2);
+            mute(tense1);
+            turnOn(tense2);
+            mute(tense3);
+            mute(action1);
+            mute(action2);
         }
         else if (hype < 200)
         {
-            muteAll();
-            tense3.mute = false;
+            mute(calm1);
+            mute(calm2);
+            mute(tense1);
+            mute(tense2);
+            turnOn(tense3);
+            mute(action1);
+            mute(action2);
         }
         else if (hype < 250)
         {
-            muteAll();
-            action1.mute = false;
+            mute(calm1);
+            mute(calm2);
+            mute(tense1);
+            mute(tense2);
+            mute(tense3);
+            turnOn(action1);
+            mute(action2);
         }
         else
         {
-            muteAll();
-            action2.mute = false;
+            mute(calm1);
+            mute(calm2);
+            mute(tense1);
+            mute(tense2);
+            mute(tense3);
+            mute(action1);
+            turnOn(action2);
         }
     }
     void muteAll()
     {
-        calm1.mute = true;
-        calm2.mute = true;
-        tense1.mute = true;
-        tense2.mute = true;
-        tense3.mute = true;
-        action1.mute = true;
-        action2.mute = true;
+        mute(calm1);
+        mute(calm2);
+        mute(tense1);
+        mute(tense2);
+        mute(tense3);
+        mute(action1);
+        mute(action2);
+    }
+    void mute(AudioSource a)
+    {
+        if (a.mute == false)
+            a.volume -= Time.deltaTime / 5;
+        if (a.volume < 0)
+            a.mute = true;
+    }
+    void turnOn(AudioSource a)
+    {
+        a.mute = false;
+        a.volume += Time.deltaTime / 5;
+        if (a.volume > 0.5f)
+            a.volume = 0.5f;
     }
 }
