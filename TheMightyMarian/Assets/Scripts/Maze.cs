@@ -62,7 +62,7 @@ public class Maze {
                 }*/
                 if (i != roomsX - 1)
                 {
-                    int daleko = UnityEngine.Random.Range(3, 666);
+                    int daleko = UnityEngine.Random.Range(3, 660);
                     maze[VertexNum(i, j), VertexNum(i + 1, j)] = daleko;
                     maze[VertexNum(i + 1, j), VertexNum(i, j)] = daleko;
                 }
@@ -75,7 +75,7 @@ public class Maze {
                 }*/
                 if (j != roomsY - 1)
                 {
-                    int daleko = UnityEngine.Random.Range(3, 666);
+                    int daleko = UnityEngine.Random.Range(3, 660);
                     maze[VertexNum(i, j), VertexNum(i, j + 1)] = daleko;
                     maze[VertexNum(i, j + 1), VertexNum(i, j)] = daleko;
                 }
