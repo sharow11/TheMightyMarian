@@ -56,6 +56,7 @@ public class Room {
     {
         FillWithVoid();
         FillRandomly();
+        //FillWithFloors();
         CalculateDoors();
         PlaceDoors();
     }
@@ -67,6 +68,17 @@ public class Room {
             for (int j = 0; j < sizeY; j++)
             {
                 room[i, j] = TileTypes.VOID;
+            }
+        }
+    }
+
+    private void FillWithFloors()
+    {
+        for (int i = 1; i < sizeX-1; i++)
+        {
+            for (int j = 1; j < sizeY-1; j++)
+            {
+                room[i, j] = TileTypes.FLOOR;
             }
         }
     }

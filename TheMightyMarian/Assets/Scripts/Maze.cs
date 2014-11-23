@@ -133,11 +133,13 @@ public class Maze {
         for (int i = 0; i < daddy.Length; i++)
         {
             int passageType = UnityEngine.Random.Range(1, 5);
+            //int passageType = 4;
             if (daddy[i] >= 0 && daddy[i] < daddy.Length)
             {
                 mazeComplete[i, daddy[i]] = passageType;
                 mazeComplete[daddy[i], i] = passageType;
             }
+            Debug.Log("Edge "+i+" to "+daddy[i]+ " = "+passageType);
         }
     }
 
