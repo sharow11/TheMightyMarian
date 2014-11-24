@@ -7,6 +7,7 @@ public class OnMarianCamera : MonoBehaviour {
     public float camYoffsetMultiplayer = 1.2f;
     public float camCurrPosImportanceMult = 5;
     public RaycastHit hit;
+    public Vector3 hitAbove;
     GameObject marian = null;
 
     Texture2D cursorTexture;
@@ -37,8 +38,11 @@ public class OnMarianCamera : MonoBehaviour {
                 return;
             }
             ray = transform.camera.ScreenPointToRay(Input.mousePosition);
+            float multiplayer = 2f / ray.direction.z;
+            Vector3 offset = ray.direction * multiplayer;
             LayerMask mask = LayerMask.GetMask("Terrain");
             Physics.Raycast(ray, out hit, Mathf.Infinity, mask.value);
+            hitAbove = hit.point - offset;
             Debug.DrawLine(marian.transform.position, hit.point, Color.magenta);
             float centerX = marian.transform.position.x + (hit.point.x - marian.transform.position.x) / camCurrPosImportanceMult;
             float centerY = marian.transform.position.y + (hit.point.y - marian.transform.position.y) / camCurrPosImportanceMult;
