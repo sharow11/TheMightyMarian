@@ -169,7 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c4b325bbc6347c34787911786a89a828, type: 2}
+  arrow: {fileID: 100000, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}

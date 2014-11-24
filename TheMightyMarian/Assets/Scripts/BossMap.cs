@@ -15,12 +15,9 @@ public class BossMap : MonoBehaviour {
     //public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;
-    //public MapCell cellPrefab;
-    //public WaterMapCell waterCellPrefab;
-    //public GrassMapCell grassCellPrefab;
-    public VoidMapCell voidCellPrefab;
     //public VoidMapCellCollide voidCellPrefabCollide;
     public FloorMapCell floorCellPrefab;
+    public VoidMapStripe voidStripePrefab;
     public Wall wallPrefab;
     private int lvlNo = 0;
     bool bossLvl = false;
@@ -156,25 +153,50 @@ public class BossMap : MonoBehaviour {
     public void DrawMap()
     {
         DestroyCells();
+        int width = 0;
+        IntVector2 voidStart = new IntVector2(0, 0); ;
+        IntVector2 voidEnd = new IntVector2(0, 0);
         for (int x = 0; x < rsize2X; x++)
         {
             for (int y = 0; y < rsize2Y; y++)
             {
-                CreateCell(new IntVector2(x, y), map[x, y]);
-                if (map[x, y] == TileTypes.FLOOR)
+                //CreateCell(new IntVector2(x, y), map[x, y]);
+
+                if (map[x, y] == TileTypes.VOID)
                 {
-                    if (isFineCoords(x, y - 1) && map[x,y-1] == TileTypes.VOID)
+                    if (width == 0)
+                    {
+                        voidStart = new IntVector2(x, y);
+                    }
+                    voidEnd = new IntVector2(x, y);
+                    width++;
+                    if (y == rsize2Y - 1)
+                    {
+                        CreateStripe(voidStart, voidEnd, width);
+                        width = 0;
+                    }
+
+                }
+                else if (map[x, y] == TileTypes.FLOOR)
+                {
+                    if (isFineCoords(x, y - 1) && map[x, y - 1] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 0); } //a
-                    if (isFineCoords(x, y + 1) && map[x,y+1] == TileTypes.VOID)
+                    if (isFineCoords(x, y + 1) && map[x, y + 1] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 2); } //c
-                    if (isFineCoords(x + 1, y) && map[x+1,y] == TileTypes.VOID)
+                    if (isFineCoords(x + 1, y) && map[x + 1, y] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 3); } //d
-                    if (isFineCoords(x - 1, y) && map[x-1,y] == TileTypes.VOID)
+                    if (isFineCoords(x - 1, y) && map[x - 1, y] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 1); } //b  
+                    if (width != 0)
+                    {
+                        CreateStripe(voidStart, voidEnd, width);
+                        width = 0;
+                    }
                 }
             }
         }
     }
+
 
     private void FillWithVoid()
     {
@@ -192,6 +214,17 @@ public class BossMap : MonoBehaviour {
                 map[i, j] = TileTypes.VOID;
             }
         }
+    }
+
+    private void CreateStripe(IntVector2 left, IntVector2 right, int width)
+    {
+        VoidMapStripe newStripe = Instantiate(voidStripePrefab) as VoidMapStripe;
+        newStripe.Width = width;
+        newStripe.name = "Void stripe from " + left.x + " " + left.y + " to " + right.x + " " + right.y;
+        newStripe.setCoordinates(left, right);
+        newStripe.transform.parent = transform;
+        newStripe.transform.localPosition =
+                new Vector3(newStripe.X - sizeX * 0.5f + 0.5f, newStripe.Y - sizeY * 0.5f + 0.5f, 0f);
     }
 
     private void CelluralStep2()
@@ -290,21 +323,6 @@ public class BossMap : MonoBehaviour {
         foreach (IntVector2 c in flors)
         { map[c.x, c.y] = TileTypes.FLOOR; }
         flors.Clear();
-    }
-
-    private void CreateCell(IntVector2 coordinates, int type)
-    {
-        if (type == TileTypes.VOID)
-        {
-
-            VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
-            newCell.coordinates = coordinates;
-            newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-        }
     }
 
     private void CreateWall(IntVector2 coordinates, int rotation)
