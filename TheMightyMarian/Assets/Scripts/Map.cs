@@ -20,7 +20,8 @@ public class Map : MonoBehaviour {
     public MapCell cellPrefab;
     public WaterMapCell waterCellPrefab;
     public GrassMapCell grassCellPrefab;
-    public VoidMapCell voidCellPrefab;
+    //public VoidMapCell voidCellPrefab;
+    public VoidMapStripe voidStripePrefab;
     //public VoidMapCellCollide voidCellPrefabCollide;
     public FloorMapCell floorCellPrefab;
     public Wall wallPrefab;
@@ -393,21 +394,45 @@ public class Map : MonoBehaviour {
     public void DrawMap()
     {
         DestroyCells();
+        int width = 0;
+        IntVector2 voidStart = new IntVector2(0, 0); ;
+        IntVector2 voidEnd = new IntVector2(0,0);
         for (int x = 0; x < rsize2X; x++)
         {
             for (int y = 0; y < rsize2Y; y++)
             {
-                CreateCell(new IntVector2(x, y), map[x, y]);
-                if (map[x, y] == TileTypes.FLOOR)
+                //CreateCell(new IntVector2(x, y), map[x, y]);
+                
+                if (map[x, y] == TileTypes.VOID)
                 {
-                    if (isFineCoords(x, y - 1) && map[x,y-1] == TileTypes.VOID)
+                    if (width == 0)
+                    {
+                        voidStart = new IntVector2(x, y);
+                    }
+                    voidEnd = new IntVector2(x, y);
+                    width++;
+                    if (y == rsize2Y - 1)
+                    {
+                        CreateStripe(voidStart, voidEnd, width);
+                        width = 0;
+                    }
+
+                }
+                else if (map[x, y] == TileTypes.FLOOR)
+                {
+                    if (isFineCoords(x, y - 1) && map[x, y - 1] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 0); } //a
-                    if (isFineCoords(x, y + 1) && map[x,y+1] == TileTypes.VOID)
+                    if (isFineCoords(x, y + 1) && map[x, y + 1] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 2); } //c
-                    if (isFineCoords(x + 1, y) && map[x+1,y] == TileTypes.VOID)
+                    if (isFineCoords(x + 1, y) && map[x + 1, y] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 3); } //d
-                    if (isFineCoords(x - 1, y) && map[x-1,y] == TileTypes.VOID)
+                    if (isFineCoords(x - 1, y) && map[x - 1, y] == TileTypes.VOID)
                     { CreateWall(new IntVector2(x, y), 1); } //b  
+                    if (width != 0)
+                    {
+                        CreateStripe(voidStart, voidEnd, width);
+                        width = 0;
+                    }
                 }
             }
         }
@@ -560,27 +585,7 @@ public class Map : MonoBehaviour {
 
     private void CreateCell(IntVector2 coordinates, int type)
     {
-        if (type == TileTypes.WATER)
-        {
-            WaterMapCell newCell = Instantiate(waterCellPrefab) as WaterMapCell;
-            newCell.coordinates = coordinates;
-            newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type water";
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-        }
-        else if (type == TileTypes.GRASS)
-        {
-            GrassMapCell newCell = Instantiate(grassCellPrefab) as GrassMapCell;
-            newCell.coordinates = coordinates;
-            newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type grass";
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-        }
-        else if (type == TileTypes.FLOOR)
+        if (type == TileTypes.FLOOR)
         {
             /*FloorMapCell newCell = Instantiate(floorCellPrefab) as FloorMapCell;
             newCell.coordinates = coordinates;
@@ -592,34 +597,13 @@ public class Map : MonoBehaviour {
         }
         else if (type == TileTypes.VOID)
         {
-            /*
-            if (CntCellNeighboursWalls(coordinates.x, coordinates.y) < 8)
-            {
-                VoidMapCellCollide newCell = Instantiate(voidCellPrefabCollide) as VoidMapCellCollide;
-                newCell.coordinates = coordinates;
-                newCell.type = type;
-                newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void collider";
-                newCell.transform.parent = transform;
-                newCell.transform.localPosition =
-                    new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-            }
-            else
-            {
-                VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
-                newCell.coordinates = coordinates;
-                newCell.type = type;
-                newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
-                newCell.transform.parent = transform;
-                newCell.transform.localPosition =
-                    new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-            }*/
-            VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
-            newCell.coordinates = coordinates;
-            newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
+            //VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
+            //newCell.coordinates = coordinates;
+            //newCell.type = type;
+            //newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
+            //newCell.transform.parent = transform;
+            //newCell.transform.localPosition =
+            //    new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         }
         else
         {
@@ -633,7 +617,17 @@ public class Map : MonoBehaviour {
             Debug.Log("error cell created, type: " + type);
         }
         //map[coordinates.x, coordinates.z] = newCell;
+    }
 
+    private void CreateStripe(IntVector2 left, IntVector2 right, int width)
+    {
+        VoidMapStripe newStripe = Instantiate(voidStripePrefab) as VoidMapStripe;       
+        newStripe.Width = width;
+        newStripe.name = "Void stripe from " + left.x + " " + left.y + " to " + right.x + " " + right.y;
+        newStripe.setCoordinates(left, right);
+        newStripe.transform.parent = transform;
+        newStripe.transform.localPosition =
+                new Vector3(newStripe.X - sizeX * 0.5f + 0.5f, newStripe.Y - sizeY * 0.5f + 0.5f, 0f);
     }
 
     private void CreateWall(IntVector2 coordinates, int rotation)

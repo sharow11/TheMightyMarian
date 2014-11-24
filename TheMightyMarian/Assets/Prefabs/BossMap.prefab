@@ -43,8 +43,8 @@ MonoBehaviour:
   startingFloorsPercent: 75
   sizeX: 32
   sizeY: 32
-  voidCellPrefab: {fileID: 11400000, guid: 6746809baf2b0ac4c9998ea9f98d80f2, type: 2}
   floorCellPrefab: {fileID: 11400000, guid: 03ab6e39edab5144a88941711f3af8f4, type: 2}
+  voidStripePrefab: {fileID: 11400000, guid: 191799054603f3b4faf4e1740f51ded5, type: 2}
   wallPrefab: {fileID: 11400000, guid: 2987ea20e18b62141b764027fe45e298, type: 2}
 --- !u!1001 &100100000
 Prefab:

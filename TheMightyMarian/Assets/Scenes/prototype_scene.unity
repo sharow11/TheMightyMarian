@@ -119,7 +119,7 @@ MonoBehaviour:
   ladderPrefab: {fileID: 11400000, guid: 305596845cfd7c748bc55365c66a5fb3, type: 2}
   logging: 1
   czarnosc: {fileID: 2800000, guid: 48772ae84178f1c44a003fc6d84d112d, type: 3}
-  EnemiesPerRoom: 4
+  EnemiesPerRoom: 0
   isLoading: 1
   bossLvl: 0
 --- !u!4 &12340920
