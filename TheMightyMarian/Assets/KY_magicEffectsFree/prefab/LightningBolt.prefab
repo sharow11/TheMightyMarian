@@ -159,7 +159,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 10.6411381
+      scalar: 14.6156597
       maxCurve:
         serializedVersion: 2
         m_Curve:

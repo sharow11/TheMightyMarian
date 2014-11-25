@@ -164,6 +164,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelUp: {fileID: 100006, guid: ee1f56d82bc70e44f99e0a760dd04ae5, type: 2}
+--- !u!1 &89382072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+  m_PrefabInternal: {fileID: 804633668}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 89382074}
+  - 114: {fileID: 89382073}
+  m_Layer: 0
+  m_Name: SuddenDeath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &89382073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ba56871b916cad84fbec77296bdc1336,
+    type: 2}
+  m_PrefabInternal: {fileID: 804633668}
+  m_GameObject: {fileID: 89382072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d54f9c4d40bbe54786190ea03b5eb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sd_prefab: {fileID: 100000, guid: 01c200ddd04ca5743b65e10572ea48a7, type: 2}
+  timeToStart: 60
+--- !u!4 &89382074
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+  m_PrefabInternal: {fileID: 804633668}
+  m_GameObject: {fileID: 89382072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1001 &224772879
 Prefab:
   m_ObjectHideFlags: 0
@@ -323,6 +365,54 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1001 &804633668
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_RootMapOrder
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+  m_RootGameObject: {fileID: 89382072}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &850948571
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +475,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &923726373
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +755,7 @@ Transform:
   - {fileID: 970882569}
   - {fileID: 1624221010}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1090906671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hypometer: 0
+  muteMusic: 0
 --- !u!1 &1106522322
 GameObject:
   m_ObjectHideFlags: 0
