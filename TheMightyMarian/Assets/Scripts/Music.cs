@@ -5,6 +5,7 @@ public class Music : MonoBehaviour {
     AudioSource calm1, calm2, tense1, tense2, tense3, action1, action2;
     public static float hype = 0;
     public float hypometer;
+    public bool muteMusic = false;
 	// Use this for initialization
     void Start()
     {
@@ -27,6 +28,10 @@ public class Music : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("m"))
+        {
+            muteMusic = !muteMusic;
+        }
         hypometer = hype;
         if (hype > 350)
             hype = 350;
@@ -35,7 +40,11 @@ public class Music : MonoBehaviour {
             hype *= (1f - Time.deltaTime / 7);
             hype -= Time.deltaTime * 10;
         }
-        if (hype < 10)
+        if (muteMusic)
+        {
+            muteAll();
+        }
+        else if (hype < 10)
         {
             mute(calm1);
             turnOn(calm2);

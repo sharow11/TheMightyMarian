@@ -20,7 +20,7 @@ public class EnemyProjectile : MonoBehaviour {
     {
         if (collision.collider.gameObject.name == "Marian")
         {
-            collision.collider.gameObject.GetComponent<Attack>().takeDmg(5);
+            collision.collider.gameObject.GetComponent<Attack>().takeDmg((int)dmg);
         }
         Blast();
         Destroy(this.gameObject);

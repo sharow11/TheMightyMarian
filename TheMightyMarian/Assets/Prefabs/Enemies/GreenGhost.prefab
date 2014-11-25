@@ -216,9 +216,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 0}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -227,15 +230,15 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 1.21949875, y: 4.3608923, z: -1.5}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 45.0599976
+  patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
 --- !u!114 &11400004
 MonoBehaviour:

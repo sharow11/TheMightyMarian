@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Marian : MonoBehaviour {
 
+    public GameObject LevelUp;
     public static int HP = 1000;
     public static bool IsMarianDead = false;
     public static int Mana = 1000000;
@@ -14,14 +15,14 @@ public class Marian : MonoBehaviour {
     public static int Inteligence = 0;
     public static int SkillPoints = 0;
 
-    public static int currHp = HP;
+    public static float currHp = HP;
     public static int currMana = Mana;
 
     private static float manaRegen = 1.0f;
     private static float maxManaRegen = 1.0f;
 
     public static Attack.Spell currSpell = Attack.Spell.BlueBolt;
-
+    GameObject marianObj;
     public enum AttackType
     {
         Melee,
@@ -38,7 +39,7 @@ public class Marian : MonoBehaviour {
             HP = 1000;
             currHp = HP;
             IsMarianDead = false;
-            Mana = 100000;
+            Mana = 10000;
             Exp = 0;
             Level = 1;
             GameManager.currLevel = 1;
@@ -53,15 +54,18 @@ public class Marian : MonoBehaviour {
             IsMarianDead = true;
             Application.LoadLevel(2);
         }
-        if(Exp == 100 * Level)
+        if(Exp >= 100 * Level)
         {
-            Exp = 0;
+            marianObj = GameObject.Find("Marian");
+            Destroy((GameObject)Instantiate(LevelUp, new Vector3(marianObj.transform.position.x, marianObj.transform.position.y + 0.5f, -1.5f), new Quaternion()), 10f);
+            Exp -= 100 * Level;
             Level++;
             HP += 20;
             currHp += 20;
             Mana += 20;
             currMana += 20;
             SkillPoints += 5;
+
         }
         if(currMana < Mana)
         {

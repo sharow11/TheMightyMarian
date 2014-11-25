@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 0}
+  staff: {fileID: 0}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -148,9 +150,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 0}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -159,16 +164,16 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 1
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 0, y: 0, z: 0}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 0
-  gotPatrolTarget: 0
+  patrolTargetAssignTime: 34.3199997
+  gotPatrolTarget: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

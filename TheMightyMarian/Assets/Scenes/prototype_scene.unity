@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da93b51e698b034c80406c611451590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelUp: {fileID: 100006, guid: ee1f56d82bc70e44f99e0a760dd04ae5, type: 2}
 --- !u!1001 &224772879
 Prefab:
   m_ObjectHideFlags: 0
@@ -384,7 +385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &923726373
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +560,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  m_RootOrder: 2
 --- !u!1 &1069971471
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +630,7 @@ Transform:
   m_Children:
   - {fileID: 1629842073}
   m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1090906669
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +679,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hypometer: 0
-  m_RootOrder: 4
 --- !u!1 &1106522322
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +714,7 @@ MonoBehaviour:
   camSpeed: 3
   camYoffsetMultiplayer: 1.20000005
   camCurrPosImportanceMult: 5
+  hitAbove: {x: 0, y: 0, z: 0}
 --- !u!81 &1106522324
 AudioListener:
   m_ObjectHideFlags: 0
@@ -778,7 +779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1001 &1141685472
 Prefab:
   m_ObjectHideFlags: 0
@@ -914,7 +915,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  m_RootOrder: 3
 --- !u!1 &1381835509
 GameObject:
   m_ObjectHideFlags: 0

@@ -121,7 +121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &6649213
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -185,9 +187,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -241,12 +246,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 6649213}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 9.3535099, y: 18.4804764, z: -1.50000203}
+  m_LocalPosition: {x: 8.51827717, y: 49.5555649, z: 11.7741518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1296114948}
-  m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 20
 --- !u!1 &29182611
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,12 +371,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 30034507}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 32.2142448, y: -1.69282627, z: -1.5000006}
+  m_LocalPosition: {x: 31.3790131, y: 29.3822632, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 579655166}
-  m_Father: {fileID: 0}
-  m_RootOrder: 54
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 9
 --- !u!114 &30034509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -415,9 +422,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -579,12 +589,12 @@ Transform:
   m_PrefabInternal: {fileID: 1154938445}
   m_GameObject: {fileID: 98052241}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: -31.4563923, y: -5.00422478, z: -1.5}
+  m_LocalPosition: {x: -32.291626, y: 26.0708656, z: 11.7741537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 267110957}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 23
 --- !u!136 &98052243
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -712,7 +722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -720,9 +732,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -731,15 +746,15 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 1.48726654, y: 5.3819375, z: -1.5}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 45.3999977
+  patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
 --- !u!1 &113083868
 GameObject:
@@ -768,12 +783,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 113083868}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 1.47413635, y: 10.5037622, z: -1.50000107}
+  m_LocalPosition: {x: .638903797, y: 41.5788536, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 992971157}
-  m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 17
 --- !u!114 &113083870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -817,9 +834,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -893,12 +913,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 126510048}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 21.259306, y: 13.9413681, z: -1.50000155}
+  m_LocalPosition: {x: 20.4240742, y: 45.0164566, z: 11.7741518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2111067518}
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 19
 --- !u!114 &126510050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,6 +955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -942,9 +964,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -1139,7 +1164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1147,9 +1174,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -1158,15 +1188,15 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 1.21949875, y: 4.3608923, z: -1.5}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 45.0599976
+  patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
 --- !u!4 &155979882
 Transform:
@@ -1175,12 +1205,12 @@ Transform:
   m_PrefabInternal: {fileID: 1014153612}
   m_GameObject: {fileID: 155979875}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: -4.14112473, y: -23.7290611, z: -1.5}
+  m_LocalPosition: {x: -4.97635746, y: 7.34602928, z: 11.7741537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 29182612}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 27
 --- !u!1 &165074659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1279,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 62
+  m_RootOrder: 21
 --- !u!1 &177446160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1313,9 +1345,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -1369,12 +1404,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 177446160}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 35.4324112, y: 6.16262341, z: -1.5000006}
+  m_LocalPosition: {x: 34.5971794, y: 37.2377129, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1126917553}
-  m_Father: {fileID: 0}
-  m_RootOrder: 48
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 3
 --- !u!1 &197486335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,7 +1478,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 16
 --- !u!1 &199219571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,12 +1598,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 212944155}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 28.5466824, y: -1.69282627, z: -1.5000006}
+  m_LocalPosition: {x: 27.7114506, y: 29.3822632, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 361546582}
-  m_Father: {fileID: 0}
-  m_RootOrder: 55
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 10
 --- !u!114 &212944157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,6 +1640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1612,9 +1649,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -1723,7 +1763,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 3
 --- !u!1 &231950579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,12 +1953,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 291595076}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 35.4324112, y: -1.69282627, z: -1.5000006}
+  m_LocalPosition: {x: 34.5971794, y: 29.3822632, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1832812979}
-  m_Father: {fileID: 0}
-  m_RootOrder: 53
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 8
 --- !u!114 &291595078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1955,6 +1995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -1962,9 +2004,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -2050,7 +2095,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 18
 --- !u!114 &294086795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2069,146 +2114,6 @@ MonoBehaviour:
   Spell5: {fileID: 2800000, guid: 655148ceb2d67994fa72c4145b01181e, type: 3}
   Spell6: {fileID: 0}
   showSkills: 0
---- !u!1 &302385761
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 302385765}
-  - 33: {fileID: 302385764}
-  - 64: {fileID: 302385763}
-  - 23: {fileID: 302385762}
-  m_Layer: 12
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &302385762
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 302385761}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 2f79f8bb479deb34883dc31feb6f2db8, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &302385763
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 302385761}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &302385764
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 302385761}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &302385765
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 302385761}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 29, y: 16, z: -1.5}
-  m_LocalScale: {x: 1, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 38
---- !u!1 &327562285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 327562289}
-  - 33: {fileID: 327562288}
-  - 64: {fileID: 327562287}
-  - 23: {fileID: 327562286}
-  m_Layer: 0
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &327562286
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 327562285}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: cdfcb7253a06f3a49b490aeeaf08152a, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &327562287
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 327562285}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &327562288
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 327562285}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &327562289
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 327562285}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 5.8771472, y: 15.7726812, z: -1.49718547}
-  m_LocalScale: {x: 3, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 44
 --- !u!1001 &330497591
 Prefab:
   m_ObjectHideFlags: 0
@@ -2355,12 +2260,12 @@ Transform:
   m_PrefabInternal: {fileID: 1596329152}
   m_GameObject: {fileID: 364297685}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 37.4646988, y: -8.13953972, z: -2.00000167}
+  m_LocalPosition: {x: 36.629467, y: 22.9355507, z: 11.2741518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 199219576}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 28
 --- !u!82 &364297687
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2474,7 +2379,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -2482,9 +2389,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -2493,15 +2403,15 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 1.48726654, y: 5.3819375, z: -1.5}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 45.3999977
+  patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
 --- !u!136 &364297692
 CapsuleCollider:
@@ -2585,7 +2495,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 64
+  m_RootOrder: 22
 --- !u!1 &387150202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,7 +2667,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 61
+  m_RootOrder: 20
 --- !u!1 &405874629
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,95 +2730,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 66
---- !u!1 &408027387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 408027391}
-  - 33: {fileID: 408027390}
-  - 64: {fileID: 408027389}
-  - 23: {fileID: 408027388}
-  m_Layer: 12
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &408027388
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408027387}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 9990fe4fc48068e4e9893ca441cd24ca, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &408027389
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408027387}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &408027390
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408027387}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &408027391
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408027387}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 31, y: 16, z: -1.5}
-  m_LocalScale: {x: 1, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 24
 --- !u!1001 &434002707
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400002, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.768589
+      value: -13.6038218
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -21.9257107
+      value: 9.14937973
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 11.7741537
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2932,83 +2772,25 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 29
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+    - target: {fileID: 11400004, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400004, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
   m_RootGameObject: {fileID: 465405897}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &454530971
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 454530975}
-  - 33: {fileID: 454530974}
-  - 64: {fileID: 454530973}
-  - 23: {fileID: 454530972}
-  m_Layer: 12
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &454530972
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 454530971}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: cdfcb7253a06f3a49b490aeeaf08152a, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &454530973
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 454530971}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &454530974
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 454530971}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &454530975
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 454530971}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 24.0843658, y: 15.7726812, z: -1.49718547}
-  m_LocalScale: {x: 3, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 42
 --- !u!1 &457060164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,6 +2847,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3072,9 +2856,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -3128,12 +2915,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 457060164}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 28.5466824, y: 1.7630682, z: -1.5000006}
+  m_LocalPosition: {x: 27.7114506, y: 32.8381577, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1811968669}
-  m_Father: {fileID: 0}
-  m_RootOrder: 51
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 6
 --- !u!1 &465405897
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,12 +2948,12 @@ Transform:
   m_PrefabInternal: {fileID: 434002707}
   m_GameObject: {fileID: 465405897}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: -12.768589, y: -21.9257107, z: -1.5}
+  m_LocalPosition: {x: -13.6038218, y: 9.14937973, z: 11.7741537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 387150207}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 29
 --- !u!136 &465405899
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3235,7 +3022,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3243,9 +3032,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -3254,16 +3046,16 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 0, y: 0, z: 0}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 0
-  gotPatrolTarget: 0
+  patrolTargetAssignTime: 34.3199997
+  gotPatrolTarget: 1
 --- !u!1 &558310542
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,12 +3083,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 558310542}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 32.2142448, y: 1.7630682, z: -1.5000006}
+  m_LocalPosition: {x: 31.3790131, y: 32.8381577, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1879501737}
-  m_Father: {fileID: 0}
-  m_RootOrder: 50
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 5
 --- !u!114 &558310544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3333,6 +3125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3340,9 +3134,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -3389,6 +3186,48 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &560181833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+  m_PrefabInternal: {fileID: 830103818}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 560181834}
+  - 114: {fileID: 560181835}
+  m_Layer: 0
+  m_Name: Sudden Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &560181834
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+  m_PrefabInternal: {fileID: 830103818}
+  m_GameObject: {fileID: 560181833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+--- !u!114 &560181835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ba56871b916cad84fbec77296bdc1336,
+    type: 2}
+  m_PrefabInternal: {fileID: 830103818}
+  m_GameObject: {fileID: 560181833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d54f9c4d40bbe54786190ea03b5eb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sd_prefab: {fileID: 100000, guid: 01c200ddd04ca5743b65e10572ea48a7, type: 2}
+  timeToStart: 5
 --- !u!1 &574395124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3445,6 +3284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3452,9 +3293,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -3508,12 +3352,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 574395124}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 32.2142448, y: -5.08422947, z: -1.5000006}
+  m_LocalPosition: {x: 31.3790131, y: 25.99086, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1136055501}
-  m_Father: {fileID: 0}
-  m_RootOrder: 58
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 13
 --- !u!1 &579655162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3584,75 +3428,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 30034508}
   m_RootOrder: 0
---- !u!1 &584752272
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 584752276}
-  - 33: {fileID: 584752275}
-  - 65: {fileID: 584752274}
-  - 23: {fileID: 584752273}
-  m_Layer: 12
-  m_Name: Wall
-  m_TagString: block
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &584752273
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 584752272}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: cdfcb7253a06f3a49b490aeeaf08152a, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &584752274
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 584752272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &584752275
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 584752272}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &584752276
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 584752272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.1393719, y: 17.9014397, z: -.995509148}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 36
 --- !u!1 &624887032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,7 +3576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3809,9 +3586,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -3820,15 +3600,15 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 1.48726654, y: 5.3819375, z: -1.5}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 45.3999977
+  patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
 --- !u!4 &624887039
 Transform:
@@ -3837,12 +3617,12 @@ Transform:
   m_PrefabInternal: {fileID: 1727641147}
   m_GameObject: {fileID: 624887032}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: -10.2802086, y: -22.6002617, z: -1.5}
+  m_LocalPosition: {x: -11.1154413, y: 8.47482872, z: 11.7741537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1182290747}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 25
 --- !u!1 &630870005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3911,7 +3691,7 @@ Transform:
   m_LocalScale: {x: 1, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 5
 --- !u!1 &667962242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,6 +3748,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -3975,9 +3757,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -4031,12 +3816,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 667962242}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 24.6904907, y: -5.08422947, z: -1.5000006}
+  m_LocalPosition: {x: 23.8552589, y: 25.99086, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1494637394}
-  m_Father: {fileID: 0}
-  m_RootOrder: 60
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 15
 --- !u!1 &692980925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,6 +3878,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -4100,9 +3887,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -4156,12 +3946,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 692980925}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 28.5466824, y: -5.08422947, z: -1.5000006}
+  m_LocalPosition: {x: 27.7114506, y: 25.99086, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1639881792}
-  m_Father: {fileID: 0}
-  m_RootOrder: 59
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 14
 --- !u!1 &697866225
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,76 +4022,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1788832667}
   m_RootOrder: 0
---- !u!1 &703622673
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 703622677}
-  - 33: {fileID: 703622676}
-  - 64: {fileID: 703622675}
-  - 23: {fileID: 703622674}
-  m_Layer: 12
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &703622674
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 703622673}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 8e12f88f83b7e8a45ab72225f78bf2aa, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &703622675
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 703622673}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &703622676
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 703622673}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &703622677
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 703622673}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 28, y: 16, z: -1.5}
-  m_LocalScale: {x: 1, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 37
 --- !u!1 &749417175
 GameObject:
   m_ObjectHideFlags: 0
@@ -4515,7 +4235,59 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 12
+--- !u!1001 &830103818
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_RootMapOrder
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: m_Name
+      value: Sudden Death
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+  m_RootGameObject: {fileID: 560181833}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &833957454
 GameObject:
   m_ObjectHideFlags: 0
@@ -4777,7 +4549,7 @@ Transform:
   - {fileID: 749417177}
   - {fileID: 49878065}
   m_Father: {fileID: 0}
-  m_RootOrder: 63
+  m_RootOrder: 26
 --- !u!114 &898405841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4791,75 +4563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hypometer: 0
---- !u!1 &907155209
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 907155213}
-  - 33: {fileID: 907155212}
-  - 65: {fileID: 907155211}
-  - 23: {fileID: 907155210}
-  m_Layer: 12
-  m_Name: Wall
-  m_TagString: block
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &907155210
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907155209}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: cdfcb7253a06f3a49b490aeeaf08152a, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &907155211
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907155209}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &907155212
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907155209}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &907155213
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907155209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.1634979, y: 17.9014397, z: -.995509148}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 34
+  muteMusic: 0
 --- !u!1 &945639607
 GameObject:
   m_ObjectHideFlags: 0
@@ -4916,6 +4620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -4923,9 +4629,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -4979,12 +4688,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945639607}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 24.6904907, y: -1.69282627, z: -1.5000006}
+  m_LocalPosition: {x: 23.8552589, y: 29.3822632, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1421183610}
-  m_Father: {fileID: 0}
-  m_RootOrder: 56
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 11
 --- !u!1 &980431011
 GameObject:
   m_ObjectHideFlags: 0
@@ -5195,24 +4904,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1949298871}
   m_RootOrder: 0
+--- !u!1 &1003940950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1003940951}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1003940951
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003940950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .835232556, y: -31.0750904, z: -13.2741537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1561205271}
+  - {fileID: 1788832667}
+  - {fileID: 1717283014}
+  - {fileID: 177446166}
+  - {fileID: 1949298871}
+  - {fileID: 558310543}
+  - {fileID: 457060170}
+  - {fileID: 1851273559}
+  - {fileID: 291595077}
+  - {fileID: 30034508}
+  - {fileID: 212944156}
+  - {fileID: 945639613}
+  - {fileID: 1283327365}
+  - {fileID: 574395130}
+  - {fileID: 692980931}
+  - {fileID: 667962248}
+  - {fileID: 1263924682}
+  - {fileID: 113083869}
+  - {fileID: 1561888012}
+  - {fileID: 126510049}
+  - {fileID: 6649219}
+  - {fileID: 1913907155}
+  - {fileID: 1978604366}
+  - {fileID: 98052242}
+  - {fileID: 1686508399}
+  - {fileID: 624887039}
+  - {fileID: 1332034775}
+  - {fileID: 155979882}
+  - {fileID: 364297686}
+  - {fileID: 465405898}
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
 --- !u!1001 &1014153612
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.14112473
+      value: -4.97635746
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -23.7290611
+      value: 7.34602928
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 11.7741537
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5236,8 +5002,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
   m_RootGameObject: {fileID: 155979875}
@@ -5388,19 +5166,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 44.4025269
+      value: 43.5672951
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.16825485
+      value: 22.9068356
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.00000167
+      value: 11.2741518
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5424,8 +5202,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
   m_RootGameObject: {fileID: 1978604360}
@@ -5569,7 +5359,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 10
 --- !u!1 &1138374458
 GameObject:
   m_ObjectHideFlags: 0
@@ -5678,19 +5468,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400000, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -31.4563923
+      value: -32.291626
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.00422478
+      value: 26.0708656
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 11.7741537
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5714,12 +5504,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
       propertyPath: m_LocalPosition.z
       value: .150000006
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+    - target: {fileID: 11400002, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400002, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
   m_RootGameObject: {fileID: 98052241}
@@ -5885,7 +5687,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 13
 --- !u!1 &1235652319
 GameObject:
   m_ObjectHideFlags: 0
@@ -5954,7 +5756,7 @@ Transform:
   m_LocalScale: {x: 1, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 4
 --- !u!1 &1262829901
 GameObject:
   m_ObjectHideFlags: 0
@@ -6046,12 +5848,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263924681}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 15.0297298, y: 8.87843323, z: -1.50000322}
+  m_LocalPosition: {x: 14.1944971, y: 39.9535217, z: 11.7741508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1020544205}
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 16
 --- !u!114 &1263924683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6088,6 +5890,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -6095,9 +5899,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -6231,12 +6038,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1283327364}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 35.4324112, y: -5.08422947, z: -1.5000006}
+  m_LocalPosition: {x: 34.5971794, y: 25.99086, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 833957458}
-  m_Father: {fileID: 0}
-  m_RootOrder: 57
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 12
 --- !u!114 &1283327366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6273,6 +6080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -6280,9 +6089,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -6397,7 +6209,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 15
 --- !u!1 &1289517457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6543,19 +6355,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.6503849
+      value: -8.48561764
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -22.7550526
+      value: 8.32003784
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 11.7741537
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6579,8 +6391,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
+      propertyPath: staff
+      value: 
+      objectReference: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
+    - target: {fileID: 11400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
   m_RootGameObject: {fileID: 1332034769}
@@ -6645,6 +6469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -6652,9 +6478,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -6663,16 +6492,16 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 1
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 0, y: 0, z: 0}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 0
-  gotPatrolTarget: 0
+  patrolTargetAssignTime: 34.3199997
+  gotPatrolTarget: 1
 --- !u!54 &1332034773
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6710,12 +6539,12 @@ Transform:
   m_PrefabInternal: {fileID: 1301694926}
   m_GameObject: {fileID: 1332034769}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -7.6503849, y: -22.7550526, z: -1.5}
+  m_LocalPosition: {x: -8.48561764, y: 8.32003784, z: 11.7741537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1984501411}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 26
 --- !u!1 &1332820954
 GameObject:
   m_ObjectHideFlags: 0
@@ -6903,7 +6732,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 6
 --- !u!1 &1405989878
 GameObject:
   m_ObjectHideFlags: 0
@@ -6996,7 +6825,7 @@ Transform:
   - {fileID: 788680679}
   - {fileID: 1262829902}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
 --- !u!114 &1405989881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7199,7 +7028,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 14
 --- !u!1 &1421183609
 GameObject:
   m_ObjectHideFlags: 0
@@ -7408,7 +7237,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 11
 --- !u!1 &1477072118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7628,7 +7457,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 19
 --- !u!1 &1561205265
 GameObject:
   m_ObjectHideFlags: 0
@@ -7685,6 +7514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -7692,9 +7523,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -7748,12 +7582,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1561205265}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 24.6904907, y: 6.16262341, z: -1.5000006}
+  m_LocalPosition: {x: 23.8552589, y: 37.2377129, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1289517458}
-  m_Father: {fileID: 0}
-  m_RootOrder: 45
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 0
 --- !u!1 &1561888006
 GameObject:
   m_ObjectHideFlags: 0
@@ -7810,6 +7644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -7817,9 +7653,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -7873,30 +7712,30 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1561888006}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 2.27232933, y: 18.2825069, z: -1.50000203}
+  m_LocalPosition: {x: 1.43709683, y: 49.3575974, z: 11.7741518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 980431012}
-  m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 18
 --- !u!1001 &1596329152
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 37.4646988
+      value: 36.629467
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.13953972
+      value: 22.9355507
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.00000167
+      value: 11.2741518
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7920,8 +7759,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 28
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
   m_RootGameObject: {fileID: 364297685}
@@ -7932,19 +7783,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.4286871
+      value: -8.26391983
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -26.0439091
+      value: 5.03118134
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 11.7741537
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7965,6 +7816,42 @@ Prefab:
     - target: {fileID: 400000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
       propertyPath: m_RootMapOrder
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: isMelee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: atkRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
@@ -8281,7 +8168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -8289,26 +8178,29 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  speed: 5
-  health: 100
-  viewDistance: 25
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+  speed: 10
+  maxHealth: 100
+  viewDistance: 20
+  damage: 10
+  isMelee: 1
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
   predictionImportanceMax: 1
-  atkRange: 15
+  atkRange: 3
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 1.48726654, y: 5.3819375, z: -1.5}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 45.3999977
+  patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
 --- !u!4 &1686508399
 Transform:
@@ -8317,12 +8209,12 @@ Transform:
   m_PrefabInternal: {fileID: 1611178020}
   m_GameObject: {fileID: 1686508392}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: -7.4286871, y: -26.0439091, z: -1.5}
+  m_LocalPosition: {x: -8.26391983, y: 5.03118134, z: 11.7741537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1138374459}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 24
 --- !u!1 &1702478833
 GameObject:
   m_ObjectHideFlags: 0
@@ -8392,7 +8284,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 2
 --- !u!1 &1703449658
 GameObject:
   m_ObjectHideFlags: 0
@@ -8480,76 +8372,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!1 &1704871561
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1704871565}
-  - 33: {fileID: 1704871564}
-  - 64: {fileID: 1704871563}
-  - 23: {fileID: 1704871562}
-  m_Layer: 12
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &1704871562
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1704871561}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 0e35532616622db44b3121c5669c76fb, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &1704871563
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1704871561}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &1704871564
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1704871561}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1704871565
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1704871561}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 27, y: 16, z: -1.5}
-  m_LocalScale: {x: 1, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 41
 --- !u!1 &1717283008
 GameObject:
   m_ObjectHideFlags: 0
@@ -8606,6 +8428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -8613,9 +8437,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -8669,30 +8496,30 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717283008}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 32.2142448, y: 6.16262341, z: -1.5000006}
+  m_LocalPosition: {x: 31.3790131, y: 37.2377129, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 231950580}
-  m_Father: {fileID: 0}
-  m_RootOrder: 47
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 2
 --- !u!1001 &1727641147
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1003940951}
     m_Modifications:
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.2802086
+      value: -11.1154413
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -22.6002617
+      value: 8.47482872
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 11.7741537
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8716,8 +8543,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: meleeSplash
+      value: 
+      objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
   m_RootGameObject: {fileID: 624887032}
@@ -8798,12 +8637,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1788832666}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 28.5466824, y: 6.16262341, z: -1.5000006}
+  m_LocalPosition: {x: 27.7114506, y: 37.2377129, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 697866229}
-  m_Father: {fileID: 0}
-  m_RootOrder: 46
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 1
 --- !u!114 &1788832668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8840,6 +8679,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -8847,9 +8688,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -9063,12 +8907,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1851273558}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 24.6904907, y: 1.7630682, z: -1.5000006}
+  m_LocalPosition: {x: 23.8552589, y: 32.8381577, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 846535253}
-  m_Father: {fileID: 0}
-  m_RootOrder: 52
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 7
 --- !u!114 &1851273560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9105,6 +8949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -9112,9 +8958,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -9161,75 +9010,6 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1853295004
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1853295008}
-  - 33: {fileID: 1853295007}
-  - 65: {fileID: 1853295006}
-  - 23: {fileID: 1853295005}
-  m_Layer: 12
-  m_Name: Wall
-  m_TagString: block
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &1853295005
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1853295004}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: cdfcb7253a06f3a49b490aeeaf08152a, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &1853295006
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1853295004}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1853295007
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1853295004}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1853295008
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1853295004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.1439953, y: 17.9014397, z: -.995509148}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 35
 --- !u!1 &1879501733
 GameObject:
   m_ObjectHideFlags: 0
@@ -9327,12 +9107,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1913907154}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 39.5713577, y: 2.11844611, z: -1.5}
+  m_LocalPosition: {x: 38.7361259, y: 33.1935349, z: 11.7741537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1432082258}
-  m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 21
 --- !u!54 &1913907156
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9373,6 +9153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -9380,9 +9162,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -9452,12 +9237,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1949298870}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 35.4324112, y: 1.7630682, z: -1.5000006}
+  m_LocalPosition: {x: 34.5971794, y: 32.8381577, z: 11.7741528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1000741889}
-  m_Father: {fileID: 0}
-  m_RootOrder: 49
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 4
 --- !u!114 &1949298872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9494,6 +9279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -9501,9 +9288,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 20
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -9618,7 +9408,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 8
 --- !u!1 &1954803632
 GameObject:
   m_ObjectHideFlags: 0
@@ -9840,7 +9630,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
+  staff: {fileID: 100000, guid: 3837aa826c2fd1442afb07be2a80da11, type: 2}
   greenBolt: {fileID: 100002, guid: 8a4076f28fc929543b44633461b202f8, type: 2}
   greenBlast: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
@@ -9848,9 +9640,12 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
   speed: 5
-  health: 100
+  maxHealth: 100
   viewDistance: 25
+  damage: 5
+  isMelee: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -9859,15 +9654,15 @@ MonoBehaviour:
   projectileSpeed: 15
   attackFreq: .5
   gotRaild: 0
-  state: 0
+  state: 2
   canFollowSteps: 0
   lastSeen: {x: 0, y: 0, z: 0}
   prevStep: {x: 0, y: 0, z: 0}
   prevPrevStep: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
-  patrolTarget: {x: 1.21949875, y: 4.3608923, z: -1.5}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
-  patrolTargetAssignTime: 45.0599976
+  patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
 --- !u!4 &1978604366
 Transform:
@@ -9876,12 +9671,12 @@ Transform:
   m_PrefabInternal: {fileID: 1130657629}
   m_GameObject: {fileID: 1978604360}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 44.4025269, y: -8.16825485, z: -2.00000167}
+  m_LocalPosition: {x: 43.5672951, y: 22.9068356, z: 11.2741518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1624767058}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1003940951}
+  m_RootOrder: 22
 --- !u!136 &1978604367
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10037,7 +9832,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 9
 --- !u!1 &2052875879
 GameObject:
   m_ObjectHideFlags: 0
@@ -10106,146 +9901,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 65
---- !u!1 &2066315624
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2066315628}
-  - 33: {fileID: 2066315627}
-  - 65: {fileID: 2066315626}
-  - 23: {fileID: 2066315625}
-  m_Layer: 12
-  m_Name: Wall
-  m_TagString: block
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &2066315625
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2066315624}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: cdfcb7253a06f3a49b490aeeaf08152a, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &2066315626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2066315624}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &2066315627
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2066315624}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2066315628
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2066315624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.1587753, y: 17.9014397, z: -.995509148}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 33
---- !u!1 &2102982976
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2102982980}
-  - 33: {fileID: 2102982979}
-  - 64: {fileID: 2102982978}
-  - 23: {fileID: 2102982977}
-  m_Layer: 12
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &2102982977
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2102982976}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 27b2610fc9095fa40ad59965f0d89229, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &2102982978
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2102982976}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &2102982979
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2102982976}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2102982980
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2102982976}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 32, y: 16, z: -1.5}
-  m_LocalScale: {x: 1, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 23
 --- !u!1 &2111067517
 GameObject:
   m_ObjectHideFlags: 0
@@ -10385,7 +10041,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
 --- !u!54 &2117087160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10401,73 +10057,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &2142920084
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2142920088}
-  - 33: {fileID: 2142920087}
-  - 64: {fileID: 2142920086}
-  - 23: {fileID: 2142920085}
-  m_Layer: 12
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &2142920085
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2142920084}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 7a3f5c98693aaf14e99c0a8730794efd, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &2142920086
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2142920084}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &2142920087
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2142920084}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2142920088
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2142920084}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 30, y: 16, z: -1.5}
-  m_LocalScale: {x: 1, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 40
