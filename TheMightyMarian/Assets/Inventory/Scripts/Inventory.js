@@ -14,6 +14,8 @@ static var itemHolderObject : Transform; //The object the unactive items are goi
 //Handle components and assign the itemHolderObject.
 function Awake ()
 {
+    DontDestroyOnLoad (transform.gameObject);
+    DontDestroyOnLoad (gameObject.transform);
 	itemHolderObject = gameObject.transform;
 	
 	playersInvDisplay = GetComponent(InventoryDisplay);
