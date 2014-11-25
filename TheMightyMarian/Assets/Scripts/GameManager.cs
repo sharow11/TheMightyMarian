@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
                     newEnemy = Instantiate(spiderPrefab) as Enemy;
                     newEnemy.name = "JanMaria";
                 }
-
+                newEnemy.state = Enemy.State.idle;
                 //newEnemy.transform.localPosition
                 
                 newEnemy.transform.parent = transform;

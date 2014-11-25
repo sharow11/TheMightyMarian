@@ -3,6 +3,8 @@
 var Contents : Transform[]; //The content of the Inventory
 var MaxContent : int = 12; //The maximum number of items the Player can carry.
 
+private static var created = false;
+
 var DebugMode = false; //If this is turned on the Inventory script will output the base of what it's doing to the Console window.
 
 private var playersInvDisplay : InventoryDisplay; //Keep track of the InventoryDisplay script.
@@ -14,16 +16,28 @@ static var itemHolderObject : Transform; //The object the unactive items are goi
 //Handle components and assign the itemHolderObject.
 function Awake ()
 {
-    DontDestroyOnLoad (transform.gameObject);
+    //DontDestroyOnLoad (transform.gameObject);
+if (!created) { 
     DontDestroyOnLoad (gameObject.transform);
+created = true;
+}
+else
+{
+Destroy(this.gameObject);
+}
+if(itemHolderObject == null)
+{
 	itemHolderObject = gameObject.transform;
-	
+}	
+if(playersInvDisplay == null)
+{
 	playersInvDisplay = GetComponent(InventoryDisplay);
 	if (playersInvDisplay == null)
 	{
 		Debug.LogError("No Inventory Display script was found on " + transform.name + " but an Inventory script was.");
 		Debug.LogError("Unless a Inventory Display script is added the Inventory won't show. Add it to the same gameobject as the Inventory for maximum performance");
 	}
+}
 }
 
 //Add an item to the inventory.

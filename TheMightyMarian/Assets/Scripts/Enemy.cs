@@ -403,17 +403,19 @@ public class Enemy : MonoBehaviour
             }
             Marian.Exp += 10;
             float rng = Random.value;
-            if(rng < 0.10)
+            if(rng < 0.025f)
             {
-                shot = (GameObject)Instantiate(sword, new Vector3(transform.position.x, transform.position.y - 2), Quaternion.identity);
+                shot = (GameObject)Instantiate(sword, new Vector3(transform.position.x, transform.position.y, -0.2f), Quaternion.identity);
+                shot.transform.Rotate(Vector3.right, 90.0f);
             }
-            else if(rng < 0.20)
+            else if(rng < 0.05f)
             {
-                shot = (GameObject)Instantiate(arrow, new Vector3(transform.position.x, transform.position.y - 2), Quaternion.identity);
+                shot = (GameObject)Instantiate(arrow, new Vector3(transform.position.x, transform.position.y, -0.2f), Quaternion.identity);
             }
-            else if (rng < 0.30)
+            else if (rng < 0.075f)
             {
-                shot = (GameObject)Instantiate(staff, new Vector3(transform.position.x, transform.position.y - 2), Quaternion.identity);
+                shot = (GameObject)Instantiate(staff, new Vector3(transform.position.x, transform.position.y, -0.2f), Quaternion.identity);
+                shot.transform.Rotate(Vector3.right, -90.0f);
             }
 
             Enemy.enemies.Remove(this);
