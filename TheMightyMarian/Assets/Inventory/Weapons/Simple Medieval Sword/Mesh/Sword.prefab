@@ -29,6 +29,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400000}
   m_Layer: 15
   m_Name: Sword(Clone)
   m_TagString: Untagged
@@ -129,6 +130,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e57223d965704aa28a462f43593f8f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,6 +162,8 @@ MonoBehaviour:
   isEquipment: 1
   isAlsoWeapon: 1
   equippedWeaponVersion: {fileID: 0}
+  Damage: 20
+  Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

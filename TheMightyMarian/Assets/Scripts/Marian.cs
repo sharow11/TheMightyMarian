@@ -15,11 +15,15 @@ public class Marian : MonoBehaviour {
     public static int Inteligence = 0;
     public static int SkillPoints = 0;
 
+    public static int BaseDamage = 0;
+
     public static float currHp = HP;
     public static int currMana = Mana;
 
     private static float manaRegen = 1.0f;
     private static float maxManaRegen = 1.0f;
+
+    private GameObject inventory;
 
     public static Attack.Spell currSpell = Attack.Spell.BlueBolt;
     GameObject marianObj;
@@ -49,6 +53,17 @@ public class Marian : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        inventory = GameObject.Find("Inventory");
+
+        var script = inventory.GetComponent<Character>() as Character;
+
+        int type = (int)script.Type;
+
+        BaseDamage = (int)script.Damage;
+
+        currAttackType = (AttackType)type;
+
 	    if(currHp <= 0)
         {
             IsMarianDead = true;

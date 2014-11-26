@@ -26,6 +26,10 @@ private var equipmentEffectIs = false;
 private var invAudio : InvAudio;
 private var invDispKeyIsSame = false;
 
+public var Type = 0;
+
+public var Damage = 0;
+
 @script AddComponentMenu ("Inventory/Character Sheet")
 @script RequireComponent(Inventory)
 
@@ -133,6 +137,8 @@ function EquipItem(i:Item,slot:int)
 			
 			else 
 			{
+                Damage = i.Damage;
+                Type = i.Type;
 				Debug.LogError("Remember to assign the equip weapon variable!");
 			}
 		}
@@ -166,6 +172,8 @@ function UnequipItem(i:Item)
 	{
 		Debug.Log(i.name + " has been unequipped");
 	}
+    Damage = 0;
+    Type = 0;
 	playersinv.AddItem(i.transform);
 }
 

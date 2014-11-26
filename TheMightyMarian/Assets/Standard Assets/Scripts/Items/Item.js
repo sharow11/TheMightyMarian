@@ -14,6 +14,10 @@ var equippedWeaponVersion : Transform;
 //These will store information about usefull components.
 static var playersinv : Inventory;
 
+public var Damage = 20;
+
+public var Type = 0;
+
 private var FPPickUpFound = false;
 
 @script AddComponentMenu ("Inventory/Items/Item")

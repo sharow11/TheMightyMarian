@@ -1145,6 +1145,8 @@ MonoBehaviour:
   canBeDragged: 1
   onOffButton: 105
   DebugMode: 1
+  Type: 0
+  Damage: 0
 --- !u!114 &1381835515
 MonoBehaviour:
   m_ObjectHideFlags: 0

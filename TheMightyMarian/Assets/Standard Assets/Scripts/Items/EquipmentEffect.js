@@ -7,11 +7,12 @@
 
 private var effectActive = false;
 
+public var dmg = 0;
+
 function Update () 
 {
 	if (effectActive == true)
 	{
-		//-----> THIS IS WHERE YOU INSERT CODE YOU WANT TO EXECUTE AS LONG AS THE ITEM IS EQUIPPED. <-----
 	}
 }
 
@@ -23,13 +24,13 @@ function EquipmentEffectToggle (effectIs : boolean)
 		
 		Debug.LogWarning("Remember to insert code for the EquipmentEffect script you have attached to " + transform.name + ".");
 		
-		//-----> THIS IS WHERE YOU INSERT CODE YOU WANT TO EXECUTE JUST WHEN THE ITEM IS EQUIPPED. <-----
+		dmg += 20;
 		
 	}
 	else
 	{
 		effectActive = false;
 		
-		//-----> THIS IS WHERE YOU INSERT CODE YOU WANT TO EXECUTE JUST WHEN THE ITEM IS UNEQUIPPED. <-----
+		dmg -= 20;
 	}
 }
