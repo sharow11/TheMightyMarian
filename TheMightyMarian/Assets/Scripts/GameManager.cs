@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public Map mapPrefab;
     public BossMap bossMapPrefab;
+    public FinalMap finalMapPrefab;
 
     public Enemy enemyPrefab;
     public MoveMarian marianPrefab;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     private MoveMarian marian;
     private Map mapInstance;
     private BossMap bossMapInstance;
+    private FinalMap finalMapInstance;
     public Ladder ladderPrefab;
     private Ladder ladder;
     public bool logging = true;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     public int EnemiesPerRoom = 3;
 
     public static int currLevel = 0;
+    public static int finalLevel = -1;
     public bool isLoading = true;
     private int mapSizeX, mapSizeY;
     //private bool generateCalled = false;
@@ -66,6 +69,10 @@ public class GameManager : MonoBehaviour
         {
             GUI.Box(new Rect(0, 0, Screen.width, Screen.height), czarnosc);
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
+            if (finalLevel < 0)
+            { 
+                finalLevel = 3; // UnityEngine.Random.Range(15, 21); 
+            }
             state++;
             //show loading screen
         }
@@ -118,20 +125,21 @@ public class GameManager : MonoBehaviour
         { bossLvl = true; }
         else
         { bossLvl = false; }
-
-        if (bossLvl)
-        {
-            BossBeginGame();
-        }
+        if (currLevel == finalLevel)
+        { FinalBeginGame(); }
+        else if (bossLvl)
+        { BossBeginGame(); }
         else
-        { 
-            NormalBeginGame();
-        }
+        { NormalBeginGame(); }
 
     }
 
     private void NormalBeginGame()
     {
+        foreach (GameObject lvlLight in GameObject.FindGameObjectsWithTag("BigLight"))
+        { lvlLight.light.intensity = 0.025f; }
+        foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
+        { gq.beFloor(); }
         mapInstance = Instantiate(mapPrefab) as Map;
         mapInstance.Logging = logging;
         mapInstance.LvlNo = currLevel;
@@ -150,6 +158,12 @@ public class GameManager : MonoBehaviour
 
     private void BossBeginGame()
     {
+        foreach (GameObject lvlLight in GameObject.FindGameObjectsWithTag("BigLight"))
+        { lvlLight.light.intensity = 0.020f; }
+        foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
+        {
+            gq.beFloor();
+        }
         bossMapInstance = Instantiate(bossMapPrefab) as BossMap;
         bossMapInstance.Logging = logging;
         bossMapInstance.LvlNo = currLevel;
@@ -165,9 +179,35 @@ public class GameManager : MonoBehaviour
         //isLoading = false;
         Debug.Log("welcome to level " + currLevel);
     }
+
+    private void FinalBeginGame()
+    {
+        foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
+        {
+            gq.beWater();
+        }
+        finalMapInstance = Instantiate(finalMapPrefab) as FinalMap;
+        finalMapInstance.Logging = logging;
+        finalMapInstance.LvlNo = currLevel;
+        mapSizeX = finalMapInstance.sizeX;
+        mapSizeY = finalMapInstance.sizeY;
+        foreach (GameObject lvlLight in GameObject.FindGameObjectsWithTag("BigLight"))
+        { lvlLight.light.intensity = 0.65f; }
+        //MapCell[] others = FindObjectsOfType(typeof(MapCell)) as MapCell[];
+        //foreach (MapCell other in others)
+        //{ Destroy(other.gameObject); }
+        finalMapInstance.Generate();
+        startRoomNo = 0;
+        endRoomNo = 0;
+        PlaceMarian();
+        //PlaceBoss();
+        Debug.Log("welcome to final level " + currLevel);
+    }
     private void RestartGame() {
         //StopAllCoroutines();
-        if (bossLvl)
+        if (currLevel == finalLevel)
+        { Destroy(finalMapInstance.gameObject); }
+        else if (bossLvl)
         { Destroy(bossMapInstance.gameObject); }
         else
         { Destroy(mapInstance.gameObject); }
@@ -177,7 +217,7 @@ public class GameManager : MonoBehaviour
 
     private void SaveMap()
     {
-        if (bossLvl)
+        if (bossLvl || currLevel == finalLevel)
             return;
         mapInstance.Save();
     }
@@ -186,7 +226,7 @@ public class GameManager : MonoBehaviour
     {
         //StopAllCoroutines();
         //StartCoroutine(mapInstance.Load());
-        if (bossLvl)
+        if (bossLvl ||currLevel == finalLevel)
             return;
         mapInstance.Load();
     }
@@ -247,6 +287,10 @@ public class GameManager : MonoBehaviour
 
     private void PlaceBoss()
     {
+        if (finalLevel == currLevel)
+        {
+            return;
+        }
         if (Enemy.enemies == null)
         {
             Enemy.enemies = new List<Enemy>();
@@ -271,18 +315,26 @@ public class GameManager : MonoBehaviour
         
         Enemy.enemies = temp;
     }
+
     public void PlaceMarian()
     {
         IntVector2 coordinates;
-        if (bossLvl)
-        { 
+        if (currLevel == finalLevel)
+        {
+            coordinates = finalMapInstance.GetStartPosForPlayer();
+            marian = Instantiate(marianPrefab) as MoveMarian;
+            marian.name = "Marian";
+            marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
+        }
+        else if (bossLvl)
+        {
             coordinates = bossMapInstance.GetStartPosForPlayer();
             marian = Instantiate(marianPrefab) as MoveMarian;
             marian.name = "Marian";
             marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
         }
         else
-        { 
+        {
             coordinates = mapInstance.GetStartPosForPlayer();
             marian = Instantiate(marianPrefab) as MoveMarian;
             marian.name = "Marian";

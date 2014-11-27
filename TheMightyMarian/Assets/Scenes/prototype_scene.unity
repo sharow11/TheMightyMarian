@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 11400000, guid: 6646e7c4dfdca33499f30a6346f2b5ce, type: 2}
   bossMapPrefab: {fileID: 11400002, guid: c218790fd681f4e4eb7f68b9480ebce7, type: 2}
+  finalMapPrefab: {fileID: 11400000, guid: 55cd7195962dd644d95393205bb7a191, type: 2}
   enemyPrefab: {fileID: 11400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
   marianPrefab: {fileID: 11400000, guid: 42ed5351e63dfc340935138a7b908bc8, type: 2}
   blueGhostPrefab: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da93b51e698b034c80406c611451590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelUp: {fileID: 100006, guid: ee1f56d82bc70e44f99e0a760dd04ae5, type: 2}
+  LevelUp: {fileID: 0}
 --- !u!1 &89382072
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,9 +423,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 850948573}
   - 108: {fileID: 850948572}
+  - 114: {fileID: 850948574}
   m_Layer: 0
   m_Name: Directional light
-  m_TagString: Untagged
+  m_TagString: BigLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -476,6 +478,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &850948574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 850948571}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d270472703e9c946b6098f26a4e1d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &923726373
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,8 +674,9 @@ GameObject:
   - 33: {fileID: 1069971474}
   - 64: {fileID: 1069971473}
   - 23: {fileID: 1069971472}
+  - 114: {fileID: 1069971476}
   m_Layer: 11
-  m_Name: Quad
+  m_Name: GroundQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -721,6 +735,19 @@ Transform:
   - {fileID: 1629842073}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &1069971476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1069971471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d1a4048226a8d4d97ba31f112249ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground: {fileID: 2100000, guid: ecfd35809631c3346a70bfec238f7946, type: 2}
+  water: {fileID: 2100000, guid: 0e4f12283c6b0be4abc52f7369d9eaa4, type: 2}
 --- !u!1 &1090906669
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +939,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8bc050b37a9b27f448fbbfbdadb01e22, type: 2}

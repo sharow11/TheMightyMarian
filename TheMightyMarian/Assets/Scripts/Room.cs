@@ -22,6 +22,13 @@ public class Room {
             return -1;
         }
     }
+
+    private bool finalFight = false;
+    public bool FinalFight
+    {
+        get { return finalFight; }
+        set { finalFight = value; }
+    }
     //   n
     //w     e
     //   s
@@ -228,7 +235,7 @@ public class Room {
         int[,] smallRoom = new int[sizeX, sizeY];
         for (int i = 0; i < generations; i++)
         {
-            if (i < 4)
+            if (i < 4 && !finalFight)
             { CelluralStep1(); }
             else
             { CelluralStep2(); }
