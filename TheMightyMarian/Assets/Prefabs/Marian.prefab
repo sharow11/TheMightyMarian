@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -61,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .382683486, y: 0, z: 0, w: .923879564}
   m_LocalPosition: {x: 0, y: .513605893, z: .239999995}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 400004}
   m_RootOrder: 0
@@ -103,7 +104,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 408a38e3f4999014b8c21958516d4367, type: 2}
+  - {fileID: 2100000, guid: e544f9efec88e4e4b9774caa505dbf4a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -269,6 +270,23 @@ MonoBehaviour:
   projectileSpeed: 20
   s_lightning: {fileID: 8300000, guid: d26d85daf3f4bc947af44570324a0bd0, type: 3}
   s_hurt: {fileID: 8300000, guid: 9d3d96cd3310c9a4a84edd4148a2e024, type: 3}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb3a8a2fb84e56449496f1905123919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colCount: 7
+  rowCount: 1
+  rowNumber: 0
+  colNumber: 0
+  totalCells: 7
+  fps: 10
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
