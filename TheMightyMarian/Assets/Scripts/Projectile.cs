@@ -16,13 +16,13 @@ public class Projectile : MonoBehaviour
         switch (type)
         {
             case Attack.Spell.BlueBolt:
-                dmg = 20;
+                dmg = Marian.Damage;
                 break;
             case Attack.Spell.FireBolt:
-                dmg = 90;
+                dmg = 90 + Marian.Inteligence;
                 break;
             default:
-                dmg = 10;
+                dmg = 10 + Marian.Inteligence;
                 break;
         }
     }
