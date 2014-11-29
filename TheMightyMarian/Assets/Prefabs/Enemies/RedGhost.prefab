@@ -210,19 +210,22 @@ MonoBehaviour:
   meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
   meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
   death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
-  meleeSplash: {fileID: 0}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+  stun: {fileID: 100002, guid: bb9b30a38e72f2e4cb7efa159b42fe6a, type: 2}
+  banelingFlash: {fileID: 0}
   speed: 5
   maxHealth: 100
   viewDistance: 25
   damage: 5
   isMelee: 0
-  spread: 10
-  predictionProbability: .75
+  spread: 5
+  predictionProbability: 1
   predictionImportanceMin: .5
   predictionImportanceMax: 1
   atkRange: 15
   projectileSpeed: 15
   attackFreq: .5
+  isBaneling: 0
   gotRaild: 0
   state: 2
   canFollowSteps: 0

@@ -32,7 +32,7 @@ GameObject:
   - 136: {fileID: 13600000}
   - 114: {fileID: 11400000}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: Tank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +45,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .382683963, y: 0, z: 0, w: .923879385}
-  m_LocalPosition: {x: 0, y: -.699999988, z: .150000006}
-  m_LocalScale: {x: 2.5, y: 2.49999952, z: 2.49999952}
+  m_LocalPosition: {x: 0, y: -.100000001, z: .150000006}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 400002}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 35e8194baa0a7bb4fb48b435fff6602d, type: 2}
+  - {fileID: 2100000, guid: 9c12fca9896664145870e245c68312dc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -154,17 +154,17 @@ MonoBehaviour:
   stun: {fileID: 100002, guid: bb9b30a38e72f2e4cb7efa159b42fe6a, type: 2}
   banelingFlash: {fileID: 0}
   speed: 5
-  maxHealth: 100
+  maxHealth: 300
   viewDistance: 25
-  damage: 5
-  isMelee: 0
-  spread: 0
-  predictionProbability: .5
-  predictionImportanceMin: .899999976
+  damage: 100
+  isMelee: 1
+  spread: 10
+  predictionProbability: .75
+  predictionImportanceMin: .5
   predictionImportanceMax: 1
-  atkRange: 15
+  atkRange: 3
   projectileSpeed: 15
-  attackFreq: .5
+  attackFreq: 1.5
   isBaneling: 0
   gotRaild: 0
   state: 2
@@ -186,7 +186,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
+  m_Radius: 1.70000005
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public GameObject death;
     public GameObject meleeSplash;
     public GameObject stun;
+    public GameObject banelingFlash;
 
     /************** PARAMETRY **************/
     public float speed = 5;
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     public float atkRange = 15;
     public float projectileSpeed = 15;
     public float attackFreq = 0.5f;
+    public bool isBaneling = false;
 
     public bool gotRaild = false; // to jest potrzebne po to, aby nie dostać 2 razy jednym railem.
     float lastAtkTime = 0;
@@ -65,7 +67,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        attackFreq = 0.5f;
         MarianObject = GameObject.Find("Marian");
         moveMarian = (MoveMarian)MarianObject.GetComponent("MoveMarian");
         //Debug.Log(moveMarian);
@@ -108,6 +109,11 @@ public class Enemy : MonoBehaviour
                     enemy.state = State.follow;
                     Debug.Log(hit.collider.name + " poinformowany");
                 }
+            }
+            if (isBaneling && Vector3.Distance(transform.position, MarianObject.transform.position) < 2.5f)
+            {
+                health = 0.1f;
+                takeDmg(0.2f, new Vector3(0, 0, -9999.9f));
             }
             //print("Widać Mariana!" + Vector3.Distance(Marian.transform.position, transform.position));
             //Debug.Log(hit.collider.name + ", " + hit.collider.tag);
@@ -339,7 +345,10 @@ public class Enemy : MonoBehaviour
 
     void animateMovement()
     {
-        if (Time.time - stepTime > 1 / (speed * 2))
+        float stepTimeLenght = 1 / (speed * 2);
+        if (stepTimeLenght < 0.05f)
+            stepTimeLenght = 0.05f;
+        if (Time.time - stepTime > stepTimeLenght)
         {
             var quad = this.transform.Find("Quad");
             switch (step)
@@ -384,29 +393,46 @@ public class Enemy : MonoBehaviour
         health -= dmg;
         if (health < 0)
         {
-            Destroy((GameObject)Instantiate(death, new Vector3(transform.position.x, transform.position.y, -1), new Quaternion()), 0.9f); // Tworzę obiekt do usunięcia :)
-            for (int i = 0; i < 10; i++)
+            if (isBaneling)
             {
-                GameObject meat;
-                if (Random.value < 0.33333f)
+                dir = new Vector3(dir.x, dir.y, -9999f);
+                GameObject greenObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y - 0.5f, -2), new Quaternion());
+                greenObj.transform.LookAt(transform.position + dir);
+                greenObj.particleSystem.startSize = 2.8f;
+                greenObj.particleSystem.startSpeed = 17;
+                greenObj.particleSystem.startLifetime = 0.4f;
+                greenObj.particleSystem.emissionRate = 1000;
+                Destroy(greenObj, 1);
+                Destroy((GameObject)Instantiate(banelingFlash, new Vector3(transform.position.x, transform.position.y, -1), new Quaternion()), 1f);
+                if (Vector3.Distance(transform.position, MarianObject.transform.position) < 5f)
+                    ((Attack)MarianObject.GetComponent<Attack>()).takeDmg((int)damage);
+            }
+            else
+            {
+                Destroy((GameObject)Instantiate(death, new Vector3(transform.position.x, transform.position.y, -1), new Quaternion()), 0.9f); // Tworzę obiekt do usunięcia :)
+                for (int i = 0; i < 10; i++)
                 {
-                    meat = (GameObject)Instantiate(meat1, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
-                    meat.transform.localScale = new Vector3(Random.value / 25 + 0.02f, Random.value / 25 + 0.02f, Random.value / 25 + 0.02f);
+                    GameObject meat;
+                    if (Random.value < 0.33333f)
+                    {
+                        meat = (GameObject)Instantiate(meat1, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+                        meat.transform.localScale = new Vector3(Random.value / 25 + 0.02f, Random.value / 25 + 0.02f, Random.value / 25 + 0.02f);
+                    }
+                    else if (Random.value < 0.66666f)
+                    {
+                        meat = (GameObject)Instantiate(meat2, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+                        meat.transform.localScale = new Vector3(Random.value / 25 + 0.02f, Random.value / 25 + 0.02f, Random.value / 25 + 0.02f);
+                    }
+                    else
+                    {
+                        meat = (GameObject)Instantiate(meat3, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
+                        meat.transform.localScale = new Vector3(Random.value / 100 + 0.005f, Random.value / 100 + 0.005f, Random.value / 100 + 0.005f);
+                    }
+                    meat.transform.rotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
+                    meat.rigidbody.velocity = new Vector3(Random.value, Random.value, Random.value) * 10 + dir * (dmg / 3 + 5);
+                    meat.rigidbody.inertiaTensorRotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
+                    Destroy(meat, 2.0f + Random.value * 2);
                 }
-                else if (Random.value < 0.66666f)
-                {
-                    meat = (GameObject)Instantiate(meat2, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
-                    meat.transform.localScale = new Vector3(Random.value / 25 + 0.02f, Random.value / 25 + 0.02f, Random.value / 25 + 0.02f);
-                }
-                else
-                {
-                    meat = (GameObject)Instantiate(meat3, new Vector3(transform.position.x, transform.position.y, -2), new Quaternion());
-                    meat.transform.localScale = new Vector3(Random.value / 100 + 0.005f, Random.value / 100 + 0.005f, Random.value / 100 + 0.005f);
-                }
-                meat.transform.rotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
-                meat.rigidbody.velocity = new Vector3(Random.value, Random.value, Random.value) * 10 + dir * (dmg / 3 + 5);
-                meat.rigidbody.inertiaTensorRotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
-                Destroy(meat, 2.0f + Random.value * 2);
             }
             Marian.Exp += 10;
             float rng = Random.value;

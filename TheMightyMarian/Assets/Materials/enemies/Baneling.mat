@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: RedGhost
+  m_Name: Baneling
   m_Shader: {fileID: 4800000, guid: df3b4241d51df464dacb8c796056f50b, type: 3}
   m_ShaderKeywords:
   - PIXELSNAP_ON
@@ -18,7 +18,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 832ae86f0d414664f9ba2a7f1e82bb62, type: 3}
+          m_Texture: {fileID: 2800000, guid: d35ca7d29c17c054c9591378817127d7, type: 3}
           m_Scale: {x: .5, y: .5}
           m_Offset: {x: 0, y: 0}
       data:
