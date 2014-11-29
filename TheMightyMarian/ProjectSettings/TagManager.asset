@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - BigLight
+  - Water
+  - InvisibleWall
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   User Layer 13: EnemyProjectile
   User Layer 14: Meat
   User Layer 15: Sword
-  User Layer 16: 
+  User Layer 16: InvisibleWall
   User Layer 17: 
   User Layer 18: 
   User Layer 19: 

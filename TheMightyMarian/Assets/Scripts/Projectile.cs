@@ -44,17 +44,18 @@ public class Projectile : MonoBehaviour
         {
             LayerMask mask = LayerMask.GetMask("Wall");
             List<Enemy> dmgRecipients = new List<Enemy>();
-            foreach (Enemy enemy in Enemy.enemies)
-            {
-                Vector3 org = new Vector3(transform.position.x, transform.position.y, -2);
-                Vector3 dir = new Vector3(enemy.transform.position.x - transform.position.x, enemy.transform.position.y - transform.position.y, 0);
-                Ray ray = new Ray(org, dir);
-                if (Vector3.Distance(enemy.transform.position, transform.position) < 10)
-                    if (!Physics.Raycast(ray, Vector3.Distance(enemy.transform.position, transform.position), mask.value))
-                    {
-                        dmgRecipients.Add(enemy);
-                    }
-            }
+            if (Enemy.enemies != null && Enemy.enemies.Count > 0)
+                foreach (Enemy enemy in Enemy.enemies)
+                {
+                    Vector3 org = new Vector3(transform.position.x, transform.position.y, -2);
+                    Vector3 dir = new Vector3(enemy.transform.position.x - transform.position.x, enemy.transform.position.y - transform.position.y, 0);
+                    Ray ray = new Ray(org, dir);
+                    if (Vector3.Distance(enemy.transform.position, transform.position) < 10)
+                        if (!Physics.Raycast(ray, Vector3.Distance(enemy.transform.position, transform.position), mask.value))
+                        {
+                            dmgRecipients.Add(enemy);
+                        }
+                }
             foreach (Enemy enemy in dmgRecipients) //Enemy.enemies zmienia się podczas umierania wrogów, dlatego nie można połączyć tych 2 foreachów.
             {
                 enemy.alertEnemy(origin);

@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 64: {fileID: 6400000}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: InvisibleWall
-  m_TagString: Wall
+  m_TagString: InvisibleWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

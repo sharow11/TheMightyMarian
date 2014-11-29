@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-    public enum State : byte { idle, alert, follow, searching, chasing, attacking };
+    public enum State : byte { stunned, idle, alert, follow, searching, chasing, attacking };
 
     public GameObject sword;
     public GameObject arrow;
@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public GameObject meat3;
     public GameObject death;
     public GameObject meleeSplash;
+    public GameObject stun;
 
     /************** PARAMETRY **************/
     public float speed = 5;
@@ -56,6 +57,8 @@ public class Enemy : MonoBehaviour
     public bool gotPatrolTarget = false;
     bool lostTrack = false;
     int nr = 0;
+    float stunTime = 0f;
+    float stunDuration = 3f;
     // Use this for initialization
 
 
@@ -83,7 +86,7 @@ public class Enemy : MonoBehaviour
             return;
 
         nr = 0;
-        if (canSeeMarian(transform.position, viewDistance))
+        if (state != State.stunned && canSeeMarian(transform.position, viewDistance))
         {
             seenLastTime = Time.time;
             lastSeen = MarianObject.transform.position;
@@ -109,17 +112,21 @@ public class Enemy : MonoBehaviour
             //print("Widać Mariana!" + Vector3.Distance(Marian.transform.position, transform.position));
             //Debug.Log(hit.collider.name + ", " + hit.collider.tag);
         }
-        else
+        else if (state == State.attacking || state == State.chasing)
         {
-            if (state == State.attacking || state == State.chasing)
-            {
-                state = State.searching;
-                lastSeen = MarianObject.transform.position;
-                lastSeen.z = transform.position.z;
-            }
+            state = State.searching;
+            lastSeen = MarianObject.transform.position;
+            lastSeen.z = transform.position.z;
         }
         switch (state)
         {
+            case State.stunned:
+                if (Time.time - stunTime >= stunDuration)
+                {
+                    state = State.alert;
+                }
+                color = Color.black;
+                break;
             case State.idle:
                 color = Color.white;
                 break;
@@ -421,6 +428,14 @@ public class Enemy : MonoBehaviour
             Enemy.enemies.Remove(this);
             Destroy(gameObject);
         }
+    }
+
+    public void getStunned(float dur)
+    {
+        state = State.stunned;
+        stunDuration = dur;
+        stunTime = Time.time;
+        Destroy((GameObject)Instantiate(stun, new Vector3(transform.position.x, transform.position.y, 0f), new Quaternion()), dur);
     }
 
     public void takeDmg(float dmg)

@@ -58,10 +58,12 @@
      <Compile Include="Assets\Scripts\Enemies.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
+     <Compile Include="Assets\Scripts\FinalMap.cs" />
      <Compile Include="Assets\Scripts\FloorMapCell.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameManagerForDebug.cs" />
      <Compile Include="Assets\Scripts\GrassMapCell.cs" />
+     <Compile Include="Assets\Scripts\GroundQuad.cs" />
      <Compile Include="Assets\Scripts\Gui.cs" />
      <Compile Include="Assets\Scripts\HitBox.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
@@ -121,6 +123,9 @@
      <None Include="Assets\ShaderFusion\Editor\MaterialTools\ShaderCodeTemplates\DefaultShaderDeferred.txt" />
      <None Include="Assets\ShaderFusion\Editor\MaterialTools\ShaderCodeTemplates\Lighting_Default.txt" />
      <None Include="Assets\StrumpyShaderEditor\Editor\Resources\Internal\TextureCopy.shader" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>C:/Users/Tobiasz/Documents/GitHub/The Mighty Marian/TheMightyMarian/TheMightyMarian/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

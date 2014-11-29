@@ -72,6 +72,9 @@
      <None Include="Assets\ShaderFusion\Editor\MaterialTools\ShaderCodeTemplates\DefaultShaderDeferred.txt" />
      <None Include="Assets\ShaderFusion\Editor\MaterialTools\ShaderCodeTemplates\Lighting_Default.txt" />
      <None Include="Assets\StrumpyShaderEditor\Editor\Resources\Internal\TextureCopy.shader" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>C:/Users/Tobiasz/Documents/GitHub/The Mighty Marian/TheMightyMarian/TheMightyMarian/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
  <Reference Include="Assembly-UnityScript">
  <HintPath>C:/Users/Tobiasz/Documents/GitHub/The Mighty Marian/TheMightyMarian/TheMightyMarian/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
