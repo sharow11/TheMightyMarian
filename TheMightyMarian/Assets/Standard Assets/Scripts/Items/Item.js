@@ -14,7 +14,9 @@ var equippedWeaponVersion : Transform;
 //These will store information about usefull components.
 static var playersinv : Inventory;
 
-public var Damage = 20;
+public var Damage = 1;
+
+public static var TotalDamage = 1;
 
 public var Type = 0;
 
@@ -99,6 +101,8 @@ function PickUpItem ()
 			Debug.Log("Inventory is full");
 		}
 	}
+    Damage = TotalDamage;
+    TotalDamage++;
 }
 
 //Moves the item to the Players 'itemHolderObject' and disables it. In most cases this will just be the Inventory object.

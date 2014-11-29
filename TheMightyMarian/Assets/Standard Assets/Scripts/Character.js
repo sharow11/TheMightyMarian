@@ -137,7 +137,7 @@ function EquipItem(i:Item,slot:int)
 			
 			else 
 			{
-                Damage = i.Damage;
+                Damage = i.Damage + parseInt(Random.Range(0, 20));
                 Type = i.Type;
 				Debug.LogError("Remember to assign the equip weapon variable!");
 			}
