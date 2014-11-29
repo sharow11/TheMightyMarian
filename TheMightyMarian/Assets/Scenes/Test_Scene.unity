@@ -6287,7 +6287,7 @@ Transform:
   m_Children:
   - {fileID: 890520131}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!136 &660842859
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9476,7 +9476,7 @@ Transform:
   m_Children:
   - {fileID: 336778329}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
 --- !u!1001 &1130657629
 Prefab:
   m_ObjectHideFlags: 0
@@ -11008,7 +11008,7 @@ MonoBehaviour:
   speed: 5
   maxHealth: 100
   viewDistance: 25
-  damage: 5
+  damage: 10
   isMelee: 0
   spread: 0
   predictionProbability: .5
@@ -11712,7 +11712,7 @@ Transform:
   m_Children:
   - {fileID: 612601060}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
 --- !u!199 &1429759643
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
