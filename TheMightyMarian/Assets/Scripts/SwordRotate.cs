@@ -30,7 +30,7 @@ public class SwordRotate : MonoBehaviour {
         if (IsAttack)
         {
             var enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.takeDmg(20, enemy.transform.position - transform.position);
+            enemy.takeDmg(Marian.Damage, enemy.transform.position - transform.position);
         }
     }
 }

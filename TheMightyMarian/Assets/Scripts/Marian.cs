@@ -17,6 +17,8 @@ public class Marian : MonoBehaviour {
 
     public static int BaseDamage = 0;
 
+    public static int Damage = 0;
+
     public static float currHp = HP;
     public static int currMana = Mana;
 
@@ -63,6 +65,19 @@ public class Marian : MonoBehaviour {
         BaseDamage = (int)script.Damage;
 
         currAttackType = (AttackType)type;
+
+        if(currAttackType == AttackType.Melee)
+        {
+            Damage = BaseDamage + Strenght;
+        }
+        else if (currAttackType == AttackType.Ranged)
+        {
+            Damage = BaseDamage + Dexterity;
+        }
+        else
+        {
+            Damage = BaseDamage + Inteligence;
+        }
 
 	    if(currHp <= 0)
         {
