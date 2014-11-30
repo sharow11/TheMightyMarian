@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da93b51e698b034c80406c611451590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelUp: {fileID: 0}
+  LevelUp: {fileID: 100006, guid: ee1f56d82bc70e44f99e0a760dd04ae5, type: 2}
 --- !u!1 &89382072
 GameObject:
   m_ObjectHideFlags: 0
