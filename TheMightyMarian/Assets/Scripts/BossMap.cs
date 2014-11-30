@@ -5,13 +5,18 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO.Compression;
+using Assets.Scripts;
 
-public class BossMap : MonoBehaviour {
+public class BossMap : MonoBehaviour, IMarianMap {
 
     public int generations;
     public int startingFloorsPercent;
     public int sizeX, sizeY;
-    
+    public int SizeY
+    { get { return sizeY; } }
+
+    public int SizeX
+    { get { return sizeX; } }
     //public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;
@@ -35,6 +40,11 @@ public class BossMap : MonoBehaviour {
         set { logging = value; }
     }
     string path = "mapsavefile.byte";
+
+    public int RoomsX
+    { get { return 1; } }
+    public int RoomsY
+    { get { return 1; } }
 
     //private MapCell[,] map;
     private int[,] smallMap;

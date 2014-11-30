@@ -5,16 +5,28 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO.Compression;
+using Assets.Scripts;
 //using System.Security.Cryptography;
  
 
 
-public class Map : MonoBehaviour {
+public class Map : MonoBehaviour, IMarianMap {
     public int generations;
     public int startingFloorsPercent;
     public int sizeX, sizeY;
-    
+
+    public int SizeY
+    { get { return sizeY; } }
+
+    public int SizeX
+    { get { return sizeX; } }
+
     public int roomsX, roomsY;
+
+    public int RoomsX
+    { get { return roomsX; } }
+    public int RoomsY
+    { get { return roomsY; } }
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;
     public MapCell cellPrefab;

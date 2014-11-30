@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.Scripts;
 
 //public enum EnemyState : byte { idle, alert, follow, searching, chasing, attacking };
 //public enum EnemyStep : byte { downRight, upRight, downLeft, upLeft };
@@ -11,21 +13,13 @@ public class GameManager : MonoBehaviour
     public BossMap bossMapPrefab;
     public FinalMap finalMapPrefab;
 
-    public Enemy enemyPrefab;
+    public List<Enemy> enemiesPrefabs;
+    public List<int> enemiesRarity;
+    public List<Enemy> bossesPrefabs;
+    public List<int> bossesRarity;
     public MoveMarian marianPrefab;
-    public Enemy blueGhostPrefab;
-    public int blueGhostRarity;
-    public Enemy greenGhostPrefab;
-    public int greenGhostRarity;
-    public Enemy redGhostPrefab;
-    public int redGhostRarity;
-    public Enemy spiderPrefab;
-    public int spiderRarity;
-    public Enemy billPrefab;
     private MoveMarian marian;
-    private Map mapInstance;
-    private BossMap bossMapInstance;
-    private FinalMap finalMapInstance;
+    private IMarianMap mapInstance;
     public Ladder ladderPrefab;
     private Ladder ladder;
     public bool logging = true;
@@ -40,7 +34,9 @@ public class GameManager : MonoBehaviour
     private int mapSizeX, mapSizeY;
     //private bool generateCalled = false;
     private int state = 0;
+    private int roomsCnt;
     public bool bossLvl;
+
     private void Start()
     {
         isLoading = true;
@@ -71,7 +67,7 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
             if (finalLevel < 0)
             { 
-                finalLevel = 0; // UnityEngine.Random.Range(15, 21); 
+                finalLevel = 3; // UnityEngine.Random.Range(15, 21); 
             }
             state++;
             //show loading screen
@@ -100,24 +96,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public IEnumerator BeginGameCoroutine() {
-
-        mapInstance = Instantiate(mapPrefab) as Map;
-        mapInstance.Logging = logging;
-        mapInstance.LvlNo = currLevel;
-        //StartCoroutine(mapInstance.Generate());
-        //yield return mapInstance.GenerateCoroutine();
-        StartCoroutine(mapInstance.GenerateCoroutine());
-        startRoomNo = mapInstance.StartRoomNo;
-        endRoomNo = mapInstance.EndRoomNo;
-        yield return null;
-        //PlaceMarian();
-        PlaceEndLadder();
-        //PlaceEnemies();
-        //isLoading = false;
-        Debug.Log("welcome to level " + currLevel);
-        
-    }
 
     public void BeginGame()
     {
@@ -131,7 +109,6 @@ public class GameManager : MonoBehaviour
         { BossBeginGame(); }
         else
         { NormalBeginGame(); }
-
     }
 
     private void NormalBeginGame()
@@ -140,15 +117,16 @@ public class GameManager : MonoBehaviour
         { lvlLight.light.intensity = 0.025f; }
         foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
         { gq.beFloor(); }
-        mapInstance = Instantiate(mapPrefab) as Map;
+        mapInstance = Instantiate(mapPrefab) as IMarianMap;
         mapInstance.Logging = logging;
         mapInstance.LvlNo = currLevel;
-        mapSizeX = mapInstance.sizeX;
-        mapSizeY = mapInstance.sizeY;
+        mapSizeX = mapInstance.SizeX;
+        mapSizeY = mapInstance.SizeY;
         //StartCoroutine(mapInstance.Generate());
         mapInstance.Generate();
         startRoomNo = mapInstance.StartRoomNo;
         endRoomNo = mapInstance.EndRoomNo;
+        roomsCnt = mapInstance.RoomsX * mapInstance.RoomsY;
         PlaceMarian();
         PlaceEndLadder();
         PlaceEnemies();
@@ -164,18 +142,18 @@ public class GameManager : MonoBehaviour
         {
             gq.beFloor();
         }
-        bossMapInstance = Instantiate(bossMapPrefab) as BossMap;
-        bossMapInstance.Logging = logging;
-        bossMapInstance.LvlNo = currLevel;
-        mapSizeX = bossMapInstance.sizeX;
-        mapSizeY = bossMapInstance.sizeY;
-        //StartCoroutine(mapInstance.Generate());
-        bossMapInstance.Generate();
+        mapInstance = Instantiate(bossMapPrefab) as IMarianMap;
+        mapInstance.Logging = logging;
+        mapInstance.LvlNo = currLevel;
+        mapSizeX = mapInstance.SizeX;
+        mapSizeY = mapInstance.SizeY;
+        roomsCnt = 1;
+        mapInstance.Generate();
         startRoomNo = 0;
         endRoomNo = 0;
         PlaceMarian();
         PlaceEndLadder();
-        PlaceBoss();
+        PlaceEnemies();
         //isLoading = false;
         Debug.Log("welcome to level " + currLevel);
     }
@@ -186,171 +164,104 @@ public class GameManager : MonoBehaviour
         {
             gq.beWater();
         }
-        finalMapInstance = Instantiate(finalMapPrefab) as FinalMap;
-        finalMapInstance.Logging = logging;
-        finalMapInstance.LvlNo = currLevel;
-        mapSizeX = finalMapInstance.sizeX;
-        mapSizeY = finalMapInstance.sizeY;
+        mapInstance = Instantiate(finalMapPrefab) as IMarianMap;
+        mapInstance.Logging = logging;
+        mapInstance.LvlNo = currLevel;
+        mapSizeX = mapInstance.SizeX;
+        mapSizeY = mapInstance.SizeY;
         foreach (GameObject lvlLight in GameObject.FindGameObjectsWithTag("BigLight"))
         { lvlLight.light.intensity = 0.65f; }
-        //MapCell[] others = FindObjectsOfType(typeof(MapCell)) as MapCell[];
-        //foreach (MapCell other in others)
-        //{ Destroy(other.gameObject); }
-        finalMapInstance.Generate();
+        mapInstance.Generate();
         startRoomNo = 0;
         endRoomNo = 0;
+        roomsCnt = 1;
         PlaceMarian();
-        //PlaceBoss();
+        PlaceEnemies();
         Debug.Log("welcome to final level " + currLevel);
     }
+
     private void RestartGame() {
-        //StopAllCoroutines();
-        if (currLevel == finalLevel)
-        { Destroy(finalMapInstance.gameObject); }
-        else if (bossLvl)
-        { Destroy(bossMapInstance.gameObject); }
-        else
-        { Destroy(mapInstance.gameObject); }
-        
+        Destroy(mapInstance.gameObject);      
         BeginGame();
     }
 
     private void SaveMap()
     {
-        if (bossLvl || currLevel == finalLevel)
-            return;
         mapInstance.Save();
     }
 
     private void LoadMap()
     {
-        //StopAllCoroutines();
-        //StartCoroutine(mapInstance.Load());
-        if (bossLvl ||currLevel == finalLevel)
-            return;
         mapInstance.Load();
     }
 
     public void PlaceEnemies()
     {
-        if (bossLvl)
-            return;
-        int totalRarity = blueGhostRarity + greenGhostRarity + redGhostRarity + spiderRarity;
-
-        int roomsCnt = mapInstance.roomsX * mapInstance.roomsY;
-        if (Enemy.enemies == null)
+        List<Enemy> myEnemies;
+        List<int> myRarity;
+        int myEnemiesPerRoom;
+        if (bossLvl || currLevel == finalLevel)
         {
-            Enemy.enemies = new List<Enemy>();
+            myEnemies = bossesPrefabs;
+            myRarity = bossesRarity;
+            myEnemiesPerRoom = 1;
         }
+        else
+        {
+            myEnemies = enemiesPrefabs;
+            myRarity = enemiesRarity;
+            myEnemiesPerRoom = EnemiesPerRoom;
+        }
+
+        int totalRarity = myRarity.Sum();
+        if (Enemy.enemies == null)
+        { Enemy.enemies = new List<Enemy>(); }
         List<Enemy> temp = new List<Enemy>();
+
         for (int room = 0; room < roomsCnt; room++)
         {
-            for (int j = 0; j < EnemiesPerRoom; j++)
+            for (int j = 0; j < myEnemiesPerRoom; j++)
             {
-                if (room == mapInstance.StartRoomNo)
+                if (room == mapInstance.StartRoomNo && !(bossLvl || currLevel == finalLevel))
                     continue;
 
                 IntVector2 coordinates = mapInstance.PlaceEnemyInRoom(room);
                 //Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
-                Enemy newEnemy;
-                int srand = UnityEngine.Random.Range(0,totalRarity+1);
-                if (srand < blueGhostRarity)
-                { 
-                    newEnemy = Instantiate(blueGhostPrefab) as Enemy;
-                    newEnemy.name = "Zbigniew";
+                Enemy newEnemy = null;
+                int currentSum = 0;
+                int srand = UnityEngine.Random.Range(0, totalRarity + 1);
+                for (int i = 0; i < myEnemies.Count(); i++)
+                {
+                    currentSum += myRarity[i];
+                    if (srand <= currentSum)
+                    {
+                        newEnemy = Instantiate(myEnemies[i]) as Enemy;
+                        break;
+                    }
                 }
-                else if (srand < blueGhostRarity + redGhostRarity)
-                { 
-                    newEnemy = Instantiate(redGhostPrefab) as Enemy;
-                    newEnemy.name = "Bogdan";
-                }
-                else if (srand < blueGhostRarity + redGhostRarity + greenGhostRarity)
-                { 
-                    newEnemy = Instantiate(greenGhostPrefab) as Enemy;
-                    newEnemy.name = "Apoloniusz";
-                }
-                else
-                { 
-                    newEnemy = Instantiate(spiderPrefab) as Enemy;
-                    newEnemy.name = "JanMaria";
-                }
+                if (newEnemy == null)
+                    return;
                 newEnemy.state = Enemy.State.idle;
-                //newEnemy.transform.localPosition
-                
                 newEnemy.transform.parent = transform;
-                newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.sizeX * 0.5f + 0.5f, coordinates.y - mapInstance.sizeY * 0.5f + 0.5f, -1.5f);
+                newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.SizeX * 0.5f + 0.5f, coordinates.y - mapInstance.SizeY * 0.5f + 0.5f, -1.5f);
                 temp.Add(newEnemy);
             }
         }
         Enemy.enemies = temp;
     }
 
-    private void PlaceBoss()
-    {
-        if (finalLevel == currLevel)
-        {
-            return;
-        }
-        if (Enemy.enemies == null)
-        {
-            Enemy.enemies = new List<Enemy>();
-        }
-        List<Enemy> temp = new List<Enemy>();
-
-
-        IntVector2 coordinates = bossMapInstance.PlaceEnemyInRoom(0);
-        //Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
-        Enemy newEnemy;
-
-        newEnemy = Instantiate(billPrefab) as Enemy;
-        newEnemy.name = "BillCipher";
-                
-
-        //newEnemy.transform.localPosition
-
-        newEnemy.transform.parent = transform;
-        newEnemy.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1.5f);
-        temp.Add(newEnemy);
-            
-        
-        Enemy.enemies = temp;
-    }
-
     public void PlaceMarian()
     {
-        IntVector2 coordinates;
-        if (currLevel == finalLevel)
-        {
-            coordinates = finalMapInstance.GetStartPosForPlayer();
-            marian = Instantiate(marianPrefab) as MoveMarian;
-            marian.name = "Marian";
-            marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
-        }
-        else if (bossLvl)
-        {
-            coordinates = bossMapInstance.GetStartPosForPlayer();
-            marian = Instantiate(marianPrefab) as MoveMarian;
-            marian.name = "Marian";
-            marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
-        }
-        else
-        {
-            coordinates = mapInstance.GetStartPosForPlayer();
-            marian = Instantiate(marianPrefab) as MoveMarian;
-            marian.name = "Marian";
-            marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
-        }
-
+        IntVector2 coordinates = mapInstance.GetStartPosForPlayer();
+        marian = Instantiate(marianPrefab) as MoveMarian;
+        marian.name = "Marian";
+        marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
 
     }
 
     private void PlaceEndLadder()
     {
-        IntVector2 coordinates;
-        if (bossLvl)
-        {  coordinates = bossMapInstance.GetEndLadderPos(); }
-        else
-        { coordinates = mapInstance.GetEndLadderPos(); }
+        IntVector2 coordinates = mapInstance.GetEndLadderPos(); 
         ladder = Instantiate(ladderPrefab) as Ladder;
         ladder.name = "Ladder to "+(currLevel+1);
         ladder.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);

@@ -5,19 +5,28 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO.Compression;
+using Assets.Scripts;
 
-public class FinalMap : MonoBehaviour
-{
+public class FinalMap : MonoBehaviour, IMarianMap {
 
     public int generations;
     public int startingFloorsPercent;
     public int sizeX, sizeY;
+    public int SizeY
+    { get { return sizeY; } }
 
+    public int SizeX
+    { get { return sizeX; } }
     //public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     //public VoidMapCellCollide voidCellPrefabCollide;
     public GrassMapCell grassCellPrefab;
     public Wall wallPrefab;
+
+    public int RoomsX
+    { get { return 1; } }
+    public int RoomsY
+    { get { return 1; } }
 
     private int lvlNo = 0;
     bool bossLvl = false;
@@ -34,7 +43,6 @@ public class FinalMap : MonoBehaviour
         get { return logging; }
         set { logging = value; }
     }
-    string path = "mapsavefile.byte";
 
     //private MapCell[,] map;
     private int[,] smallMap;
@@ -434,4 +442,40 @@ public class FinalMap : MonoBehaviour
     public IntVector2 GetEndLadderPos()
     { return RandomTile(TileTypes.FLOOR); }
 
+
+
+
+    public int StartRoomNo
+    {
+        get
+        {
+            return 0;
+        }
+        set
+        {
+            
+        }
+    }
+
+    public int EndRoomNo
+    {
+        get
+        {
+            return 0;
+        }
+        set
+        {
+            
+        }
+    }
+
+    public void Save()
+    {
+        
+    }
+
+    public void Load()
+    {
+
+    }
 }
