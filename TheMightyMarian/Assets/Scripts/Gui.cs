@@ -15,7 +15,20 @@ public class Gui : MonoBehaviour
     public Texture Spell3;
     public Texture Spell4;
     public Texture Spell5;
-    public Texture Spell6;
+    public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light, Heal, Rage, Fast, Empower, Shout, Eruption };
+
+    public Texture None;
+    public Texture BlueBolt;
+    public Texture LightningBolt;
+    public Texture Rail;
+    public Texture FireBolt;
+    public Texture Light;
+    public Texture Heal;
+    public Texture Rage;
+    public Texture Fast;
+    public Texture Empower;
+    public Texture Shout;
+    public Texture Eruption;
 
     public bool showSkills = false;
     private bool showHelp = false;
@@ -61,16 +74,7 @@ public class Gui : MonoBehaviour
         }
         if (Input.GetKeyDown("3") && !cd3Start)
         {
-            if (Marian.currSpell == Attack.Spell.BlueBolt)
-            {
-                Marian.currSpell = Attack.Spell.LightningBolt;
-                cd3Start = true;
-            }
-            else
-            {
-                Marian.currSpell = Attack.Spell.BlueBolt;
-                cd3Start = true;
-            }
+            cd3Start = true;
         }
         if (Input.GetKeyDown("4") && !cd4Start)
         {
@@ -100,6 +104,7 @@ public class Gui : MonoBehaviour
 
     void Update()
     {
+        SetSpellTextures();
         if(cd1Start)
         {
             cd1 -= Time.deltaTime;
@@ -147,87 +152,281 @@ public class Gui : MonoBehaviour
         }
     }
 
+    void SetSpellTextures()
+    {
+        switch (Marian.spell1)
+        {
+            case Attack.Spell.None:
+                Spell1 = None;
+                break;
+            case Attack.Spell.BlueBolt:
+                Spell1 = BlueBolt;
+                break;
+            case Attack.Spell.LightningBolt:
+                Spell1 = LightningBolt;
+                break;
+            case Attack.Spell.Rail:
+                Spell1 = Rail;
+                break;
+            case Attack.Spell.FireBolt:
+                Spell1 = FireBolt;
+                break;
+            case Attack.Spell.Light:
+                Spell1 = Light;
+                break;
+            case Attack.Spell.Heal:
+                Spell1 = Heal;
+                break;
+            case Attack.Spell.Rage:
+                Spell1 = Rage;
+                break;
+            case Attack.Spell.Fast:
+                Spell1 = Fast;
+                break;
+            case Attack.Spell.Empower:
+                Spell1 = Empower;
+                break;
+            case Attack.Spell.Shout:
+                Spell1 = Shout;
+                break;
+            case Attack.Spell.Eruption:
+                Spell1 = Eruption;
+                break;
+            default:
+                break;
+        }
+        switch (Marian.spell2)
+        {
+            case Attack.Spell.None:
+                Spell2 = None;
+                break;
+            case Attack.Spell.BlueBolt:
+                Spell2 = BlueBolt;
+                break;
+            case Attack.Spell.LightningBolt:
+                Spell2 = LightningBolt;
+                break;
+            case Attack.Spell.Rail:
+                Spell2 = Rail;
+                break;
+            case Attack.Spell.FireBolt:
+                Spell2 = FireBolt;
+                break;
+            case Attack.Spell.Light:
+                Spell2 = Light;
+                break;
+            case Attack.Spell.Heal:
+                Spell2 = Heal;
+                break;
+            case Attack.Spell.Rage:
+                Spell2 = Rage;
+                break;
+            case Attack.Spell.Fast:
+                Spell2 = Fast;
+                break;
+            case Attack.Spell.Empower:
+                Spell2 = Empower;
+                break;
+            case Attack.Spell.Shout:
+                Spell2 = Shout;
+                break;
+            case Attack.Spell.Eruption:
+                Spell2 = Eruption;
+                break;
+            default:
+                break;
+        }
+        switch (Marian.spell3)
+        {
+            case Attack.Spell.None:
+                Spell3 = None;
+                break;
+            case Attack.Spell.BlueBolt:
+                Spell3 = BlueBolt;
+                break;
+            case Attack.Spell.LightningBolt:
+                Spell3 = LightningBolt;
+                break;
+            case Attack.Spell.Rail:
+                Spell3 = Rail;
+                break;
+            case Attack.Spell.FireBolt:
+                Spell3 = FireBolt;
+                break;
+            case Attack.Spell.Light:
+                Spell3 = Light;
+                break;
+            case Attack.Spell.Heal:
+                Spell3 = Heal;
+                break;
+            case Attack.Spell.Rage:
+                Spell3 = Rage;
+                break;
+            case Attack.Spell.Fast:
+                Spell3 = Fast;
+                break;
+            case Attack.Spell.Empower:
+                Spell3 = Empower;
+                break;
+            case Attack.Spell.Shout:
+                Spell3 = Shout;
+                break;
+            case Attack.Spell.Eruption:
+                Spell3 = Eruption;
+                break;
+            default:
+                break;
+        }
+        switch (Marian.spell4)
+        {
+            case Attack.Spell.None:
+                Spell4 = None;
+                break;
+            case Attack.Spell.BlueBolt:
+                Spell4 = BlueBolt;
+                break;
+            case Attack.Spell.LightningBolt:
+                Spell4 = LightningBolt;
+                break;
+            case Attack.Spell.Rail:
+                Spell4 = Rail;
+                break;
+            case Attack.Spell.FireBolt:
+                Spell4 = FireBolt;
+                break;
+            case Attack.Spell.Light:
+                Spell4 = Light;
+                break;
+            case Attack.Spell.Heal:
+                Spell4 = Heal;
+                break;
+            case Attack.Spell.Rage:
+                Spell4 = Rage;
+                break;
+            case Attack.Spell.Fast:
+                Spell4 = Fast;
+                break;
+            case Attack.Spell.Empower:
+                Spell4 = Empower;
+                break;
+            case Attack.Spell.Shout:
+                Spell4 = Shout;
+                break;
+            case Attack.Spell.Eruption:
+                Spell4 = Eruption;
+                break;
+            default:
+                break;
+        }
+        switch (Marian.spell5)
+        {
+            case Attack.Spell.None:
+                Spell5 = None;
+                break;
+            case Attack.Spell.BlueBolt:
+                Spell5 = BlueBolt;
+                break;
+            case Attack.Spell.LightningBolt:
+                Spell5 = LightningBolt;
+                break;
+            case Attack.Spell.Rail:
+                Spell5 = Rail;
+                break;
+            case Attack.Spell.FireBolt:
+                Spell5 = FireBolt;
+                break;
+            case Attack.Spell.Light:
+                Spell5 = Light;
+                break;
+            case Attack.Spell.Heal:
+                Spell5 = Heal;
+                break;
+            case Attack.Spell.Rage:
+                Spell5 = Rage;
+                break;
+            case Attack.Spell.Fast:
+                Spell5 = Fast;
+                break;
+            case Attack.Spell.Empower:
+                Spell5 = Empower;
+                break;
+            case Attack.Spell.Shout:
+                Spell5 = Shout;
+                break;
+            case Attack.Spell.Eruption:
+                Spell5 = Eruption;
+                break;
+            default:
+                break;
+        }
+    }
+
     void WindowFunction(int windowID)
+    {
+        DrawSpell(Marian.spell1, Spell1, new Rect(10, 10, 60, 100), new Rect(40, 30, 60, 100), cd1Start, cd1);
+        DrawSpell(Marian.spell2, Spell2, new Rect(80, 10, 60, 100), new Rect(110, 30, 60, 100), cd2Start, cd2);
+        DrawSpell(Marian.spell3, Spell3, new Rect(150, 10, 60, 100), new Rect(180, 30, 60, 100), cd3Start, cd3);
+        DrawSpell(Marian.spell4, Spell4, new Rect(220, 10, 60, 100), new Rect(250, 30, 60, 100), cd4Start, cd4);
+        DrawSpell(Marian.spell5, Spell5, new Rect(300, 10, 60, 100), new Rect(330, 30, 60, 100), cd5Start, cd5);
+    }
+
+    void DrawSpell(Attack.Spell spell,Texture spellTexture, Rect position, Rect labelPosition, bool cd, float cdTime)
     {
         var color = GUI.color;
         var cdColor = new Color(color.r, color.g, color.b, 0.25f);
-        if (!cd1Start)
-        {
-            GUI.DrawTexture(new Rect(10, 10, 60, 100), Spell1, ScaleMode.ScaleToFit, true);
-        }
-        else
+        if(spell == Attack.Spell.None)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(10, 10, 60, 100), Spell1, ScaleMode.ScaleToFit, true);
-            GUI.color = Color.red;
-            GUI.Label(new Rect(40, 30, 60, 100), Convert.ToInt32(cd1).ToString());
+            GUI.DrawTexture(position, spellTexture, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
-        if (!cd2Start)
+        else if (spell == Attack.Spell.LightningBolt || spell == Attack.Spell.BlueBolt)
         {
-            GUI.DrawTexture(new Rect(80, 10, 60, 100), Spell2, ScaleMode.ScaleToFit, true);
-        }
-        else
-        {
-            GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(80, 10, 60, 100), Spell2, ScaleMode.ScaleToFit, true);
-            GUI.color = Color.red;
-            GUI.Label(new Rect(110, 30, 60, 100), Convert.ToInt32(cd2).ToString());
-            GUI.color = color;
-        }
-        if (!cd3Start)
-        {
-            if (Marian.currSpell == Attack.Spell.BlueBolt)
+            if (!cd)
             {
-                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell3, ScaleMode.ScaleToFit, true);
+                if (Marian.currSpell == Attack.Spell.BlueBolt)
+                {
+                    GUI.DrawTexture(position, spellTexture, ScaleMode.ScaleToFit, true);
+                }
+                else
+                {
+                    GUI.DrawTexture(position, spellTexture, ScaleMode.ScaleToFit, true);
+                }
             }
             else
             {
-                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell5, ScaleMode.ScaleToFit, true);
+                if (Marian.currSpell == Attack.Spell.BlueBolt)
+                {
+                    GUI.color = cdColor;
+                    GUI.DrawTexture(position, spellTexture, ScaleMode.ScaleToFit, true);
+                    GUI.color = Color.red;
+                    GUI.Label(labelPosition, Convert.ToInt32(cdTime).ToString());
+                    GUI.color = color;
+                }
+                else
+                {
+                    GUI.color = cdColor;
+                    GUI.DrawTexture(position, spellTexture, ScaleMode.ScaleToFit, true);
+                    GUI.color = Color.red;
+                    GUI.Label(labelPosition, Convert.ToInt32(cdTime).ToString());
+                    GUI.color = color;
+                }
             }
         }
         else
         {
-            if (Marian.currSpell == Attack.Spell.BlueBolt)
+            if (!cd)
             {
-                GUI.color = cdColor;
-                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell3, ScaleMode.ScaleToFit, true);
-                GUI.color = Color.red;
-                GUI.Label(new Rect(180, 30, 60, 100), Convert.ToInt32(cd3).ToString());
-                GUI.color = color;
+                GUI.DrawTexture(position, spellTexture, ScaleMode.ScaleToFit, true);
             }
             else
             {
                 GUI.color = cdColor;
-                GUI.DrawTexture(new Rect(150, 10, 60, 100), Spell5, ScaleMode.ScaleToFit, true);
+                GUI.DrawTexture(position, spellTexture, ScaleMode.ScaleToFit, true);
                 GUI.color = Color.red;
-                GUI.Label(new Rect(180, 30, 60, 100), Convert.ToInt32(cd3).ToString());
+                GUI.Label(labelPosition, Convert.ToInt32(cdTime).ToString());
                 GUI.color = color;
             }
-        }
-        if (!cd4Start)
-        {
-            GUI.DrawTexture(new Rect(220, 10, 60, 100), Spell4, ScaleMode.ScaleToFit, true);
-        }
-        else
-        {
-            GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(220, 10, 60, 100), Spell4, ScaleMode.ScaleToFit, true);
-            GUI.color = Color.red;
-            GUI.Label(new Rect(250, 30, 60, 100), Convert.ToInt32(cd4).ToString());
-            GUI.color = color;
-        }
-        if (!cd5Start)
-        {
-            GUI.DrawTexture(new Rect(300, 10, 60, 100), Spell6, ScaleMode.ScaleToFit, true);
-        }
-        else
-        {
-            GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(300, 10, 60, 100), Spell6, ScaleMode.ScaleToFit, true);
-            GUI.color = Color.red;
-            GUI.Label(new Rect(330, 30, 60, 100), Convert.ToInt32(cd5).ToString());
-            GUI.color = color;
         }
     }
     void SkillWindowFunction(int windowID)
