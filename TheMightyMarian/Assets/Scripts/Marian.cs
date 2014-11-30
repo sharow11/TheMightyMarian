@@ -16,6 +16,9 @@ public class Marian : MonoBehaviour {
     public static Attack.Spell spell4 = Attack.Spell.None;
     public static Attack.Spell spell5 = Attack.Spell.None;
 
+    public static bool GoFast = false;
+    private static float goFastTime = 2.0f;
+
     public static int Strenght = 0;
     public static int Dexterity = 0;
     public static int Inteligence = 0;
@@ -111,6 +114,18 @@ public class Marian : MonoBehaviour {
                 lifeStealTime = 2.0f;
             }
         }
+
+        if (GoFast)
+        {
+            goFastTime -= Time.deltaTime;
+            if (goFastTime < 0)
+            {
+                GoFast = false;
+                goFastTime = 2.0f;
+                Speed -= 8;
+            }
+        }
+
 
 	    if(currHp <= 0)
         {

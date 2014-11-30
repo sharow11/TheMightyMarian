@@ -238,7 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d99ba5f1cb85642b4ea78f55f0271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   positions: []
 --- !u!114 &11400002
 MonoBehaviour:
@@ -264,6 +263,9 @@ MonoBehaviour:
   lightningBoltBlast: {fileID: 100002, guid: f56267fb38a652c4289e900eb40cdf91, type: 2}
   arrow: {fileID: 100002, guid: 633facec7e0b47045bb2a2c2d6260736, type: 2}
   sword: {fileID: 100000, guid: 52dd806eb9a860941926fbe2d4ffe931, type: 2}
+  rage: {fileID: 100006, guid: 048f61d62463a454e8c23d69d826e3bc, type: 2}
+  shout: {fileID: 100002, guid: 034070dc2defedf489ea37890be96c4b, type: 2}
+  goFast: {fileID: 100000, guid: 6119b16dd477d8a44a50ec14c980cdf4, type: 2}
   lightningBoltRange: 20
   railRange: 50
   angle: 0

@@ -9,6 +9,8 @@ public class Attack : MonoBehaviour {
     public GameObject arrow;
     public GameObject sword;
     public GameObject rage;
+    public GameObject shout;
+    public GameObject goFast;
     LayerMask mask;
     public float lightningBoltRange = 20;
     public float railRange = 50;
@@ -322,10 +324,30 @@ public class Attack : MonoBehaviour {
                 }
                 break;
             case Spell.Fast:
+                if (Marian.currMana > 10)
+                {
+                    Marian.currMana -= 10;
+                    if (shot != null && shot.name == "LightningBolt(Clone)")
+                        Destroy(shot);
+                    shot = (GameObject)Instantiate(goFast, new Vector3(marian.transform.position.x, marian.transform.position.y, -2f), new Quaternion());
+                    shot.transform.LookAt(new Vector3(marian.transform.position.x, marian.transform.position.y, -99999f));
+                    Marian.Speed += 8;
+                    Marian.GoFast = true;
+                    Destroy(shot, 2f);
+                }
                 break;
             case Spell.Empower:
                 break;
             case Spell.Shout:
+                if (Marian.currMana > 10)
+                {
+                    Marian.currMana -= 10;
+                    if (shot != null && shot.name == "LightningBolt(Clone)")
+                        Destroy(shot);
+                    shot = (GameObject)Instantiate(shout, new Vector3(marian.transform.position.x, marian.transform.position.y, -2f), new Quaternion());
+                    shot.transform.LookAt(new Vector3(marian.transform.position.x, marian.transform.position.y, -99999f));
+                    Destroy(shot, 10f);
+                }
                 break;
             case Spell.Eruption:
                 if (Marian.currMana > 100)
