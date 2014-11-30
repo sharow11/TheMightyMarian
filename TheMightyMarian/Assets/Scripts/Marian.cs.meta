@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 7da93b51e698b034c80406c611451590
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - LevelUp: {fileID: 100006, guid: ee1f56d82bc70e44f99e0a760dd04ae5, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

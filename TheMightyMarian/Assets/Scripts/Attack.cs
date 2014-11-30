@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class Attack : MonoBehaviour {
-    public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light };
+    public enum Spell : byte { None, BlueBolt, LightningBolt, Rail, FireBolt, Light, Heal, Rage, Fast, Empower, Shout, Eruption};
     public GameObject blueBolt, lightningBolt, rail, rail_around, fireBolt, light, AOE, heal;
     public GameObject blueBlast, fireBlast, lightningBoltBlast;
     public GameObject arrow;
@@ -256,7 +256,7 @@ public class Attack : MonoBehaviour {
                 Destroy(shot, 10.6f);
             }
         }
-        if (Input.GetKeyDown("5") && !Gui.cd4Start)
+        if (Input.GetKeyDown("5") && !Gui.cd5Start)
         {
             if (Marian.currMana > 100)
             {
@@ -283,17 +283,13 @@ public class Attack : MonoBehaviour {
         }
         if (Input.GetKeyDown("q"))
         {
-            if(Marian.currAttackType == Marian.AttackType.Melee)
+            if (Marian.currMana > 5)
             {
-                Marian.currAttackType = Marian.AttackType.Ranged;
-            }
-            else if(Marian.currAttackType == Marian.AttackType.Ranged)
-            {
-                Marian.currAttackType = Marian.AttackType.Spell;
-            }
-            else if(Marian.currAttackType == Marian.AttackType.Spell)
-            {
-                Marian.currAttackType = Marian.AttackType.Melee;
+                Marian.currMana -= 5;
+                if (shot != null && shot.name == "LightningBolt(Clone)")
+                    Destroy(shot);
+                shot = (GameObject)Instantiate(light, new Vector3(camera.hitAbove.x, camera.hitAbove.y, -3), new Quaternion());
+                Destroy(shot, 10.6f);
             }
         }
 	}

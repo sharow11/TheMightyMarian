@@ -10,14 +10,21 @@ public class Marian : MonoBehaviour {
     public static int Exp = 0;
     public static int Level = 1;
 
+    public static Attack.Spell spell1 = Attack.Spell.None;
+    public static Attack.Spell spell2 = Attack.Spell.None;
+    public static Attack.Spell spell3 = Attack.Spell.None;
+    public static Attack.Spell spell4 = Attack.Spell.None;
+    public static Attack.Spell spell5 = Attack.Spell.None;
+
     public static int Strenght = 0;
     public static int Dexterity = 0;
     public static int Inteligence = 0;
     public static int SkillPoints = 0;
+    public static int Speed = 0;
 
-    public static int BaseDamage = 0;
+    public static int BaseDamage = 10;
 
-    public static int Damage = 0;
+    public static int Damage = 10;
 
     public static float currHp = HP;
     public static int currMana = Mana;
@@ -39,7 +46,8 @@ public class Marian : MonoBehaviour {
     public static AttackType currAttackType = AttackType.Melee;
 
 	// Use this for initialization
-	void Start () {
+    void Start()
+    {
         if (IsMarianDead)
         {
             HP = 1000;
@@ -50,8 +58,13 @@ public class Marian : MonoBehaviour {
             Level = 1;
             GameManager.currLevel = 1;
             currMana = Mana;
+            spell1 = Attack.Spell.None;
+            spell2 = Attack.Spell.None;
+            spell3 = Attack.Spell.None;
+            spell4 = Attack.Spell.None;
+            spell5 = Attack.Spell.None;
         }
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -62,7 +75,14 @@ public class Marian : MonoBehaviour {
 
         int type = (int)script.Type;
 
-        BaseDamage = (int)script.Damage;
+        if ((int)script.Damage < 10)
+        {
+            BaseDamage = 10;
+        }
+        else
+        {
+            BaseDamage = (int)script.Damage;
+        }
 
         currAttackType = (AttackType)type;
 
@@ -115,10 +135,35 @@ public class Marian : MonoBehaviour {
             Strenght++;
             HP += 5;
             currHp += 5;
+            if(Strenght == 10)
+            {
+                AddSpell(Attack.Spell.Empower);
+            }
+            if (Strenght == 20)
+            {
+                AddSpell(Attack.Spell.Rage);
+            }
+            if (Strenght == 30)
+            {
+                AddSpell(Attack.Spell.Shout);
+            }
         }
         else if(type == "dex")
         {
             Dexterity++;
+            Speed++;
+            if (Dexterity == 10)
+            {
+                AddSpell(Attack.Spell.Fast);
+            }
+            if (Dexterity == 20)
+            {
+                AddSpell(Attack.Spell.Heal);
+            }
+            if (Dexterity == 30)
+            {
+                AddSpell(Attack.Spell.Rail);
+            }
         }
         else
         {
@@ -126,7 +171,43 @@ public class Marian : MonoBehaviour {
             Mana += 5;
             currMana += 5;
             maxManaRegen -= 0.01f;
+            if (Inteligence == 10)
+            {
+                AddSpell(Attack.Spell.Eruption);
+            }
+            if (Inteligence == 20)
+            {
+                AddSpell(Attack.Spell.LightningBolt);
+            }
+            if (Inteligence == 30)
+            {
+                AddSpell(Attack.Spell.FireBolt);
+            }
         }
         SkillPoints--;
+    }
+    
+    private static void AddSpell(Attack.Spell spell)
+    {
+        if(spell1 == Attack.Spell.None)
+        {
+            spell1= spell;
+        }
+        else if (spell2 == Attack.Spell.None)
+        {
+            spell2 = spell;
+        }
+        else if (spell3 == Attack.Spell.None)
+        {
+            spell3 = spell;
+        }
+        else if (spell4 == Attack.Spell.None)
+        {
+            spell4 = spell;
+        }
+        else if (spell5 == Attack.Spell.None)
+        {
+            spell5 = spell;
+        }
     }
 }
