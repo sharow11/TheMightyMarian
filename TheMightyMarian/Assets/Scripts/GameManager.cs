@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
             if (finalLevel < 0)
             { 
-                finalLevel = 3; // UnityEngine.Random.Range(15, 21); 
+                finalLevel = UnityEngine.Random.Range(15, 21); 
             }
             state++;
             //show loading screen
@@ -230,20 +230,25 @@ public class GameManager : MonoBehaviour
                 Enemy newEnemy = null;
                 int currentSum = 0;
                 int srand = UnityEngine.Random.Range(0, totalRarity + 1);
+                float y = -1.5f;
                 for (int i = 0; i < myEnemies.Count(); i++)
                 {
                     currentSum += myRarity[i];
                     if (srand <= currentSum)
                     {
                         newEnemy = Instantiate(myEnemies[i]) as Enemy;
+                        if((i== 0) && (bossLvl || currLevel == finalLevel))
+                        { y = -3.5f;}
                         break;
                     }
                 }
                 if (newEnemy == null)
                     return;
+
                 newEnemy.state = Enemy.State.idle;
                 newEnemy.transform.parent = transform;
-                newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.SizeX * 0.5f + 0.5f, coordinates.y - mapInstance.SizeY * 0.5f + 0.5f, -1.5f);
+
+                newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.SizeX * 0.5f + 0.5f, coordinates.y - mapInstance.SizeY * 0.5f + 0.5f, y);
                 temp.Add(newEnemy);
             }
         }

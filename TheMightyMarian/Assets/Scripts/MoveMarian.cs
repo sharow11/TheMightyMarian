@@ -7,12 +7,18 @@ public class MoveMarian : MonoBehaviour {
     List<float> times;
     const float precision = 0.1f;
 
+    public enum State
+    { Idle, Moving }
+
+    public State state = State.Idle;
+
 	// Use this for initialization
     void Start()
     {
         positions = new List<Vector3>();
         times = new List<float>();
         Physics.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("MarianProjectile"), true);
+        state = State.Idle;
 	}
 	
 	// Update is called once per frame

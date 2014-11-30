@@ -8,7 +8,7 @@ public class GroundQuad : MonoBehaviour {
     public void beWater()
     {
         renderer.material = water;
-        transform.position = new Vector3(0, 0, 2);
+        transform.position = new Vector3(0, 0, 0.1f);
     }
 
     public void beFloor()
