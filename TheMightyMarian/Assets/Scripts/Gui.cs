@@ -154,7 +154,7 @@ public class Gui : MonoBehaviour
 
     void SetSpellTextures()
     {
-        switch (Marian.spell1)
+        switch (Marian.Spell1)
         {
             case Attack.Spell.None:
                 Spell1 = None;
@@ -363,7 +363,7 @@ public class Gui : MonoBehaviour
 
     void WindowFunction(int windowID)
     {
-        DrawSpell(Marian.spell1, Spell1, new Rect(10, 10, 60, 100), new Rect(40, 30, 60, 100), cd1Start, cd1);
+        DrawSpell(Marian.Spell1, Spell1, new Rect(10, 10, 60, 100), new Rect(40, 30, 60, 100), cd1Start, cd1);
         DrawSpell(Marian.spell2, Spell2, new Rect(80, 10, 60, 100), new Rect(110, 30, 60, 100), cd2Start, cd2);
         DrawSpell(Marian.spell3, Spell3, new Rect(150, 10, 60, 100), new Rect(180, 30, 60, 100), cd3Start, cd3);
         DrawSpell(Marian.spell4, Spell4, new Rect(220, 10, 60, 100), new Rect(250, 30, 60, 100), cd4Start, cd4);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections;
 
 public class MoveMarian : MonoBehaviour {
-    public int speed = 10;
     public List<Vector3> positions;
     List<float> times;
     const float precision = 0.1f;
@@ -18,7 +17,7 @@ public class MoveMarian : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized * speed;
+        rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized * Marian.Speed;
         positions.Add(transform.position);
         times.Add(Time.time);
         while (times.Count > 0 && Time.time - times[0] > 30)

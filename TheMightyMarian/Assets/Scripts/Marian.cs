@@ -10,7 +10,7 @@ public class Marian : MonoBehaviour {
     public static int Exp = 0;
     public static int Level = 1;
 
-    public static Attack.Spell spell1 = Attack.Spell.None;
+    public static Attack.Spell Spell1 = Attack.Spell.None;
     public static Attack.Spell spell2 = Attack.Spell.None;
     public static Attack.Spell spell3 = Attack.Spell.None;
     public static Attack.Spell spell4 = Attack.Spell.None;
@@ -19,8 +19,11 @@ public class Marian : MonoBehaviour {
     public static int Strenght = 0;
     public static int Dexterity = 0;
     public static int Inteligence = 0;
-    public static int SkillPoints = 0;
-    public static int Speed = 0;
+    public static int SkillPoints = 100;
+    public static int Speed = 8;
+
+    public static bool LifeSteal = false;
+    private static float lifeStealTime = 2.0f;
 
     public static int BaseDamage = 10;
 
@@ -58,7 +61,7 @@ public class Marian : MonoBehaviour {
             Level = 1;
             GameManager.currLevel = 1;
             currMana = Mana;
-            spell1 = Attack.Spell.None;
+            Spell1 = Attack.Spell.None;
             spell2 = Attack.Spell.None;
             spell3 = Attack.Spell.None;
             spell4 = Attack.Spell.None;
@@ -97,6 +100,16 @@ public class Marian : MonoBehaviour {
         else
         {
             Damage = BaseDamage + Inteligence;
+        }
+
+        if (LifeSteal)
+        {
+            lifeStealTime -= Time.deltaTime;
+            if (lifeStealTime < 0)
+            {
+                LifeSteal = false;
+                lifeStealTime = 2.0f;
+            }
         }
 
 	    if(currHp <= 0)
@@ -151,18 +164,20 @@ public class Marian : MonoBehaviour {
         else if(type == "dex")
         {
             Dexterity++;
-            Speed++;
             if (Dexterity == 10)
             {
                 AddSpell(Attack.Spell.Fast);
+                Speed++;
             }
             if (Dexterity == 20)
             {
                 AddSpell(Attack.Spell.Heal);
+                Speed++;
             }
             if (Dexterity == 30)
             {
                 AddSpell(Attack.Spell.Rail);
+                Speed++;
             }
         }
         else
@@ -189,9 +204,9 @@ public class Marian : MonoBehaviour {
     
     private static void AddSpell(Attack.Spell spell)
     {
-        if(spell1 == Attack.Spell.None)
+        if(Spell1 == Attack.Spell.None)
         {
-            spell1= spell;
+            Spell1= spell;
         }
         else if (spell2 == Attack.Spell.None)
         {
