@@ -267,6 +267,7 @@ MonoBehaviour:
   rage: {fileID: 100006, guid: 048f61d62463a454e8c23d69d826e3bc, type: 2}
   shout: {fileID: 100002, guid: 034070dc2defedf489ea37890be96c4b, type: 2}
   goFast: {fileID: 100000, guid: 6119b16dd477d8a44a50ec14c980cdf4, type: 2}
+  redSword: {fileID: 100000, guid: 48a469161ede336488045ad288081c97, type: 2}
   lightningBoltRange: 20
   railRange: 50
   angle: 0

@@ -33,11 +33,11 @@ public class Gui : MonoBehaviour
     public bool showSkills = false;
     private bool showHelp = false;
 
-    private static readonly float spellCd1 = 3.0f;
-    private static readonly float spellCd2 = 3.0f;
-    private static readonly float spellCd3 = 3.0f;
-    private static readonly float spellCd4 = 3.0f;
-    private static readonly float spellCd5 = 3.0f;
+    private static readonly float spellCd1 = 4.0f;
+    private static readonly float spellCd2 = 4.0f;
+    private static readonly float spellCd3 = 4.0f;
+    private static readonly float spellCd4 = 4.0f;
+    private static readonly float spellCd5 = 4.0f;
 
     public static bool cd1Start = false;
     public static bool cd2Start = false;
@@ -64,26 +64,6 @@ public class Gui : MonoBehaviour
         GUI.color = Color.cyan;
         GUI.Label(new Rect(110, 90, 60, 100), "EXP: " + Marian.Exp.ToString());
         GUI.color = color;
-        if (Input.GetKeyDown("1") && !cd1Start)
-        {
-            cd1Start = true;
-        }
-        if (Input.GetKeyDown("2") && !cd2Start)
-        {
-            cd2Start = true;
-        }
-        if (Input.GetKeyDown("3") && !cd3Start)
-        {
-            cd3Start = true;
-        }
-        if (Input.GetKeyDown("4") && !cd4Start)
-        {
-            cd4Start = true;
-        }
-        if (Input.GetKeyDown("5") && !cd5Start)
-        {
-            cd5Start = true;
-        }
         if (Input.GetKeyDown("k"))
         {
             showSkills = true;

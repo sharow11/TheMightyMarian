@@ -188,22 +188,27 @@ public class Attack : MonoBehaviour {
         if (Input.GetKeyDown("1") && !Gui.cd1Start)
         {
             castSpell(Marian.Spell1);
+            Gui.cd1Start = true;
         }
         if (Input.GetKeyDown("2") && !Gui.cd2Start)
         {
             castSpell(Marian.spell2);
+            Gui.cd2Start = true;
         }
         if (Input.GetKeyDown("3") && !Gui.cd3Start)
         {
             castSpell(Marian.spell3);
+            Gui.cd3Start = true;
         }
         if (Input.GetKeyDown("4") && !Gui.cd4Start)
         {
             castSpell(Marian.spell4);
+            Gui.cd4Start = true;
         }
         if (Input.GetKeyDown("5") && !Gui.cd5Start)
         {
             castSpell(Marian.spell5);
+            Gui.cd5Start = true;
         }
         if (Input.GetKeyDown("q"))
         {
