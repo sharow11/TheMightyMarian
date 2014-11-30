@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .382683486, y: 0, z: 0, w: .923879564}
   m_LocalPosition: {x: 0, y: .513605893, z: .239999995}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 400004}
   m_RootOrder: 0
@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positions: []
+  state: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,12 +284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb3a8a2fb84e56449496f1905123919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colCount: 7
+  colCount: 9
   rowCount: 1
   rowNumber: 0
   colNumber: 0
-  totalCells: 7
-  fps: 10
+  totalCells: 9
+  fps: 7
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

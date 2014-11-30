@@ -117,7 +117,7 @@ MonoBehaviour:
   bossesPrefabs:
   - {fileID: 11400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
   - {fileID: 11400004, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
-  bossesRarity: 0c0000000c000000
+  bossesRarity: bc0200000c000000
   marianPrefab: {fileID: 11400000, guid: 42ed5351e63dfc340935138a7b908bc8, type: 2}
   ladderPrefab: {fileID: 11400000, guid: 305596845cfd7c748bc55365c66a5fb3, type: 2}
   logging: 1

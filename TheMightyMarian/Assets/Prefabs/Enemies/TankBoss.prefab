@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .382683963, y: 0, z: 0, w: .923879385}
-  m_LocalPosition: {x: 0, y: -.100000001, z: .150000006}
+  m_LocalPosition: {x: 0, y: -.100000001, z: -2.81999993}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 9.57134533, y: -29.9386787, z: -2.8647542}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
-  arrow: {fileID: 0}
-  staff: {fileID: 0}
+  arrow: {fileID: 100000, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 2}
+  staff: {fileID: 100000, guid: 9430c8a09f4a047498ec3ec67976f722, type: 3}
   greenBolt: {fileID: 100002, guid: 7b7474a922a07004382e7b81177ac0da, type: 2}
   greenBlast: {fileID: 100002, guid: 6b45a036c193c5e4fb441c5300e800f5, type: 2}
   blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
