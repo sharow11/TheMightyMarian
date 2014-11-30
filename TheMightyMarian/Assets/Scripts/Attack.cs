@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class Attack : MonoBehaviour {
@@ -360,6 +361,16 @@ public class Attack : MonoBehaviour {
                     shot = (GameObject)Instantiate(shout, new Vector3(marian.transform.position.x, marian.transform.position.y, -2f), new Quaternion());
                     shot.transform.LookAt(new Vector3(marian.transform.position.x, marian.transform.position.y, -99999f));
                     Destroy(shot, 10f);
+                    List<Enemy> dmgRecipients = new List<Enemy>();
+                    foreach (Enemy enemy in Enemy.enemies)
+                    {
+                        if (Vector3.Distance(shot.transform.position, enemy.transform.position) < 25)
+                            dmgRecipients.Add(enemy);
+                    }
+                    foreach (Enemy enemy in dmgRecipients)
+                    {
+                        enemy.getStunned(2.0f);
+                    }
                 }
                 break;
             case Spell.Eruption:

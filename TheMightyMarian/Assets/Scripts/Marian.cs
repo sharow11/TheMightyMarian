@@ -6,7 +6,7 @@ public class Marian : MonoBehaviour {
     public GameObject LevelUp;
     public static int HP = 1000;
     public static bool IsMarianDead = false;
-    public static int Mana = 10000;
+    public static int Mana = 1000;
     public static int Exp = 0;
     public static int Level = 1;
 
@@ -22,7 +22,7 @@ public class Marian : MonoBehaviour {
     public static int Strenght = 0;
     public static int Dexterity = 0;
     public static int Inteligence = 0;
-    public static int SkillPoints = 100;
+    public static int SkillPoints = 0;
     public static int Speed = 8;
 
     public static bool LifeSteal = false;
@@ -68,7 +68,7 @@ public class Marian : MonoBehaviour {
             Mana = 10000;
             Exp = 0;
             Level = 1;
-            GameManager.currLevel = 1;
+            GameManager.currLevel = 0;
             currMana = Mana;
             Spell1 = Attack.Spell.None;
             spell2 = Attack.Spell.None;

@@ -33,11 +33,11 @@ public class Gui : MonoBehaviour
     public bool showSkills = false;
     private bool showHelp = false;
 
-    private static readonly float spellCd1 = 0.0f;
-    private static readonly float spellCd2 = 0.0f;
-    private static readonly float spellCd3 = 0.0f;
-    private static readonly float spellCd4 = 0.0f;
-    private static readonly float spellCd5 = 0.0f;
+    private static readonly float spellCd1 = 3.0f;
+    private static readonly float spellCd2 = 3.0f;
+    private static readonly float spellCd3 = 3.0f;
+    private static readonly float spellCd4 = 3.0f;
+    private static readonly float spellCd5 = 3.0f;
 
     public static bool cd1Start = false;
     public static bool cd2Start = false;
