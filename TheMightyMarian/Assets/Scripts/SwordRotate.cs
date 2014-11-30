@@ -30,7 +30,36 @@ public class SwordRotate : MonoBehaviour {
         if (IsAttack)
         {
             var enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.takeDmg(Marian.Damage, enemy.transform.position - transform.position);
+            if (Marian.Empower)
+            {
+                enemy.takeDmg(Marian.Damage * 2, enemy.transform.position - transform.position);
+                if(Marian.LifeSteal)
+                {
+                    if(Marian.currHp + Marian.Damage * 2 <= Marian.HP)
+                    {
+                        Marian.currHp += Marian.Damage * 2;
+                    }
+                    else
+                    {
+                        Marian.currHp = Marian.HP;
+                    }
+                }
+            }
+            else
+            {
+                enemy.takeDmg(Marian.Damage, enemy.transform.position - transform.position);
+                if (Marian.LifeSteal)
+                {
+                    if (Marian.currHp + Marian.Damage * 2 <= Marian.HP)
+                    {
+                        Marian.currHp += Marian.Damage * 2;
+                    }
+                    else
+                    {
+                        Marian.currHp = Marian.HP;
+                    }
+                }
+            }
         }
     }
 }

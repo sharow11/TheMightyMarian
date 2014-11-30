@@ -11,6 +11,7 @@ public class Attack : MonoBehaviour {
     public GameObject rage;
     public GameObject shout;
     public GameObject goFast;
+    public GameObject redSword;
     LayerMask mask;
     public float lightningBoltRange = 20;
     public float railRange = 50;
@@ -117,7 +118,14 @@ public class Attack : MonoBehaviour {
                     Vector3 v = new Vector3(camera.hitAbove.x - transform.position.x, camera.hitAbove.y - transform.position.y - 0.5f, 0).normalized;
                     Vector3 from = new Vector3(transform.position.x, transform.position.y, -2);
                     Vector3 to = new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2);
-                    shot = (GameObject)Instantiate(sword, new Vector3(transform.position.x + v.x * 2, transform.position.y + v.y * 2, -2), Quaternion.identity);
+                    if (Marian.Empower)
+                    {
+                        shot = (GameObject)Instantiate(redSword, new Vector3(transform.position.x + v.x * 2, transform.position.y + v.y * 2, -2), Quaternion.identity);
+                    }
+                    else
+                    {
+                        shot = (GameObject)Instantiate(sword, new Vector3(transform.position.x + v.x * 2, transform.position.y + v.y * 2, -2), Quaternion.identity);
+                    }
                     shot.GetComponentInChildren<SwordRotate>().IsAttack = true;
                     shot.transform.LookAt(to, -Vector3.forward);
                     shot.transform.RotateAround(transform.position, new Vector3(Vector3.back.x + 0.1f, Vector3.back.y + 0.2f, Vector3.back.z + 0.1f), -45);
@@ -307,7 +315,14 @@ public class Attack : MonoBehaviour {
                         Destroy(shot);
                     shot = (GameObject)Instantiate(heal, new Vector3(marian.transform.position.x, marian.transform.position.y, -2f), new Quaternion());
                     shot.transform.LookAt(new Vector3(marian.transform.position.x, marian.transform.position.y, -99999f));
-                    Marian.currHp += 100;
+                    if (Marian.currHp + 100 <= Marian.HP)
+                    {
+                        Marian.currHp += 100;
+                    }
+                    else
+                    {
+                        Marian.currHp = Marian.HP;
+                    }
                     Destroy(shot, 10f);
                 }
                 break;
@@ -320,7 +335,7 @@ public class Attack : MonoBehaviour {
                     shot = (GameObject)Instantiate(rage, new Vector3(marian.transform.position.x, marian.transform.position.y, -2f), new Quaternion());
                     shot.transform.LookAt(new Vector3(marian.transform.position.x, marian.transform.position.y, -99999f));
                     Marian.LifeSteal = true;
-                    Destroy(shot, 10f);
+                    Destroy(shot, 2f);
                 }
                 break;
             case Spell.Fast:
@@ -337,6 +352,10 @@ public class Attack : MonoBehaviour {
                 }
                 break;
             case Spell.Empower:
+                if (Marian.currMana > 10)
+                {
+                    Marian.Empower = true;
+                }
                 break;
             case Spell.Shout:
                 if (Marian.currMana > 10)

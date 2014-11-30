@@ -35,6 +35,9 @@ public class Marian : MonoBehaviour {
     public static float currHp = HP;
     public static int currMana = Mana;
 
+    public static bool Empower = false;
+    private static float empowerTime = 2.0f;
+
     private static float manaRegen = 1.0f;
     private static float maxManaRegen = 1.0f;
 
@@ -123,6 +126,16 @@ public class Marian : MonoBehaviour {
                 GoFast = false;
                 goFastTime = 2.0f;
                 Speed -= 8;
+            }
+        }
+
+        if (Empower)
+        {
+            empowerTime -= Time.deltaTime;
+            if (empowerTime < 0)
+            {
+                Empower = false;
+                empowerTime = 2.0f;
             }
         }
 
