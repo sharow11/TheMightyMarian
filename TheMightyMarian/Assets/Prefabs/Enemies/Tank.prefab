@@ -155,6 +155,7 @@ MonoBehaviour:
   banelingFlash: {fileID: 0}
   speed: 5
   maxHealth: 300
+  baseHealth: 300
   viewDistance: 25
   damage: 33
   isMelee: 1

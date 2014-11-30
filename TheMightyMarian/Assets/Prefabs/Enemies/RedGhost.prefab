@@ -214,7 +214,8 @@ MonoBehaviour:
   stun: {fileID: 100002, guid: bb9b30a38e72f2e4cb7efa159b42fe6a, type: 2}
   banelingFlash: {fileID: 0}
   speed: 5
-  maxHealth: 100
+  maxHealth: 170
+  baseHealth: 170
   viewDistance: 25
   damage: 5
   isMelee: 0

@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     /************** PARAMETRY **************/
     public float speed = 5;
     public float maxHealth = 100;
+    public float baseHealth = 100;
     float health;
     public float viewDistance = 25;
     public float damage = 5;

@@ -247,6 +247,7 @@ public class GameManager : MonoBehaviour
 
                 newEnemy.state = Enemy.State.idle;
                 newEnemy.transform.parent = transform;
+                newEnemy.maxHealth = (newEnemy.baseHealth) / 2 + currLevel * (newEnemy.baseHealth * 0.1f);
 
                 newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.SizeX * 0.5f + 0.5f, coordinates.y - mapInstance.SizeY * 0.5f + 0.5f, y);
                 temp.Add(newEnemy);

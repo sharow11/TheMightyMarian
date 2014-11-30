@@ -215,6 +215,7 @@ MonoBehaviour:
   banelingFlash: {fileID: 100000, guid: 2e513a9b3ade9784997084e676302b31, type: 2}
   speed: 25
   maxHealth: 50
+  baseHealth: 50
   viewDistance: 25
   damage: 50
   isMelee: 1
