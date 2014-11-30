@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     public float viewDistance = 25;
     public float damage = 5;
     public bool isMelee = false;
+    public bool isRanged = true;
 
     /************** ATAKI **************/
     public float spread = 10; //kąt w stopniach okręślający ile maksymalnie od celu mogą pudłować strzały.
@@ -240,18 +241,23 @@ public class Enemy : MonoBehaviour
                 break;
             case State.attacking:
                 Music.hype += Time.deltaTime * 5;
+                if (isMelee && Vector3.Distance(MarianObject.transform.position, transform.position) > atkRange / 3)
+                {
+                    animateMovement();
+                    move(lastSeen);
+                }
                 if (Time.time - lastAtkTime >= attackFreq)
                 {
                     Music.hype += 1f;
                     lastAtkTime = Time.time;
-                    if (isMelee)
+                    if (isMelee && Vector3.Distance(MarianObject.transform.position, transform.position) < atkRange / 3)
                     {
                         GameObject atk = (GameObject)Instantiate(meleeSplash, (transform.position + MarianObject.transform.position) / 2, new Quaternion());
-                        atk.GetComponent<StickToMarian>().setOffset((transform.position - MarianObject.transform.position)/2);
+                        atk.GetComponent<StickToMarian>().setOffset((transform.position - MarianObject.transform.position) / 2);
                         Destroy(atk, 1);
-                        MarianObject.GetComponent<Attack>().takeDmg((int)damage);
+                        MarianObject.GetComponent<Attack>().takeDmg((int)damage * 3);
                     }
-                    else
+                    if (isRanged && (!isMelee || Vector3.Distance(MarianObject.transform.position, transform.position) > atkRange / 3))
                     {
                         shot = (GameObject)Instantiate(greenBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                         Destroy(shot, 3);
@@ -269,6 +275,7 @@ public class Enemy : MonoBehaviour
                         shot.transform.LookAt(new Vector3(transform.position.x + direction.x * 64, transform.position.y + direction.y * 64, -2));
                         shot.rigidbody.velocity = direction * projectileSpeed;
                         shot.GetComponent<EnemyProjectile>().dmg = damage;
+                        shot.GetComponent<EnemyProjectile>().blast = greenBlast;
                     }
                 }
                 color = Color.red;

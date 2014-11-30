@@ -158,6 +158,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 10
   isMelee: 0
+  isRanged: 1
   spread: 0
   predictionProbability: .5
   predictionImportanceMin: .899999976

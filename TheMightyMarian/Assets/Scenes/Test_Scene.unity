@@ -165,7 +165,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &6649213
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +239,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -477,6 +478,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -611,6 +613,79 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &51821416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 51821417}
+  - 33: {fileID: 51821420}
+  - 64: {fileID: 51821419}
+  - 23: {fileID: 51821418}
+  m_Layer: 0
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &51821417
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 51821416}
+  m_LocalRotation: {x: .382683963, y: 0, z: 0, w: .923879385}
+  m_LocalPosition: {x: 0, y: -.100000001, z: .150000006}
+  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_Children: []
+  m_Father: {fileID: 1194254672}
+  m_RootOrder: 0
+--- !u!23 &51821418
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 51821416}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c59e4159b8747bc43ad6f6be584d1649, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!64 &51821419
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 51821416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &51821420
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 51821416}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &98052241
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +865,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 5
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -895,6 +971,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -1028,6 +1105,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -1116,7 +1194,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
@@ -1289,6 +1367,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 20
   predictionProbability: 1
   predictionImportanceMin: 0
@@ -1389,7 +1468,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
 --- !u!1 &177446160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1542,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -1591,7 +1671,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
 --- !u!1 &199219571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,6 +1850,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -1879,7 +1960,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &231950579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,7 +3095,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!1 &267110952
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,6 +3274,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -3279,7 +3361,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 26
 --- !u!114 &294086795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3673,6 +3755,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .25
@@ -3774,7 +3857,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
 --- !u!1 &387150202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,7 +4029,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
 --- !u!1 &405874629
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,7 +4092,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
 --- !u!1001 &434002707
 Prefab:
   m_ObjectHideFlags: 0
@@ -4065,6 +4148,10 @@ Prefab:
       propertyPath: meleeSplash
       value: 
       objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400004, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f97083b15894e845b3b5fbb466b7e7f, type: 2}
   m_RootGameObject: {fileID: 465405897}
@@ -4191,6 +4278,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -4370,6 +4458,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -4430,7 +4519,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8fff05d64e1df964db175c9e2fba70b1, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fff05d64e1df964db175c9e2fba70b1, type: 2}
@@ -4475,6 +4564,10 @@ Prefab:
     - target: {fileID: 400000, guid: 8fff05d64e1df964db175c9e2fba70b1, type: 2}
       propertyPath: m_RootMapOrder
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8fff05d64e1df964db175c9e2fba70b1, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fff05d64e1df964db175c9e2fba70b1, type: 2}
@@ -4567,6 +4660,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -4641,7 +4735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
 --- !u!114 &560181835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4729,6 +4823,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -6080,6 +6175,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .25
@@ -6253,7 +6349,7 @@ Transform:
   m_LocalScale: {x: 1, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1 &660842857
 GameObject:
   m_ObjectHideFlags: 0
@@ -6287,7 +6383,7 @@ Transform:
   m_Children:
   - {fileID: 890520131}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!136 &660842859
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6433,6 +6529,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 50
   isMelee: 1
+  isRanged: 1
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -6525,6 +6622,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -6658,6 +6756,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -8120,7 +8219,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
 --- !u!1001 &830103818
 Prefab:
   m_ObjectHideFlags: 0
@@ -8526,7 +8625,7 @@ Transform:
   - {fileID: 749417177}
   - {fileID: 49878065}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
 --- !u!114 &898405841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8614,6 +8713,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -8940,7 +9040,7 @@ Transform:
   - {fileID: 364297686}
   - {fileID: 465405898}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 25
 --- !u!1001 &1014153612
 Prefab:
   m_ObjectHideFlags: 0
@@ -8996,6 +9096,10 @@ Prefab:
       propertyPath: meleeSplash
       value: 
       objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
   m_RootGameObject: {fileID: 155979875}
@@ -9145,13 +9249,14 @@ MonoBehaviour:
   speed: 5
   maxHealth: 300
   viewDistance: 25
-  damage: 100
+  damage: 33
   isMelee: 1
+  isRanged: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
   predictionImportanceMax: 1
-  atkRange: 3
+  atkRange: 9
   projectileSpeed: 15
   attackFreq: 1.5
   isBaneling: 0
@@ -9445,6 +9550,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 20
   predictionProbability: 1
   predictionImportanceMin: 0
@@ -9476,7 +9582,7 @@ Transform:
   m_Children:
   - {fileID: 336778329}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1001 &1130657629
 Prefab:
   m_ObjectHideFlags: 0
@@ -9532,6 +9638,10 @@ Prefab:
       propertyPath: meleeSplash
       value: 
       objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400002, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6fa39b5a49be11546b5a473370a3ca6a, type: 2}
   m_RootGameObject: {fileID: 1978604360}
@@ -9675,7 +9785,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!1 &1138374458
 GameObject:
   m_ObjectHideFlags: 0
@@ -9838,6 +9948,10 @@ Prefab:
       propertyPath: meleeSplash
       value: 
       objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400002, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6dccdc0b0ef89f54bb870026d7a195b6, type: 2}
   m_RootGameObject: {fileID: 98052241}
@@ -9935,6 +10049,145 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1727641147}
   m_GameObject: {fileID: 1182290746}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1194254666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1194254672}
+  - 136: {fileID: 1194254671}
+  - 54: {fileID: 1194254670}
+  - 114: {fileID: 1194254669}
+  - 136: {fileID: 1194254668}
+  - 114: {fileID: 1194254667}
+  m_Layer: 8
+  m_Name: TankBoss
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1194254667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 1194254666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3776a28a943894c8ca582d6cf0aa04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &1194254668
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13600000, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 1194254666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1194254669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 1194254666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21a88531d9b4b54ab5745dce35c18b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sword: {fileID: 100000, guid: c69c765ed58823e40926416f3d146d8e, type: 3}
+  arrow: {fileID: 0}
+  staff: {fileID: 0}
+  greenBolt: {fileID: 100002, guid: 7b7474a922a07004382e7b81177ac0da, type: 2}
+  greenBlast: {fileID: 100002, guid: 6b45a036c193c5e4fb441c5300e800f5, type: 2}
+  blood: {fileID: 100000, guid: e093a476e20bf0348aa3cf9d37919fcf, type: 2}
+  meat1: {fileID: 100000, guid: 65730090e525ead439b076c3f1fd92b4, type: 2}
+  meat2: {fileID: 100000, guid: bdc19e1b833922849a7071bfedee3ff3, type: 2}
+  meat3: {fileID: 100000, guid: fe5e01843cae072418ee3998bf065eba, type: 2}
+  death: {fileID: 100000, guid: 90161342d5730c249890e770e1cabcf4, type: 2}
+  meleeSplash: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+  stun: {fileID: 100002, guid: bb9b30a38e72f2e4cb7efa159b42fe6a, type: 2}
+  banelingFlash: {fileID: 0}
+  speed: 7
+  maxHealth: 1000
+  viewDistance: 40
+  damage: 25
+  isMelee: 1
+  isRanged: 1
+  spread: 5
+  predictionProbability: .75
+  predictionImportanceMin: .899999976
+  predictionImportanceMax: 1
+  atkRange: 20
+  projectileSpeed: 25
+  attackFreq: .400000006
+  isBaneling: 0
+  gotRaild: 0
+  state: 2
+  canFollowSteps: 1
+  lastSeen: {x: 0, y: 0, z: 0}
+  prevStep: {x: 0, y: 0, z: 0}
+  prevPrevStep: {x: 0, y: 0, z: 0}
+  target: {x: 0, y: 0, z: 0}
+  patrolTarget: {x: -3.66745853, y: 2.70804286, z: -1.5}
+  pushAwayFromWalls: {x: 0, y: 0, z: 0}
+  patrolTargetAssignTime: 34.3199997
+  gotPatrolTarget: 1
+--- !u!54 &1194254670
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 1194254666}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
+--- !u!136 &1194254671
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13600002, guid: 7a1707e789ca59e4788a6c8def14a33e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 1194254666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 5.63000011
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1194254672
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+  m_PrefabInternal: {fileID: 1223274511}
+  m_GameObject: {fileID: 1194254666}
+  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 18.6249046, y: -33.871933, z: -2.87784958}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 51821417}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!1 &1222634604
 GameObject:
   m_ObjectHideFlags: 0
@@ -10003,7 +10256,55 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
+--- !u!1001 &1223274511
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 18.6249046
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -33.871933
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.87784958
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: m_RootMapOrder
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: 6b45a036c193c5e4fb441c5300e800f5, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7a1707e789ca59e4788a6c8def14a33e, type: 2}
+  m_RootGameObject: {fileID: 1194254666}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1235652319
 GameObject:
   m_ObjectHideFlags: 0
@@ -10072,7 +10373,7 @@ Transform:
   m_LocalScale: {x: 1, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1 &1262829901
 GameObject:
   m_ObjectHideFlags: 0
@@ -10223,6 +10524,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -10303,7 +10605,7 @@ Transform:
   m_Children:
   - {fileID: 1764887588}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!136 &1265342475
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10449,6 +10751,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 50
   isMelee: 1
+  isRanged: 1
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -10618,6 +10921,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -10733,7 +11037,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
 --- !u!1 &1289517457
 GameObject:
   m_ObjectHideFlags: 0
@@ -10929,6 +11233,10 @@ Prefab:
       propertyPath: meleeSplash
       value: 
       objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400002, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308afe282ffcb0149a81ec0bfd574fdc, type: 2}
   m_RootGameObject: {fileID: 1332034769}
@@ -11010,6 +11318,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 10
   isMelee: 0
+  isRanged: 1
   spread: 0
   predictionProbability: .5
   predictionImportanceMin: .899999976
@@ -11259,7 +11568,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!1 &1405989878
 GameObject:
   m_ObjectHideFlags: 0
@@ -11353,7 +11662,7 @@ Transform:
   - {fileID: 1262829902}
   - {fileID: 761594641}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!114 &1405989881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11612,7 +11921,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
 --- !u!1 &1421183609
 GameObject:
   m_ObjectHideFlags: 0
@@ -12877,7 +13186,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
 --- !u!1 &1477072118
 GameObject:
   m_ObjectHideFlags: 0
@@ -13097,7 +13406,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
 --- !u!1 &1561205265
 GameObject:
   m_ObjectHideFlags: 0
@@ -13171,6 +13480,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -13304,6 +13614,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -13419,6 +13730,10 @@ Prefab:
       propertyPath: meleeSplash
       value: 
       objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
   m_RootGameObject: {fileID: 364297685}
@@ -13499,6 +13814,10 @@ Prefab:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0cbfd23f68dfed8469d7828f96acaf65, type: 2}
   m_RootGameObject: {fileID: 1686508392}
@@ -13832,6 +14151,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 10
   isMelee: 1
+  isRanged: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
@@ -13933,7 +14253,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &1703449658
 GameObject:
   m_ObjectHideFlags: 0
@@ -14094,6 +14414,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -14209,6 +14530,10 @@ Prefab:
       propertyPath: meleeSplash
       value: 
       objectReference: {fileID: 100000, guid: fe05c78f714505a4fbc9d207dbcc6876, type: 2}
+    - target: {fileID: 11400002, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
+      propertyPath: greenBlast
+      value: 
+      objectReference: {fileID: 100002, guid: b6b0090137d84b0458adee5a98478a8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4af5a075a1823964bacfbb061922baa2, type: 2}
   m_RootGameObject: {fileID: 624887032}
@@ -14440,6 +14765,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -14713,6 +15039,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -14968,6 +15295,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -15097,6 +15425,7 @@ MonoBehaviour:
   viewDistance: 20
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 10
   predictionProbability: 1
   predictionImportanceMin: .5
@@ -15212,7 +15541,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!1 &1954803632
 GameObject:
   m_ObjectHideFlags: 0
@@ -15452,6 +15781,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 20
   predictionProbability: 1
   predictionImportanceMin: 0
@@ -15639,7 +15969,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
 --- !u!1 &2052875879
 GameObject:
   m_ObjectHideFlags: 0
@@ -15708,7 +16038,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1.78999996, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
 --- !u!1 &2111067517
 GameObject:
   m_ObjectHideFlags: 0
@@ -15848,7 +16178,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!54 &2117087160
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: TankBoss
+  m_Shader: {fileID: 4800000, guid: df3b4241d51df464dacb8c796056f50b, type: 3}
+  m_ShaderKeywords:
+  - PIXELSNAP_ON
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: fa5ea5890c580b64cab60d5d3babe3f4, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _GlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _TranslucencyMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ShadowOffset
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _LightMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .424107134
+      data:
+        first:
+          name: PixelSnap
+        second: 1
+      data:
+        first:
+          name: _Shininess
+        second: .0713798851
+      data:
+        first:
+          name: _SquashAmount
+        second: 1
+      data:
+        first:
+          name: _HalfOverCutoff
+        second: 1
+      data:
+        first:
+          name: _BaseLight
+        second: .285714269
+      data:
+        first:
+          name: _AO
+        second: 3.75
+      data:
+        first:
+          name: _Occlusion
+        second: 8.21428585
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _Cutoff2
+        second: .5
+    m_Colors:
+      data:
+        first:
+          name: _WaveAndDistance
+        second: {r: 12, g: 3.5999999, b: 1, a: 1}
+      data:
+        first:
+          name: _WavingTint
+        second: {r: .699999988, g: .600000024, b: .5, a: 0}
+      data:
+        first:
+          name: _Color
+        second: {r: .308066636, g: .544117689, b: .446441382, a: 0}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Scale
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .5, g: .5, b: .5, a: .5}
+      data:
+        first:
+          name: _EmisColor
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 0}
+      data:
+        first:
+          name: _ReflectColor
+        second: {r: 1, g: 1, b: 1, a: .5}

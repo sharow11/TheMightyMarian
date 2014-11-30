@@ -224,6 +224,7 @@ MonoBehaviour:
   viewDistance: 25
   damage: 5
   isMelee: 0
+  isRanged: 1
   spread: 20
   predictionProbability: 1
   predictionImportanceMin: 0

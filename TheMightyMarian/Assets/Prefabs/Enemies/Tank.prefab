@@ -156,13 +156,14 @@ MonoBehaviour:
   speed: 5
   maxHealth: 300
   viewDistance: 25
-  damage: 100
+  damage: 33
   isMelee: 1
+  isRanged: 0
   spread: 10
   predictionProbability: .75
   predictionImportanceMin: .5
   predictionImportanceMax: 1
-  atkRange: 3
+  atkRange: 9
   projectileSpeed: 15
   attackFreq: 1.5
   isBaneling: 0
