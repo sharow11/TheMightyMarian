@@ -28,6 +28,9 @@ public class Marian : MonoBehaviour {
     public static bool LifeSteal = false;
     private static float lifeStealTime = 2.0f;
 
+    public static bool Lightning = false;
+    private static float lightningTime = 2.0f;
+
     public static int BaseDamage = 10;
 
     public static int Damage = 10;
@@ -136,6 +139,16 @@ public class Marian : MonoBehaviour {
             {
                 Empower = false;
                 empowerTime = 2.0f;
+            }
+        }
+
+        if (Lightning)
+        {
+            lightningTime -= Time.deltaTime;
+            if (lightningTime < 0)
+            {
+                Lightning = false;
+                lightningTime = 2.0f;
             }
         }
 
