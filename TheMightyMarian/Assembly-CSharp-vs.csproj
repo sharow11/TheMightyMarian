@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\GroundQuad.cs" />
      <Compile Include="Assets\Scripts\Gui.cs" />
      <Compile Include="Assets\Scripts\HitBox.cs" />
+     <Compile Include="Assets\Scripts\IMarianMap.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
      <Compile Include="Assets\Scripts\IntroCameraMove.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
