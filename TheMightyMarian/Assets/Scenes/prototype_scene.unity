@@ -146,12 +146,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f30a3aaf2c8fe4293418d5b81d2530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spell1: {fileID: 2800000, guid: cd2193dfff83c3d40adaafc11e467c55, type: 3}
-  Spell2: {fileID: 2800000, guid: 3f41647851bb3de428b84079cf9f608c, type: 3}
-  Spell3: {fileID: 2800000, guid: 58daa3b694b2d574599232aa8578fb9f, type: 3}
-  Spell4: {fileID: 2800000, guid: 0ed34ec925fe57c45828b275771a5ade, type: 3}
-  Spell5: {fileID: 2800000, guid: 655148ceb2d67994fa72c4145b01181e, type: 3}
-  Spell6: {fileID: 2800000, guid: 23256c4fd230bae4ebea96607d04f200, type: 3}
+  Spell1: {fileID: 2800000, guid: ea6ddbeac4a64bc48910535dcb213209, type: 3}
+  Spell2: {fileID: 2800000, guid: ea6ddbeac4a64bc48910535dcb213209, type: 3}
+  Spell3: {fileID: 2800000, guid: ea6ddbeac4a64bc48910535dcb213209, type: 3}
+  Spell4: {fileID: 2800000, guid: ea6ddbeac4a64bc48910535dcb213209, type: 3}
+  Spell5: {fileID: 2800000, guid: ea6ddbeac4a64bc48910535dcb213209, type: 3}
+  None: {fileID: 2800000, guid: ea6ddbeac4a64bc48910535dcb213209, type: 3}
+  BlueBolt: {fileID: 2800000, guid: 655148ceb2d67994fa72c4145b01181e, type: 3}
+  LightningBolt: {fileID: 2800000, guid: 58daa3b694b2d574599232aa8578fb9f, type: 3}
+  Rail: {fileID: 2800000, guid: 3f41647851bb3de428b84079cf9f608c, type: 3}
+  FireBolt: {fileID: 2800000, guid: cd2193dfff83c3d40adaafc11e467c55, type: 3}
+  Light: {fileID: 2800000, guid: 0ed34ec925fe57c45828b275771a5ade, type: 3}
+  Heal: {fileID: 2800000, guid: 64e557a27ba9f5046ae5ecd4a53acc6f, type: 3}
+  Rage: {fileID: 2800000, guid: f8bfcf025ae49e0439c3488117aa4666, type: 3}
+  Fast: {fileID: 2800000, guid: 9ecf8ea745ebbf841a650860898507f9, type: 3}
+  Empower: {fileID: 2800000, guid: 44d5924ef50d45f4db182044188991c0, type: 3}
+  Shout: {fileID: 2800000, guid: 355ac86b75dd32848a15798b55d684eb, type: 3}
+  Eruption: {fileID: 2800000, guid: 23256c4fd230bae4ebea96607d04f200, type: 3}
   showSkills: 0
 --- !u!114 &12340922
 MonoBehaviour:
