@@ -1164,16 +1164,10 @@ MonoBehaviour:
   WeaponSlot: {fileID: 0}
   ArmorSlotName:
   - Weapon
-  - Chest
   buttonPositions:
   - serializedVersion: 2
     x: 12
     y: 34
-    width: 80
-    height: 80
-  - serializedVersion: 2
-    x: 12
-    y: 120
     width: 80
     height: 80
   windowSize: {x: 375, y: 300}
