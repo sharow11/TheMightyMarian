@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public int EnemiesPerRoom = 3;
 
-    public static int currLevel = 1;
+    public static int currLevel = 0;
     public static int finalLevel = -1;
     public bool isLoading = true;
     private int mapSizeX, mapSizeY;
