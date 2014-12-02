@@ -75,6 +75,7 @@ public class Marian : MonoBehaviour {
             spell3 = Attack.Spell.None;
             spell4 = Attack.Spell.None;
             spell5 = Attack.Spell.None;
+
         }
     }
 	

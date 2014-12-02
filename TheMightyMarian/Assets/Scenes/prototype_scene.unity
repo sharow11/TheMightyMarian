@@ -120,7 +120,7 @@ MonoBehaviour:
   bossesRarity: bc0200000c000000
   marianPrefab: {fileID: 11400000, guid: 42ed5351e63dfc340935138a7b908bc8, type: 2}
   ladderPrefab: {fileID: 11400000, guid: 305596845cfd7c748bc55365c66a5fb3, type: 2}
-  logging: 1
+  logging: 0
   czarnosc: {fileID: 2800000, guid: 48772ae84178f1c44a003fc6d84d112d, type: 3}
   EnemiesPerRoom: 4
   isLoading: 1
