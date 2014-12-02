@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\MapCell.cs" />
      <Compile Include="Assets\Scripts\Marian.cs" />
+     <Compile Include="Assets\Scripts\MarianAnimator.cs" />
      <Compile Include="Assets\Scripts\Maze.cs" />
      <Compile Include="Assets\Scripts\MeatSplat.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />

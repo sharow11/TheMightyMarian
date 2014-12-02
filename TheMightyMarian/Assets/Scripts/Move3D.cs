@@ -43,7 +43,7 @@ public class Move3D : MonoBehaviour {
     void Update()
     {
         tl.text = "Time left: " + (roundTime + startTime - Time.time);
-        if (startTime - Time.time > roundTime)
+        if (Time.time - startTime > roundTime)
             finish();
         input = (Input.GetAxisRaw("Vertical") * head.transform.forward + Input.GetAxisRaw("Horizontal") * head.transform.right).normalized;
         if (Input.GetButtonDown("Jump"))
@@ -65,6 +65,7 @@ public class Move3D : MonoBehaviour {
     private void finish()
     {
         float exp = -mostZ;
+        Application.LoadLevel(1);
         //load level and add exp;
     }
     void FixedUpdate()
