@@ -65,7 +65,7 @@ public class Marian : MonoBehaviour {
             HP = 1000;
             currHp = HP;
             IsMarianDead = false;
-            Mana = 10000;
+            Mana = 200;
             Exp = 0;
             Level = 1;
             GameManager.currLevel = 0;
