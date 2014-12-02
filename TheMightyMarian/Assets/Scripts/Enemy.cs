@@ -249,37 +249,36 @@ public class Enemy : MonoBehaviour
                     animateMovement();
                     move(lastSeen);
                 }
-                if (Time.time - lastAtkTime >= attackFreq)
+                if ((Time.time - lastAtkTime >= attackFreq) && isMelee && Vector3.Distance(MarianObject.transform.position, transform.position) < atkRange / 3)
                 {
+                    GameObject atk = (GameObject)Instantiate(meleeSplash, (transform.position + MarianObject.transform.position) / 2, new Quaternion());
+                    atk.GetComponent<StickToMarian>().setOffset((transform.position - MarianObject.transform.position) / 2);
+                    Destroy(atk, 1);
+                    MarianObject.GetComponent<Attack>().takeDmg((int)damage * 3);
                     Music.hype += 1f;
                     lastAtkTime = Time.time;
-                    if (isMelee && Vector3.Distance(MarianObject.transform.position, transform.position) < atkRange / 3)
+                }
+                if ((Time.time - lastAtkTime >= attackFreq) && isRanged && (!isMelee || Vector3.Distance(MarianObject.transform.position, transform.position) > atkRange / 3))
+                {
+                    shot = (GameObject)Instantiate(greenBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
+                    Destroy(shot, 3);
+                    Vector3 direction = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(MarianObject.transform.position.x, MarianObject.transform.position.y, -2) - shot.transform.position).normalized; ;
+                    Vector3 predictedDirection;
+                    if (Random.value < predictionProbability)
                     {
-                        GameObject atk = (GameObject)Instantiate(meleeSplash, (transform.position + MarianObject.transform.position) / 2, new Quaternion());
-                        atk.GetComponent<StickToMarian>().setOffset((transform.position - MarianObject.transform.position) / 2);
-                        Destroy(atk, 1);
-                        MarianObject.GetComponent<Attack>().takeDmg((int)damage * 3);
+                        float distance = Vector3.Distance(MarianObject.transform.position, transform.position);
+                        float flyTime = distance / projectileSpeed;
+                        Vector3 marianPosAfter = MarianObject.transform.position + MarianObject.rigidbody.velocity * flyTime;
+                        predictedDirection = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(marianPosAfter.x, marianPosAfter.y, -2) - shot.transform.position).normalized;
+                        float predictionImportance = predictionImportanceMin + Random.value * (predictionImportanceMax - predictionImportanceMin);
+                        direction = direction * (1 - predictionImportance) + predictionImportance * predictedDirection;
                     }
-                    if (isRanged && (!isMelee || Vector3.Distance(MarianObject.transform.position, transform.position) > atkRange / 3))
-                    {
-                        shot = (GameObject)Instantiate(greenBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
-                        Destroy(shot, 3);
-                        Vector3 direction = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(MarianObject.transform.position.x, MarianObject.transform.position.y, -2) - shot.transform.position).normalized; ;
-                        Vector3 predictedDirection;
-                        if (Random.value < predictionProbability)
-                        {
-                            float distance = Vector3.Distance(MarianObject.transform.position, transform.position);
-                            float flyTime = distance / projectileSpeed;
-                            Vector3 marianPosAfter = MarianObject.transform.position + MarianObject.rigidbody.velocity * flyTime;
-                            predictedDirection = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(marianPosAfter.x, marianPosAfter.y, -2) - shot.transform.position).normalized;
-                            float predictionImportance = predictionImportanceMin + Random.value * (predictionImportanceMax - predictionImportanceMin);
-                            direction = direction * (1 - predictionImportance) + predictionImportance * predictedDirection;
-                        }
-                        shot.transform.LookAt(new Vector3(transform.position.x + direction.x * 64, transform.position.y + direction.y * 64, -2));
-                        shot.rigidbody.velocity = direction * projectileSpeed;
-                        shot.GetComponent<EnemyProjectile>().dmg = damage;
-                        shot.GetComponent<EnemyProjectile>().blast = greenBlast;
-                    }
+                    shot.transform.LookAt(new Vector3(transform.position.x + direction.x * 64, transform.position.y + direction.y * 64, -2));
+                    shot.rigidbody.velocity = direction * projectileSpeed;
+                    shot.GetComponent<EnemyProjectile>().dmg = damage;
+                    shot.GetComponent<EnemyProjectile>().blast = greenBlast;
+                    Music.hype += 1f;
+                    lastAtkTime = Time.time;
                 }
                 color = Color.red;
                 Debug.DrawLine(transform.position, MarianObject.transform.position, color);

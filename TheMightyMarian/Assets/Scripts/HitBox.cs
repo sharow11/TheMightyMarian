@@ -18,7 +18,7 @@ public class HitBox : MonoBehaviour
 	}
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("block"))
+        if (other.CompareTag("Wall"))
         {
             Debug.Log("wall");
         }
@@ -33,7 +33,7 @@ public class HitBox : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("block"))
+        if (other.CompareTag("Wall"))
         {
             //Debug.Log("wall");
             Vector3 push = enemy.pushAwayFromWalls;
