@@ -101,7 +101,7 @@ function PickUpItem ()
 			Debug.Log("Inventory is full");
 		}
 	}
-    Damage = TotalDamage;
+		Damage = TotalDamage + parseInt(Random.Range(0, 20));;
     TotalDamage++;
 }
 

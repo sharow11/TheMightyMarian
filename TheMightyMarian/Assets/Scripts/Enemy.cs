@@ -446,6 +446,10 @@ public class Enemy : MonoBehaviour
             if(IsBoss)
             {
                 Marian.Exp += 100 + GameManager.currLevel * 5;
+                if (GameManager.currLevel == GameManager.finalLevel)
+                { 
+                    Application.LoadLevel(4);
+                }
             }
             else
             {

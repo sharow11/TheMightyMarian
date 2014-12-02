@@ -64,7 +64,7 @@ public class Gui : MonoBehaviour
         GUI.color = Color.cyan;
         GUI.Label(new Rect(110, 90, 60, 100), "EXP: " + Marian.Exp.ToString());
         GUI.color = Color.yellow;
-        GUI.Label(new Rect(110, 120, 60, 100), "Damage" + Marian.Damage.ToString());
+        GUI.Label(new Rect(110, 120, 100, 140), "Damage" + Marian.Damage.ToString());
         GUI.color = color;
         if (Input.GetKeyDown("k"))
         {
