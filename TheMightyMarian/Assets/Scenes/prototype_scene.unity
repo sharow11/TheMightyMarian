@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sd_prefab: {fileID: 100000, guid: 01c200ddd04ca5743b65e10572ea48a7, type: 2}
-  timeToStart: 60
+  timeToStart: 120
 --- !u!4 &89382074
 Transform:
   m_ObjectHideFlags: 0
@@ -421,6 +421,10 @@ Prefab:
     - target: {fileID: 400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
+      propertyPath: timeToStart
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba56871b916cad84fbec77296bdc1336, type: 2}
