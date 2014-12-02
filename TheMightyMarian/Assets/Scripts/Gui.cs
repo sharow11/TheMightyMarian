@@ -489,12 +489,109 @@ public class Gui : MonoBehaviour
     }
     void SkillWindowFunction(int windowID)
     {
+        var color = GUI.color;
+        var cdColor = new Color(color.r, color.g, color.b, 0.25f);
         GUI.Label(new Rect(30, 50, 100, 100), "Strength");
         GUI.Label(new Rect(140, 50, 100, 100), "Dexterity ");
         GUI.Label(new Rect(250, 50, 100, 100), "Inteligence");
-        GUI.Label(new Rect(30, 80, 100, 100), Marian.Strenght.ToString());
-        GUI.Label(new Rect(140, 80, 100, 100), Marian.Dexterity.ToString());
-        GUI.Label(new Rect(250, 80, 100, 100), Marian.Inteligence.ToString());
+        GUI.Label(new Rect(40, 80, 100, 100), Marian.Strenght.ToString());
+        GUI.Label(new Rect(150, 80, 100, 100), Marian.Dexterity.ToString());
+        GUI.Label(new Rect(260, 80, 100, 100), Marian.Inteligence.ToString());
+
+        GUI.Label(new Rect(10, 135, 100, 100), "10");
+        GUI.Label(new Rect(10, 225, 100, 100), "20");
+        GUI.Label(new Rect(10, 315, 100, 100), "30");
+
+        if(Marian.Strenght < 10)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(30, 100, 80, 80), Empower, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(30, 100, 80, 80), Empower, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Strenght < 20)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(30, 190, 80, 80), Rage, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(30, 190, 80, 80), Rage, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Strenght < 30)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(30, 280, 80, 80), Shout, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(30, 280, 80, 80), Shout, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Dexterity < 10)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(140, 100, 80, 80), Fast, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(140, 100, 80, 80), Fast, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Dexterity < 20)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(140, 190, 80, 80), Heal, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(140, 190, 80, 80), Heal, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Dexterity < 30)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(140, 280, 80, 80), Rail, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(140, 280, 80, 80), Rail, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Inteligence < 10)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(250, 100, 80, 80), Eruption, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(250, 100, 80, 80), Eruption, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Inteligence < 20)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(250, 190, 80, 80), LightningBolt, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(250, 190, 80, 80), LightningBolt, ScaleMode.ScaleToFit, true);
+        }
+        if (Marian.Inteligence < 30)
+        {
+            GUI.color = cdColor;
+            GUI.DrawTexture(new Rect(250, 280, 80, 80), FireBolt, ScaleMode.ScaleToFit, true);
+            GUI.color = color;
+        }
+        else
+        {
+            GUI.DrawTexture(new Rect(250, 280, 80, 80), FireBolt, ScaleMode.ScaleToFit, true);
+        }
 
         if(Marian.SkillPoints > 0)
         {
