@@ -56,11 +56,11 @@ public class Gui : MonoBehaviour
     public static bool cd4Start = false;
     public static bool cd5Start = false;
 
-    private static float cd1 = spellCd1;
-    private static float cd2 = spellCd2;
-    private static float cd3 = spellCd3;
-    private static float cd4 = spellCd4;
-    private static float cd5 = spellCd5;
+    public static float cd1 = spellCd1;
+    public static float cd2 = spellCd2;
+    public static float cd3 = spellCd3;
+    public static float cd4 = spellCd4;
+    public static float cd5 = spellCd5;
 
     void OnGUI()
     {
@@ -489,7 +489,6 @@ public class Gui : MonoBehaviour
     }
     void SkillWindowFunction(int windowID)
     {
-        GUI.DragWindow();
         var color = GUI.color;
         var cdColor = new Color(color.r, color.g, color.b, 0.25f);
         GUI.Label(new Rect(30, 50, 100, 100), "Strength");
@@ -615,6 +614,7 @@ public class Gui : MonoBehaviour
         {
             showSkills = false;
         }
+        GUI.DragWindow();
 
     }
     void HelpWindowFunction(int windowID)

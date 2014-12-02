@@ -35,9 +35,9 @@ public class SwordRotate : MonoBehaviour {
                 enemy.takeDmg(Marian.Damage * 2, enemy.transform.position - transform.position);
                 if(Marian.LifeSteal)
                 {
-                    if(Marian.currHp + Marian.Damage / 2 <= Marian.HP)
+                    if(Marian.currHp + Marian.Damage * 2 <= Marian.HP)
                     {
-                        Marian.currHp += Marian.Damage / 2;
+                        Marian.currHp += Marian.Damage * 2;
                     }
                     else
                     {
@@ -50,9 +50,9 @@ public class SwordRotate : MonoBehaviour {
                 enemy.takeDmg(Marian.Damage, enemy.transform.position - transform.position);
                 if (Marian.LifeSteal)
                 {
-                    if (Marian.currHp + Marian.Damage / 2 <= Marian.HP)
+                    if (Marian.currHp + Marian.Damage * 2 <= Marian.HP)
                     {
-                        Marian.currHp += Marian.Damage / 2;
+                        Marian.currHp += Marian.Damage * 2;
                     }
                     else
                     {

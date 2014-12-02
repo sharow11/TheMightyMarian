@@ -188,31 +188,31 @@ public class Attack : MonoBehaviour {
         if (Input.GetKeyUp("1") && !Gui.cd1Start)
         {
             Gui.cd1Start = true;
-            castSpell(Marian.Spell1);
+            castSpell(Marian.Spell1, 1);
         }
         if (Input.GetKeyUp("2") && !Gui.cd2Start)
         {
             Gui.cd2Start = true;
-            castSpell(Marian.spell2);
+            castSpell(Marian.spell2, 2);
         }
         if (Input.GetKeyUp("3") && !Gui.cd3Start)
         {
             Gui.cd3Start = true;
-            castSpell(Marian.spell3);
+            castSpell(Marian.spell3, 3);
         }
         if (Input.GetKeyUp("4") && !Gui.cd4Start)
         {
             Gui.cd4Start = true;
-            castSpell(Marian.spell4);
+            castSpell(Marian.spell4, 4);
         }
         if (Input.GetKeyUp("5") && !Gui.cd5Start)
         {
             Gui.cd5Start = true;
-            castSpell(Marian.spell5);
+            castSpell(Marian.spell5, 5);
         }
         if (Input.GetKeyUp("q"))
         {
-            castSpell(Spell.Light);
+            castSpell(Spell.Light, 6);
         }
 	}
     public void takeDmg(int dmg)
@@ -223,8 +223,9 @@ public class Attack : MonoBehaviour {
         audio.PlayOneShot(s_hurt, 0.5f);
     }
 
-    public void castSpell(Spell spell)
+    public void castSpell(Spell spell, int slot)
     {
+        bool casted = true;
         switch (spell)
         {
             case Spell.None:
@@ -279,6 +280,10 @@ public class Attack : MonoBehaviour {
                     shot.transform.LookAt(new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2));
                     Destroy(shot, 0.8f);
                 }
+                else
+                {
+                    casted = false;
+                }
                 break;
             case Spell.FireBolt:
                 if (Marian.currMana > 30)
@@ -295,6 +300,10 @@ public class Attack : MonoBehaviour {
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -0.75f));
                     shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -0.75f) - shot.transform.position).normalized * projectileSpeed;
                 }
+                else
+                {
+                    casted = false;
+                }
                 break;
             case Spell.Light:
                 if (Marian.currMana > 5)
@@ -304,6 +313,10 @@ public class Attack : MonoBehaviour {
                         Destroy(shot);
                     shot = (GameObject)Instantiate(light, new Vector3(camera.hitAbove.x, camera.hitAbove.y, -3), new Quaternion());
                     Destroy(shot, 10.6f);
+                }
+                else
+                {
+                    casted = false;
                 }
                 break;
             case Spell.Heal:
@@ -324,6 +337,10 @@ public class Attack : MonoBehaviour {
                     }
                     Destroy(shot, 10f);
                 }
+                else
+                {
+                    casted = false;
+                }
                 break;
             case Spell.Rage:
                 if (Marian.currMana > 80)
@@ -335,6 +352,10 @@ public class Attack : MonoBehaviour {
                     shot.transform.LookAt(new Vector3(marian.transform.position.x, marian.transform.position.y, -99999f));
                     Marian.LifeSteal = true;
                     Destroy(shot, 2f);
+                }
+                else
+                {
+                    casted = false;
                 }
                 break;
             case Spell.Fast:
@@ -349,12 +370,20 @@ public class Attack : MonoBehaviour {
                     Marian.GoFast = true;
                     Destroy(shot, 2f);
                 }
+                else
+                {
+                    casted = false;
+                }
                 break;
             case Spell.Empower:
                 if (Marian.currMana > 10)
                 {
                     Marian.currMana -= 10;
                     Marian.Empower = true;
+                }
+                else
+                {
+                    casted = false;
                 }
                 break;
             case Spell.Shout:
@@ -374,23 +403,59 @@ public class Attack : MonoBehaviour {
                     }
                     foreach (Enemy enemy in dmgRecipients)
                     {
-                        enemy.getStunned(2.0f);
+                        enemy.getStunned(6.0f);
                     }
+                }
+                else
+                {
+                    casted = false;
                 }
                 break;
             case Spell.Eruption:
-                if (Marian.currMana > 100)
+                if (Marian.currMana > 50)
                 {
-                    Marian.currMana -= 100;
+                    Marian.currMana -= 50;
                     if (shot != null && shot.name == "LightningBolt(Clone)")
                         Destroy(shot);
                     shot = (GameObject)Instantiate(AOE, new Vector3(camera.hit.point.x, camera.hit.point.y, -0.1f), new Quaternion());
                     shot.GetComponent<AoEDmg>().origin = marian.transform.position;
                     Destroy(shot, 13.5f);
                 }
+                else
+                {
+                    casted = false;
+                }
                 break;
             default:
                 break;
+        }
+        if(!casted)
+        {
+            if (slot == 1)
+            {
+                Gui.cd1Start = false;
+                Gui.cd1 = Gui.spellCd1;
+            }
+            if (slot == 2)
+            {
+                Gui.cd2Start = false;
+                Gui.cd2 = Gui.spellCd2;
+            }
+            if (slot == 3)
+            {
+                Gui.cd1Start = false;
+                Gui.cd3 = Gui.spellCd3;
+            }
+            if (slot == 4)
+            {
+                Gui.cd4Start = false;
+                Gui.cd4 = Gui.spellCd4;
+            }
+            if (slot == 5)
+            {
+                Gui.cd5Start = false;
+                Gui.cd5 = Gui.spellCd5;
+            }
         }
     }
 }
