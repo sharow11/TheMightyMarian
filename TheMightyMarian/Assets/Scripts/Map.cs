@@ -15,6 +15,9 @@ public class Map : MonoBehaviour, IMarianMap {
     public int startingFloorsPercent;
     public int sizeX, sizeY;
 
+    public int ShortestPathLength
+    { get; private set; }
+
     public int SizeY
     { get { return sizeY; } }
 
@@ -112,6 +115,7 @@ public class Map : MonoBehaviour, IMarianMap {
         startRoomNo = maze.StartRoomNo;
         endRoomNo = maze.EndRoomNo;
         myRooms = maze.GetRooms();
+        ShortestPathLength = maze.ShortestPathLength;
         initializeRooms();
         translateRoomsToMap();
         ScaleUPx2();

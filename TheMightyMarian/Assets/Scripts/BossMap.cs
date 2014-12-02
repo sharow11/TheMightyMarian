@@ -17,6 +17,9 @@ public class BossMap : MonoBehaviour, IMarianMap {
 
     public int SizeX
     { get { return sizeX; } }
+
+    public int ShortestPathLength
+    { get { return 1; } }
     //public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;

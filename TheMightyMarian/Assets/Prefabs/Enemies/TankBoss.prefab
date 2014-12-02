@@ -180,6 +180,7 @@ MonoBehaviour:
   patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
   IsBoss: 1
+  spawnHeight: -3.81999993
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

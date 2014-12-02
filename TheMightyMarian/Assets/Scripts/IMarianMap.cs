@@ -27,6 +27,10 @@ namespace Assets.Scripts
         void DrawMap();
         int this[int x, int y]
         { get; }
+
+        int ShortestPathLength
+        { get; }
+
         int LvlNo
         {
             get;

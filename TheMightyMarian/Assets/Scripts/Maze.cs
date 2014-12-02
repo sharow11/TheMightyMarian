@@ -14,6 +14,9 @@ public class Maze {
     private int sfp;
     private bool logging;
 
+    public int ShortestPathLength
+    { get; private set; }
+
     public int StartRoomNo = 0;
     public int EndRoomNo = 0;
 
@@ -346,10 +349,11 @@ public class Maze {
                     r1 = i;
                     r2 = j;
                     maxDistance = d[i, j];
+                    
                 }
             }
         }
-
+        ShortestPathLength = maxDistance;
         if(UnityEngine.Random.Range(0f,1.0f) < 0.5f)
         {
             StartRoomNo = r2;
