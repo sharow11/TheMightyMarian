@@ -30,14 +30,25 @@ public class Gui : MonoBehaviour
     public Texture Shout;
     public Texture Eruption;
 
+    private readonly float lightningBoltCd = 3.0f;
+    private readonly float railCd = 4.0f;
+    private readonly float fireBoltCd = 5.0f;
+    private readonly float lightCd = 1.0f;
+    private readonly float healCd = 40.0f;
+    private readonly float rageCd = 50.0f;
+    private readonly float fastCd = 5.0f;
+    private readonly float empowerCd = 4.0f;
+    private readonly float shoutCd = 4.0f;
+    private readonly float eruptionCd = 6.0f;
+
     public bool showSkills = false;
     private bool showHelp = false;
 
-    private static readonly float spellCd1 = 3.0f;
-    private static readonly float spellCd2 = 3.0f;
-    private static readonly float spellCd3 = 3.0f;
-    private static readonly float spellCd4 = 3.0f;
-    private static readonly float spellCd5 = 3.0f;
+    public static float spellCd1 = -1.0f;
+    public static float spellCd2 = -1.0f;
+    public static float spellCd3 = -1.0f;
+    public static float spellCd4 = -1.0f;
+    public static float spellCd5 = -1.0f;
 
     public static bool cd1Start = false;
     public static bool cd2Start = false;
@@ -146,33 +157,42 @@ public class Gui : MonoBehaviour
                 break;
             case Attack.Spell.LightningBolt:
                 Spell1 = LightningBolt;
+                spellCd1 = lightningBoltCd;
                 break;
             case Attack.Spell.Rail:
                 Spell1 = Rail;
+                spellCd1 = railCd;
                 break;
             case Attack.Spell.FireBolt:
                 Spell1 = FireBolt;
+                spellCd1 = fireBoltCd;
                 break;
             case Attack.Spell.Light:
                 Spell1 = Light;
                 break;
             case Attack.Spell.Heal:
                 Spell1 = Heal;
+                spellCd1 = healCd;
                 break;
             case Attack.Spell.Rage:
                 Spell1 = Rage;
+                spellCd1 = rageCd;
                 break;
             case Attack.Spell.Fast:
                 Spell1 = Fast;
+                spellCd1 = fastCd;
                 break;
             case Attack.Spell.Empower:
                 Spell1 = Empower;
+                spellCd1 = empowerCd;
                 break;
             case Attack.Spell.Shout:
                 Spell1 = Shout;
+                spellCd1 = shoutCd;
                 break;
             case Attack.Spell.Eruption:
                 Spell1 = Eruption;
+                spellCd1 = eruptionCd;
                 break;
             default:
                 break;
@@ -187,33 +207,42 @@ public class Gui : MonoBehaviour
                 break;
             case Attack.Spell.LightningBolt:
                 Spell2 = LightningBolt;
+                spellCd2 = lightningBoltCd;
                 break;
             case Attack.Spell.Rail:
                 Spell2 = Rail;
+                spellCd2 = railCd;
                 break;
             case Attack.Spell.FireBolt:
                 Spell2 = FireBolt;
+                spellCd2 = fireBoltCd;
                 break;
             case Attack.Spell.Light:
                 Spell2 = Light;
                 break;
             case Attack.Spell.Heal:
                 Spell2 = Heal;
+                spellCd2 = healCd;
                 break;
             case Attack.Spell.Rage:
                 Spell2 = Rage;
+                spellCd2 = rageCd;
                 break;
             case Attack.Spell.Fast:
                 Spell2 = Fast;
+                spellCd2 = fastCd;
                 break;
             case Attack.Spell.Empower:
                 Spell2 = Empower;
+                spellCd2 = empowerCd;
                 break;
             case Attack.Spell.Shout:
                 Spell2 = Shout;
+                spellCd2 = shoutCd;
                 break;
             case Attack.Spell.Eruption:
                 Spell2 = Eruption;
+                spellCd2 = eruptionCd;
                 break;
             default:
                 break;
@@ -228,33 +257,42 @@ public class Gui : MonoBehaviour
                 break;
             case Attack.Spell.LightningBolt:
                 Spell3 = LightningBolt;
+                spellCd3 = lightningBoltCd;
                 break;
             case Attack.Spell.Rail:
                 Spell3 = Rail;
+                spellCd3 = railCd;
                 break;
             case Attack.Spell.FireBolt:
                 Spell3 = FireBolt;
+                spellCd3 = fireBoltCd;
                 break;
             case Attack.Spell.Light:
                 Spell3 = Light;
                 break;
             case Attack.Spell.Heal:
                 Spell3 = Heal;
+                spellCd3 = healCd;
                 break;
             case Attack.Spell.Rage:
                 Spell3 = Rage;
+                spellCd3 = rageCd;
                 break;
             case Attack.Spell.Fast:
                 Spell3 = Fast;
+                spellCd3 = fastCd;
                 break;
             case Attack.Spell.Empower:
                 Spell3 = Empower;
+                spellCd3 = empowerCd;
                 break;
             case Attack.Spell.Shout:
                 Spell3 = Shout;
+                spellCd3 = shoutCd;
                 break;
             case Attack.Spell.Eruption:
                 Spell3 = Eruption;
+                spellCd3 = eruptionCd;
                 break;
             default:
                 break;
@@ -269,33 +307,42 @@ public class Gui : MonoBehaviour
                 break;
             case Attack.Spell.LightningBolt:
                 Spell4 = LightningBolt;
+                spellCd4 = lightningBoltCd;
                 break;
             case Attack.Spell.Rail:
                 Spell4 = Rail;
+                spellCd4 = railCd;
                 break;
             case Attack.Spell.FireBolt:
                 Spell4 = FireBolt;
+                spellCd4 = fireBoltCd;
                 break;
             case Attack.Spell.Light:
                 Spell4 = Light;
                 break;
             case Attack.Spell.Heal:
                 Spell4 = Heal;
+                spellCd4 = healCd;
                 break;
             case Attack.Spell.Rage:
                 Spell4 = Rage;
+                spellCd4 = rageCd;
                 break;
             case Attack.Spell.Fast:
                 Spell4 = Fast;
+                spellCd4 = fastCd;
                 break;
             case Attack.Spell.Empower:
                 Spell4 = Empower;
+                spellCd4 = empowerCd;
                 break;
             case Attack.Spell.Shout:
                 Spell4 = Shout;
+                spellCd4 = shoutCd;
                 break;
             case Attack.Spell.Eruption:
                 Spell4 = Eruption;
+                spellCd4 = eruptionCd;
                 break;
             default:
                 break;
@@ -310,36 +357,65 @@ public class Gui : MonoBehaviour
                 break;
             case Attack.Spell.LightningBolt:
                 Spell5 = LightningBolt;
+                spellCd5 = lightningBoltCd;
                 break;
             case Attack.Spell.Rail:
                 Spell5 = Rail;
+                spellCd5 = railCd;
                 break;
             case Attack.Spell.FireBolt:
                 Spell5 = FireBolt;
+                spellCd5 = fireBoltCd;
                 break;
             case Attack.Spell.Light:
                 Spell5 = Light;
                 break;
             case Attack.Spell.Heal:
                 Spell5 = Heal;
+                spellCd5 = healCd;
                 break;
             case Attack.Spell.Rage:
                 Spell5 = Rage;
+                spellCd5 = rageCd;
                 break;
             case Attack.Spell.Fast:
                 Spell5 = Fast;
+                spellCd5 = fastCd;
                 break;
             case Attack.Spell.Empower:
                 Spell5 = Empower;
+                spellCd5 = empowerCd;
                 break;
             case Attack.Spell.Shout:
                 Spell5 = Shout;
+                spellCd5 = shoutCd;
                 break;
             case Attack.Spell.Eruption:
                 Spell5 = Eruption;
+                spellCd5 = eruptionCd;
                 break;
             default:
                 break;
+        }
+        if(cd1 == -1.0f)
+        {
+            cd1 = spellCd1;
+        }
+        if (cd2 == -1.0f)
+        {
+            cd2 = spellCd2;
+        }
+        if (cd3 == -1.0f)
+        {
+            cd3 = spellCd3;
+        }
+        if (cd4 == -1.0f)
+        {
+            cd4 = spellCd4;
+        }
+        if (cd5 == -1.0f)
+        {
+            cd5 = spellCd5;
         }
     }
 

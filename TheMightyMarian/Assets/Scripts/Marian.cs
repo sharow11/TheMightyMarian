@@ -6,7 +6,7 @@ public class Marian : MonoBehaviour {
     public GameObject LevelUp;
     public static int HP = 1000;
     public static bool IsMarianDead = false;
-    public static int Mana = 1000;
+    public static int Mana = 200;
     public static int Exp = 0;
     public static int Level = 1;
 

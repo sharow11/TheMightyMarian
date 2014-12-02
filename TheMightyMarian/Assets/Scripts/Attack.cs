@@ -326,9 +326,9 @@ public class Attack : MonoBehaviour {
                 }
                 break;
             case Spell.Rage:
-                if (Marian.currMana > 10)
+                if (Marian.currMana > 80)
                 {
-                    Marian.currMana -= 10;
+                    Marian.currMana -= 80;
                     if (shot != null && shot.name == "LightningBolt(Clone)")
                         Destroy(shot);
                     shot = (GameObject)Instantiate(rage, new Vector3(marian.transform.position.x, marian.transform.position.y, -2f), new Quaternion());
