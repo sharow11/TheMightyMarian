@@ -65,6 +65,7 @@ public class Move3D : MonoBehaviour {
     private void finish()
     {
         float exp = -mostZ;
+        Screen.lockCursor = false;
         Application.LoadLevel(1);
         //load level and add exp;
     }
