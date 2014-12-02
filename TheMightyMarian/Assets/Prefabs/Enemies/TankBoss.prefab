@@ -179,6 +179,7 @@ MonoBehaviour:
   pushAwayFromWalls: {x: 0, y: 0, z: 0}
   patrolTargetAssignTime: 34.3199997
   gotPatrolTarget: 1
+  IsBoss: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

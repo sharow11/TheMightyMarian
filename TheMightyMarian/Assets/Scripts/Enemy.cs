@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour
     int nr = 0;
     float stunTime = 0f;
     float stunDuration = 3f;
+    public bool IsBoss = false;
     // Use this for initialization
 
 
@@ -442,7 +443,14 @@ public class Enemy : MonoBehaviour
                     Destroy(meat, 2.0f + Random.value * 2);
                 }
             }
-            Marian.Exp += 10;
+            if(IsBoss)
+            {
+                Marian.Exp += 100 + GameManager.currLevel * 5;
+            }
+            else
+            {
+                Marian.Exp += 10 + GameManager.currLevel * 5;
+            }
             float rng = Random.value;
             if(rng < 0.025f)
             {
