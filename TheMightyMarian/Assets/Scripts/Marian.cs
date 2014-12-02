@@ -36,13 +36,14 @@ public class Marian : MonoBehaviour {
     public static int Damage = 10;
 
     public static float currHp = HP;
-    public static int currMana = Mana;
+    public static float currMana = Mana;
 
     public static bool Empower = false;
     private static float empowerTime = 2.0f;
 
     private static float manaRegen = 1.0f;
     private static float maxManaRegen = 1.0f;
+    private static float manaRegenRate = 1.0f;
 
     private GameObject inventory;
 
@@ -185,7 +186,7 @@ public class Marian : MonoBehaviour {
             manaRegen -= Time.deltaTime;
             if(manaRegen < 0)
             {
-                currMana++;
+                currMana+= manaRegenRate;
                 manaRegen = maxManaRegen;
             }
         }
@@ -235,7 +236,7 @@ public class Marian : MonoBehaviour {
             Inteligence++;
             Mana += 5;
             currMana += 5;
-            maxManaRegen -= 0.01f;
+            manaRegenRate += 0.05f;
             if (Inteligence == 10)
             {
                 AddSpell(Attack.Spell.Eruption);
