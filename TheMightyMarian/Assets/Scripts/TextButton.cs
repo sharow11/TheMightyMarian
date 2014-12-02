@@ -24,7 +24,7 @@ public class TextButton : MonoBehaviour {
         }
         else
         {
-            Application.LoadLevel(1);
+            Application.LoadLevel(3);
         }
     }
 }
