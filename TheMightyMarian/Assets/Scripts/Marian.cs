@@ -70,6 +70,14 @@ public class Marian : MonoBehaviour {
             Level = 1;
             GameManager.currLevel = 0;
             currMana = Mana;
+            Strenght = 0;
+            Dexterity = 0;
+            Inteligence = 0;
+            BaseDamage = 10;
+            Damage = 10;
+            manaRegen = 1.0f;
+            maxManaRegen = 1.0f;
+            SkillPoints = 0;
             Spell1 = Attack.Spell.None;
             spell2 = Attack.Spell.None;
             spell3 = Attack.Spell.None;
