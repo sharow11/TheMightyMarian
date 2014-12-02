@@ -93,7 +93,7 @@ public class Attack : MonoBehaviour {
                 switch (Marian.currAttackType)
                 {
                     case Marian.AttackType.Spell:
-                        if (Marian.currMana > 5)
+                        if (Marian.currMana > 1)
                         {
                             shot = (GameObject)Instantiate(blueBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                             Destroy(shot, 3);
@@ -103,7 +103,7 @@ public class Attack : MonoBehaviour {
                             shotProj.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, -2);
                             shot.transform.LookAt(new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2));
                             shot.rigidbody.velocity = (new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2) - shot.transform.position).normalized * projectileSpeed;
-                            Marian.currMana -= 5;
+                            Marian.currMana -= 1;
                         }
                         break;
                     case Marian.AttackType.Melee:

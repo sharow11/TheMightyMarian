@@ -75,7 +75,7 @@ public class Gui : MonoBehaviour
         GUI.color = Color.cyan;
         GUI.Label(new Rect(110, 90, 60, 100), "EXP: " + Marian.Exp.ToString());
         GUI.color = Color.yellow;
-        GUI.Label(new Rect(110, 120, 100, 140), "Damage" + Marian.Damage.ToString());
+        GUI.Label(new Rect(110, 120, 100, 180), "Damage: " + Marian.Damage.ToString());
         GUI.color = color;
         if (Input.GetKeyDown("k"))
         {
@@ -489,7 +489,7 @@ public class Gui : MonoBehaviour
     }
     void SkillWindowFunction(int windowID)
     {
-        GUI.Label(new Rect(30, 50, 100, 100), "Strenght");
+        GUI.Label(new Rect(30, 50, 100, 100), "Strength");
         GUI.Label(new Rect(140, 50, 100, 100), "Dexterity ");
         GUI.Label(new Rect(250, 50, 100, 100), "Inteligence");
         GUI.Label(new Rect(30, 80, 100, 100), Marian.Strenght.ToString());
