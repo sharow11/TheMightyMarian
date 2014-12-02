@@ -489,6 +489,7 @@ public class Gui : MonoBehaviour
     }
     void SkillWindowFunction(int windowID)
     {
+        GUI.DragWindow();
         var color = GUI.color;
         var cdColor = new Color(color.r, color.g, color.b, 0.25f);
         GUI.Label(new Rect(30, 50, 100, 100), "Strength");
