@@ -185,27 +185,32 @@ public class Attack : MonoBehaviour {
                 Destroy(shot);
         }
         ///NEW SPELLS///
-        if (Input.GetKeyDown("1") && !Gui.cd1Start)
+        if (Input.GetKeyUp("1") && !Gui.cd1Start)
         {
+            Gui.cd1Start = true;
             castSpell(Marian.Spell1);
         }
-        if (Input.GetKeyDown("2") && !Gui.cd2Start)
+        if (Input.GetKeyUp("2") && !Gui.cd2Start)
         {
+            Gui.cd2Start = true;
             castSpell(Marian.spell2);
         }
-        if (Input.GetKeyDown("3") && !Gui.cd3Start)
+        if (Input.GetKeyUp("3") && !Gui.cd3Start)
         {
+            Gui.cd3Start = true;
             castSpell(Marian.spell3);
         }
-        if (Input.GetKeyDown("4") && !Gui.cd4Start)
+        if (Input.GetKeyUp("4") && !Gui.cd4Start)
         {
+            Gui.cd4Start = true;
             castSpell(Marian.spell4);
         }
-        if (Input.GetKeyDown("5") && !Gui.cd5Start)
+        if (Input.GetKeyUp("5") && !Gui.cd5Start)
         {
+            Gui.cd5Start = true;
             castSpell(Marian.spell5);
         }
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyUp("q"))
         {
             castSpell(Spell.Light);
         }

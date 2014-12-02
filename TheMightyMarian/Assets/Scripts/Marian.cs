@@ -22,7 +22,7 @@ public class Marian : MonoBehaviour {
     public static int Strenght = 0;
     public static int Dexterity = 0;
     public static int Inteligence = 0;
-    public static int SkillPoints = 0;
+    public static int SkillPoints = 100;
     public static int Speed = 8;
 
     public static bool LifeSteal = false;

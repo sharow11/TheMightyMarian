@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
             if (finalLevel < 0)
             { 
-                finalLevel = 3; // UnityEngine.Random.Range(15, 21); 
+                UnityEngine.Random.Range(15, 21); 
             }
             state++;
             //show loading screen
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     public void BeginGame()
     {
-        if (currLevel % 5 == 0)
+        if (currLevel % 5 == 0 && currLevel != 0)
         { bossLvl = true; }
         else
         { bossLvl = false; }
@@ -272,8 +272,8 @@ public class GameManager : MonoBehaviour
     public void levelUp()
     {
         currLevel++;
-        //Application.LoadLevel(1);
-        Application.LoadLevel(3);
+        Application.LoadLevel(1);
+        //Application.LoadLevel(3);
     }
 
 }
