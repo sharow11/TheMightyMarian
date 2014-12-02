@@ -27,6 +27,8 @@ public class FinalMap : MonoBehaviour, IMarianMap {
     { get { return 1; } }
     public int RoomsY
     { get { return 1; } }
+    public int ShortestPathLength
+    { get { return 1; } }
 
     private int lvlNo = 0;
     bool bossLvl = false;

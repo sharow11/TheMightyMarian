@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
     float stunTime = 0f;
     float stunDuration = 3f;
     public bool IsBoss = false;
+    public float spawnHeight = -1.5f;
     // Use this for initialization
 
 

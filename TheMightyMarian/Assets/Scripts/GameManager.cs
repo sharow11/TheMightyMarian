@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
             if (finalLevel < 0)
             { 
-                UnityEngine.Random.Range(15, 21); 
+                //UnityEngine.Random.Range(15, 21);
+                finalLevel = 15;
             }
             state++;
             //show loading screen
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
         { lvlLight.light.intensity = 0.025f; }
         foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
         { gq.beFloor(); }
+
         mapInstance = Instantiate(mapPrefab) as IMarianMap;
         mapInstance.Logging = logging;
         mapInstance.LvlNo = currLevel;
@@ -130,6 +132,8 @@ public class GameManager : MonoBehaviour
         PlaceMarian();
         PlaceEndLadder();
         PlaceEnemies();
+        foreach (SuddenDeath sd in FindObjectsOfType(typeof(SuddenDeath)) as SuddenDeath[])
+        { sd.timeToStart = mapInstance.ShortestPathLength * 15.0f; }
         //isLoading = false;
         Debug.Log("welcome to level " + currLevel);
     }
@@ -141,6 +145,10 @@ public class GameManager : MonoBehaviour
         foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
         {
             gq.beFloor();
+        }
+        foreach (SuddenDeath sd in FindObjectsOfType(typeof(SuddenDeath)) as SuddenDeath[])
+        {
+            sd.timeToStart = 200.0f;
         }
         mapInstance = Instantiate(bossMapPrefab) as IMarianMap;
         mapInstance.Logging = logging;
@@ -163,6 +171,10 @@ public class GameManager : MonoBehaviour
         foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
         {
             gq.beWater();
+        }
+        foreach (SuddenDeath sd in FindObjectsOfType(typeof(SuddenDeath)) as SuddenDeath[])
+        {
+            Destroy(sd.gameObject);
         }
         mapInstance = Instantiate(finalMapPrefab) as IMarianMap;
         mapInstance.Logging = logging;
@@ -243,7 +255,7 @@ public class GameManager : MonoBehaviour
                     return;
                 newEnemy.state = Enemy.State.idle;
                 newEnemy.transform.parent = transform;
-                newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.SizeX * 0.5f + 0.5f, coordinates.y - mapInstance.SizeY * 0.5f + 0.5f, -1.5f);
+                newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.SizeX * 0.5f + 0.5f, coordinates.y - mapInstance.SizeY * 0.5f + 0.5f, newEnemy.spawnHeight);
                 temp.Add(newEnemy);
             }
         }
