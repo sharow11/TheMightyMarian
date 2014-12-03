@@ -42,6 +42,7 @@ public class BossMap : MonoBehaviour, IMarianMap {
         get { return logging; }
         set { logging = value; }
     }
+
     string path = "mapsavefile.byte";
 
     public int RoomsX
@@ -209,7 +210,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
             }
         }
     }
-
 
     private void FillWithVoid()
     {

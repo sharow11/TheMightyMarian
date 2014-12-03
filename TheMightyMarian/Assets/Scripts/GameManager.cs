@@ -229,10 +229,15 @@ public class GameManager : MonoBehaviour
         if (Enemy.enemies == null)
         { Enemy.enemies = new List<Enemy>(); }
         List<Enemy> temp = new List<Enemy>();
-
+       
         for (int room = 0; room < roomsCnt; room++)
         {
-            for (int j = 0; j < myEnemiesPerRoom; j++)
+            int currEnemiesCnt = 0;
+            if (!(bossLvl || currLevel == finalLevel))
+            { currEnemiesCnt = myEnemiesPerRoom + ((currLevel + 1)  / UnityEngine.Random.Range(3,7)); }
+            else
+            { currEnemiesCnt = 1; }
+            for (int j = 0; j < currEnemiesCnt; j++)
             {
                 if (room == mapInstance.StartRoomNo && !(bossLvl || currLevel == finalLevel))
                     continue;
