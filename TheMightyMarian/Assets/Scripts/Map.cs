@@ -119,6 +119,10 @@ public class Map : MonoBehaviour, IMarianMap {
         initializeRooms();
         translateRoomsToMap();
         ScaleUPx2();
+        if (logging)
+        {
+            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        }
         CelluralSmooth();
         if (logging)
         {

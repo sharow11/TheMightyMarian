@@ -17,4 +17,9 @@ public struct IntVector2
         a.y += b.y;
         return a;
     }
+
+    public double distanceTo(IntVector2 a)
+    {
+        return Mathf.Sqrt(((this.x - a.x) * (this.x - a.x)) + ((this.y - a.y) * (this.y - a.y)));
+    }
 }
