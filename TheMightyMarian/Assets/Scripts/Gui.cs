@@ -68,9 +68,9 @@ public class Gui : MonoBehaviour
         GUI.Label(new Rect(30, 30, 60, 100), "Press H for controls");
         var color = GUI.color;
         GUI.color = Color.red;
-        GUI.Label(new Rect(110, 30, 60, 100), Marian.currHp.ToString());
+        GUI.Label(new Rect(110, 30, 60, 100), Convert.ToInt32(Marian.currHp).ToString());
         GUI.color = Color.blue;
-        GUI.Label(new Rect(110, 60, 60, 100), Marian.currMana.ToString());
+        GUI.Label(new Rect(110, 60, 60, 100), Convert.ToInt32(Marian.currMana).ToString());
         GUI.Label(new Rect(140, 60, 60, 100), Marian.Mana.ToString());
         GUI.color = Color.cyan;
         GUI.Label(new Rect(110, 90, 60, 100), "EXP: " + Marian.Exp.ToString());
