@@ -47,9 +47,9 @@ namespace Assets.Scripts
             set;
         }
 
-        void Save();
+        //void Save();
 
-        void Load();
+        //void Load();
 
         GameObject gameObject
         { get; }

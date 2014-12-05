@@ -199,12 +199,12 @@ public class GameManager : MonoBehaviour
 
     private void SaveMap()
     {
-        mapInstance.Save();
+        //mapInstance.Save();
     }
 
     private void LoadMap()
     {
-        mapInstance.Load();
+        //mapInstance.Load();
     }
 
     public void PlaceEnemies()

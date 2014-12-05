@@ -126,7 +126,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
         //cleanVariables();
     }
 
-
     private void erosion()
     {
         int[] box =  {0, 1, 0, 1, 2, 1, 0, 1, 0};
@@ -390,6 +389,7 @@ public class BossMap : MonoBehaviour, IMarianMap {
         return n;
     }
 
+    /*
     public void Save()
     {
         try
@@ -425,6 +425,7 @@ public class BossMap : MonoBehaviour, IMarianMap {
             Debug.Log("wrong size");  
         }
      }
+    */
 
     public void DestroyCells()
     {

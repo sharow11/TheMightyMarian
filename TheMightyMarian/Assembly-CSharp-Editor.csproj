@@ -136,31 +136,31 @@
      <None Include="Assets\ProCore\Prototype\About\Credits.txt" />
      <None Include="Assets\StrumpyShaderEditor\Editor\Resources\Internal\TextureCopy.shader" />
  <Reference Include="ProBuilderCore">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/ProCore/Prototype/Classes/ProBuilderCore.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/ProCore/Prototype/Classes/ProBuilderCore.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/ProCore/Prototype/Classes/ProBuilderMeshOps.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/ProCore/Prototype/Classes/ProBuilderMeshOps.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderEditor">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/ProCore/Prototype/Editor/ProBuilderEditor.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/ProCore/Prototype/Editor/ProBuilderEditor.dll</HintPath>
  </Reference>
  <Reference Include="ProCore">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/ProCore/Shared/Code/ProCore.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/ProCore/Shared/Code/ProCore.dll</HintPath>
  </Reference>
  <Reference Include="SixBySeven">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/ProCore/Shared/Code/SixBySeven.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/ProCore/Shared/Code/SixBySeven.dll</HintPath>
  </Reference>
  <Reference Include="StrumpyShaderEditor">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/StrumpyShaderEditor/Editor/StrumpyShaderEditor.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/StrumpyShaderEditor/Editor/StrumpyShaderEditor.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
  </Reference>
  <Reference Include="UnityVS.VersionSpecific">
- <HintPath>C:/Users/Sharow/Documents/Nowy folder/TheMightyMarian/TheMightyMarian/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
+ <HintPath>C:/Users/Desdemona/Desktop/aaa/TheMightyMarian/TheMightyMarian/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

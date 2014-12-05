@@ -107,7 +107,6 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         //cleanVariables();
     }
 
-
     private void erosion()
     {
         int[] box = { 0, 1, 0, 1, 2, 1, 0, 1, 0 };
@@ -168,7 +167,6 @@ public class FinalMap : MonoBehaviour, IMarianMap {
             }
         }
     }
-
 
     private void CreateCell(IntVector2 coordinates, int type)
     {

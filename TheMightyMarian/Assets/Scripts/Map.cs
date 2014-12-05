@@ -702,6 +702,7 @@ public class Map : MonoBehaviour, IMarianMap {
         return n;
     }
 
+    /*
     public void Save()
     {
         try
@@ -737,6 +738,7 @@ public class Map : MonoBehaviour, IMarianMap {
             Debug.Log("wrong size");  
         }
      }
+    */
 
     public void DestroyCells()
     {
