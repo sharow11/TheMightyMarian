@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour
         { bossLvl = true; }
         else
         { bossLvl = false; }
+        bossLvl = true;
         if (currLevel == finalLevel)
         { FinalBeginGame(); }
         else if (bossLvl)
