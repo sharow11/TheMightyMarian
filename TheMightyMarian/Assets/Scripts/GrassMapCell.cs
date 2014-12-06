@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GrassMapCell : MapCell 
-{
+public class GrassMapCell : MapCell {
 
 }

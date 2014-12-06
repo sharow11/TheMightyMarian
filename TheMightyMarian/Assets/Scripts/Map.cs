@@ -33,12 +33,8 @@ public class Map : MonoBehaviour, IMarianMap {
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;
     public MapCell cellPrefab;
-    public WaterMapCell waterCellPrefab;
-    public GrassMapCell grassCellPrefab;
-    //public VoidMapCell voidCellPrefab;
     public VoidMapStripe voidStripePrefab;
-    //public VoidMapCellCollide voidCellPrefabCollide;
-    public FloorMapCell floorCellPrefab;
+
     public Wall wallPrefab;
     private int lvlNo = 0;
     bool bossLvl = false;
@@ -128,60 +124,15 @@ public class Map : MonoBehaviour, IMarianMap {
         {
             SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
         }
-        //lastTouch();
-        //eliminate1NarrowPassages();
-        //fillAndCry();
+
         erosion();
-        //emptyBossRoom();
+
         DrawMap();
         DrawEdge();
         if (logging)
         {
             SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
         }
-        cleanVariables();
-    }
-
-    public IEnumerator GenerateCoroutine()
-    {
-        if (lvlNo != 0 && lvlNo % 5 == 0)
-        { bossLvl = true; }
-        rsX = sizeX / roomsX;
-        rsY = sizeY / roomsY;
-        rsizeX = sizeX + 2;
-        rsizeY = sizeY + 2;
-        size2X = sizeX * 2;
-        size2Y = sizeY * 2;
-        rsize2X = size2X + 2;
-        rsize2Y = size2Y + 2;
-        smallMap = new int[rsizeX, rsizeY];
-        map = new int[rsize2X, rsize2Y];
-        FillWithVoid();
-
-        maze = new Maze(roomsY, roomsX, sizeX, sizeY, rsX, rsY, startingFloorsPercent);
-        maze.Logging = logging;
-        maze.Generate();
-        yield return null;
-        startRoomNo = maze.StartRoomNo;
-        endRoomNo = maze.EndRoomNo;
-        myRooms = maze.GetRooms();
-        initializeRooms();
-        translateRoomsToMap();
-        ScaleUPx2();
-        CelluralSmooth();
-        if (logging)
-        {
-            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
-        }
-        lastTouch();
-        //eliminate1NarrowPassages();
-        //yield return DrawMapCoroutine();
-        StartCoroutine(DrawMapCoroutine());
-        if (logging)
-        {
-            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
-        }
-        yield return null;
         cleanVariables();
     }
 
@@ -414,7 +365,6 @@ public class Map : MonoBehaviour, IMarianMap {
 
     public void DrawMap()
     {
-        DestroyCells();
         int width = 0;
         IntVector2 voidStart = new IntVector2(0, 0); ;
         IntVector2 voidEnd = new IntVector2(0,0);
@@ -422,8 +372,6 @@ public class Map : MonoBehaviour, IMarianMap {
         {
             for (int y = 0; y < rsize2Y; y++)
             {
-                //CreateCell(new IntVector2(x, y), map[x, y]);
-                
                 if (map[x, y] == TileTypes.VOID)
                 {
                     if (width == 0)
@@ -463,35 +411,6 @@ public class Map : MonoBehaviour, IMarianMap {
     {
         for (int i = 0; i < rsize2X; i++)
         { CreateWall(new IntVector2(i, -1), 2);}
-    }
-
-    private IEnumerator DrawMapCoroutine()
-    {
-        DestroyCells();
-        for (int x = 0; x < rsize2X; x++)
-        {
-            for (int y = 0; y < rsize2Y; y++)
-            {
-                CreateCell(new IntVector2(x, y), map[x, y]);
-                if (map[x, y] == TileTypes.FLOOR)
-                {
-                    if (isFineCoords(x, y - 1) && map[x, y - 1] == TileTypes.VOID)
-                    { CreateWall(new IntVector2(x, y), 0); } //a
-                    if (isFineCoords(x, y + 1) && map[x, y + 1] == TileTypes.VOID)
-                    { CreateWall(new IntVector2(x, y), 2); } //c
-                    if (isFineCoords(x + 1, y) && map[x + 1, y] == TileTypes.VOID)
-                    { CreateWall(new IntVector2(x, y), 3); } //d
-                    if (isFineCoords(x - 1, y) && map[x - 1, y] == TileTypes.VOID)
-                    { CreateWall(new IntVector2(x, y), 1); } //b
-
-                }
-                yield return null;
-            }
-        }
-        GameManager gm = FindObjectOfType(typeof(GameManager)) as GameManager;
-        gm.PlaceMarian();
-        gm.PlaceEnemies();
-        gm.isLoading = false;
     }
 
     private void FillWithVoid()
@@ -610,42 +529,6 @@ public class Map : MonoBehaviour, IMarianMap {
         flors.Clear();
     }
 
-    private void CreateCell(IntVector2 coordinates, int type)
-    {
-        if (type == TileTypes.FLOOR)
-        {
-            /*FloorMapCell newCell = Instantiate(floorCellPrefab) as FloorMapCell;
-            newCell.coordinates = coordinates;
-            newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type floor";
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);*/
-        }
-        else if (type == TileTypes.VOID)
-        {
-            //VoidMapCell newCell = Instantiate(voidCellPrefab) as VoidMapCell;
-            //newCell.coordinates = coordinates;
-            //newCell.type = type;
-            //newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type void";
-            //newCell.transform.parent = transform;
-            //newCell.transform.localPosition =
-            //    new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-        }
-        else
-        {
-            MapCell newCell = Instantiate(cellPrefab) as MapCell;
-            newCell.coordinates = coordinates;
-            newCell.type = type;
-            newCell.name = "Map Cell " + coordinates.x + ", " + coordinates.y + " type error";
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition =
-                new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
-            Debug.Log("error cell created, type: " + type);
-        }
-        //map[coordinates.x, coordinates.z] = newCell;
-    }
-
     private void CreateStripe(IntVector2 left, IntVector2 right, int width)
     {
         VoidMapStripe newStripe = Instantiate(voidStripePrefab) as VoidMapStripe;       
@@ -671,8 +554,6 @@ public class Map : MonoBehaviour, IMarianMap {
         //newWall.setRightMaterial();
         wallsPlaced++;
     }
-
-
 
     private int CntCellNeighboursWalls(int x, int y)
     {
@@ -749,32 +630,6 @@ public class Map : MonoBehaviour, IMarianMap {
      }
     */
 
-    public void DestroyCells()
-    {
-        MapCell[] others = FindObjectsOfType(typeof(MapCell)) as MapCell[];
-        foreach (MapCell other in others)
-        { Destroy(other.gameObject);}
-
-        GrassMapCell[] othersGrass = FindObjectsOfType(typeof(GrassMapCell)) as GrassMapCell[];
-        foreach (GrassMapCell other in othersGrass)
-        { Destroy(other.gameObject); }
-
-        VoidMapCell[] othersVoid = FindObjectsOfType(typeof(VoidMapCell)) as VoidMapCell[];
-        foreach (VoidMapCell other in othersVoid)
-        { Destroy(other.gameObject);}
-
-        FloorMapCell[] othersFloor = FindObjectsOfType(typeof(FloorMapCell)) as FloorMapCell[];
-        foreach (FloorMapCell other in othersFloor)
-        { Destroy(other.gameObject);}
-
-        WaterMapCell[] othersWater = FindObjectsOfType(typeof(WaterMapCell)) as WaterMapCell[];
-        foreach (WaterMapCell other in othersWater)
-        { Destroy(other.gameObject);}
-
-        Wall[] walls = FindObjectsOfType(typeof(Wall)) as Wall[];
-        foreach (Wall other in walls)
-        { Destroy(other.gameObject);}
-    }
 
     private bool isFineCoords(int x, int y)
     {

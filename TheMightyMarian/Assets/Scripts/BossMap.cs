@@ -23,8 +23,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
     //public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;
-    //public VoidMapCellCollide voidCellPrefabCollide;
-    public FloorMapCell floorCellPrefab;
     public VoidMapStripe voidStripePrefab;
     public Wall wallPrefab;
     private int lvlNo = 0;
@@ -172,7 +170,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
 
     public void DrawMap()
     {
-        DestroyCells();
         int width = 0;
         IntVector2 voidStart = new IntVector2(0, 0); ;
         IntVector2 voidEnd = new IntVector2(0, 0);
@@ -433,33 +430,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
         }
      }
     */
-
-    public void DestroyCells()
-    {
-        MapCell[] others = FindObjectsOfType(typeof(MapCell)) as MapCell[];
-        foreach (MapCell other in others)
-        { Destroy(other.gameObject);}
-
-        GrassMapCell[] othersGrass = FindObjectsOfType(typeof(GrassMapCell)) as GrassMapCell[];
-        foreach (GrassMapCell other in othersGrass)
-        { Destroy(other.gameObject); }
-
-        VoidMapCell[] othersVoid = FindObjectsOfType(typeof(VoidMapCell)) as VoidMapCell[];
-        foreach (VoidMapCell other in othersVoid)
-        { Destroy(other.gameObject);}
-
-        FloorMapCell[] othersFloor = FindObjectsOfType(typeof(FloorMapCell)) as FloorMapCell[];
-        foreach (FloorMapCell other in othersFloor)
-        { Destroy(other.gameObject);}
-
-        WaterMapCell[] othersWater = FindObjectsOfType(typeof(WaterMapCell)) as WaterMapCell[];
-        foreach (WaterMapCell other in othersWater)
-        { Destroy(other.gameObject);}
-
-        Wall[] walls = FindObjectsOfType(typeof(Wall)) as Wall[];
-        foreach (Wall other in walls)
-        { Destroy(other.gameObject);}
-    }
 
     private bool isFineCoords(int x, int y)
     {
