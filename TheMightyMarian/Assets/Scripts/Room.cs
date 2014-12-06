@@ -63,7 +63,6 @@ public class Room {
     {
         FillWithVoid();
         FillRandomly();
-        //FillWithFloors();
         CalculateDoors();
         PlaceDoors();
     }
@@ -209,10 +208,6 @@ public class Room {
     public void Generate()
     {
         _Generate();
-        //if(CheckIfAllPassagesExists())
-        //{ Debug.Log("passable"); }
-        //else
-        //{ Debug.Log("not passable"); }
         while (!CheckIfAllPassagesExists() || (cntPrc() < 0.3f))
         {
             if (logging)
@@ -224,10 +219,7 @@ public class Room {
             _Generate();
         }
         if (logging)
-        {
-            Debug.Log(name + " generated. sfp:" + sfp.ToString() + " %:" + cntPrc().ToString());
-        }
-        //SaveBitmap("images/rooms/room_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
+        { Debug.Log(name + " generated. sfp:" + sfp.ToString() + " %:" + cntPrc().ToString()); }
     }
 
     private bool _Generate()
@@ -433,50 +425,4 @@ public class Room {
         { return true; }
         return false;
     }
-
-    public void SaveBitmap(String filename = "kupa.png")
-    {
-        Texture2D obrazek = new Texture2D(sizeX * 6 + 1, sizeY * 6 + 1);
-        for (int i = 0; i < sizeX * 6 + 1; i++)
-        {
-            for (int j = 0; j < sizeY * 6 + 1; j++)
-            {
-                obrazek.SetPixel(i, j, DawnBringer16.Blue);
-            }
-        }
-        for (int i = 0; i < sizeX; i++)
-        {
-            for (int j = 0; j < sizeY; j++)
-            {
-                Color now;
-                int ileftcorner = i * 6 + 1;
-                int jleftcorner = j * 6 + 1;
-                if (room[i, j] == TileTypes.FLOOR)
-                { now = DawnBringer16.White; }
-                else
-                { now = DawnBringer16.Black; }
-
-                for (int ii = ileftcorner; ii < ileftcorner + 6; ii++)
-                {
-                    for (int jj = jleftcorner; jj < jleftcorner + 6; jj++)
-                    {
-                        obrazek.SetPixel(ii, jj, now);
-                    }
-                }
-                for (int ii = 0; ii < 6; ii++)
-                {
-                    obrazek.SetPixel(i * 6, j * 6 + ii, DawnBringer16.DarkGrey);
-                    obrazek.SetPixel(i * 6 + ii, j * 6, DawnBringer16.DarkGrey);
-                }
-            }
-        }
-        for (int i = 0; i < sizeX * 6 + 1; i++)
-        { obrazek.SetPixel(i, sizeY * 6, DawnBringer16.DarkGrey); }
-        for (int i = 0; i < sizeY * 6 + 1; i++)
-        { obrazek.SetPixel(sizeX * 6, i, DawnBringer16.DarkGrey); }
-
-        var bytes = obrazek.EncodeToPNG();
-        File.WriteAllBytes(filename, bytes);
-    }
-
 }
