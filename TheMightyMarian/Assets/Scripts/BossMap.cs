@@ -124,6 +124,7 @@ public class BossMap : MonoBehaviour, IMarianMap {
         erosion();
         //emptyBossRoom();
         DrawMap();
+        DrawEdge();
         calculateInitialPositions();
         if (logging)
         {
@@ -562,5 +563,12 @@ public class BossMap : MonoBehaviour, IMarianMap {
             bossStartPos = RandomTile(TileTypes.FLOOR);
         }
     }
+
+    private void DrawEdge()
+    {
+        for (int i = 0; i < rsize2X; i++)
+        { CreateWall(new IntVector2(i, -1), 2); }
+    }
+
 
 }

@@ -134,6 +134,7 @@ public class Map : MonoBehaviour, IMarianMap {
         erosion();
         //emptyBossRoom();
         DrawMap();
+        DrawEdge();
         if (logging)
         {
             SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
@@ -458,6 +459,12 @@ public class Map : MonoBehaviour, IMarianMap {
         }
     }
 
+    private void DrawEdge()
+    {
+        for (int i = 0; i < rsize2X; i++)
+        { CreateWall(new IntVector2(i, -1), 2);}
+    }
+
     private IEnumerator DrawMapCoroutine()
     {
         DestroyCells();
@@ -664,6 +671,8 @@ public class Map : MonoBehaviour, IMarianMap {
         //newWall.setRightMaterial();
         wallsPlaced++;
     }
+
+
 
     private int CntCellNeighboursWalls(int x, int y)
     {
