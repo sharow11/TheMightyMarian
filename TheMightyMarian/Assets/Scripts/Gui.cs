@@ -33,7 +33,6 @@ public class Gui : MonoBehaviour
     private readonly float lightningBoltCd = 3.0f;
     private readonly float railCd = 4.0f;
     private readonly float fireBoltCd = 5.0f;
-    private readonly float lightCd = 1.0f;
     private readonly float healCd = 40.0f;
     private readonly float rageCd = 50.0f;
     private readonly float fastCd = 5.0f;
@@ -49,18 +48,21 @@ public class Gui : MonoBehaviour
     public static float spellCd3 = -1.0f;
     public static float spellCd4 = -1.0f;
     public static float spellCd5 = -1.0f;
+    public static float spellLightCd = 5.0f;
 
     public static bool cd1Start = false;
     public static bool cd2Start = false;
     public static bool cd3Start = false;
     public static bool cd4Start = false;
     public static bool cd5Start = false;
+    public static bool lightCdStart = false;
 
     public static float cd1 = spellCd1;
     public static float cd2 = spellCd2;
     public static float cd3 = spellCd3;
     public static float cd4 = spellCd4;
     public static float cd5 = spellCd5;
+    public static float LightCd = spellLightCd;
 
     void OnGUI()
     {
@@ -141,6 +143,15 @@ public class Gui : MonoBehaviour
             {
                 cd5Start = false;
                 cd5 = spellCd5;
+            }
+        }
+        if (lightCdStart)
+        {
+            LightCd -= Time.deltaTime;
+            if (LightCd < 0)
+            {
+                lightCdStart = false;
+                LightCd = spellLightCd;
             }
         }
     }

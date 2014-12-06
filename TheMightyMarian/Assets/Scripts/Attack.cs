@@ -210,8 +210,9 @@ public class Attack : MonoBehaviour {
             Gui.cd5Start = true;
             castSpell(Marian.spell5, 5);
         }
-        if (Input.GetKeyUp("q"))
+        if (Input.GetKeyUp("q") && !Gui.lightCdStart)
         {
+            Gui.lightCdStart = true;
             castSpell(Spell.Light, 6);
         }
 	}
@@ -306,7 +307,6 @@ public class Attack : MonoBehaviour {
                 }
                 break;
             case Spell.Light:
-                    Marian.currMana -= 5;
                     if (shot != null && shot.name == "LightningBolt(Clone)")
                         Destroy(shot);
                     shot = (GameObject)Instantiate(light, new Vector3(camera.hitAbove.x, camera.hitAbove.y, -3), new Quaternion());
