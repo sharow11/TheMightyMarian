@@ -64,6 +64,9 @@ public class FinalMap : MonoBehaviour, IMarianMap {
     private int size2X, size2Y;
     private int rsize2X, rsize2Y;
 
+    private IntVector2 playerStartPos;
+    private IntVector2 bossStartPos;
+
     public void Generate()
     {
         //rsX = sizeX / roomsX;
@@ -100,6 +103,7 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         erosion();
         //emptyBossRoom();
         DrawMap();
+        calculateInitialPositions();
         if (logging)
         {
             SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
@@ -432,17 +436,25 @@ public class FinalMap : MonoBehaviour, IMarianMap {
     }
 
     public IntVector2 GetStartPosForPlayer()
-    {
-        return RandomTile(TileTypes.FLOOR);
-    }
+    { return playerStartPos; }
 
     public IntVector2 PlaceEnemyInRoom(int room)
-    { return RandomTile(TileTypes.FLOOR); }
+    { return bossStartPos; }
 
     public IntVector2 GetEndLadderPos()
     { return RandomTile(TileTypes.FLOOR); }
 
+    private void calculateInitialPositions()
+    {
+        playerStartPos = RandomTile(TileTypes.FLOOR);
+        bossStartPos = RandomTile(TileTypes.FLOOR);
 
+        while (bossStartPos.distanceTo(playerStartPos) < sizeX)
+        {
+            playerStartPos = RandomTile(TileTypes.FLOOR);
+            bossStartPos = RandomTile(TileTypes.FLOOR);
+        }
+    }
 
 
     public int StartRoomNo
