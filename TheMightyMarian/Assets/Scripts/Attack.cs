@@ -306,18 +306,11 @@ public class Attack : MonoBehaviour {
                 }
                 break;
             case Spell.Light:
-                if (Marian.currMana > 5)
-                {
                     Marian.currMana -= 5;
                     if (shot != null && shot.name == "LightningBolt(Clone)")
                         Destroy(shot);
                     shot = (GameObject)Instantiate(light, new Vector3(camera.hitAbove.x, camera.hitAbove.y, -3), new Quaternion());
                     Destroy(shot, 10.6f);
-                }
-                else
-                {
-                    casted = false;
-                }
                 break;
             case Spell.Heal:
                 if (Marian.currMana > 100)

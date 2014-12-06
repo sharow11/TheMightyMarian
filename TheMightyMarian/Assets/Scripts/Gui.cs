@@ -505,92 +505,92 @@ public class Gui : MonoBehaviour
         if(Marian.Strenght < 10)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(30, 100, 80, 80), Empower, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(30, 120, 80, 80), Empower, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(30, 100, 80, 80), Empower, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(30, 120, 80, 80), Empower, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Strenght < 20)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(30, 190, 80, 80), Rage, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(30, 210, 80, 80), Rage, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(30, 190, 80, 80), Rage, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(30, 210, 80, 80), Rage, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Strenght < 30)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(30, 280, 80, 80), Shout, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(30, 300, 80, 80), Shout, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(30, 280, 80, 80), Shout, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(30, 300, 80, 80), Shout, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Dexterity < 10)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(140, 100, 80, 80), Fast, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(140, 120, 80, 80), Fast, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(140, 100, 80, 80), Fast, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(140, 120, 80, 80), Fast, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Dexterity < 20)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(140, 190, 80, 80), Heal, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(140, 210, 80, 80), Heal, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(140, 190, 80, 80), Heal, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(140, 210, 80, 80), Heal, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Dexterity < 30)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(140, 280, 80, 80), Rail, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(140, 300, 80, 80), Rail, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(140, 280, 80, 80), Rail, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(140, 300, 80, 80), Rail, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Inteligence < 10)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(250, 100, 80, 80), Eruption, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(250, 120, 80, 80), Eruption, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(250, 100, 80, 80), Eruption, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(250, 120, 80, 80), Eruption, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Inteligence < 20)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(250, 190, 80, 80), LightningBolt, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(250, 210, 80, 80), LightningBolt, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(250, 190, 80, 80), LightningBolt, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(250, 210, 80, 80), LightningBolt, ScaleMode.ScaleToFit, true);
         }
         if (Marian.Inteligence < 30)
         {
             GUI.color = cdColor;
-            GUI.DrawTexture(new Rect(250, 280, 80, 80), FireBolt, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(250, 300, 80, 80), FireBolt, ScaleMode.ScaleToFit, true);
             GUI.color = color;
         }
         else
         {
-            GUI.DrawTexture(new Rect(250, 280, 80, 80), FireBolt, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(250, 300, 80, 80), FireBolt, ScaleMode.ScaleToFit, true);
         }
 
         if(Marian.SkillPoints > 0)
@@ -622,10 +622,12 @@ public class Gui : MonoBehaviour
         GUI.Label(new Rect(30, 50, 220, 50), "To attack press LPM");
         GUI.Label(new Rect(30, 100, 220, 50), "To fire spells press 1-5");
         GUI.Label(new Rect(30, 150, 220, 50), "To set skills press K");
-        GUI.Label(new Rect(30, 200, 220, 50), "To change weapon press q");
+        GUI.Label(new Rect(30, 200, 220, 50), "To open inventory press I");
+        GUI.Label(new Rect(30, 250, 220, 50), "To spawn light press Q");
         if (GUI.Button(new Rect(255, 30, 20, 20), "X"))
         {
             showHelp = false;
         }
+        GUI.DragWindow();
     }
 }
