@@ -14,19 +14,23 @@ public class Move3D : MonoBehaviour {
     public float jumpSpeed = 5f;
     public float gravity = 15f;
     public float circleJumpAcc = 8f;
-    public float bonusTime = 0.3f;
+    public float bonusTime = 0.5f;
+    public float bonusMaxUsableTime = 0.1f;
     public float roundTime = 60f;
-    //public bool TrueForBuildFalseForEditor = true;
+
+    
+    float bonusVel = 2.4f;
     bool jumpPressed = false;
     bool jumping = false;
     float jumpPressTime = 0f;
     float ctrl = 1f;
     float enterTime = 0;
     bool isTouchingGround = false;
-    float lastTrochZ = -3f;
-    float lastTrochY = 2f;
+    float lastTorchZ = -3f;
+    float lastTorchY = 2f;
     float mostZ = 0f;
-    GUIText tl;
+    float onJumpVel = 0f;
+    GUIText tl, sp;
     GameObject[] torches;
     float startTime = 0f;
 	// Use this for initialization
@@ -35,14 +39,15 @@ public class Move3D : MonoBehaviour {
         head = GameObject.Find("Head");
         torches = GameObject.FindGameObjectsWithTag("Torch");
         tl = GameObject.Find("TimeLeft").guiText;
+        sp = GameObject.Find("Speed").guiText;
         startTime = Time.time;
-        /*if (TrueForBuildFalseForEditor)
-            circleJumpAcc += 5f;*/
+        bonusVel = bonusMaxUsableTime * circleJumpAcc;
 	}
 
     void Update()
     {
-        tl.text = "Time left: " + (roundTime + startTime - Time.time);
+        tl.text = "Time left: " + (int)(roundTime + startTime - Time.time);
+        sp.text = "Speed: " + (new Vector2(rb.velocity.x, rb.velocity.z).magnitude);
         if (Time.time - startTime > roundTime)
             finish();
         input = (Input.GetAxisRaw("Vertical") * head.transform.forward + Input.GetAxisRaw("Horizontal") * head.transform.right).normalized;
@@ -51,7 +56,6 @@ public class Move3D : MonoBehaviour {
             jumpPressed = true;
             jumpPressTime = Time.time;
         }
-        circleJumpAccelerate();
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
             circleJumpAcc += 1f;
@@ -59,6 +63,10 @@ public class Move3D : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             circleJumpAcc -= 1f;
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadMultiply))
+        {
+            roundTime += 30f;
         }
     }
 
@@ -82,17 +90,17 @@ public class Move3D : MonoBehaviour {
         {
             foreach (GameObject t in torches) //checkpoint
             {
-                if (transform.position.z < t.transform.position.z && t.transform.position.z < lastTrochZ)
+                if (transform.position.z < t.transform.position.z && t.transform.position.z < lastTorchZ)
                 {
-                    lastTrochZ = t.transform.position.z;
-                    lastTrochY = t.transform.position.y;
+                    lastTorchZ = t.transform.position.z;
+                    lastTorchY = t.transform.position.y;
                 }
             }
             if (jumpPressed && Time.time - jumpPressTime < 0.1f) //jumping
             {
                 jump();
             }
-            else if (Time.time - enterTime > 0.1f && !jumping) //touching ground and aint gonna jump - apply friction
+            else if (Time.time - enterTime > 0.04f && !jumping) //touching ground and aint gonna jump - apply friction
             {
                 mag = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
                 dir = rb.velocity.normalized;
@@ -129,9 +137,10 @@ public class Move3D : MonoBehaviour {
         }
         if (transform.position.y < -2) //reset
         {
-            transform.position = new Vector3(9.5f, lastTrochY + bonusTime, lastTrochZ);
+            transform.position = new Vector3(9.5f, lastTorchY, lastTorchZ);
             rb.velocity = new Vector3();
         }
+        circleJumpAccelerate();
 
         currSpeed = rb.velocity.magnitude;
 	}
@@ -178,10 +187,11 @@ public class Move3D : MonoBehaviour {
             rb.velocity = new Vector3(dir2D.x * mag2D, velY, dir2D.y * mag2D);
         }
         jumpPressed = false;
+        onJumpVel = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
     }
     void circleJumpAccelerate()
     {
-        if (jumping && Time.time - jumpPressTime < 0.5f)
+        if (jumping && Time.time - jumpPressTime < bonusTime)
         {
             Vector2 temp = new Vector2(rb.velocity.x, rb.velocity.z);
             float mag2D = temp.magnitude;
@@ -189,6 +199,10 @@ public class Move3D : MonoBehaviour {
             if (Input.GetAxisRaw("Horizontal") * Input.GetAxis("Mouse X") > 0.1f) //circle jump
             {
                 mag2D += Time.deltaTime * circleJumpAcc;
+                if (mag2D > onJumpVel + bonusVel) //cap maximum strafe jump velocity gain
+                {
+                    mag2D = onJumpVel + bonusVel;
+                }
                 rb.velocity = new Vector3(dir2D.x * mag2D, rb.velocity.y, dir2D.y * mag2D);
             }
             else if (Input.GetAxisRaw("Horizontal") * Input.GetAxis("Mouse X") < -0.1f) //wrong directions, slow down
