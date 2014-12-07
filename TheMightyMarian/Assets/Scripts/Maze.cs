@@ -162,25 +162,6 @@ public class Maze {
             }
     }
 
-    private Color ColorForPassage(int p)
-    {
-        Color now;
-        if (p == 0)
-        { now = DawnBringer16.Black; }
-        else if (p == 1)
-        { now = DawnBringer16.Orange; }
-        else if (p == 2)
-        { now = DawnBringer16.Yellow; }
-        else if (p == 3)
-        { now = DawnBringer16.Red; }
-        else if (p == 4)
-        { now = DawnBringer16.PinkBeige; }
-        else
-        { now = DawnBringer16.Green; }
-
-        return now;
-    }
-
     public List<Room> GetRooms()
     {
         List<Room> pokoje = new List<Room>();
