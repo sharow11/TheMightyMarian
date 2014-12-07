@@ -86,7 +86,6 @@ public class MouseLook : MonoBehaviour
     {
         marian = GameObject.Find("Marian");
         Screen.lockCursor = true;
-        Screen.showCursor = false;
         head = GameObject.Find("Head");
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
