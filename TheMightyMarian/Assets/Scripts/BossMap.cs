@@ -23,8 +23,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
     //public int roomsX, roomsY;
     private int rsizeX, rsizeY;
     private int rsX, rsY; //roomSizeX, roomSizeY;
-    //public VoidMapCellCollide voidCellPrefabCollide;
-    public FloorMapCell floorCellPrefab;
     public VoidMapStripe voidStripePrefab;
     public Wall wallPrefab;
     private int lvlNo = 0;
@@ -43,7 +41,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
         set { logging = value; }
     }
 
-    string path = "mapsavefile.byte";
     public int RoomsX
     { get { return 1; } }
     public int RoomsY
@@ -85,12 +82,8 @@ public class BossMap : MonoBehaviour, IMarianMap {
     private IntVector2 bossStartPos;
 
 
-
-
     public void Generate()
     {
-        //rsX = sizeX / roomsX;
-        //rsY = sizeY / roomsY;
         rsizeX = sizeX + 2;
         rsizeY = sizeY + 2;
         size2X = sizeX * 2;
@@ -114,23 +107,10 @@ public class BossMap : MonoBehaviour, IMarianMap {
         }
         ScaleUPx2();
         CelluralSmooth();
-        if (logging)
-        {
-            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
-        }
-        //lastTouch();
-        //eliminate1NarrowPassages();
-        //fillAndCry();
         erosion();
-        //emptyBossRoom();
         DrawMap();
         DrawEdge();
         calculateInitialPositions();
-        if (logging)
-        {
-            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
-        }
-        //cleanVariables();
     }
 
     private void erosion()
@@ -172,7 +152,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
 
     public void DrawMap()
     {
-        DestroyCells();
         int width = 0;
         IntVector2 voidStart = new IntVector2(0, 0); ;
         IntVector2 voidEnd = new IntVector2(0, 0);
@@ -396,122 +375,11 @@ public class BossMap : MonoBehaviour, IMarianMap {
         return n;
     }
 
-    /*
-    public void Save()
-    {
-        try
-        {
-            using (Stream fileStream = File.Open(path, FileMode.Create))
-            {
-                BinaryFormatter bin = new BinaryFormatter();
-                bin.Serialize(fileStream, map);
-            }
-        }
-        catch (IOException)
-        {
-            Debug.Log("nie udalo sie");
-        }
-    }
-
-    public void Load()
-    {
-        int[,] loaded;
-        using (Stream fileStream = File.Open(path, FileMode.Open, FileAccess.Read))
-        {
-            BinaryFormatter bin = new BinaryFormatter();
-            loaded = (int[,])bin.Deserialize(fileStream);
-        }
-
-        if (loaded.Length == map.Length)
-        {
-            map = loaded;
-            DrawMap();
-        }
-        else
-        {
-            Debug.Log("wrong size");  
-        }
-     }
-    */
-
-    public void DestroyCells()
-    {
-        MapCell[] others = FindObjectsOfType(typeof(MapCell)) as MapCell[];
-        foreach (MapCell other in others)
-        { Destroy(other.gameObject);}
-
-        GrassMapCell[] othersGrass = FindObjectsOfType(typeof(GrassMapCell)) as GrassMapCell[];
-        foreach (GrassMapCell other in othersGrass)
-        { Destroy(other.gameObject); }
-
-        VoidMapCell[] othersVoid = FindObjectsOfType(typeof(VoidMapCell)) as VoidMapCell[];
-        foreach (VoidMapCell other in othersVoid)
-        { Destroy(other.gameObject);}
-
-        FloorMapCell[] othersFloor = FindObjectsOfType(typeof(FloorMapCell)) as FloorMapCell[];
-        foreach (FloorMapCell other in othersFloor)
-        { Destroy(other.gameObject);}
-
-        WaterMapCell[] othersWater = FindObjectsOfType(typeof(WaterMapCell)) as WaterMapCell[];
-        foreach (WaterMapCell other in othersWater)
-        { Destroy(other.gameObject);}
-
-        Wall[] walls = FindObjectsOfType(typeof(Wall)) as Wall[];
-        foreach (Wall other in walls)
-        { Destroy(other.gameObject);}
-    }
-
     private bool isFineCoords(int x, int y)
     {
         if (x >= 0 && x <= size2X+1 && y >= 0 && y <= size2Y+1)
         { return true; }
         return false;
-    }
-
-    public void SaveBitmap(String filename = "kupa.png")
-    {
-        Texture2D obrazek = new Texture2D(rsize2X * 6 + 1, rsize2Y * 6 + 1);
-        for (int i = 0; i < rsize2X * 6 + 1; i++)
-        {
-            for (int j = 0; j < rsize2Y * 6 + 1; j++)
-            {
-                obrazek.SetPixel(i, j, DawnBringer16.Blue);
-            }
-        }
-        for (int i = 0; i < rsize2X; i++)
-        {
-            for (int j = 0; j < rsize2Y; j++)
-            {
-                Color now;
-                int ileftcorner = i * 6 + 1;
-                int jleftcorner = j * 6 + 1;
-                if (map[i, j] == TileTypes.FLOOR)
-                { now = DawnBringer16.White; }
-                else
-                { now = DawnBringer16.Black; }
-
-                for (int ii = ileftcorner; ii < ileftcorner + 6; ii++)
-                {
-                    for (int jj = jleftcorner; jj < jleftcorner + 6; jj++)
-                    {
-                        obrazek.SetPixel(ii, jj, now);
-                    }
-                }
-                for (int ii = 0; ii < 6; ii++)
-                {
-                    obrazek.SetPixel(i * 6, j * 6 + ii, DawnBringer16.DarkGrey);
-                    obrazek.SetPixel(i * 6 + ii, j * 6, DawnBringer16.DarkGrey);
-                }
-            }
-        }
-        for (int i = 0; i < rsize2X * 6 + 1; i++)
-        { obrazek.SetPixel(i, rsize2Y * 6, DawnBringer16.DarkGrey); }
-        for (int i = 0; i < rsize2Y * 6 + 1; i++)
-        { obrazek.SetPixel(rsize2X * 6, i, DawnBringer16.DarkGrey); }
-        //obrazek.Save("kupa.bmp");
-		obrazek.SetPixel (0, 0, Color.red);
-        var bytes = obrazek.EncodeToPNG();
-        File.WriteAllBytes(filename, bytes);
     }
 
     private void ScaleUPx2()

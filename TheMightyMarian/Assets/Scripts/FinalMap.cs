@@ -69,8 +69,6 @@ public class FinalMap : MonoBehaviour, IMarianMap {
 
     public void Generate()
     {
-        //rsX = sizeX / roomsX;
-        //rsY = sizeY / roomsY;
         rsizeX = sizeX + 2;
         rsizeY = sizeY + 2;
         size2X = sizeX * 2;
@@ -93,22 +91,9 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         }
         ScaleUPx2();
         CelluralSmooth();
-        if (logging)
-        {
-            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
-        }
-        //lastTouch();
-        //eliminate1NarrowPassages();
-        //fillAndCry();
         erosion();
-        //emptyBossRoom();
         DrawMap();
         calculateInitialPositions();
-        if (logging)
-        {
-            SaveBitmap("images/map_" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png");
-        }
-        //cleanVariables();
     }
 
     private void erosion()
@@ -360,52 +345,6 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         return false;
     }
 
-    public void SaveBitmap(String filename = "kupa.png")
-    {
-        Texture2D obrazek = new Texture2D(rsize2X * 6 + 1, rsize2Y * 6 + 1);
-        for (int i = 0; i < rsize2X * 6 + 1; i++)
-        {
-            for (int j = 0; j < rsize2Y * 6 + 1; j++)
-            {
-                obrazek.SetPixel(i, j, DawnBringer16.Blue);
-            }
-        }
-        for (int i = 0; i < rsize2X; i++)
-        {
-            for (int j = 0; j < rsize2Y; j++)
-            {
-                Color now;
-                int ileftcorner = i * 6 + 1;
-                int jleftcorner = j * 6 + 1;
-                if (map[i, j] == TileTypes.FLOOR)
-                { now = DawnBringer16.White; }
-                else
-                { now = DawnBringer16.Black; }
-
-                for (int ii = ileftcorner; ii < ileftcorner + 6; ii++)
-                {
-                    for (int jj = jleftcorner; jj < jleftcorner + 6; jj++)
-                    {
-                        obrazek.SetPixel(ii, jj, now);
-                    }
-                }
-                for (int ii = 0; ii < 6; ii++)
-                {
-                    obrazek.SetPixel(i * 6, j * 6 + ii, DawnBringer16.DarkGrey);
-                    obrazek.SetPixel(i * 6 + ii, j * 6, DawnBringer16.DarkGrey);
-                }
-            }
-        }
-        for (int i = 0; i < rsize2X * 6 + 1; i++)
-        { obrazek.SetPixel(i, rsize2Y * 6, DawnBringer16.DarkGrey); }
-        for (int i = 0; i < rsize2Y * 6 + 1; i++)
-        { obrazek.SetPixel(rsize2X * 6, i, DawnBringer16.DarkGrey); }
-        //obrazek.Save("kupa.bmp");
-        obrazek.SetPixel(0, 0, Color.red);
-        var bytes = obrazek.EncodeToPNG();
-        File.WriteAllBytes(filename, bytes);
-    }
-
     private void ScaleUPx2()
     {
         for (int i = 0; i < sizeX; i++)
@@ -481,13 +420,4 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         }
     }
 
-    public void Save()
-    {
-        
-    }
-
-    public void Load()
-    {
-
-    }
 }

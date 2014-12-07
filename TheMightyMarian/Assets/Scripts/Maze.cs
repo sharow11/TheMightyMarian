@@ -50,32 +50,15 @@ public class Maze {
 
     public void Generate()
     {
-        //MazeClear();
-        //MazeCompleteClear();
-
         for (int i = 0; i < roomsX; i++)
             for (int j = 0; j < roomsY; j++)
             {
-                /*
-                if (i != 0)
-                { 
-                    int daleko = UnityEngine.Random.Range(3,666);
-                    maze[MazeVertexNum(i, j),MazeVertexNum(i - 1, j)] = daleko;
-                    maze[MazeVertexNum(i-1, j), MazeVertexNum(i, j)] = daleko;
-                }*/
                 if (i != roomsX - 1)
                 {
                     int daleko = UnityEngine.Random.Range(3, 660);
                     maze[VertexNum(i, j), VertexNum(i + 1, j)] = daleko;
                     maze[VertexNum(i + 1, j), VertexNum(i, j)] = daleko;
                 }
-                /*
-                if (j != 0)
-                {
-                    int daleko = UnityEngine.Random.Range(3, 666);
-                    maze[MazeVertexNum(i, j), MazeVertexNum(i, j-1)] = daleko;
-                    maze[MazeVertexNum(i, j-1), MazeVertexNum(i, j)] = daleko;
-                }*/
                 if (j != roomsY - 1)
                 {
                     int daleko = UnityEngine.Random.Range(3, 660);
@@ -85,10 +68,7 @@ public class Maze {
             }
 
         PrimsMagic();
-        if (logging)
-        { ToImage("images/mazes/" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".png"); }
         placeStartEnd();
-        //selectBossRooms();
     }
 
     private void PrimsMagic()
@@ -180,63 +160,6 @@ public class Maze {
                 maze[i, j] = 0;
                 mazeComplete[i, j] = 0;
             }
-    }
-
-    private void ToImage(String filename = "maze.png")
-    {
-        //int XX = roomsX * 4 + (roomsX-1)*4 + 2;
-        //int YY = roomsY * 4 + (roomsY-1)*4 + 2;
-        int XX = (4 * roomsX) + 2;
-        int YY = (4 * roomsY) + 2;
-        Texture2D obrazek = new Texture2D(XX, YY);
-
-        for (int i = 0; i < XX; i++)
-        {
-            for (int j = 0; j < YY; j++)
-            {
-                obrazek.SetPixel(i, j, DawnBringer16.Black);
-            }
-        }
-
-        for (int i = 0; i < roomsX; i++)
-        {
-            for (int j = 0; j < roomsY; j++)
-            {
-                for (int k = 4 * i; k < 4 * i + 2; k++)
-                    for (int l = 4 * j; l < 4 * j + 2; l++)
-                        obrazek.SetPixel(k + 2, l + 2, DawnBringer16.White);
-
-                //obrazek.SetPixel(4 * i + 1, 4 * j, DawnBringer16.White);
-                //obrazek.SetPixel(4 * i, 4*j+1, DawnBringer16.White);
-                //obrazek.SetPixel(4 * i + 1, 4 * j + 1, DawnBringer16.White);
-
-                Color current;
-                if (i + 1 < roomsX)
-                    current = ColorForPassage(mazeComplete[VertexNum(i, j), VertexNum(i + 1, j)]);
-                else
-                    current = DawnBringer16.Black;
-
-                for (int k = 4 * i + 2; k < 4 * i + 4; k++)
-                    for (int l = 4 * j; l < 4 * j + 2; l++)
-                        obrazek.SetPixel(k + 2, l + 2, current);
-
-                if (j + 1 < roomsY)
-                    current = ColorForPassage(mazeComplete[VertexNum(i, j), VertexNum(i, j + 1)]);
-                else
-                    current = DawnBringer16.Black;
-                for (int k = 4 * i; k < 4 * i + 2; k++)
-                    for (int l = 4 * j + 2; l < 4 * j + 4; l++)
-                        obrazek.SetPixel(k + 2, l + 2, current);
-                current = DawnBringer16.Black;
-                for (int k = 4 * i + 2; k < 4 * i + 4; k++)
-                    for (int l = 4 * j + 2; l < 4 * j + 4; l++)
-                        obrazek.SetPixel(k + 2, l + 2, current);
-            }
-        }
-        var bytes = obrazek.EncodeToPNG();
-
-        File.WriteAllBytes(filename, bytes);
-
     }
 
     private Color ColorForPassage(int p)

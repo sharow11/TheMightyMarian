@@ -24,7 +24,7 @@ namespace Assets.Scripts
         IntVector2 PlaceEnemyInRoom(int room);
         IntVector2 GetEndLadderPos();
         IntVector2 GetStartPosForPlayer();
-        void DrawMap();
+
         int this[int x, int y]
         { get; }
 
@@ -46,10 +46,6 @@ namespace Assets.Scripts
             get;
             set;
         }
-
-        //void Save();
-
-        //void Load();
 
         GameObject gameObject
         { get; }
