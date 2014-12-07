@@ -90,7 +90,19 @@ public class Marian : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        //cheats:
+        if (Input.GetKeyDown(KeyCode.KeypadDivide))
+        {
+            Exp += 100;
+        }
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            currMana += 100;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            currHp += 100;
+        }
         inventory = GameObject.Find("Inventory");
 
         var script = inventory.GetComponent<Character>() as Character;

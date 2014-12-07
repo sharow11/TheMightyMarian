@@ -20,7 +20,7 @@ public class AoEDmg : MonoBehaviour {
         }
         foreach (Enemy enemy in dmgRecipients)
         {
-            enemy.takeDmg(50 + Marian.Inteligence * Time.deltaTime);
+            enemy.takeDmg((50 + Marian.Inteligence) * Time.deltaTime);
             enemy.alertEnemy(origin);
         }
 	}
