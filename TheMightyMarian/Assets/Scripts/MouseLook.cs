@@ -33,6 +33,8 @@ public class MouseLook : MonoBehaviour
     public float projSpeed = 20f;
     public float range = 1.5f;
     public float pushMultiplayer = 10f;
+    public float fireFreq = 0.5f;
+    float lastShotTime = 0f;
     List<float> rTimes = new List<float>();
     List<Vector3> rPoints = new List<Vector3>();
 
@@ -58,13 +60,15 @@ public class MouseLook : MonoBehaviour
 
         transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
         head.transform.localEulerAngles = new Vector3(0, rotationX, 0);
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time - lastShotTime > fireFreq)
         {
+            lastShotTime = Time.time;
             RaycastHit hitInfo;
             Vector3 origin = transform.position + transform.right / 2 - transform.up / 3;
             GameObject shot;
             shot = (GameObject)Instantiate(rocket, origin, new Quaternion());
-            if (Physics.Raycast(transform.position, transform.forward, out hitInfo))
+            LayerMask mask = ~LayerMask.GetMask("Marian");
+            if (Physics.Raycast(transform.position, transform.forward, out hitInfo, Mathf.Infinity, mask))
             {
                 shot.transform.LookAt(hitInfo.point);
                 rTimes.Add(Time.time + Vector3.Distance(origin, hitInfo.point) / projSpeed);
@@ -82,7 +86,7 @@ public class MouseLook : MonoBehaviour
     {
         marian = GameObject.Find("Marian");
         Screen.lockCursor = true;
-        //Screen.showCursor = false;
+        Screen.showCursor = false;
         head = GameObject.Find("Head");
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
