@@ -61,7 +61,6 @@
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
      <Compile Include="Assets\Scripts\FinalMap.cs" />
-     <Compile Include="Assets\Scripts\FloorMapCell.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GrassMapCell.cs" />
      <Compile Include="Assets\Scripts\GroundQuad.cs" />
@@ -70,8 +69,6 @@
      <Compile Include="Assets\Scripts\IMarianMap.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
      <Compile Include="Assets\Scripts\IntroCameraMove.cs" />
-     <Compile Include="Assets\Scripts\Item.cs" />
-     <Compile Include="Assets\Scripts\ItemGenerator.cs" />
      <Compile Include="Assets\Scripts\Ladder.cs" />
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\MapCell.cs" />
@@ -86,10 +83,6 @@
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\Music.cs" />
      <Compile Include="Assets\Scripts\OnMarianCamera.cs" />
-     <Compile Include="Assets\Scripts\PathFinding\Node.cs" />
-     <Compile Include="Assets\Scripts\PathFinding\NodeSearch.cs" />
-     <Compile Include="Assets\Scripts\PathFinding\Pathfinder2D.cs" />
-     <Compile Include="Assets\Scripts\PathFinding\QueuePath.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\RailEffect.cs" />
      <Compile Include="Assets\Scripts\Room.cs" />
@@ -99,12 +92,9 @@
      <Compile Include="Assets\Scripts\SwordRotate.cs" />
      <Compile Include="Assets\Scripts\TextButton.cs" />
      <Compile Include="Assets\Scripts\TileTypes.cs" />
-     <Compile Include="Assets\Scripts\VoidMapCell.cs" />
-     <Compile Include="Assets\Scripts\VoidMapCellCollide.cs" />
      <Compile Include="Assets\Scripts\VoidMapStripe.cs" />
      <Compile Include="Assets\Scripts\Wall.cs" />
      <Compile Include="Assets\Scripts\WaterMapCell.cs" />
-     <Compile Include="Assets\Scripts\Weapon.cs" />
      <Compile Include="Assets\torch\scene\script\TorchSlider.cs" />
      <Compile Include="Assets\torch\scene\script\Torchslider2.cs" />
      <Compile Include="Assets\torch\scripts\Torchelight.cs" />
