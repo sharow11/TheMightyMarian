@@ -165,7 +165,7 @@ public class Attack : MonoBehaviour {
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
                         {
-                            enemy.takeDmg(100 * Time.deltaTime, new Vector3(camera.hitAbove.x - transform.position.x, camera.hitAbove.y - transform.position.y - 0.5f, 0).normalized);
+                            enemy.takeDmg((100 + Marian.Inteligence * 2) * Time.deltaTime, new Vector3(camera.hitAbove.x - transform.position.x, camera.hitAbove.y - transform.position.y - 0.5f, 0).normalized);
                             enemy.alertEnemy(new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
                         }
                     }
@@ -234,9 +234,9 @@ public class Attack : MonoBehaviour {
             case Spell.BlueBolt:
                 break;
             case Spell.LightningBolt:
-                if (Marian.currMana > 10)
+                if (Marian.currMana > 2)
                 {
-                    Marian.currMana -= 10;
+                    Marian.currMana -= 2;
                     Marian.Lightning = true;
                 }
                 break;
@@ -405,9 +405,9 @@ public class Attack : MonoBehaviour {
                 }
                 break;
             case Spell.Eruption:
-                if (Marian.currMana > 50)
+                if (Marian.currMana > 20)
                 {
-                    Marian.currMana -= 50;
+                    Marian.currMana -= 20;
                     if (shot != null && shot.name == "LightningBolt(Clone)")
                         Destroy(shot);
                     shot = (GameObject)Instantiate(AOE, new Vector3(camera.hit.point.x, camera.hit.point.y, -0.1f), new Quaternion());
