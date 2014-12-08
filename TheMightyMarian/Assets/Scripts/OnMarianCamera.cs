@@ -23,6 +23,7 @@ public class OnMarianCamera : MonoBehaviour {
     {
 		Cursor.SetCursor(null, Vector2.zero, cursorMode);
 	}
+
 	// Use this for initialization
 	void Start () {
         gm = FindObjectOfType(typeof(GameManager)) as GameManager;
@@ -49,8 +50,6 @@ public class OnMarianCamera : MonoBehaviour {
             float cameraX = (transform.position.x + centerX * Time.deltaTime * camSpeed) / (1 + Time.deltaTime * camSpeed);
             float cameraY = ((transform.position.y + camDistance * camYoffsetMultiplayer) + centerY * Time.deltaTime * camSpeed) / (1 + Time.deltaTime * camSpeed);
             transform.position = new Vector3(cameraX, cameraY - camDistance * camYoffsetMultiplayer, marian.transform.position.z - camDistance);
-            //transform.position = new Vector3(marian.transform.position.x, marian.transform.position.y - 10, marian.transform.position.z - 10);
         }
 	}
-
 }

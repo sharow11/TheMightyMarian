@@ -11,11 +11,6 @@ public class HitBox : MonoBehaviour
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("Enemy"));
 	}
 	
-	// Update is called once per frame
-	void Update () 
-    {
-	
-	}
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Wall"))
@@ -37,8 +32,6 @@ public class HitBox : MonoBehaviour
         {
             //Debug.Log("wall");
             Vector3 push = enemy.pushAwayFromWalls;
-            //if(transform.position.x - other.transform.position.x
-            //jeśli w lewo to w lewo itd, normalize n shit
             enemy.pushAwayFromWalls = new Vector3(enemy.pushAwayFromWalls.x + transform.position.x - other.transform.position.x, enemy.pushAwayFromWalls.y + transform.position.y - other.transform.position.y, 0).normalized * 3;
         }
     }

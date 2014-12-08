@@ -7,6 +7,7 @@ public class SuddenDeath : MonoBehaviour {
     public float timeToStart = 60;
     bool started = false;
     float startTime;
+
 	// Use this for initialization
 	void Start () 
     {

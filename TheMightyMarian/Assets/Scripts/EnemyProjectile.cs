@@ -11,11 +11,6 @@ public class EnemyProjectile : MonoBehaviour {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("MarianProjectile"));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.name == "Marian")

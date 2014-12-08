@@ -18,7 +18,6 @@ public class Move3D : MonoBehaviour {
     public float bonusMaxUsableTime = 0.1f;
     public float roundTime = 60f;
 
-    
     float bonusVel = 2.4f;
     bool jumpPressed = false;
     bool jumping = false;
@@ -33,6 +32,7 @@ public class Move3D : MonoBehaviour {
     GUIText tl, sp;
     GameObject[] torches;
     float startTime = 0f;
+
 	// Use this for initialization
 	void Start () {
         rb = transform.rigidbody;
@@ -75,7 +75,6 @@ public class Move3D : MonoBehaviour {
         Screen.lockCursor = false;
         Marian.Exp += (int)-mostZ;
         Application.LoadLevel(1);
-        //load level and add exp;
     }
     void FixedUpdate()
     {
