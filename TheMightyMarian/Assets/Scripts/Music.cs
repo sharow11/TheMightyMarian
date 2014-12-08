@@ -6,6 +6,7 @@ public class Music : MonoBehaviour {
     public static float hype = 0;
     public float hypometer;
     public bool muteMusic = false;
+
 	// Use this for initialization
     void Start()
     {
@@ -16,13 +17,6 @@ public class Music : MonoBehaviour {
         tense3 = transform.Find("Tense3").GetComponent<AudioSource>();
         action1 = transform.Find("Action1").GetComponent<AudioSource>();
         action2 = transform.Find("Action2").GetComponent<AudioSource>();
-        /*calm1.mute = true;
-        calm2.mute = true;
-        tense1.mute = true;
-        tense2.mute = true;
-        tense3.mute = true;
-        action1.mute = true;
-        action2.mute = true;*/
 	}
 	
 	// Update is called once per frame

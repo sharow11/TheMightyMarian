@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public Attack.Spell type = Attack.Spell.None;
     public GameObject blast;
     public float dmg;
+
     // Use this for initialization
     void Start()
     {
@@ -27,16 +28,12 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void OnCollisionEnter(Collision collision)
     {
         Blast();
         Destroy(this.gameObject);
     }
+
     public void Blast()
     {
         GameObject blastObj = (GameObject)Instantiate(blast, transform.position, new Quaternion());

@@ -6,6 +6,7 @@ public class StickToMarian : MonoBehaviour {
     public bool setVelocityBasedOffset = false;
     public float velocityBasedOffsetMultiplayer = 1f;
     GameObject marian;
+
 	// Use this for initialization
 	void Start () {
         marian = GameObject.Find("Marian");
@@ -19,6 +20,7 @@ public class StickToMarian : MonoBehaviour {
             offset = marian.rigidbody.velocity * velocityBasedOffsetMultiplayer;
         }
 	}
+
     public void setOffset(Vector3 ofst){
         offset = ofst;
     }

@@ -12,9 +12,6 @@ public class ArrowCollide : MonoBehaviour {
     Vector3 initVel;
     Enemy enemyToStick;
     public AudioClip s_arrow;
-	// Use this for initialization
-	void Start () {
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -57,7 +54,6 @@ public class ArrowCollide : MonoBehaviour {
             gotEnemyToStick = true;
             audio.PlayOneShot(s_arrow);
         }
-        //Destroy(this.gameObject);
     }
     void OnCollisionEnter(Collision collision)
     {

@@ -38,6 +38,7 @@ public class MoveMarian : MonoBehaviour {
             positions.RemoveAt(0);
         }
 	}
+
     public int GetIndex(float time)
     {
         int begin = 0;
@@ -65,13 +66,4 @@ public class MoveMarian : MonoBehaviour {
         }
         return 0;
     }
-
-    /*void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag != "Grass")
-        if (collision.gameObject.tag == "MarianProjectile")
-        {
-            Physics.IgnoreCollision(collision.collider, collider);
-        }
-    }*/
 }

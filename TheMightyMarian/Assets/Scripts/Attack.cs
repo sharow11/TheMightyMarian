@@ -41,7 +41,6 @@ public class Attack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //audio.PlayOneShot(s_lightning);
         bloodyScreen.color = new Color(bloodyScreen.color.r, bloodyScreen.color.g, bloodyScreen.color.b, bloodyScreenAlpha);
         bloodyScreenAlpha -= Time.deltaTime / 5;
         if (bloodyScreenAlpha < 0)
@@ -71,7 +70,6 @@ public class Attack : MonoBehaviour {
                         lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
                         Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
                         GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
-                        //ToDo: LIGHT i GFX osobno!
                         Destroy(blastObj, 0.05f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)
@@ -122,7 +120,6 @@ public class Attack : MonoBehaviour {
                         shot.transform.LookAt(to, -Vector3.forward);
                         shot.transform.RotateAround(transform.position, new Vector3(Vector3.back.x + 0.1f, Vector3.back.y + 0.2f, Vector3.back.z + 0.1f), -45);
                         Destroy(shot, 0.2f);
-                        //shot.transform.Rotate();
                         break;
                     case Marian.AttackType.Ranged:
                         Vector3 offset = (camera.hitAbove - new Vector3(transform.position.x, transform.position.y, hitInfo.point.z)).normalized;
@@ -146,10 +143,8 @@ public class Attack : MonoBehaviour {
                 if (Marian.currMana > 2)
                 {
                     if (Time.time - lastLightningSoundTime > 0.02f)
-                    //if (!audio.isPlaying)
                     {
                         lastLightningSoundTime = Time.time;
-                        //audio.Play();
                         audio.PlayOneShot(s_lightning, 0.2f);
                     }
                     Marian.currMana -= 2;
@@ -160,7 +155,6 @@ public class Attack : MonoBehaviour {
                         lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
                         Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
                         GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
-                        //ToDo: LIGHT i GFX osobno!
                         Destroy(blastObj, 0.05f);
                         Enemy enemy = (Enemy)hitInfo.collider.GetComponent("Enemy");
                         if (enemy != null)

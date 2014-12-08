@@ -100,7 +100,6 @@ public class Enemy : MonoBehaviour
                 state = State.chasing;
             gotPatrolTarget = false;
 
-            //foreach (Enemy enemy in enemies.enemies)
             foreach (Enemy enemy in Enemy.enemies)
             {
                 if ((enemy.state == State.idle || enemy.state == State.alert) && Vector3.Distance(transform.position, enemy.transform.position) < viewDistance && canSeeFoe(enemy.transform.position, viewDistance, enemy))
@@ -288,7 +287,6 @@ public class Enemy : MonoBehaviour
         }
         //Debug.DrawLine(transform.position, lastSeen, Color.blue);
         //Debug.Log(nr + "!!!" + transform.position.ToString("F5") + " " + prevStep.ToString("F5") + " " + prevPrevStep.ToString("F5"));
-        //foreach (Enemy enemy in enemies.enemies)
         foreach (Enemy enemy in Enemy.enemies)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) < 1)
@@ -395,7 +393,6 @@ public class Enemy : MonoBehaviour
         bloodObj.particleSystem.startSize = dmg / 50 + 1.8f;
         bloodObj.particleSystem.startSpeed = dmg / 3 + 5;
         bloodObj.particleSystem.startLifetime = dmg / 200 + 0.15f;
-        //bloodObj.particleSystem.Emit((int)dmg * 3 + 1);
         bloodObj.particleSystem.emissionRate = dmg * 20;
         Destroy(bloodObj, 1);
         health -= dmg;
