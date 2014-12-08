@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
             if (finalLevel < 0)
             {
-                finalLevel = UnityEngine.Random.Range(15, 21);
+                finalLevel = UnityEngine.Random.Range(13, 17);
             }
             state++;
             //show loading screen
