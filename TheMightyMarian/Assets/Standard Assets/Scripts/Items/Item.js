@@ -133,45 +133,45 @@ function DropMeFromThePlayer(makeDuplicate : boolean)
 {
 	if (makeDuplicate == false) //We use this if the object is not stacked and so we can just drop it.
 	{
-		canGet = true;
-		gameObject.SetActive(true);
+		//canGet = true;
+		//gameObject.SetActive(true);
 		
-		if (GetComponent(MeshRenderer) != null)
-		{
-			GetComponent(MeshRenderer).enabled = true;
-		}
+		//if (GetComponent(MeshRenderer) != null)
+		//{
+		//	GetComponent(MeshRenderer).enabled = true;
+		//}
 		
-		if (GetComponent(Collider) != null)
-		{
-			GetComponent(Collider).enabled = true;
-		}
+		//if (GetComponent(Collider) != null)
+		//{
+		//	GetComponent(Collider).enabled = true;
+		//}
 	
-		GetComponent("Item").enabled = true;
+		//GetComponent("Item").enabled = true;
 		
-		transform.parent = null;
-		DelayPhysics();
+		//transform.parent = null;
+		//DelayPhysics();
 	}
 	else //If the object is stacked we need to make a clone of it and drop the clone instead.
 	{
-		canGet = true;
-		clone = Instantiate(gameObject, transform.position, transform.rotation);
-		canGet = false;
-		clone.SetActive(true);
+		//canGet = true;
+		//clone = Instantiate(gameObject, transform.position, transform.rotation);
+		//canGet = false;
+		//clone.SetActive(true);
 		
-		if (clone.GetComponent(MeshRenderer) != null)
-		{
-			clone.GetComponent(MeshRenderer).enabled = true;
-		}
+		//if (clone.GetComponent(MeshRenderer) != null)
+		//{
+		//	clone.GetComponent(MeshRenderer).enabled = true;
+		//}
 		
-		if (clone.GetComponent(Collider) != null)
-		{
-			clone.GetComponent(Collider).enabled = true;
-		}
+		//if (clone.GetComponent(Collider) != null)
+		//{
+		//	clone.GetComponent(Collider).enabled = true;
+		//}
 	
-		clone.GetComponent("Item").enabled = true;
+		//clone.GetComponent("Item").enabled = true;
 		
-		clone.transform.parent = null;
-		clone.name = gameObject.name;
+		//clone.transform.parent = null;
+		//clone.name = gameObject.name;
 	}
 }
 
