@@ -20,9 +20,9 @@ public class BossMap : MonoBehaviour, IMarianMap {
 
     public int ShortestPathLength
     { get { return 1; } }
-    //public int roomsX, roomsY;
+
     private int rsizeX, rsizeY;
-    private int rsX, rsY; //roomSizeX, roomSizeY;
+    private int rsX, rsY;
     public VoidMapStripe voidStripePrefab;
     public Wall wallPrefab;
     private int lvlNo = 0;
@@ -46,7 +46,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
     public int RoomsY
     { get { return 1; } }
 
-    //private MapCell[,] map;
     private int[,] smallMap;
     private int[,] map;
     private int[,] crapMap;
@@ -95,7 +94,7 @@ public class BossMap : MonoBehaviour, IMarianMap {
         crapMap = new int[rsize2X, rsize2Y];
         FillWithVoid();
 
-        Room myRoom = new Room(sizeX, sizeY, 0, 0, 0, 0, startingFloorsPercent, "BossSuperRoomOMGWOWDOGE", logging);
+        Room myRoom = new Room(sizeX, sizeY, 0, 0, 0, 0, startingFloorsPercent, "boss_room", logging);
         myRoom.Prepare();
         myRoom.Generate();
         for (int i = 0; i < sizeX; i++)
@@ -159,8 +158,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
         {
             for (int y = 0; y < rsize2Y; y++)
             {
-                //CreateCell(new IntVector2(x, y), map[x, y]);
-
                 if (map[x, y] == TileTypes.VOID)
                 {
                     if (width == 0)
@@ -201,16 +198,12 @@ public class BossMap : MonoBehaviour, IMarianMap {
         for (int i = 0; i < rsizeX; i++)
         {
             for (int j = 0; j < rsizeY; j++)
-            {
-                smallMap[i, j] = TileTypes.VOID;
-            }
+            { smallMap[i, j] = TileTypes.VOID;}
         }
         for (int i = 0; i < rsize2X; i++)
         {
             for (int j = 0; j < rsize2Y; j++)
-            {
-                map[i, j] = TileTypes.VOID;
-            }
+            { map[i, j] = TileTypes.VOID; }
         }
     }
 
@@ -334,7 +327,6 @@ public class BossMap : MonoBehaviour, IMarianMap {
             new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         newWall.setRotation(rotation);
         newWall.adjustPosition();
-        //newWall.setRightMaterial();
         wallsPlaced++;
     }
 

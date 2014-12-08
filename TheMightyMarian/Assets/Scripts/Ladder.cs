@@ -4,14 +4,6 @@ using System.Collections;
 public class Ladder : MonoBehaviour {
 
     public bool disabled = false;
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     void OnTriggerEnter(Collider other)
     {

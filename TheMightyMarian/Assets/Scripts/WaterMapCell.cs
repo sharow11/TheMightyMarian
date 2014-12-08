@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WaterMapCell : MapCell 
-{
+//public class WaterMapCell : MapCell 
+//{
 
-}
+//}

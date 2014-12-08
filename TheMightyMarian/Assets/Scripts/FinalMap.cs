@@ -17,9 +17,7 @@ public class FinalMap : MonoBehaviour, IMarianMap {
 
     public int SizeX
     { get { return sizeX; } }
-    //public int roomsX, roomsY;
     private int rsizeX, rsizeY;
-    //public VoidMapCellCollide voidCellPrefabCollide;
     public GrassMapCell grassCellPrefab;
     public Wall wallPrefab;
 
@@ -46,7 +44,6 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         set { logging = value; }
     }
 
-    //private MapCell[,] map;
     private int[,] smallMap;
     private int[,] map;
     private int[,] crapMap;
@@ -80,7 +77,7 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         crapMap = new int[rsize2X, rsize2Y];
         FillWithVoid();
 
-        Room myRoom = new Room(sizeX, sizeY, 0, 0, 0, 0, startingFloorsPercent, "BossSuperRoomOMGWOWDOGE", logging);
+        Room myRoom = new Room(sizeX, sizeY, 0, 0, 0, 0, startingFloorsPercent, "boss_room", logging);
         myRoom.FinalFight = true;
         myRoom.Prepare();
         myRoom.Generate();
@@ -135,12 +132,10 @@ public class FinalMap : MonoBehaviour, IMarianMap {
 
     public void DrawMap()
     {
-        //DestroyCells();
         for (int x = 0; x < rsize2X; x++)
         {
             for (int y = 0; y < rsize2Y; y++)
             {
-                //CreateCell(new IntVector2(x, y), map[x, y]);
                 if (map[x, y] == TileTypes.FLOOR)
                 {
                     CreateCell(new IntVector2(x, y), map[x, y]);
@@ -182,7 +177,6 @@ public class FinalMap : MonoBehaviour, IMarianMap {
             new Vector3(coordinates.x - sizeX * 0.5f + 0.5f, coordinates.y - sizeY * 0.5f + 0.5f, 0f);
         newWall.setRotation(rotation);
         newWall.adjustPosition();
-        //newWall.setRightMaterial();
     }
 
     private void FillWithVoid()
@@ -190,16 +184,12 @@ public class FinalMap : MonoBehaviour, IMarianMap {
         for (int i = 0; i < rsizeX; i++)
         {
             for (int j = 0; j < rsizeY; j++)
-            {
-                smallMap[i, j] = TileTypes.VOID;
-            }
+            { smallMap[i, j] = TileTypes.VOID; }
         }
         for (int i = 0; i < rsize2X; i++)
         {
             for (int j = 0; j < rsize2Y; j++)
-            {
-                map[i, j] = TileTypes.VOID;
-            }
+            { map[i, j] = TileTypes.VOID; }
         }
     }
 
@@ -394,7 +384,6 @@ public class FinalMap : MonoBehaviour, IMarianMap {
             bossStartPos = RandomTile(TileTypes.FLOOR);
         }
     }
-
 
     public int StartRoomNo
     {

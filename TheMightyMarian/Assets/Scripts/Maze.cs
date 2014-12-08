@@ -88,9 +88,6 @@ public class Maze {
         }
         distances[startVertex] = 0;
 
-
-        //visited.Add(startVertex);
-        //queue.Sort((v1, v2) => MazeHowFar(startVertex, v1).CompareTo(MazeHowFar(startVertex, v2)));
         queue.Sort((v1, v2) => distances[v1].CompareTo(distances[v2]));
 
         int currentvertex = startVertex;
@@ -116,7 +113,6 @@ public class Maze {
         for (int i = 0; i < daddy.Length; i++)
         {
             int passageType = UnityEngine.Random.Range(1, 5);
-            //int passageType = 4;
             if (daddy[i] >= 0 && daddy[i] < daddy.Length)
             {
                 mazeComplete[i, daddy[i]] = passageType;

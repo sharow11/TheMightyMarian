@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
 
-//public enum EnemyState : byte { idle, alert, follow, searching, chasing, attacking };
-//public enum EnemyStep : byte { downRight, upRight, downLeft, upLeft };
-
 public class GameManager : MonoBehaviour
 {
     public Map mapPrefab;
@@ -32,7 +29,6 @@ public class GameManager : MonoBehaviour
     public static int finalLevel = -1;
     public bool isLoading = true;
     private int mapSizeX, mapSizeY;
-    //private bool generateCalled = false;
     private int state = 0;
     private int roomsCnt;
     public bool bossLvl;
@@ -42,31 +38,17 @@ public class GameManager : MonoBehaviour
         isLoading = true;
         this.name = "GameManager";
         state = 0;
-        //BeginGame();
     }
 
     
     private void OnGUI()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //RestartGame();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            SaveMap();
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            //LoadMap();
-        }*/
         if (state == 0)
         {
             GUI.Box(new Rect(0, 0, Screen.width, Screen.height), czarnosc);
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level "+currLevel);
             if (finalLevel < 0)
-            { 
+            {
                 finalLevel = UnityEngine.Random.Range(14, 17);
             }
             state++;
@@ -79,8 +61,6 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level " + currLevel);
             state++;
             BeginGame();
-            
-            //state++;
         }
         else if (state == 2)
         {
@@ -89,7 +69,6 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(10, 10, Screen.width, Screen.height), "Loading level " + currLevel);
             isLoading = false;
             state++;
-
         }
         else
         { return; }
@@ -123,7 +102,6 @@ public class GameManager : MonoBehaviour
         mapInstance.LvlNo = currLevel;
         mapSizeX = mapInstance.SizeX;
         mapSizeY = mapInstance.SizeY;
-        //StartCoroutine(mapInstance.Generate());
         mapInstance.Generate();
         startRoomNo = mapInstance.StartRoomNo;
         endRoomNo = mapInstance.EndRoomNo;
@@ -133,7 +111,6 @@ public class GameManager : MonoBehaviour
         PlaceEnemies();
         foreach (SuddenDeath sd in FindObjectsOfType(typeof(SuddenDeath)) as SuddenDeath[])
         { sd.timeToStart = mapInstance.ShortestPathLength * 15.0f; }
-        //isLoading = false;
         Debug.Log("welcome to level " + currLevel);
     }
 
@@ -161,7 +138,6 @@ public class GameManager : MonoBehaviour
         PlaceMarian();
         PlaceEndLadder();
         PlaceEnemies();
-        //isLoading = false;
         Debug.Log("welcome to level " + currLevel);
     }
 
@@ -194,16 +170,6 @@ public class GameManager : MonoBehaviour
     private void RestartGame() {
         Destroy(mapInstance.gameObject);      
         BeginGame();
-    }
-
-    private void SaveMap()
-    {
-        //mapInstance.Save();
-    }
-
-    private void LoadMap()
-    {
-        //mapInstance.Load();
     }
 
     public void PlaceEnemies()
@@ -242,7 +208,6 @@ public class GameManager : MonoBehaviour
                     continue;
 
                 IntVector2 coordinates = mapInstance.PlaceEnemyInRoom(room);
-                //Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
                 Enemy newEnemy = null;
                 int currentSum = 0;
                 int srand = UnityEngine.Random.Range(0, totalRarity + 1);
@@ -259,6 +224,7 @@ public class GameManager : MonoBehaviour
                     return;
                 newEnemy.state = Enemy.State.idle;
                 newEnemy.transform.parent = transform;
+                newEnemy.maxHealth = (newEnemy.baseHealth) / 2 + currLevel * (newEnemy.baseHealth * 0.1f);
                 newEnemy.transform.localPosition = new Vector3(coordinates.x - mapInstance.SizeX * 0.5f + 0.5f, coordinates.y - mapInstance.SizeY * 0.5f + 0.5f, newEnemy.spawnHeight);
                 temp.Add(newEnemy);
             }
@@ -272,7 +238,6 @@ public class GameManager : MonoBehaviour
         marian = Instantiate(marianPrefab) as MoveMarian;
         marian.name = "Marian";
         marian.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
-
     }
 
     private void PlaceEndLadder()
@@ -281,15 +246,12 @@ public class GameManager : MonoBehaviour
         ladder = Instantiate(ladderPrefab) as Ladder;
         ladder.name = "Ladder to "+(currLevel+1);
         ladder.transform.localPosition = new Vector3(coordinates.x - mapSizeX * 0.5f + 0.5f, coordinates.y - mapSizeY * 0.5f + 0.5f, -1f);
-        //if (bossLvl)
-        //   ladder.disabled = true;
     }
 
     public void levelUp()
     {
         currLevel++;
         Application.LoadLevel(1);
-        //Application.LoadLevel(3);
     }
 
 }

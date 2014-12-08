@@ -73,7 +73,6 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         MarianObject = GameObject.Find("Marian");
         moveMarian = (MoveMarian)MarianObject.GetComponent("MoveMarian");
-        //Debug.Log(moveMarian);
         prevStep = transform.position;
         prevPrevStep = new Vector3(prevStep.x + 0.01f, prevStep.y, prevStep.z);
     }
