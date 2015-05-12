@@ -31,7 +31,7 @@ public class SuddenDeath : MonoBehaviour {
         }
         else if (started)
         {
-            sd.particleSystem.startColor = new Color(sd.particleSystem.startColor.r, sd.particleSystem.startColor.g, sd.particleSystem.startColor.b, (Time.time - startTime - timeToStart) / 30);
+            sd.GetComponent<ParticleSystem>().startColor = new Color(sd.GetComponent<ParticleSystem>().startColor.r, sd.GetComponent<ParticleSystem>().startColor.g, sd.GetComponent<ParticleSystem>().startColor.b, (Time.time - startTime - timeToStart) / 30);
             Marian.currHp -= (Time.time - startTime - timeToStart) * Time.deltaTime / 5;
         }
     }

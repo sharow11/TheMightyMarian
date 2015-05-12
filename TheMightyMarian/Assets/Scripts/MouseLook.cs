@@ -33,7 +33,7 @@ public class MouseLook : MonoBehaviour
             Debug.Log("Boom " + dist);
             if (dist < range)
             {
-                marian.rigidbody.velocity = marian.rigidbody.velocity + (marian.transform.position - rPoints[0]).normalized * (range - dist) * pushMultiplayer;
+                marian.GetComponent<Rigidbody>().velocity = marian.GetComponent<Rigidbody>().velocity + (marian.transform.position - rPoints[0]).normalized * (range - dist) * pushMultiplayer;
             }
             rTimes.RemoveAt(0);
             rPoints.RemoveAt(0);
@@ -74,7 +74,7 @@ public class MouseLook : MonoBehaviour
         marian = GameObject.Find("Marian");
         Screen.lockCursor = true;
         head = GameObject.Find("Head");
-		if (rigidbody)
-			rigidbody.freezeRotation = true;
+		if (GetComponent<Rigidbody>())
+			GetComponent<Rigidbody>().freezeRotation = true;
 	}
 }

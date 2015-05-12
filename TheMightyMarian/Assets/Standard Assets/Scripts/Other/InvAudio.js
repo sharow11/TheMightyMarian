@@ -46,15 +46,15 @@ function ChangedState (open : boolean)
 {
 	if (open)
 	{
-		audio.clip = openSound;
-		audio.pitch = Random.Range(0.85, 1.1);
-		audio.Play();
+		GetComponent.<AudioSource>().clip = openSound;
+		GetComponent.<AudioSource>().pitch = Random.Range(0.85, 1.1);
+		GetComponent.<AudioSource>().Play();
 	}
 	else
 	{
-		audio.clip = closeSound;
-		audio.pitch = Random.Range(0.85, 1.1);
-		audio.Play();
+		GetComponent.<AudioSource>().clip = closeSound;
+		GetComponent.<AudioSource>().pitch = Random.Range(0.85, 1.1);
+		GetComponent.<AudioSource>().Play();
 	}
 }
 
@@ -62,21 +62,21 @@ function ChangedState (open : boolean)
 
 function PlayEquipSound ()
 {
-	audio.clip = equipSound;
-	audio.pitch = Random.Range(0.85, 1.1);
-	audio.Play();
+	GetComponent.<AudioSource>().clip = equipSound;
+	GetComponent.<AudioSource>().pitch = Random.Range(0.85, 1.1);
+	GetComponent.<AudioSource>().Play();
 }
 
 function PlayPickUpSound ()
 {
-	audio.clip = pickUpSound;
-	audio.pitch = Random.Range(0.85, 1.1);
-	audio.Play();
+	GetComponent.<AudioSource>().clip = pickUpSound;
+	GetComponent.<AudioSource>().pitch = Random.Range(0.85, 1.1);
+	GetComponent.<AudioSource>().Play();
 }
 
 function PlayDropItemSound ()
 {
-	audio.clip = dropItemSound;
-	audio.pitch = Random.Range(0.85, 1.1);
-	audio.Play();
+	GetComponent.<AudioSource>().clip = dropItemSound;
+	GetComponent.<AudioSource>().pitch = Random.Range(0.85, 1.1);
+	GetComponent.<AudioSource>().Play();
 }

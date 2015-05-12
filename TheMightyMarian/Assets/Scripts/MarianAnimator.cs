@@ -55,10 +55,10 @@ public class MarianAnimator : MonoBehaviour {
         switch (state)
         {
             case MoveMarian.State.Idle:
-                this.renderer.material = idleMaterial;
+                this.GetComponent<Renderer>().material = idleMaterial;
                 break;
             case MoveMarian.State.Moving:
-                this.renderer.material = walkMaterial;
+                this.GetComponent<Renderer>().material = walkMaterial;
                 break;
             default:
                 break;
@@ -77,8 +77,8 @@ public class MarianAnimator : MonoBehaviour {
         float offsetX = (uIndex + colNumber) * size.x;
         float offsetY = (1.0f - size.y) - (vIndex + rowNumber) * size.y;
         Vector2 offset = new Vector2(offsetX, offsetY);
-        renderer.material.SetTextureOffset("_MainTex", offset);
-        renderer.material.SetTextureScale("_MainTex", size);
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
+        GetComponent<Renderer>().material.SetTextureScale("_MainTex", size);
     }
 
     void WalkSpriteAnimation()
@@ -93,8 +93,8 @@ public class MarianAnimator : MonoBehaviour {
         float offsetX = (uIndex + colNumber) * size.x;
         float offsetY = (1.0f - size.y) - (vIndex + rowNumber) * size.y;
         Vector2 offset = new Vector2(offsetX, offsetY);
-        renderer.material.SetTextureOffset("_MainTex", offset);
-        renderer.material.SetTextureScale("_MainTex", size);
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
+        GetComponent<Renderer>().material.SetTextureScale("_MainTex", size);
     }
 
 }

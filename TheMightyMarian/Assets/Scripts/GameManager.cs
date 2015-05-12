@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     private void NormalBeginGame()
     {
         foreach (GameObject lvlLight in GameObject.FindGameObjectsWithTag("BigLight"))
-        { lvlLight.light.intensity = 0.025f; }
+        { lvlLight.GetComponent<Light>().intensity = 0.025f; }
         foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
         { gq.beFloor(); }
 
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     private void BossBeginGame()
     {
         foreach (GameObject lvlLight in GameObject.FindGameObjectsWithTag("BigLight"))
-        { lvlLight.light.intensity = 0.020f; }
+        { lvlLight.GetComponent<Light>().intensity = 0.020f; }
         foreach (GroundQuad gq in FindObjectsOfType(typeof(GroundQuad)) as GroundQuad[])
         {
             gq.beFloor();
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
         mapSizeX = mapInstance.SizeX;
         mapSizeY = mapInstance.SizeY;
         foreach (GameObject lvlLight in GameObject.FindGameObjectsWithTag("BigLight"))
-        { lvlLight.light.intensity = 0.65f; }
+        { lvlLight.GetComponent<Light>().intensity = 0.65f; }
         mapInstance.Generate();
         startRoomNo = 0;
         endRoomNo = 0;

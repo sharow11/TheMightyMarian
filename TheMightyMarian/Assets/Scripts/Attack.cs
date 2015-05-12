@@ -67,7 +67,7 @@ public class Attack : MonoBehaviour {
                         new Vector3(camera.hitAbove.x - transform.position.x, camera.hitAbove.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
                     {
                         GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
+                        lb.GetComponent<ParticleSystem>().startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
                         Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
                         GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
                         Destroy(blastObj, 0.05f);
@@ -80,7 +80,7 @@ public class Attack : MonoBehaviour {
                     }
                     else
                     {
-                        lightningBolt.particleSystem.startSpeed = lightningBoltRange;
+                        lightningBolt.GetComponent<ParticleSystem>().startSpeed = lightningBoltRange;
                     }
                     shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                     shot.transform.LookAt(new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2));
@@ -100,7 +100,7 @@ public class Attack : MonoBehaviour {
                             shotProj.type = Spell.BlueBolt;
                             shotProj.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, -2);
                             shot.transform.LookAt(new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2));
-                            shot.rigidbody.velocity = (new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2) - shot.transform.position).normalized * projectileSpeed;
+                            shot.GetComponent<Rigidbody>().velocity = (new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2) - shot.transform.position).normalized * projectileSpeed;
                             Marian.currMana -= 1;
                         }
                         break;
@@ -128,7 +128,7 @@ public class Attack : MonoBehaviour {
                         shot.transform.LookAt(new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2), -Vector3.forward);
                         shot.transform.Rotate(Vector3.back, 90);
                         shot.transform.Rotate(Vector3.up, 90);
-                        shot.rigidbody.velocity = (new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2) - shot.transform.position).normalized * projectileSpeed * 2;
+                        shot.GetComponent<Rigidbody>().velocity = (new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2) - shot.transform.position).normalized * projectileSpeed * 2;
                         shot.GetComponent<ArrowCollide>().origin = marian.transform.position;
                         break;
                 }
@@ -145,14 +145,14 @@ public class Attack : MonoBehaviour {
                     if (Time.time - lastLightningSoundTime > 0.02f)
                     {
                         lastLightningSoundTime = Time.time;
-                        audio.PlayOneShot(s_lightning, 0.2f);
+                        GetComponent<AudioSource>().PlayOneShot(s_lightning, 0.2f);
                     }
                     Marian.currMana -= 2;
                     if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
                          new Vector3(camera.hitAbove.x - transform.position.x, camera.hitAbove.y - transform.position.y - 0.5f, 0), out hitInfo, lightningBoltRange, mask))
                     {
                         GameObject lb = lightningBolt;
-                        lb.particleSystem.startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
+                        lb.GetComponent<ParticleSystem>().startSpeed = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + 0.5f, -2), hitInfo.point) + 1;
                         Vector3 blastPos = hitInfo.point - (hitInfo.point - new Vector3(transform.position.x, transform.position.y + 0.5f, -2)).normalized / 4;
                         GameObject blastObj = (GameObject)Instantiate(lightningBoltBlast, new Vector3(blastPos.x, blastPos.y, -2), new Quaternion());
                         Destroy(blastObj, 0.05f);
@@ -165,7 +165,7 @@ public class Attack : MonoBehaviour {
                     }
                     else
                     {
-                        lightningBolt.particleSystem.startSpeed = lightningBoltRange;
+                        lightningBolt.GetComponent<ParticleSystem>().startSpeed = lightningBoltRange;
                     }
                     shot = (GameObject)Instantiate(lightningBolt, new Vector3(transform.position.x, transform.position.y + 0.5f, -2), new Quaternion());
                     shot.transform.LookAt(new Vector3(camera.hitAbove.x, camera.hitAbove.y, -2));
@@ -215,7 +215,7 @@ public class Attack : MonoBehaviour {
         Music.hype += (float)dmg / 10;
         bloodyScreenAlpha += (float)dmg / 100;
         Marian.currHp -= dmg;
-        audio.PlayOneShot(s_hurt, 0.5f);
+        GetComponent<AudioSource>().PlayOneShot(s_hurt, 0.5f);
     }
 
     public void castSpell(Spell spell, int slot)
@@ -246,15 +246,15 @@ public class Attack : MonoBehaviour {
                         new Vector3(camera.hitAbove.x - transform.position.x, camera.hitAbove.y - transform.position.y - 0.5f, 0), out hitInfo, railRange, wallMask))
                     {
                         range = Vector3.Distance(hitInfo.point, new Vector3(transform.position.x, transform.position.y + 0.5f, -2));
-                        rail.particleSystem.startSpeed = range;
-                        rail_around.particleSystem.startLifetime = range * 3 / 50;
-                        rail_around.transform.Find("Rail_around2").particleSystem.startLifetime = range * 3 / 50;
+                        rail.GetComponent<ParticleSystem>().startSpeed = range;
+                        rail_around.GetComponent<ParticleSystem>().startLifetime = range * 3 / 50;
+                        rail_around.transform.Find("Rail_around2").GetComponent<ParticleSystem>().startLifetime = range * 3 / 50;
                     }
                     else
                     {
-                        rail.particleSystem.startSpeed = railRange;
-                        rail_around.particleSystem.startLifetime = railRange * 3 / 50;
-                        rail_around.transform.Find("Rail_around2").particleSystem.startLifetime = railRange * 3 / 50;
+                        rail.GetComponent<ParticleSystem>().startSpeed = railRange;
+                        rail_around.GetComponent<ParticleSystem>().startLifetime = railRange * 3 / 50;
+                        rail_around.transform.Find("Rail_around2").GetComponent<ParticleSystem>().startLifetime = railRange * 3 / 50;
                     }
                     RaycastHit[] raycastHits = Physics.RaycastAll(new Vector3(transform.position.x, transform.position.y + 0.5f, -2),
                                 new Vector3(camera.hitAbove.x - transform.position.x, camera.hitAbove.y - transform.position.y - 0.5f, 0), range, mask);
@@ -293,7 +293,7 @@ public class Attack : MonoBehaviour {
                     shotProj.blast = fireBlast;
                     shotProj.type = Spell.FireBolt;
                     shot.transform.LookAt(new Vector3(camera.hit.point.x, camera.hit.point.y, -0.75f));
-                    shot.rigidbody.velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -0.75f) - shot.transform.position).normalized * projectileSpeed;
+                    shot.GetComponent<Rigidbody>().velocity = (new Vector3(camera.hit.point.x, camera.hit.point.y, -0.75f) - shot.transform.position).normalized * projectileSpeed;
                 }
                 else
                 {

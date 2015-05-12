@@ -17,7 +17,7 @@ public class StickToMarian : MonoBehaviour {
         transform.position = marian.transform.position + offset;
         if (setVelocityBasedOffset)
         {
-            offset = marian.rigidbody.velocity * velocityBasedOffsetMultiplayer;
+            offset = marian.GetComponent<Rigidbody>().velocity * velocityBasedOffsetMultiplayer;
         }
 	}
 

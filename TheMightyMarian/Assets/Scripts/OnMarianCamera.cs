@@ -38,7 +38,7 @@ public class OnMarianCamera : MonoBehaviour {
                 marian = GameObject.Find("Marian");
                 return;
             }
-            ray = transform.camera.ScreenPointToRay(Input.mousePosition);
+            ray = transform.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             float multiplayer = 2f / ray.direction.z;
             Vector3 offset = ray.direction * multiplayer;
             LayerMask mask = LayerMask.GetMask("Terrain");

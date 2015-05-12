@@ -24,11 +24,11 @@ public class MoveMarian : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         Vector3 newVelocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized * Marian.Speed;
-        if (newVelocity != rigidbody.velocity)
+        if (newVelocity != GetComponent<Rigidbody>().velocity)
         { state = State.Moving; }
         else
         { state = State.Idle; }
-        rigidbody.velocity = newVelocity;
+        GetComponent<Rigidbody>().velocity = newVelocity;
         positions.Add(transform.position);
         times.Add(Time.time);
 

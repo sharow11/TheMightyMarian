@@ -286,8 +286,8 @@ class InventoryEditor extends EditorWindow {
 		
 		//Set up the InvAudio
 		var theSource = invObject.AddComponent(AudioSource);
-		theSource.audio.volume = 0.75;
-		theSource.audio.playOnAwake = false;
+		theSource.GetComponent.<AudioSource>().volume = 0.75;
+		theSource.GetComponent.<AudioSource>().playOnAwake = false;
 		invObject.AddComponent(InvAudio);
 		
 		//Handle errors and complications (if any) to avoid compiler errors

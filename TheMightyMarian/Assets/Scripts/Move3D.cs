@@ -35,11 +35,11 @@ public class Move3D : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rb = transform.rigidbody;
+        rb = transform.GetComponent<Rigidbody>();
         head = GameObject.Find("Head");
         torches = GameObject.FindGameObjectsWithTag("Torch");
-        tl = GameObject.Find("TimeLeft").guiText;
-        sp = GameObject.Find("Speed").guiText;
+        tl = GameObject.Find("TimeLeft").GetComponent<GUIText>();
+        sp = GameObject.Find("Speed").GetComponent<GUIText>();
         startTime = Time.time;
         bonusVel = bonusMaxUsableTime * circleJumpAcc;
 	}
@@ -148,7 +148,7 @@ public class Move3D : MonoBehaviour {
         jumping = false;
         enterTime = Time.time;
         isTouchingGround = true;
-        audio.PlayOneShot(s_drop);
+        GetComponent<AudioSource>().PlayOneShot(s_drop);
         Debug.Log("enter: " + enterTime);
         if (jumpPressed && Time.time - jumpPressTime < 0.1f) //jump on touch;
         {
@@ -169,7 +169,7 @@ public class Move3D : MonoBehaviour {
     {
         jumping = true;
         Debug.Log("jump: " + Time.time);
-        audio.PlayOneShot(s_jump);
+        GetComponent<AudioSource>().PlayOneShot(s_jump);
         Vector2 temp = new Vector2(rb.velocity.x, rb.velocity.z);
         float mag2D = temp.magnitude;
         Vector2 dir2D = temp.normalized;

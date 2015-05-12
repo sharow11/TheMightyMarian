@@ -32,7 +32,7 @@ public class VoidMapStripe : MapCell{
             return;
         }
         myQuad.transform.localScale = new Vector3(1, width, 1);
-        myQuad.renderer.material.mainTextureScale = new Vector2(1, width);
+        myQuad.GetComponent<Renderer>().material.mainTextureScale = new Vector2(1, width);
     }
 
 }

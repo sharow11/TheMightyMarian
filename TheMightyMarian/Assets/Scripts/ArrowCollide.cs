@@ -19,18 +19,18 @@ public class ArrowCollide : MonoBehaviour {
         {
             if (enemyToStick == null)
             {
-                rigidbody.useGravity = true;
-                rigidbody.constraints = RigidbodyConstraints.None;
+                GetComponent<Rigidbody>().useGravity = true;
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 if (!isDropping)
                 {
-                    rigidbody.angularVelocity = new Vector3(Random.value, Random.value, Random.value) * 10;
-                    rigidbody.velocity = new Vector3(Random.value, Random.value, Random.value) * 10;
+                    GetComponent<Rigidbody>().angularVelocity = new Vector3(Random.value, Random.value, Random.value) * 10;
+                    GetComponent<Rigidbody>().velocity = new Vector3(Random.value, Random.value, Random.value) * 10;
                     isDropping = true;
                 }
             }
             else
             {
-                transform.rigidbody.position = enemyToStick.transform.position + offset;
+                transform.GetComponent<Rigidbody>().position = enemyToStick.transform.position + offset;
             }
         }
         if (vibrate && magnitude > 0)
@@ -52,17 +52,17 @@ public class ArrowCollide : MonoBehaviour {
             enemyToStick = enemy;
             offset = transform.position - enemy.transform.position;
             gotEnemyToStick = true;
-            audio.PlayOneShot(s_arrow);
+            GetComponent<AudioSource>().PlayOneShot(s_arrow);
         }
     }
     void OnCollisionEnter(Collision collision)
     {
-        initVel = rigidbody.velocity;
-        rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
-        rigidbody.angularVelocity = new Vector3();
-        transform.rigidbody.velocity = new Vector3();
+        initVel = GetComponent<Rigidbody>().velocity;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+        GetComponent<Rigidbody>().angularVelocity = new Vector3();
+        transform.GetComponent<Rigidbody>().velocity = new Vector3();
         ((Collider)this.GetComponentInChildren<Collider>()).enabled = false;
         vibrate = true;
-        audio.PlayOneShot(s_arrow);
+        GetComponent<AudioSource>().PlayOneShot(s_arrow);
     }
 }

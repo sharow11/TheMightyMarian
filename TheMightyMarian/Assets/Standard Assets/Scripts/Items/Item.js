@@ -177,11 +177,11 @@ function DropMeFromThePlayer(makeDuplicate : boolean)
 
 function DelayPhysics ()
 {
-	if (playersinv.transform.parent.collider != null && collider != null)
+	if (playersinv.transform.parent.GetComponent.<Collider>() != null && GetComponent.<Collider>() != null)
 	{
-		Physics.IgnoreCollision(playersinv.transform.parent.collider, collider, true);
+		Physics.IgnoreCollision(playersinv.transform.parent.GetComponent.<Collider>(), GetComponent.<Collider>(), true);
 		yield WaitForSeconds (1);
-		Physics.IgnoreCollision(playersinv.transform.parent.collider, collider, false);
+		Physics.IgnoreCollision(playersinv.transform.parent.GetComponent.<Collider>(), GetComponent.<Collider>(), false);
 	}
 }
 

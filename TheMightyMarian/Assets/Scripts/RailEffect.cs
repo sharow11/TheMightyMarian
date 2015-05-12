@@ -11,7 +11,7 @@ public class RailEffect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.gameObject.particleSystem.renderer.material.SetColor("_TintColor", Color.Lerp(Color.white, Color.black, (Time.time - time) * 3));
-        this.gameObject.transform.Find("Rail_around2").particleSystem.renderer.material.SetColor("_TintColor", Color.Lerp(Color.white, Color.black, (Time.time - time) * 3));
+        this.gameObject.GetComponent<ParticleSystem>().GetComponent<Renderer>().material.SetColor("_TintColor", Color.Lerp(Color.white, Color.black, (Time.time - time) * 3));
+        this.gameObject.transform.Find("Rail_around2").GetComponent<ParticleSystem>().GetComponent<Renderer>().material.SetColor("_TintColor", Color.Lerp(Color.white, Color.black, (Time.time - time) * 3));
 	}
 }

@@ -26,7 +26,7 @@ public class SimpleSpritesAnimator : MonoBehaviour
         float offsetX = (uIndex + colNumber) * size.x;
         float offsetY = (1.0f - size.y) - (vIndex + rowNumber) * size.y;
         Vector2 offset = new Vector2(offsetX, offsetY);
-        renderer.material.SetTextureOffset("_MainTex", offset);
-        renderer.material.SetTextureScale("_MainTex", size);
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
+        GetComponent<Renderer>().material.SetTextureScale("_MainTex", size);
     }
 }

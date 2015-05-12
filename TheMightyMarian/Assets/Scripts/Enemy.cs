@@ -266,13 +266,13 @@ public class Enemy : MonoBehaviour
                     {
                         float distance = Vector3.Distance(MarianObject.transform.position, transform.position);
                         float flyTime = distance / projectileSpeed;
-                        Vector3 marianPosAfter = MarianObject.transform.position + MarianObject.rigidbody.velocity * flyTime;
+                        Vector3 marianPosAfter = MarianObject.transform.position + MarianObject.GetComponent<Rigidbody>().velocity * flyTime;
                         predictedDirection = Quaternion.Euler(0, 0, Random.value * spread * 2 - spread) * (new Vector3(marianPosAfter.x, marianPosAfter.y, -2) - shot.transform.position).normalized;
                         float predictionImportance = predictionImportanceMin + Random.value * (predictionImportanceMax - predictionImportanceMin);
                         direction = direction * (1 - predictionImportance) + predictionImportance * predictedDirection;
                     }
                     shot.transform.LookAt(new Vector3(transform.position.x + direction.x * 64, transform.position.y + direction.y * 64, -2));
-                    shot.rigidbody.velocity = direction * projectileSpeed;
+                    shot.GetComponent<Rigidbody>().velocity = direction * projectileSpeed;
                     shot.GetComponent<EnemyProjectile>().dmg = damage;
                     shot.GetComponent<EnemyProjectile>().blast = greenBlast;
                     Music.hype += 1f;
@@ -291,7 +291,7 @@ public class Enemy : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) < 1)
             {
-                rigidbody.velocity = rigidbody.velocity + (transform.position - enemy.transform.position).normalized * 2;
+                GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity + (transform.position - enemy.transform.position).normalized * 2;
             }
         }
     }
@@ -304,7 +304,7 @@ public class Enemy : MonoBehaviour
             float multiplayer = speed;
             if (state == State.alert)
                 multiplayer /= 2;
-            rigidbody.velocity = (dest - transform.position).normalized * multiplayer + pushAwayFromWalls;
+            GetComponent<Rigidbody>().velocity = (dest - transform.position).normalized * multiplayer + pushAwayFromWalls;
             pushAwayFromWalls = new Vector3();
             /*if (prevStep == transform.position && prevStep == prevPrevStep) //object didn't move, try moving to right
             {
@@ -390,10 +390,10 @@ public class Enemy : MonoBehaviour
         dir = new Vector3(dir.x, dir.y, -0.1f);
         GameObject bloodObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y - 0.5f, -2), new Quaternion());
         bloodObj.transform.LookAt(transform.position + dir);
-        bloodObj.particleSystem.startSize = dmg / 50 + 1.8f;
-        bloodObj.particleSystem.startSpeed = dmg / 3 + 5;
-        bloodObj.particleSystem.startLifetime = dmg / 200 + 0.15f;
-        bloodObj.particleSystem.emissionRate = dmg * 20;
+        bloodObj.GetComponent<ParticleSystem>().startSize = dmg / 50 + 1.8f;
+        bloodObj.GetComponent<ParticleSystem>().startSpeed = dmg / 3 + 5;
+        bloodObj.GetComponent<ParticleSystem>().startLifetime = dmg / 200 + 0.15f;
+        bloodObj.GetComponent<ParticleSystem>().emissionRate = dmg * 20;
         Destroy(bloodObj, 1);
         health -= dmg;
         if (health < 0)
@@ -403,10 +403,10 @@ public class Enemy : MonoBehaviour
                 dir = new Vector3(dir.x, dir.y, -9999f);
                 GameObject greenObj = (GameObject)Instantiate(blood, new Vector3(transform.position.x, transform.position.y - 0.5f, -2), new Quaternion());
                 greenObj.transform.LookAt(transform.position + dir);
-                greenObj.particleSystem.startSize = 2.8f;
-                greenObj.particleSystem.startSpeed = 17;
-                greenObj.particleSystem.startLifetime = 0.4f;
-                greenObj.particleSystem.emissionRate = 1000;
+                greenObj.GetComponent<ParticleSystem>().startSize = 2.8f;
+                greenObj.GetComponent<ParticleSystem>().startSpeed = 17;
+                greenObj.GetComponent<ParticleSystem>().startLifetime = 0.4f;
+                greenObj.GetComponent<ParticleSystem>().emissionRate = 1000;
                 Destroy(greenObj, 1);
                 Destroy((GameObject)Instantiate(banelingFlash, new Vector3(transform.position.x, transform.position.y, -1), new Quaternion()), 1f);
                 if (Vector3.Distance(transform.position, MarianObject.transform.position) < 5f)
@@ -434,8 +434,8 @@ public class Enemy : MonoBehaviour
                         meat.transform.localScale = new Vector3(Random.value / 100 + 0.005f, Random.value / 100 + 0.005f, Random.value / 100 + 0.005f);
                     }
                     meat.transform.rotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
-                    meat.rigidbody.velocity = new Vector3(Random.value, Random.value, Random.value) * 10 + dir * (dmg / 3 + 5);
-                    meat.rigidbody.inertiaTensorRotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
+                    meat.GetComponent<Rigidbody>().velocity = new Vector3(Random.value, Random.value, Random.value) * 10 + dir * (dmg / 3 + 5);
+                    meat.GetComponent<Rigidbody>().inertiaTensorRotation = new Quaternion(Random.value, Random.value, Random.value, Random.value);
                     Destroy(meat, 2.0f + Random.value * 2);
                 }
             }

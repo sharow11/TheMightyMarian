@@ -7,13 +7,13 @@ public class TextButton : MonoBehaviour {
 
     void OnMauseEnter()
     {
-        renderer.material.color = Color.gray;
+        GetComponent<Renderer>().material.color = Color.gray;
 
     }
 
     void OnMauseExit()
     {
-        renderer.material.color = Color.black;
+        GetComponent<Renderer>().material.color = Color.black;
     }
 
     void OnMouseUp()

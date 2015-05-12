@@ -62,8 +62,8 @@ public class ComplicatedSpritesAnimator : MonoBehaviour {
         float offsetX = (uIndex + colNumber) * size.x;
         float offsetY = (1.0f - size.y) - (vIndex + rowNumber) * size.y;
         Vector2 offset = new Vector2(offsetX, offsetY);
-        renderer.material.SetTextureOffset("_MainTex", offset);
-        renderer.material.SetTextureScale("_MainTex", size);
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
+        GetComponent<Renderer>().material.SetTextureScale("_MainTex", size);
     }
 
     void WalkSpriteAnimation()
@@ -78,8 +78,8 @@ public class ComplicatedSpritesAnimator : MonoBehaviour {
         float offsetX = (uIndex + colNumber) * size.x;
         float offsetY = (1.0f - size.y) - (vIndex + rowNumber) * size.y;
         Vector2 offset = new Vector2(offsetX, offsetY);
-        renderer.material.SetTextureOffset("_MainTex", offset);
-        renderer.material.SetTextureScale("_MainTex", size);
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
+        GetComponent<Renderer>().material.SetTextureScale("_MainTex", size);
     }
 
     void AttackSpriteAnimation()
@@ -94,8 +94,8 @@ public class ComplicatedSpritesAnimator : MonoBehaviour {
         float offsetX = (uIndex + colNumber) * size.x;
         float offsetY = (1.0f - size.y) - (vIndex + rowNumber) * size.y;
         Vector2 offset = new Vector2(offsetX, offsetY);
-        renderer.material.SetTextureOffset("_MainTex", offset);
-        renderer.material.SetTextureScale("_MainTex", size);
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
+        GetComponent<Renderer>().material.SetTextureScale("_MainTex", size);
     }
 
     void setMaterial()
@@ -103,13 +103,13 @@ public class ComplicatedSpritesAnimator : MonoBehaviour {
         switch (currentState)
         {
             case AnimState.idle:
-                this.renderer.material = idleMaterial;
+                this.GetComponent<Renderer>().material = idleMaterial;
                 break;
             case AnimState.attack:
-                this.renderer.material = attackMaterial;
+                this.GetComponent<Renderer>().material = attackMaterial;
                 break;
             case AnimState.walk:
-                this.renderer.material = walkMaterial;
+                this.GetComponent<Renderer>().material = walkMaterial;
                 break;
             default:
                 break;
